@@ -1,0 +1,526 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.org/nirs/1.0/solution_analysis.schema.json",
+  "title": "Solution Analysis",
+  "description": "Основной выходной контракт системы проверки рукописных решений. Единый артефакт для обоих подходов: `llm_end_to_end` заполняет его целиком одним вызовом модели по картинке, `llm_ocr_plus_math_core` собирает его из MathCoreInput и выводов математического ядра. Вход системы — изображение, отдельного контракта входа нет: изображение передаётся на стадию распознавания вне этих схем. Поля problem, steps, reading, meta, schema_version, id совпадают с MathCoreInput; этот контракт добавляет к ним вердикт, ошибки и отчёт. Информация об ошибках живёт только в findings / steps_reviewed — сами шаги её не содержат, поэтому steps из MathCoreInput можно переиспользовать без преобразования.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "verdict",
+    "steps",
+    "findings",
+    "meta"
+  ],
+  "properties": {
+    "schema_version": {
+      "description": "Версия этого контракта. Инкрементная: breaking change — major, новое необязательное поле — minor.",
+      "const": "1.0"
+    },
+    "id": {
+      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/entity_id",
+      "description": "Идентификатор задания. Сквозной ключ, по которому транскрипция, отчёт и результаты разных подходов сопоставляются между собой."
+    },
+    "pipeline": {
+      "$ref": "#/$defs/pipeline",
+      "description": "Состав прогонов и их технический результат. Заполняется оркестратором, а не моделью."
+    },
+    "problem": {
+      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/problem_spec",
+      "description": "Нормированное условие задачи. На изображении условия может не быть — тогда оно выводится из начального выражения ученика."
+    },
+    "steps": {
+      "description": "Шаги решения в порядке чтения. Совпадают по форме с MathCoreInput.steps. Для подхода `llm_end_to_end` заполняются моделью по картинке; для `llm_ocr_plus_math_core` — копируются из промежуточного контракта без изменений.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step"
+      }
+    },
+    "reading": {
+      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/reading_meta",
+      "description": "Качество распознавания. Заполняется, если распознавание было отдельной стадией; для сквозного подхода можно опустить."
+    },
+    "verdict": {
+      "description": "Итоговая оценка решения. `indeterminate` означает, что система отказалась выносить вердикт (нечитаемое изображение, шаг не распознан, неподдерживаемый класс задачи) — это не то же самое, что `correct`.",
+      "enum": [
+        "correct",
+        "incorrect",
+        "indeterminate"
+      ]
+    },
+    "is_correct": {
+      "description": "Дублирует `verdict` для потребителей, которым нужен булев флаг. `null` при `indeterminate`. Значение обязано соответствовать verdict.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "first_error_step": {
+      "description": "Первый шаг с ошибкой по порядку чтения. Основная точка входа для обратной связи ученику: показываем проблему начиная с него. `null`, если ошибок нет или вердикт не вынесен.",
+      "oneOf": [
+        {
+          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "last_correct_step": {
+      "description": "Последний шаг перед первой ошибкой. Отделяет корректную часть решения от ошибочной; `null`, если первый шаг уже ошибочен.",
+      "oneOf": [
+        {
+          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "findings": {
+      "description": "Все обнаруженные проблемы. Порядок — по порядку чтения шагов, внутри шага — по полю span.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "steps_reviewed": {
+      "description": "Пошаговый вердикт по всем шагам `steps`. Позволяет отличить «система не нашла ошибку» от «система не смотрела на этот шаг», и отдельно — от «шаг пропущен как зачёркнутый».",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/step_review"
+      }
+    },
+    "corrected_solution": {
+      "description": "Исправленный вариант решения. Содержит только шаги, которые нужно изменить или добавить; неизменённые шаги не дублируются.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/corrected_step"
+      }
+    },
+    "summary": {
+      "description": "Текстовое резюме решения: что верно, где ошибка и почему, что делать дальше. Ориентировано на ученика.",
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/run_meta",
+      "description": "Техническая телеметрия последней стадии, сформировавшей контракт. Суммарные по всем стадиям значения — в `pipeline`."
+    }
+  },
+  "allOf": [
+    {
+      "title": "is_correct согласован с verdict",
+      "if": {
+        "required": [
+          "verdict"
+        ],
+        "properties": {
+          "verdict": {
+            "enum": [
+              "correct",
+              "incorrect"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "is_correct"
+        ],
+        "properties": {
+          "is_correct": {
+            "type": "boolean"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "is_correct": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "title": "При incorrect первая ошибка обязательна",
+      "if": {
+        "required": [
+          "verdict"
+        ],
+        "properties": {
+          "verdict": {
+            "const": "incorrect"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "first_error_step",
+          "is_correct"
+        ],
+        "properties": {
+          "is_correct": {
+            "const": false
+          },
+          "first_error_step": {
+            "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+          }
+        }
+      }
+    },
+    {
+      "title": "При correct ошибок быть не должно",
+      "if": {
+        "required": [
+          "verdict"
+        ],
+        "properties": {
+          "verdict": {
+            "const": "correct"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "is_correct"
+        ],
+        "properties": {
+          "is_correct": {
+            "const": true
+          },
+          "first_error_step": {
+            "type": "null"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "severity": {
+                  "const": "warning"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "При indeterminate ошибка не локализуется",
+      "if": {
+        "required": [
+          "verdict"
+        ],
+        "properties": {
+          "verdict": {
+            "const": "indeterminate"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "first_error_step": {
+            "type": "null"
+          },
+          "last_correct_step": {
+            "type": "null"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "error_code": {
+                  "const": "ocr_uncertain"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Исправленный шаг обязан ссылаться на существующий шаг",
+      "if": {
+        "required": [
+          "corrected_solution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "corrected_solution": {
+            "items": {
+              "required": [
+                "step_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Проверенный шаг обязан ссылаться на существующий шаг",
+      "if": {
+        "required": [
+          "steps_reviewed"
+        ]
+      },
+      "then": {
+        "properties": {
+          "steps_reviewed": {
+            "items": {
+              "required": [
+                "step_id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "pipeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approach",
+        "stages"
+      ],
+      "properties": {
+        "approach": {
+          "enum": [
+            "llm_end_to_end",
+            "llm_ocr_plus_math_core"
+          ],
+          "description": "Подход, давший этот отчёт. `llm_end_to_end` — картинка и промпт уходят в LLM, структурированный ответ приходит сразу готовым. `llm_ocr_plus_math_core` — LLM даёт только транскрипцию (MathCoreInput), а проверку выполняет собственное математическое ядро."
+        },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/stage"
+          }
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "status"
+      ],
+      "properties": {
+        "name": {
+          "enum": [
+            "transcribe",
+            "verify",
+            "report"
+          ]
+        },
+        "backend": {
+          "type": "string",
+          "description": "Реализация стадии: модель или символьный движок (`GigaChat-Pro`, `sympy@1.13`, `wolfram_alpha`)."
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "skipped",
+            "failed"
+          ],
+          "description": "`skipped` и `failed` обязаны сопровождаться `verdict: indeterminate` — молча проглоченный сбой стадии выглядит как «всё верно»."
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tokens_in": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tokens_out": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "error": {
+          "type": "string",
+          "description": "Текст сбоя стадии при `status: failed`."
+        }
+      }
+    },
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "description": "Символьные границы ошибочного фрагмента внутри `steps[step_id].latex`. Полуоткрытый интервал `[start, end)`, индексация по Unicode-кодпоинтам. Позволяет указать проблему на конкретный знак, не разбивая шаг на подшаги.",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "finding_id",
+        "step_id",
+        "error_code",
+        "severity",
+        "message",
+        "confidence"
+      ],
+      "properties": {
+        "finding_id": {
+          "type": "string",
+          "pattern": "^f[1-9][0-9]*$",
+          "description": "Идентификатор находки внутри отчёта (`f1`, `f2`, ...)."
+        },
+        "step_id": {
+          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id",
+          "description": "Шаг, к которому относится находка. Для ошибок, не привязанных к шагу (например нечитаемое изображение), указывается ближайший шаг."
+        },
+        "span": {
+          "$ref": "#/$defs/span",
+          "description": "Фрагмент внутри `latex` шага. Необязателен, когда проблема относится к шагу целиком."
+        },
+        "error_code": {
+          "enum": [
+            "arithmetic",
+            "sign",
+            "algebra",
+            "domain_violation",
+            "logic",
+            "notation",
+            "misread",
+            "extraneous_step",
+            "incompleteness",
+            "final_answer",
+            "ocr_uncertain"
+          ],
+          "description": "Класс ошибки. `arithmetic` — ошибка в вычислении; `sign` — потерян или добавлен знак; `algebra` — неверное преобразование, не сводимое к арифметике; `domain_violation` — потерянное условие (деление на выражение, которое может быть нулём) или решение вне области; `logic` — не следует из предыдущих шагов; `notation` — нечитаемая или неоднозначная запись; `misread` — уверенная ошибка распознавания, а не ученика; `extraneous_step` — шаг без входа; `incompleteness` — потерян существенный случай или ветвь; `final_answer` — ответ неверен либо отсутствует при `goal: solve`; `ocr_uncertain` — распознавание не позволяет судить, используется только при `verdict: indeterminate`."
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning"
+          ],
+          "description": "`error` ломает вывод и делает решение неверным. `warning` — подозрение или неаккуратность (неоднозначная запись, неявное условие), не влияющее на вердикт. При `verdict: correct` допускаются только warning."
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Одно предложение о сути проблемы на языке ученика: что именно не так."
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Обоснование: какое правило или условие нарушено и как это проверить."
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Противостоящая пара «как должно быть / как записано». То, что делает находку проверяемой, а не декларативной.",
+          "properties": {
+            "check": {
+              "type": "string",
+              "description": "Выполненная проверка: `simplify(LHS - RHS) == 0`, пересчёт арифметического выражения, сверка с решением CAS."
+            },
+            "expected_latex": {
+              "type": "string",
+              "description": "Корректная форма."
+            },
+            "actual_latex": {
+              "type": "string",
+              "description": "Форма, записанная в шаге."
+            },
+            "engine": {
+              "type": "string",
+              "description": "Кто выполнял проверку: `sympy`, `wolfram_alpha`, `llm`."
+            }
+          }
+        },
+        "correction_latex": {
+          "type": "string",
+          "description": "Исправленный фрагмент либо исправленный шаг целиком — в зависимости от того, задан ли span."
+        },
+        "confidence": {
+          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/confidence",
+          "description": "Уверенность именно в находке. Низкая уверенность при высокой уверенности в шаге — признак того, что проблема в распознавании, а не в записи ученика."
+        },
+        "detected_by": {
+          "enum": [
+            "llm",
+            "math_core",
+            "rule_engine",
+            "ocr_stage"
+          ],
+          "description": "Какой компонент нашёл проблему. Позволяет измерить вклад каждого подхода и отделить находки модели от находок символьного ядра."
+        }
+      }
+    },
+    "step_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "verdict"
+      ],
+      "properties": {
+        "step_id": {
+          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+        },
+        "verdict": {
+          "enum": [
+            "correct",
+            "error",
+            "skipped",
+            "indeterminate"
+          ],
+          "description": "`skipped` — шаг проверен, но исключён из вывода (`kind: crossed_out`, комментарий). `indeterminate` — шаг не удалось надёжно распознать или проверить."
+        },
+        "finding_ids": {
+          "description": "Находки по этому шагу. Обязательно непусто при `verdict: error`.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^f[1-9][0-9]*$"
+          }
+        },
+        "note": {
+          "type": "string",
+          "description": "Почему шаг пропущен или признан непроверяемым."
+        }
+      }
+    },
+    "corrected_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "corrected_latex"
+      ],
+      "properties": {
+        "step_id": {
+          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id",
+          "description": "Ссылка на исправляемый шаг. Для шага, которого в записи не было, используется незанятый идентификатор следующего по порядку шага."
+        },
+        "corrected_latex": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Шаг в исправленном виде."
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

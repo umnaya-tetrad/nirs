@@ -1,0 +1,20 @@
+{
+    "version": "1.0",
+    "id": 1,
+    "steps": [
+        {
+            "number": 1,
+            "latex": "2x-5=1",
+        },
+        {
+            "number": 2,
+            "latex": "2x=5",
+        },
+        ...
+    ],
+    "isCorrect": false,
+    "firstErrorStep": 2,
+    "duration": 10,
+    "tokens_spent": 10000,
+    "model": "GigaChat"
+}

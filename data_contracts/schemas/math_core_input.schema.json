@@ -1,0 +1,439 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json",
+  "title": "Math Core Input",
+  "description": "Промежуточный контракт подхода `llm_ocr_plus_math_core`. Ровно то, что стадия распознавания (LLM) передаёт математическому ядру: канонизированный LaTeX, структура зависимостей между шагами, нормированное условие и цель. Полей, связанных с поиском ошибок, в контракте намеренно нет — их добавляет математическое ядро, формируя основной выходной контракт SolutionAnalysis. Объект этого типа является подмножеством полей SolutionAnalysis: schema_version, id, problem, steps, reading, meta совпадают побайтово, дополнительные поля main-контракта (verdict, is_correct, first_error_step, findings, steps_reviewed, corrected_solution, summary, pipeline) в нём отсутствуют.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "problem",
+    "steps",
+    "meta"
+  ],
+  "properties": {
+    "schema_version": {
+      "description": "Версия этого контракта. Инкрементная: breaking change — major, новое необязательное поле — minor.",
+      "const": "1.0"
+    },
+    "id": {
+      "$ref": "#/$defs/entity_id",
+      "description": "Идентификатор задания. Сквозной ключ, по которому транскрипция, отчёт и результаты разных подходов сопоставляются между собой."
+    },
+    "problem": {
+      "$ref": "#/$defs/problem_spec",
+      "description": "Нормированное условие. На изображении условия может не быть — тогда оно выводится из начального выражения, записанного учеником, и помечается `source: transcribed`."
+    },
+    "steps": {
+      "description": "Шаги решения в порядке чтения. Порядок массива — единственный носитель порядка чтения; на поле order не опираться.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "reading": {
+      "$ref": "#/$defs/reading_meta",
+      "description": "Качество распознавания целиком. Математическое ядро обязано снижать доверие к выводам по шагам из `ambiguous_step_ids`."
+    },
+    "meta": {
+      "$ref": "#/$defs/run_meta",
+      "description": "Техническая телеметрия стадии распознавания. На предметную валидность не влияет, но нужна для честного сравнения подходов по стоимости и времени."
+    }
+  },
+  "$defs": {
+    "entity_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Произвольный непрозрачный идентификатор."
+    },
+    "step_id": {
+      "type": "string",
+      "pattern": "^s[1-9][0-9]*$",
+      "description": "Стабильная ссылка на шаг (`s1`, `s2`, ...). В отчёте ошибки адресуются через step_id, а не через индекс массива: при вставке или удалении шага индексы поедут, step_id — нет."
+    },
+    "latex": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Строка LaTeX без обрамляющих `$`/`$$`. Разделители дробей, корней и логарифмов пишутся командами (`\\frac`, `\\sqrt`, `\\ln`)."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Уверенность в диапазоне [0, 1]. Калибровка между подходами не гарантируется — сравнивать абсолютные значения разных движков нельзя, только ранжирование."
+    },
+    "relation": {
+      "enum": [
+        "eq",
+        "ne",
+        "lt",
+        "le",
+        "gt",
+        "ge"
+      ],
+      "description": "Реляционный оператор уравнения или неравенства."
+    },
+    "value_domain": {
+      "enum": [
+        "real",
+        "integer",
+        "natural",
+        "positive",
+        "nonzero",
+        "any"
+      ],
+      "description": "Область допустимых значений переменной."
+    },
+    "variable_name": {
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,15}$",
+      "description": "Имя переменной: буква, затем буквы/цифры/подчёркивание. Индексы пишутся в LaTeX (`x_{1}`), а не в имени."
+    },
+    "equation_id": {
+      "type": "string",
+      "pattern": "^e[1-9][0-9]*$",
+      "description": "Идентификатор уравнения/неравенства внутри системы (`e1`, `e2`, ...)."
+    },
+    "equation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "relation",
+        "latex"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/equation_id"
+        },
+        "relation": {
+          "$ref": "#/$defs/relation"
+        },
+        "latex": {
+          "$ref": "#/$defs/latex",
+          "description": "Уравнение как оно записано на изображении."
+        },
+        "normalized_latex": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Каноническая форма для СЛАУ/СИМВ-ядра: приведённая к единому виду (дроби через `\\frac`, без неоднозначных скобок). Если поле отсутствует, ядро использует `latex`."
+        }
+      }
+    },
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/variable_name"
+        },
+        "domain": {
+          "$ref": "#/$defs/value_domain",
+          "description": "Допустимое множество значений. Для вещественных переменных по умолчанию `real`."
+        }
+      }
+    },
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "solve",
+            "find_value",
+            "determine_existence",
+            "prove",
+            "simplify",
+            "unknown"
+          ],
+          "description": "Что требовалось получить. `solve` — найти все решения; `find_value` — конкретное значение выражения; `determine_existence` — установить существование решений; `unknown` — цель на изображении не выражена явно."
+        },
+        "target_variables": {
+          "description": "Переменные, относительно которых решается. Для `solve` обычно непусто.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/variable_name"
+          }
+        },
+        "latex": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Формулировка цели LaTeX, если она читается с изображения."
+        }
+      }
+    },
+    "problem_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "equations",
+        "goal"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "linear_equation",
+            "quadratic_equation",
+            "polynomial_equation",
+            "rational_equation",
+            "inequality",
+            "system_of_equations",
+            "system_of_inequalities",
+            "parametric_equation",
+            "unknown"
+          ],
+          "description": "Класс задачи. Определяет, какие проверки ядро обязано выполнить (например, для квадратного — дискриминант и потерю корней при делении)."
+        },
+        "equations": {
+          "description": "Список уравнений/неравенств. Для системы содержит все её части; `relation` у каждой части может различаться.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/equation"
+          }
+        },
+        "variables": {
+          "description": "Явно объявленные переменные. Не указанные здесь, но встречающиеся в уравнениях, ядро считает вещественными.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/variable"
+          }
+        },
+        "goal": {
+          "$ref": "#/$defs/goal"
+        },
+        "assumptions": {
+          "description": "Явно выписанные ограничения и условия (например `x \\neq 0`). Условия, вытекающие из области определения, сюда не переносятся — их выводит само ядро.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "source": {
+          "enum": [
+            "transcribed",
+            "provided"
+          ],
+          "description": "Откуда взято условие. `transcribed` — восстановлено из изображения, `provided` — передано вместе с заданием. На изображении условия может не быть вовсе."
+        }
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "algebraic",
+            "arithmetic",
+            "logical",
+            "assumption",
+            "substitution",
+            "definition",
+            "other"
+          ],
+          "description": "Тип преобразования между шагами. Подсказка для ядра: `arithmetic` проверяется пересчётом, `algebraic` — символьным упрощением, `assumption` — на непротиворечивость."
+        },
+        "rule_hint": {
+          "type": "string",
+          "description": "Название применённого правила, если распознано: `перенос слагаемого`, `деление на коэффициент`, `формула корней` и т. п. Свободная строка."
+        }
+      }
+    },
+    "alternative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "latex",
+        "confidence"
+      ],
+      "properties": {
+        "latex": {
+          "$ref": "#/$defs/latex"
+        },
+        "normalized_latex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      },
+      "description": "Кандидат в неоднозначном месте распознавания. Нужен, чтобы отличать ошибку ученика от ошибки OCR: если в `alternatives` есть корректная версия шага, инспектор не должен считать шаг ошибочным без дополнительной проверки."
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "kind",
+        "latex"
+      ],
+      "properties": {
+        "step_id": {
+          "$ref": "#/$defs/step_id"
+        },
+        "kind": {
+          "enum": [
+            "initial",
+            "step",
+            "conclusion",
+            "answer",
+            "note",
+            "crossed_out"
+          ],
+          "description": "Роль шага в решении. `initial` — исходное выражение, записанное учеником; `conclusion` — промежуточный вывод; `answer` — финальный ответ; `crossed_out` — зачёркнуто (проверяется на ложные срабатывания, но не входит в цепочку вывода); `note` — комментарий без математики."
+        },
+        "latex": {
+          "$ref": "#/$defs/latex"
+        },
+        "normalized_latex": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Каноническая форма шага для СИМВ-ядра. Рекомендуется заполнять всегда: без однородной формы сопоставление строк между шагами даёт ложные расхождения."
+        },
+        "derives_from": {
+          "description": "Шаги, из которых получен этот шаг. Формирует граф вывода; для линейной цепочки — предыдущий шаг. Пустой массив у исходного выражения.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/step_id"
+          }
+        },
+        "transformation": {
+          "$ref": "#/$defs/transformation"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence",
+          "description": "Уверенность распознавания именно этого шага. Не заполняется, если уверенность оценивается только для всего изображения (см. `reading.confidence`)."
+        },
+        "alternatives": {
+          "description": "Кандидаты при неоднознальном распознавании: похожие цифры, неразличимые знаки, спорное размещение дробной черты.",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/alternative"
+          }
+        },
+        "note": {
+          "type": "string",
+          "description": "Заметка распознающей стадии: что именно здесь неуверенно и какие кандидаты рассматривались."
+        }
+      }
+    },
+    "reading_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/confidence",
+          "description": "Агрегированная уверенность распознавания всего изображения."
+        },
+        "ambiguous_step_ids": {
+          "description": "Шаги с неуверенным распознаванием. Ядро обязано воздерживаться от вынесения вердикта по ним и по зависящим от них.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/step_id"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "run_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_id",
+        "approach",
+        "stage"
+      ],
+      "properties": {
+        "run_id": {
+          "$ref": "#/$defs/entity_id",
+          "description": "Идентификатор запуска пайплайна."
+        },
+        "approach": {
+          "enum": [
+            "llm_end_to_end",
+            "llm_ocr_plus_math_core"
+          ],
+          "description": "Подход, породивший артефакт. Поле, по которому результаты разных подходов агрегируются и сравниваются."
+        },
+        "stage": {
+          "enum": [
+            "transcribe",
+            "verify",
+            "report"
+          ],
+          "description": "Стадия пайплайна, заполнившая артефакт."
+        },
+        "model": {
+          "type": "string",
+          "description": "Идентификатор модели: `gpt-4o`, `GigaChat-Pro`, `sympy@1.13` и т. п."
+        },
+        "prompt_version": {
+          "type": "string",
+          "description": "Версия промпта. Обязательна для воспроизводимости: без неё результат нельзя отнести к конкретной формулировке инструкции."
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "tokens_in": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Токены на входе суммарно по всем вызовам модели."
+        },
+        "tokens_out": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cost_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Время стадии в миллисекундах."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Момент формирования артефакта в формате RFC 3339."
+        },
+        "tool_versions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Версии инструментов стадии: `{\"sympy\": \"1.13.0\"}`."
+        }
+      }
+    }
+  }
+}
