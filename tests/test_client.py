@@ -26,7 +26,7 @@ def test_e2e_request_serializes_image_and_fixed_options() -> None:
     assert captured["model"] == "google/gemini-3.7-flash"
     assert captured["response_format"] == {"type": "json_object"}
     assert captured["temperature"] == 0
-    assert captured["metadata"]["nirs_prompt_version"] == "e2e_gemini_v1"
+    assert "metadata" not in captured
     image_url = captured["messages"][1]["content"][1]["image_url"]["url"]
     assert image_url == f"data:image/png;base64,{base64.b64encode(b'image-bytes').decode()}"
 

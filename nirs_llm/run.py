@@ -8,9 +8,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .client import GeminiPolzaClient
+from .client import GeminiPolzaClient, PolzaInvalidResponseError, PolzaProviderError, PolzaUnavailableError
 from .config import Settings
-from .contracts import build_math_core_input, build_solution_analysis, validate_contract
+from .contracts import ContractError, build_math_core_input, build_solution_analysis, validate_contract
 from .prompts import prompt_for
 
 
@@ -21,12 +21,18 @@ def _cases(manifest_path: Path) -> list[dict[str, Any]]:
         raise ValueError("Manifest must be an array or an object with a cases array.")
     result: list[dict[str, Any]] = []
     for case in cases:
-        if not isinstance(case, dict) or not isinstance(case.get("id"), str) or not isinstance(case.get("image"), str):
-            raise ValueError("Each case needs string id and image fields.")
-        image_path = (manifest_path.parent / case["image"]).resolve()
+        if not isinstance(case, dict):
+            raise ValueError("Each case must be an object.")
+        # The generic DevSet format uses id/image; the current llmJsonTest
+        # manifest carries dataset metadata under case_id/filename.
+        case_id = case.get("id", case.get("case_id"))
+        filename = case.get("image", case.get("filename"))
+        if not isinstance(case_id, str) or not isinstance(filename, str):
+            raise ValueError("Each case needs id/image or case_id/filename string fields.")
+        image_path = (manifest_path.parent / filename).resolve()
         if not image_path.is_file():
             raise ValueError(f"Image does not exist: {image_path}")
-        result.append({"id": case["id"], "path": image_path, "mime_type": case.get("mime_type")})
+        result.append({"id": case_id, "path": image_path, "mime_type": case.get("mime_type")})
     return result
 
 
@@ -39,18 +45,26 @@ def run(mode: str, manifest: Path, output_dir: Path, repo_root: Path) -> list[Pa
     run_dir.mkdir(parents=True, exist_ok=False)
     outputs: list[Path] = []
     for case in _cases(manifest):
-        mime_type = case["mime_type"] or mimetypes.guess_type(case["path"].name)[0] or "application/octet-stream"
-        started = time.perf_counter()
-        response = client.analyze(case["path"].read_bytes(), mime_type, mode)
-        duration_ms = round((time.perf_counter() - started) * 1000)
-        if mode == "e2e":
-            contract = build_solution_analysis(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt_version, duration_ms=duration_ms, usage=response.usage)
-            schema_name = "solution_analysis"
-        else:
-            contract = build_math_core_input(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt_version, duration_ms=duration_ms, usage=response.usage)
-            schema_name = "math_core_input"
-        validate_contract(contract, schema_name, repo_root)
-        artifact = {"case_id": case["id"], "mode": mode, "prompt_version": prompt_version, "provider_model": response.provider_model, "usage": response.usage, "latency_ms": duration_ms, "raw_response": response.raw_content, "contract": contract}
+        try:
+            mime_type = case["mime_type"] or mimetypes.guess_type(case["path"].name)[0] or "application/octet-stream"
+            started = time.perf_counter()
+            response = client.analyze(case["path"].read_bytes(), mime_type, mode)
+            duration_ms = round((time.perf_counter() - started) * 1000)
+            if mode == "e2e":
+                contract = build_solution_analysis(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt_version, duration_ms=duration_ms, usage=response.usage)
+                schema_name = "solution_analysis"
+            else:
+                contract = build_math_core_input(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt_version, duration_ms=duration_ms, usage=response.usage)
+                schema_name = "math_core_input"
+            validate_contract(contract, schema_name, repo_root)
+            artifact = {"status": "ok", "case_id": case["id"], "mode": mode, "prompt_version": prompt_version, "provider_model": response.provider_model, "usage": response.usage, "latency_ms": duration_ms, "raw_response": response.raw_content, "contract": contract}
+        except (PolzaUnavailableError, PolzaProviderError, PolzaInvalidResponseError, ContractError) as error:
+            artifact = {
+                "status": "error", "case_id": case["id"], "mode": mode, "prompt_version": prompt_version,
+                "error_type": type(error).__name__, "error": str(error),
+            }
+            if isinstance(error, PolzaInvalidResponseError) and error.raw_content is not None:
+                artifact["raw_response"] = error.raw_content
         path = run_dir / f"{case['id']}.json"
         path.write_text(json.dumps(artifact, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         outputs.append(path)
