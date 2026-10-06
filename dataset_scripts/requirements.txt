@@ -2,3 +2,4 @@ gradio
 pandas
 datasets
 pyarrow
+pillow

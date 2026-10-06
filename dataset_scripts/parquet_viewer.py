@@ -1,8 +1,10 @@
 import glob
+from io import BytesIO
 import os
 
 import gradio as gr
 from datasets import load_dataset
+from PIL import Image
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -38,10 +40,17 @@ def show_details(evt: gr.SelectData):
     row_idx = evt.index[0]  # Индекс выбранной строки в таблице
     row = ds[row_idx]
 
-    image = row.get("image")
+    image = _decode_image(row.get("image"))
     metadata = {k: v for k, v in row.items() if k != "image"}
 
     return image, metadata, f"Выбрана строка #{row_idx} из {len(ds)}"
+
+
+def _decode_image(image):
+    """The parquet image column stores {bytes, path}; Gradio needs image data itself."""
+    if isinstance(image, dict) and isinstance(image.get("bytes"), bytes):
+        return Image.open(BytesIO(image["bytes"]))
+    return image
 
 
 with gr.Blocks(title="Parquet Explorer") as demo:
