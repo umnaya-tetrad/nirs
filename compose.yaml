@@ -1,0 +1,31 @@
+name: umnaya-tetrad
+
+services:
+  cas:
+    build:
+      context: .
+      target: runtime
+    image: umnaya-tetrad-cas:local
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    init: true
+    read_only: true
+    network_mode: none
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./data:/data:ro
+      - ./reports/local:/reports
+    command: ["benchmark", "/data/synthetic_20.json", "--output", "/reports"]
+
+  tests:
+    profiles: ["test"]
+    build:
+      context: .
+      target: test
+    image: umnaya-tetrad-cas-tests:local
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    init: true
+    read_only: true
+    network_mode: none
+    tmpfs:
+      - /tmp
