@@ -73,7 +73,7 @@ def build_solution_analysis(
     usage: dict[str, int | float],
 ) -> dict[str, Any]:
     """Lift the deliberately small E2E projection into SolutionAnalysis."""
-    if projection.get("schema_version") != "e2e_gemini_v1":
+    if projection.get("schema_version") != prompt_version:
         raise ContractError("Unexpected E2E projection schema_version.")
     if not isinstance(projection.get("has_error"), bool):
         raise ContractError("has_error must be boolean.")
@@ -119,7 +119,7 @@ def build_math_core_input(
     usage: dict[str, int | float],
 ) -> dict[str, Any]:
     """Lift minimal transcription into MathCoreInput without inventing normalization."""
-    if projection.get("schema_version") != "extraction_gemini_v1":
+    if projection.get("schema_version") != prompt_version:
         raise ContractError("Unexpected extraction projection schema_version.")
     problem = projection.get("problem")
     if not isinstance(problem, dict):

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 GEMINI_MODEL = "google/gemini-3.7-flash"
+GIGACHAT_MODEL = "GigaChat-2-Pro"
 E2E_PROMPT_VERSION = "e2e_gemini_v1"
 EXTRACTION_PROMPT_VERSION = "extraction_gemini_v1"
 
@@ -67,10 +68,18 @@ determine_existence, prove, simplify, unknown.
 USER_PROMPT = "Проанализируй приложенную фотографию по системной инструкции."
 
 
-def prompt_for(mode: str) -> tuple[str, str]:
+def prompt_for(mode: str, provider: str = "gemini") -> tuple[str, str]:
+    if provider not in {"gemini", "gigachat"}:
+        raise ValueError(f"Unknown provider: {provider}")
+    # v2 is a provider-only correction after the first direct GigaChat extraction
+    # smoke response used a problem kind outside the repository contract.
+    version = "extraction_gigachat_v2" if (mode, provider) == ("extraction", "gigachat") else f"{mode}_{provider}_v1"
     if mode == "e2e":
-        return E2E_PROMPT_VERSION, E2E_SYSTEM_PROMPT
+        return version, E2E_SYSTEM_PROMPT.replace(E2E_PROMPT_VERSION, version)
     if mode == "extraction":
-        return EXTRACTION_PROMPT_VERSION, EXTRACTION_SYSTEM_PROMPT
+        prompt = EXTRACTION_SYSTEM_PROMPT.replace(EXTRACTION_PROMPT_VERSION, version)
+        if provider == "gigachat":
+            prompt += "\nИспользуй problem.kind только из разрешённого списка. Для тригонометрических и любых других не перечисленных задач ставь kind=\"unknown\"."
+        return version, prompt
     raise ValueError(f"Unknown mode: {mode}")
 

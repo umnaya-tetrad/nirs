@@ -4,6 +4,7 @@ from pathlib import Path
 from nirs_llm.client import ModelResponse
 from nirs_llm.client import PolzaInvalidResponseError
 from nirs_llm import run as runner
+import pytest
 
 
 def test_mock_smoke_run_writes_raw_response_and_validated_contract(tmp_path: Path, monkeypatch) -> None:
@@ -66,3 +67,20 @@ def test_smoke_run_records_invalid_model_response_and_continues(tmp_path: Path, 
     errors = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
     assert [item["status"] for item in errors] == ["error", "ok"]
     assert errors[0]["raw_response"] == "not json"
+
+
+def test_fail_fast_writes_artifact_then_raises(tmp_path: Path, monkeypatch) -> None:
+    (tmp_path / "first.jpg").write_bytes(b"first")
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps([{"case_id": "first", "filename": "first.jpg"}]), encoding="utf-8")
+
+    class FailingClient:
+        model = "GigaChat-2-Pro"
+        def analyze(self, *_args):
+            raise PolzaInvalidResponseError("bad JSON", "not json")
+
+    monkeypatch.setattr(runner, "_client_for", lambda *_args: FailingClient())
+    with pytest.raises(runner.RunFailedError):
+        runner.run("e2e", manifest, tmp_path / "out", Path(__file__).resolve().parents[1], provider="gigachat", fail_fast=True)
+    artifact = next((tmp_path / "out").rglob("first.json"))
+    assert json.loads(artifact.read_text(encoding="utf-8"))["status"] == "error"
