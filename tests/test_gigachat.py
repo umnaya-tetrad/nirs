@@ -4,7 +4,12 @@ import httpx
 import pytest
 
 from nirs_llm.config import Settings
-from nirs_llm.gigachat import GigaChatDirectClient, GigaChatProviderError, _response_format
+from nirs_llm.gigachat import (
+    GigaChatDirectClient,
+    GigaChatProviderError,
+    _response_format,
+    estimate_gigachat_2_pro_cost_rub,
+)
 
 
 def _settings() -> Settings:
@@ -77,6 +82,13 @@ def test_extraction_schema_constrains_the_fields_required_by_math_core() -> None
     assert problem["required"] == ["kind", "equations", "goal"]
     assert equation["required"] == ["id", "relation", "latex"]
     assert problem["properties"]["goal"]["required"] == ["type"]
+
+
+def test_gigachat_pro_cost_estimate_uses_the_fixed_synchronous_list_price() -> None:
+    assert estimate_gigachat_2_pro_cost_rub(1_000) == 0.5
+    assert estimate_gigachat_2_pro_cost_rub(22_316) == 11.158
+    with pytest.raises(ValueError):
+        estimate_gigachat_2_pro_cost_rub(-1)
 
 
 def test_rejects_bad_model_json_after_single_completion() -> None:

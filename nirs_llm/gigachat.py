@@ -16,6 +16,9 @@ from .prompts import GIGACHAT_MODEL, USER_PROMPT, prompt_for
 
 _MINCIFRY_CA_URL = "https://gu-st.ru/content/lending/russian_trusted_root_ca_pem.crt"
 _MINCIFRY_CA_SHA256 = "936a43fea6e8e525bcc0f81acd9c3d21b4fc4b9b68acea7906d698005afc6504"
+# Official direct-API synchronous list price, VAT included, checked 2026-10-07.
+# This is an experiment estimate: a physical-person Freemium quota can make billing zero.
+GIGACHAT_2_PRO_RUB_PER_1K_TOKENS = 0.5
 
 
 class GigaChatUnavailableError(RuntimeError):
@@ -162,10 +165,21 @@ def _safe_usage(payload: dict[str, Any]) -> dict[str, int | float]:
     usage = payload.get("usage")
     if not isinstance(usage, dict):
         return {}
-    return {
+    result = {
         key: value for key in ("prompt_tokens", "completion_tokens", "total_tokens")
         if isinstance((value := usage.get(key)), (int, float)) and not isinstance(value, bool)
     }
+    total_tokens = result.get("total_tokens")
+    if isinstance(total_tokens, (int, float)):
+        result["estimated_cost_rub"] = estimate_gigachat_2_pro_cost_rub(int(total_tokens))
+        result["price_rub_per_1k_tokens"] = GIGACHAT_2_PRO_RUB_PER_1K_TOKENS
+    return result
+
+
+def estimate_gigachat_2_pro_cost_rub(total_tokens: int) -> float:
+    if total_tokens < 0:
+        raise ValueError("total_tokens cannot be negative")
+    return round(total_tokens * GIGACHAT_2_PRO_RUB_PER_1K_TOKENS / 1000, 6)
 
 
 def _safe_error_code(response: httpx.Response) -> str | None:

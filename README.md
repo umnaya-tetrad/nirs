@@ -55,3 +55,8 @@ Every request creates one gitignored JSON artifact under `outputs/`. It contains
 The fixed direct GigaChat prompt versions are `e2e_gigachat_v1` and
 `extraction_gigachat_v2`; they are semantically identical to the Gemini baseline while
 remaining independently versioned for provider-specific corrections.
+
+For direct `GigaChat-2-Pro` responses, `usage.estimated_cost_rub` is calculated from the
+fixed synchronous list price of `0.5 ₽ / 1,000 tokens` (including VAT), checked on
+2026-10-07. It is a comparable list-price estimate, not a billing statement: the physical
+person Freemium allowance can make the actual charge zero.
