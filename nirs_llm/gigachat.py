@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
@@ -10,6 +12,10 @@ import httpx
 from .client import ModelResponse, PolzaInvalidResponseError
 from .config import Settings
 from .prompts import GIGACHAT_MODEL, USER_PROMPT, prompt_for
+
+
+_MINCIFRY_CA_URL = "https://gu-st.ru/content/lending/russian_trusted_root_ca_pem.crt"
+_MINCIFRY_CA_SHA256 = "936a43fea6e8e525bcc0f81acd9c3d21b4fc4b9b68acea7906d698005afc6504"
 
 
 class GigaChatUnavailableError(RuntimeError):
@@ -49,7 +55,9 @@ class GigaChatDirectClient:
         prompt_version, system_prompt = prompt_for(mode, "gigachat")
         # trust_env=False deliberately bypasses HTTP(S)_PROXY variables.  A custom CA
         # bundle is opt-in and keeps certificate validation enabled for the Минцифры chain.
-        verify: str | bool = self.settings.gigachat_ca_bundle or True
+        verify: str | bool = self.settings.gigachat_ca_bundle or (
+            True if self.transport is not None else _ensure_mincifry_ca_bundle()
+        )
         with httpx.Client(timeout=self.timeout, transport=self.transport, trust_env=False, verify=verify) as client:
             access_token = self._access_token(client)
             file_id = self._upload_image(client, access_token, image_bytes, mime_type)
@@ -170,6 +178,39 @@ def _safe_error_code(response: httpx.Response) -> str | None:
         return None
     value = error.get("code") or error.get("type")
     return value if isinstance(value, str) and len(value) <= 100 else None
+
+
+def _ensure_mincifry_ca_bundle() -> str:
+    """Install the official root PEM once, pinning the expected file hash.
+
+    The first download cannot use that root certificate yet. Its bytes are therefore
+    verified against the pinned SHA-256 before they ever become trusted by httpx.
+    """
+    path = Path(__file__).resolve().parents[1] / ".nirs-certs" / "russian_trusted_root_ca_pem.crt"
+    if path.is_file() and _sha256(path.read_bytes()) == _MINCIFRY_CA_SHA256:
+        return str(path)
+    try:
+        with httpx.Client(timeout=20.0, trust_env=False, verify=False, follow_redirects=True) as client:
+            response = client.get(_MINCIFRY_CA_URL)
+            response.raise_for_status()
+            contents = response.content
+    except httpx.HTTPError as error:
+        raise GigaChatUnavailableError(
+            "Cannot download the GigaChat Минцифры root certificate. Set GIGACHAT_CA_BUNDLE manually."
+        ) from error
+    if _sha256(contents) != _MINCIFRY_CA_SHA256:
+        raise GigaChatUnavailableError(
+            "Downloaded GigaChat certificate did not match the pinned SHA-256. Set GIGACHAT_CA_BUNDLE manually."
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path = path.with_suffix(".tmp")
+    temporary_path.write_bytes(contents)
+    temporary_path.replace(path)
+    return str(path)
+
+
+def _sha256(contents: bytes) -> str:
+    return hashlib.sha256(contents).hexdigest()
 
 
 def _response_format(mode: str, prompt_version: str) -> dict[str, Any]:

@@ -44,11 +44,11 @@ Use the same command with `--mode extraction` only after the E2E smoke run passe
 If an execution environment interrupts a successful batch, use `--skip-cases N` to resume
 from the next manifest entry without resending the first `N` cases.
 
-GigaChat uses the Russian Ministry of Digital Development certificate chain. If Python raises
-`CERTIFICATE_VERIFY_FAILED`, download the root PEM from the official GigaChat certificate
-guide and set `GIGACHAT_CA_BUNDLE=C:\\path\\to\\russian_trusted_root_ca_pem.crt` in `.env`.
-The client deliberately uses `trust_env=False` (no system proxy) and never disables TLS
-verification.
+GigaChat uses the Russian Ministry of Digital Development certificate chain. On its first
+direct request the adapter downloads the official root PEM into the gitignored
+`.nirs-certs/` directory, verifies its pinned SHA-256, and then uses it for TLS. The client
+uses `trust_env=False` (no system proxy) and never disables TLS verification. Set
+`GIGACHAT_CA_BUNDLE` only if your organisation requires a custom trusted CA file.
 
 Every request creates one gitignored JSON artifact under `outputs/`. It contains the raw model response, parsed contract, provider model, token/cost usage when Polza returns it, and measured latency. The baseline uses `google/gemini-3.7-flash`, `temperature=0`, `response_format=json_object`, and the fixed prompt versions `e2e_gemini_v1` / `extraction_gemini_v1`.
 
