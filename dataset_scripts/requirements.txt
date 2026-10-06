@@ -1,4 +1,8 @@
-gradio
+gradio==4.44.1
+# Gradio 4.44.1's API-schema generator is incompatible with newer FastAPI
+# OpenAPI boolean schemas.
+fastapi==0.112.2
+huggingface-hub<1.0
 pandas
 datasets
 pyarrow

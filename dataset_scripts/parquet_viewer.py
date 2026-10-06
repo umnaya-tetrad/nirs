@@ -1,10 +1,32 @@
 import glob
 from io import BytesIO
+import json
 import os
 
+# Gradio checks its own local URL through httpx when starting. In environments with
+# a global proxy that probe must stay on the loopback interface.
+_localhost_exclusions = "127.0.0.1,localhost"
+os.environ["NO_PROXY"] = _localhost_exclusions
+os.environ["no_proxy"] = _localhost_exclusions
+
 import gradio as gr
+from gradio_client import utils as gradio_client_utils
 from datasets import load_dataset
 from PIL import Image
+
+# gradio-client 1.3.0 does not recognise the valid OpenAPI shorthand
+# `additionalProperties: true`.  The patch is local to this viewer and maps that
+# unrestricted object schema to ``Any`` when Gradio prepares its UI metadata.
+_schema_to_python_type = gradio_client_utils._json_schema_to_python_type
+
+
+def _schema_to_python_type_with_boolean_support(schema, defs):
+    if isinstance(schema, bool):
+        return "Any" if schema else "Never"
+    return _schema_to_python_type(schema, defs)
+
+
+gradio_client_utils._json_schema_to_python_type = _schema_to_python_type_with_boolean_support
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -43,7 +65,7 @@ def show_details(evt: gr.SelectData):
     image = _decode_image(row.get("image"))
     metadata = {k: v for k, v in row.items() if k != "image"}
 
-    return image, metadata, f"Выбрана строка #{row_idx} из {len(ds)}"
+    return image, json.dumps(metadata, ensure_ascii=False, indent=2, default=str), f"Выбрана строка #{row_idx} из {len(ds)}"
 
 
 def _decode_image(image):
@@ -69,8 +91,10 @@ with gr.Blocks(title="Parquet Explorer") as demo:
         with gr.Column(scale=1):
             status_text = gr.Markdown("### Нажмите на любую строку в таблице")
             image_output = gr.Image(label="Изображение", height=300)
-            json_output = gr.JSON(label="Все поля строки")
+            json_output = gr.Textbox(label="Все поля строки (JSON)", lines=22, interactive=False)
 
     dataframe.select(show_details, outputs=[image_output, json_output, status_text])
 
-demo.launch()
+# The viewer is a local manual tool, so it does not need Gradio's generated API
+# description.  Disabling it also avoids schema generation issues in Gradio 4.x.
+demo.launch(server_name="127.0.0.1", show_api=False)
