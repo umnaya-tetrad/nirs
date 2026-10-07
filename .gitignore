@@ -6,5 +6,4 @@ outputs/
 .nirs-certs/
 .vscode/
 dataset/*.parquet
-!dataset/selected.parquet
 
