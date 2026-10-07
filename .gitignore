@@ -6,4 +6,4 @@ outputs/
 .nirs-certs/
 .vscode/
 dataset/*.parquet
-
+.DS_Store
