@@ -1,4 +1,3 @@
 .vscode/
 dataset/*.parquet
-!dataset/selected.parquet
 
