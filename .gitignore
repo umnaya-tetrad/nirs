@@ -11,4 +11,5 @@ dataset/*.parquet
 build/
 dist/
 data/private/
+data/images/
 reports/local/
