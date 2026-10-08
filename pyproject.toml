@@ -16,7 +16,7 @@ test = ["pytest==8.4.2"]
 nirs-cas = "nirs_cas.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["nirs_cas*"]
+include = ["nirs_cas*", "nirs_llm*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

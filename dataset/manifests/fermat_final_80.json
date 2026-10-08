@@ -1,0 +1,404 @@
+{
+  "cases": [
+    {
+      "id": "img_400_pert_5.1",
+      "image": "../../data/images/img_400_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_374_pert_5.1",
+      "image": "../../data/images/img_374_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_480_pert_5.1",
+      "image": "../../data/images/img_480_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_19_pert_5.1",
+      "image": "../../data/images/img_19_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_494_pert_5.1",
+      "image": "../../data/images/img_494_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_559_pert_5.1",
+      "image": "../../data/images/img_559_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_464_pert_5.1",
+      "image": "../../data/images/img_464_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_387_pert_5.1",
+      "image": "../../data/images/img_387_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_22_pert_5.1",
+      "image": "../../data/images/img_22_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_568_pert_5.2",
+      "image": "../../data/images/img_568_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_482_pert_5.2",
+      "image": "../../data/images/img_482_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_559_pert_5.2",
+      "image": "../../data/images/img_559_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_448_pert_5.2",
+      "image": "../../data/images/img_448_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_173_pert_5.3",
+      "image": "../../data/images/img_173_pert_5.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_165_pert_5.3",
+      "image": "../../data/images/img_165_pert_5.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_193_pert_5.3",
+      "image": "../../data/images/img_193_pert_5.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_375_pert_5.3",
+      "image": "../../data/images/img_375_pert_5.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_568_pert_3.1",
+      "image": "../../data/images/img_568_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_494_pert_3.1",
+      "image": "../../data/images/img_494_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_466_pert_3.1",
+      "image": "../../data/images/img_466_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_542_pert_3.1",
+      "image": "../../data/images/img_542_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_462_pert_3.1",
+      "image": "../../data/images/img_462_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_108_pert_3.1",
+      "image": "../../data/images/img_108_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_89_pert_3.1",
+      "image": "../../data/images/img_89_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_559_pert_3.1",
+      "image": "../../data/images/img_559_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_99_pert_3.1",
+      "image": "../../data/images/img_99_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_233_pert_3.2",
+      "image": "../../data/images/img_233_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_190_pert_3.2",
+      "image": "../../data/images/img_190_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_559_pert_3.2",
+      "image": "../../data/images/img_559_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_172_pert_3.2",
+      "image": "../../data/images/img_172_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_151_pert_3.2",
+      "image": "../../data/images/img_151_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_586_pert_3.2",
+      "image": "../../data/images/img_586_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_448_pert_3.2",
+      "image": "../../data/images/img_448_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_471_pert_3.2",
+      "image": "../../data/images/img_471_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_462_pert_2.5",
+      "image": "../../data/images/img_462_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_173_pert_2.5",
+      "image": "../../data/images/img_173_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_35_pert_2.5",
+      "image": "../../data/images/img_35_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_375_pert_2.5",
+      "image": "../../data/images/img_375_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_574_pert_2.5",
+      "image": "../../data/images/img_574_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_395_pert_2.5",
+      "image": "../../data/images/img_395_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_494_pert_2.5",
+      "image": "../../data/images/img_494_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_68_pert_2.5",
+      "image": "../../data/images/img_68_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_111_pert_1.3",
+      "image": "../../data/images/img_111_pert_1.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_463_pert_1.3",
+      "image": "../../data/images/img_463_pert_1.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_465_pert_1.3",
+      "image": "../../data/images/img_465_pert_1.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_108_pert_1.4",
+      "image": "../../data/images/img_108_pert_1.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_427_pert_1.4",
+      "image": "../../data/images/img_427_pert_1.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_472_pert_1.4",
+      "image": "../../data/images/img_472_pert_1.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_96_pert_1.4",
+      "image": "../../data/images/img_96_pert_1.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_503_pert_1.4",
+      "image": "../../data/images/img_503_pert_1.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_466_pert_1.4",
+      "image": "../../data/images/img_466_pert_1.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_111_pert_2.1",
+      "image": "../../data/images/img_111_pert_2.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_98_pert_2.1",
+      "image": "../../data/images/img_98_pert_2.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_372_pert_2.1",
+      "image": "../../data/images/img_372_pert_2.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_109_pert_2.1",
+      "image": "../../data/images/img_109_pert_2.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_223_pert_2.2",
+      "image": "../../data/images/img_223_pert_2.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_465_pert_2.2",
+      "image": "../../data/images/img_465_pert_2.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_529_pert_2.2",
+      "image": "../../data/images/img_529_pert_2.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_573_pert_2.2",
+      "image": "../../data/images/img_573_pert_2.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_226_pert_2.2",
+      "image": "../../data/images/img_226_pert_2.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_176_pert_4.3",
+      "image": "../../data/images/img_176_pert_4.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_151_pert_4.3",
+      "image": "../../data/images/img_151_pert_4.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_92_pert_4.3",
+      "image": "../../data/images/img_92_pert_4.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_91_pert_2.3",
+      "image": "../../data/images/img_91_pert_2.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_373_pert_2.3",
+      "image": "../../data/images/img_373_pert_2.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_112_pert_4.4",
+      "image": "../../data/images/img_112_pert_4.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_115_pert_4.4",
+      "image": "../../data/images/img_115_pert_4.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_529_pert_4.5",
+      "image": "../../data/images/img_529_pert_4.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_157_pert_2.4",
+      "image": "../../data/images/img_157_pert_2.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_398_pert_2.4",
+      "image": "../../data/images/img_398_pert_2.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_160_pert_2.4",
+      "image": "../../data/images/img_160_pert_2.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_157_pert_1.5",
+      "image": "../../data/images/img_157_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_225_pert_1.5",
+      "image": "../../data/images/img_225_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_560_pert_1.5",
+      "image": "../../data/images/img_560_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_465_pert_1.5",
+      "image": "../../data/images/img_465_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_540_pert_1.5",
+      "image": "../../data/images/img_540_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_153_pert_1.5",
+      "image": "../../data/images/img_153_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_194_pert_1.5",
+      "image": "../../data/images/img_194_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_220_pert_1.5",
+      "image": "../../data/images/img_220_pert_1.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_220_pert_4.6",
+      "image": "../../data/images/img_220_pert_4.6.png",
+      "mime_type": "image/png"
+    }
+  ]
+}
