@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "img_482_pert_5.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\begin{itemize} \\item[(i)] \\( x = -5 \\) can be written as \\( 1 \\cdot x + 0 \\cdot y = -5 \\). \\item[(ii)] \\( y = 2 \\) can be written as \\( 0 \\cdot x + 1 \\cdot y = 2 \\). \\item[(iii)] \\( 2x = 3 \\) can be written as \\( 2 \\cdot x - 3 = 0 \\). \\item[(iv)] \\( 5y = 2 \\) can be written as \\( 5 \\cdot y - 2 = 0 \\). \\end{itemize}",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "More than 8 variables"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-560b534f-01b2-4717-a30e-77a7770cceed",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:37.405522Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

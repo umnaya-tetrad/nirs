@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "id": "img_494_pert_3.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "2x = x + 2 + 3",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "2x = x + 5",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "2x - x = x + 5 - x \\quad (\\text{subtracting } x \\text{ from both sides})",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "x^2 = 5",
+      "derives_from": [
+        "s3"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s3",
+  "last_correct_step": "s2",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s3",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Text/units/conditions are outside the symbolic grammar: subtracting; Text/units/conditions are outside the symbolic grammar: from both sides; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Text/units/conditions are outside the symbolic grammar: subtracting; Text/units/conditions are outside the symbolic grammar: from both sides; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison",
+        "actual_latex": "2x - x = x + 5 - x \\quad (\\text{subtracting } x \\text{ from both sides})",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-7fc4236f-0414-4538-9069-821bd77dc1a4",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:39.537109Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

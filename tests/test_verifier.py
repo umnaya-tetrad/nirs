@@ -38,7 +38,7 @@ def test_first_error_is_one_based_destination():
 def test_unknown_does_not_become_invalid_or_correct():
     result = verify_solution([r"\sin{x}", "x"])
     assert result["status"] == "UNSUPPORTED"
-    assert result["parse_status"] == "PARSE_FAILED"
+    assert result["parse_status"] == "OK"
     assert result["has_error"] is None
     assert result["first_error_step"] is None
 

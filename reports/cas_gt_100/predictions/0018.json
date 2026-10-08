@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "id": "img_398_pert_4.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "note",
+      "latex": "\\text{We have } y = \\sin^{-1} x",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "initial",
+      "latex": "\\frac{dy}{dx} = \\frac{1}{\\sqrt{1 - x^2}}",
+      "derives_from": []
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "\\sqrt{1 - x^2} \\frac{dy}{dx} = 1",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "step",
+      "latex": "\\frac{d}{dx} \\left( \\sqrt{1 - x^2} \\cdot \\frac{dy}{dx} \\right) = 0",
+      "derives_from": [
+        "s3"
+      ]
+    },
+    {
+      "step_id": "s5",
+      "kind": "step",
+      "latex": "\\sqrt{1 - x^2} \\cdot \\frac{d^2 y}{dx^2} + \\frac{dy}{dx} \\cdot \\frac{d}{dx} \\left( \\sqrt{1 - x^2} \\right) = 0",
+      "derives_from": [
+        "s4"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "kind": "step",
+      "latex": "\\sqrt{1 - x^2} \\cdot \\frac{d^2 y}{dx^2} - \\frac{dy}{dx} \\cdot \\frac{2x}{2\\sqrt{1 - x^2}} = 0",
+      "derives_from": [
+        "s5"
+      ]
+    },
+    {
+      "step_id": "s7",
+      "kind": "answer",
+      "latex": "(1 - x^2) \\frac{d^2 y}{dx^2} - x \\frac{dz}{dx} = 0",
+      "derives_from": [
+        "s6"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Text/units/conditions are outside the symbolic grammar: We have; Symbolic equation is a premise; checked against previous equation when applicable"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-34fc5679-2487-403c-8334-516d78b4e51f",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:34.433660Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "img_559_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\begin{array}{r} 7z^2 - 4zw + 8w^2 + 5z - 3w \\\\ - (5z^2 - 4w^2 + 6w - 3) \\\\ \\hline 2z^2 - 4zw + 12w^2 + 5z - 9w + 3 \\\\ \\end{array}",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "correct",
+  "is_correct": true,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Polynomial identity test"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-5fad03c2-3718-40cc-9c33-2328ec84896e",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:36.309836Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

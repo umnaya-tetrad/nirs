@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "img_151_pert_4.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "8\\sqrt{15} \\div 2\\sqrt{3} = 4\\sqrt{5} \\times \\frac{\\sqrt{3}}{\\sqrt{3}} = \\frac{8\\sqrt{3} \\times \\sqrt{5}}{2\\sqrt{3}} = 4\\sqrt{5}",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "correct",
+  "is_correct": true,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-c5352628-87f2-44eb-8529-e662e8427011",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:55.397279Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

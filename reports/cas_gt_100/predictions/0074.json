@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "img_372_pert_2.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\sqrt{\\cos x} \\, dx}{\\sqrt{\\cos x} + \\sqrt{\\sin x}} \\quad \\ldots \\, (1)",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\cos\\left(\\frac{\\pi}{3} + \\frac{\\pi}{6} - x\\right)}{\\sqrt{\\cos\\left(\\frac{\\pi}{3} + \\frac{\\pi}{6} - x\\right)} + \\sqrt{\\sin\\left(\\frac{\\pi}{3} + \\frac{\\pi}{6} - x\\right)}} \\, dx.",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "= \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\sqrt{\\sin x}}{\\sqrt{\\sin x} + \\sqrt{\\cos x}} \\, dx \\quad \\ldots \\, (2)",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "2I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} dx = \\left[ x \\right]_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} = \\frac{\\pi}{3} - \\frac{\\pi}{6} = \\frac{\\pi}{6}.",
+      "derives_from": [
+        "s3"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'; Continuation has no readable predecessor"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'; Unconsumed token '_'; one expression/equation per step; Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-0e9a24bf-3bae-4b8d-89b0-c4cd762e1291",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:51.497271Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

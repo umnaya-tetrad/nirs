@@ -35,10 +35,10 @@ def test_cas_maps_a_numeric_destination_index_back_to_the_contract_step_id():
     assert output["findings"][0]["step_id"] == "s2"
 
 
-def test_ambiguous_or_unsupported_inputs_abstain_instead_of_becoming_incorrect():
+def test_reading_metadata_does_not_influence_latex_only_check():
     output = analyze_contract(_input(steps=[{"step_id": "s1", "latex": "2x+3=7"}, {"step_id": "s2", "latex": "x=2"}], ambiguous_step_ids=["s2"]), ROOT)
     validate_contract(output, "solution_analysis", ROOT)
-    assert output["verdict"] == "indeterminate"
+    assert output["verdict"] == "correct"
     assert output["first_error_step"] is None
 
 

@@ -60,19 +60,22 @@ def normalize_latex(source: str) -> str:
             break
     text = text.translate(str.maketrans({"−": "-", "×": "*", "÷": "/", "·": "*"}))
     text = re.sub(r"\\(?:left|right|displaystyle)(?![A-Za-z])", "", text)
-    text = re.sub(r"\\(?:[,!;:]|quad(?![A-Za-z])|qquad(?![A-Za-z])| )", " ", text)
+    text = re.sub(r"(?<!\\)\\(?:[,!;:]|quad(?![A-Za-z])|qquad(?![A-Za-z])| )", " ", text)
     text = re.sub(r"\\(?:dfrac|tfrac)(?![A-Za-z])", r"\\frac", text)
     text = re.sub(r"\\(?:cdot|times)(?![A-Za-z])", "*", text)
-    text = re.sub(r"\\div(?![A-Za-z])", "/", text)
+    text = re.sub(r"\\div(?![A-Za-z])", r"\\divide", text)
     return text.strip()
 
 
-TOKEN = re.compile(r"\s+|\\[A-Za-z]+|(?:\d+(?:\.\d+)?|\.\d+)|[A-Za-z]|[+*/^=(){}\[\]-]")
-GREEK = {"alpha", "beta", "gamma", "delta", "theta", "lambda", "mu", "sigma", "phi", "omega"}
+TOKEN = re.compile(r"\s+|\\[A-Za-z]+|(?:\d+(?:\.\d+)?|\.\d+)|[A-Za-z]|[!_|+*/^=(){}\[\]-]")
+GREEK = {"alpha", "beta", "gamma", "delta", "theta", "lambda", "mu", "sigma", "phi", "omega", "Delta"}
+FUNCTIONS = {"sin": sp.sin, "cos": sp.cos, "tan": sp.tan, "cot": sp.cot,
+             "sec": sp.sec, "csc": sp.csc, "ln": sp.log, "log": sp.log,
+             "exp": sp.exp, "arcsin": sp.asin, "arccos": sp.acos, "arctan": sp.atan}
 
 
 class _Parser:
-    def __init__(self, text: str):
+    def __init__(self, text: str, atoms=None, constraints=(), complex_mode=False):
         self.text = text
         self.tokens: list[str] = []
         offset = 0
@@ -92,8 +95,10 @@ class _Parser:
             raise ParseError("Expression exceeds 256 tokens")
         self.i = 0
         self.depth = 0
-        self.constraints: list[tuple[str, sp.Expr]] = []
+        self.constraints: list[tuple[str, sp.Expr]] = list(constraints)
         self.symbols: set[sp.Symbol] = set()
+        self.atoms = atoms or {}
+        self.complex_mode = complex_mode
 
     def peek(self) -> str:
         return self.tokens[self.i] if self.i < len(self.tokens) else ""
@@ -121,31 +126,37 @@ class _Parser:
             op = self.take()
             rhs = self.product()
             if op == "-":
-                rhs = sp.Mul(-1, rhs, evaluate=False)
-            value = sp.Add(value, rhs, evaluate=False)
+                rhs = -rhs if isinstance(rhs, sp.MatrixBase) else sp.Mul(-1, rhs, evaluate=False)
+            value = value + rhs if isinstance(value, sp.MatrixBase) or isinstance(rhs, sp.MatrixBase) else sp.Add(value, rhs, evaluate=False)
         return value
 
     @staticmethod
     def starts_atom(token: str) -> bool:
-        return bool(token) and (token in ("(", "{", "[") or token.startswith("\\")
+        return bool(token) and token != r"\divide" and (token in ("(", "{", "[") or token.startswith("\\")
                                 or token[0].isalnum() or token[0] == ".")
 
     def product(self) -> sp.Expr:
         value = self.unary()
         while True:
             token = self.peek()
-            if token in ("*", "/"):
+            if token in ("*", "/", r"\divide"):
                 self.take()
                 rhs = self.unary()
-                if token == "/":
+                if token == r"\divide":
+                    # TeX division by an implicitly multiplied term: a ÷ 2√b.
+                    while self.starts_atom(self.peek()):
+                        factor = self.unary()
+                        rhs = sp.Mul(rhs, factor, evaluate=False)
+                if token in ("/", r"\divide"):
                     self.restrict("nonzero", rhs)
                     rhs = sp.Pow(rhs, -1, evaluate=False)
-                value = sp.Mul(value, rhs, evaluate=False)
+                value = value * rhs if isinstance(value, sp.MatrixBase) or isinstance(rhs, sp.MatrixBase) else sp.Mul(value, rhs, evaluate=False)
             elif self.starts_atom(token):
                 # 2 3 is not a valid implicit multiplication convention.
                 if re.fullmatch(r"[\d.]+", token) and re.fullmatch(r"[\d.]+", self.tokens[self.i - 1]):
                     raise ParseError("Adjacent numeric literals require an explicit operator")
-                value = sp.Mul(value, self.unary(), evaluate=False)
+                rhs = self.unary()
+                value = value * rhs if isinstance(value, sp.MatrixBase) or isinstance(rhs, sp.MatrixBase) else sp.Mul(value, rhs, evaluate=False)
             else:
                 return value
 
@@ -154,10 +165,19 @@ class _Parser:
             op = self.take()
             # Depth bounded by token limit for repeated unary signs.
             rhs = self.unary()
-            return rhs if op == "+" else sp.Mul(-1, rhs, evaluate=False)
+            return rhs if op == "+" else (-rhs if isinstance(rhs, sp.MatrixBase) else sp.Mul(-1, rhs, evaluate=False))
         value = self.atom()
+        while self.peek() == "!":
+            self.take("!")
+            number = sp.simplify(value)
+            if number.is_Integer is not True or not 0 <= number <= 100:
+                raise ParseError("Factorial requires an integer from 0 to 100")
+            value = sp.factorial(number)
         if self.peek() == "^":
             self.take()
+            if self.peek() == r"\circ":
+                self.take()
+                return sp.Mul(value, sp.pi / 180, evaluate=False)
             power = self.exponent()
             value = self.power(value, power)
             if self.peek() == "^":
@@ -168,6 +188,11 @@ class _Parser:
         braced = self.peek() == "{"
         if braced:
             self.take("{")
+            value = sp.simplify(self.expression())
+            self.take("}")
+            if value.is_Rational is not True or abs(value.p) > 20 or value.q > 12:
+                raise ParseError("Exponent outside configured rational bounds")
+            return value
         sign = 1
         if braced and self.peek() in ("+", "-"):
             sign = -1 if self.take() == "-" else 1
@@ -200,7 +225,8 @@ class _Parser:
         if exponent <= 0:
             self.restrict("nonzero", base)
         if exponent.q % 2 == 0:
-            self.restrict("nonnegative", base)
+            if not self.complex_mode:
+                self.restrict("nonnegative", base)
         # Real odd roots, including negative arguments; never principal complex roots.
         if exponent.q > 1 and exponent.q % 2:
             return sp.Pow(sp.real_root(base, exponent.q), exponent.p, evaluate=False)
@@ -209,7 +235,7 @@ class _Parser:
     def restrict(self, kind: str, expr: sp.Expr) -> None:
         value = sp.simplify(expr)
         if not value.free_symbols:
-            valid = value.is_nonzero if kind == "nonzero" else value.is_nonnegative
+            valid = value.is_nonzero if kind == "nonzero" else (value.is_positive if kind == "positive" else value.is_nonnegative)
             if valid is not True:
                 raise ParseError(f"Undefined real expression: {kind} restriction fails")
         self.constraints.append((kind, expr))
@@ -229,11 +255,39 @@ class _Parser:
         if token in ("(", "{", "["):
             return self.group(token)
         token = self.take()
+        if token in self.atoms:
+            value = self.atoms[token]
+            self.symbols.update(value.free_symbols)
+            return value
+        if token == "|":
+            value = self.expression()
+            self.take("|")
+            return sp.Abs(value)
         if re.fullmatch(r"(?:\d+(?:\.\d+)?|\.\d+)", token):
             if sum(c.isdigit() for c in token) > 12:
                 raise ParseError("Numeric literal exceeds 12 digits")
             return sp.Rational(token)
         if re.fullmatch(r"[A-Za-z]", token) or token.lstrip("\\") in GREEK:
+            if token == "i" and self.complex_mode:
+                return sp.I
+            if self.peek() == "_":
+                self.take()
+                if self.peek() == "{":
+                    self.take()
+                    index = ""
+                    while self.peek() and self.peek() != "}":
+                        part = self.take()
+                        if not part.isalnum():
+                            raise ParseError("Only literal alphanumeric subscripts are supported")
+                        index += part
+                    self.take("}")
+                else:
+                    index = self.take()
+                    if len(index) != 1 or not index.isalnum():
+                        raise ParseError("Use braces for a multi-character subscript")
+                if not index or len(index) > 12:
+                    raise ParseError("Invalid symbol subscript")
+                token += "_" + index
             symbol = sp.Symbol(token.lstrip("\\"), real=True)
             self.symbols.add(symbol)
             if len(self.symbols) > 8:
@@ -241,6 +295,30 @@ class _Parser:
             return symbol
         if token == r"\pi":
             return sp.pi
+        if token.lstrip("\\") in FUNCTIONS:
+            name = token.lstrip("\\")
+            power = None
+            if self.peek() == "^":
+                self.take()
+                power = self.exponent()
+            argument = self.unary()
+            # In sin 2x, the coefficient belongs to the argument. A subsequent
+            # function command starts a new factor: sin x cos y.
+            while self.starts_atom(self.peek()) and self.peek().lstrip("\\") not in FUNCTIONS:
+                argument = sp.Mul(argument, self.unary(), evaluate=False)
+            if power == -1 and name in {"sin", "cos", "tan"}:
+                function = {"sin": sp.asin, "cos": sp.acos, "tan": sp.atan}[name]
+                if name in {"sin", "cos"}:
+                    self.restrict("nonnegative", 1 - argument**2)
+                return function(argument)
+            if name in {"tan", "sec"}:
+                self.restrict("nonzero", sp.cos(argument))
+            if name in {"cot", "csc"}:
+                self.restrict("nonzero", sp.sin(argument))
+            if name in {"ln", "log"}:
+                self.restrict("positive", argument)
+            value = FUNCTIONS[name](argument)
+            return self.power(value, power) if power is not None else value
         if token == r"\frac":
             numerator = self.group("{")
             denominator = self.group("{")
@@ -259,10 +337,41 @@ class _Parser:
         raise ParseError(f"Unsupported token {token!r}")
 
 
+def _matrix_atoms(text: str):
+    atoms, constraints = {}, []
+    pattern = re.compile(r"\\begin\{(vmatrix|bmatrix|pmatrix)\}(.*?)\\end\{\1\}", re.S)
+    def replace(match):
+        rows = [r.strip() for r in match[2].split(r"\\") if r.strip()]
+        cells = [row.split("&") for row in rows]
+        if not cells or len(cells) > 6 or len(cells[0]) > 6 or any(len(row) != len(cells[0]) for row in cells):
+            raise ParseError("Matrix must be rectangular and at most 6 by 6")
+        values = []
+        for row in cells:
+            values.append([])
+            for cell in row:
+                parsed = _Parser(cell.strip()).parse()
+                if parsed.is_equation:
+                    raise ParseError("Matrix cell must be an expression")
+                values[-1].append(parsed.sides[0])
+                constraints.extend(parsed.constraints)
+        matrix = sp.ImmutableMatrix(values)
+        if match[1] == "vmatrix":
+            if matrix.rows != matrix.cols:
+                raise ParseError("Determinant requires a square matrix")
+            value = matrix.det()
+        else:
+            value = matrix
+        key = r"\matrix" + chr(65 + len(atoms))
+        atoms[key] = value
+        return key + " "
+    return pattern.sub(replace, text), atoms, constraints
+
+
 def parse_latex(source: str) -> ParseResult:
     """Return PARSE_FAILED rather than accepting a prefix or inventing a verdict."""
     try:
-        value = _Parser(normalize_latex(source)).parse()
+        text, atoms, constraints = _matrix_atoms(normalize_latex(source))
+        value = _Parser(text, atoms, constraints, bool(re.search(r"(?<![A-Za-z])i(?![A-Za-z])", text))).parse()
         return ParseResult("OK", value)
     except (ParseError, RecursionError, ValueError, TypeError, ZeroDivisionError) as exc:
         return ParseResult("PARSE_FAILED", reason=str(exc))

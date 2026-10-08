@@ -23,7 +23,7 @@ def test_twenty_cases_and_known_limitations():
             assert result["first_error_step"] == example["first_error_step"], example["id"]
         rows.append(result)
     summary = summarize(data, rows)
-    assert summary["covered_examples"] == 17
+    assert summary["covered_examples"] == 19
     assert summary["decision"] == "PRELIMINARY_ONLY"
 
 

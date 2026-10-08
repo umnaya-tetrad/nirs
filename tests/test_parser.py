@@ -27,7 +27,7 @@ def test_supported_values(latex, expected):
     "", "x-", "x+", "x=", "=x", "x=1=2", "(x+1]", "{x+1", "x**2", "x^2^3",
     r"\frac{1}", r"\frac{1}{}", r"\sqrt{}", r"\sqrt{-1}", r"\sqrt[0]{2}",
     r"\sqrt[13]{2}", r"\frac{1}{0}", r"\frac{1}{x-x}", r"\unknown{x}",
-    r"\text{hello}", r"\sin{x}", "sin(x)", "sqrt(4)", r"x_1", "x<2",
+    r"\text{hello}", "sin(x)", "sqrt(4)", "x<2",
     "x^23", "x^-2", "x^{21}", "x^{1/0}", "x^{1/13}", "x^{y}",
     "2 3", "0^0", "x;1", "__import__('os')", "x" * 2050,
     "(" * 25 + "x" + ")" * 25, "((9^9)^9)^9",

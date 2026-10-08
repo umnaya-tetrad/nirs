@@ -14,8 +14,9 @@ services:
       - /tmp
     volumes:
       - ./data:/data:ro
+      - ./dataset:/dataset:ro
       - ./reports/local:/reports
-    command: ["benchmark", "/data/synthetic_20.json", "--output", "/reports"]
+    command: ["oracle", "/dataset/test_gt.json", "/dataset/final_gt.json", "--output", "/reports/gt_100"]
 
   tests:
     profiles: ["test"]

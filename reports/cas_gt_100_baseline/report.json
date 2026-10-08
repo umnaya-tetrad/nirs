@@ -1,0 +1,3377 @@
+[
+  {
+    "id": "img_509_pert_5.1",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 2,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate solution-set equivalence not established",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unsupported input at character 39",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 97.537,
+    "wall_ms": 1498.405
+  },
+  {
+    "id": "img_554_pert_5.1",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 3.677,
+    "wall_ms": 1458.657
+  },
+  {
+    "id": "img_471_pert_5.1",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 35; Unsupported input at character 30",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 30; Unsupported token '\\\\Delta'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.311,
+    "wall_ms": 1469.435
+  },
+  {
+    "id": "img_462_pert_5.1",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 18; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.525,
+    "wall_ms": 1463.625
+  },
+  {
+    "id": "img_494_pert_5.2",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "VALID",
+    "covered": true,
+    "has_error": false,
+    "first_error_step": null,
+    "parse_status": "OK",
+    "parsed_steps": 2,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 57.784,
+    "wall_ms": 1540.37
+  },
+  {
+    "id": "img_452_pert_5.2",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 38; Unsupported input at character 38",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 38; Unsupported input at character 22",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 22; Unsupported input at character 38",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 38; Unsupported input at character 28",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 28; Unsupported input at character 22",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.144,
+    "wall_ms": 1539.62
+  },
+  {
+    "id": "img_471_pert_5.2",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 30; Unsupported token '\\\\Delta'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.194,
+    "wall_ms": 1503.097
+  },
+  {
+    "id": "img_373_pert_5.2",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported token '\\\\int'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\int'; Unsupported input at character 4",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.73,
+    "wall_ms": 1486.972
+  },
+  {
+    "id": "img_221_pert_5.3",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 0; Unsupported input at character 46",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 46; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unsupported input at character 10",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 211.525,
+    "wall_ms": 1645.508
+  },
+  {
+    "id": "img_151_pert_5.3",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": true,
+    "first_error_step": 1,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 236.837,
+    "wall_ms": 1714.721
+  },
+  {
+    "id": "img_509_pert_3.1",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 2,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate solution-set equivalence not established",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unsupported input at character 39",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 59.434,
+    "wall_ms": 1524.7
+  },
+  {
+    "id": "img_157_pert_3.2",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.005,
+    "wall_ms": 1456.65
+  },
+  {
+    "id": "img_480_pert_2.5",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 5,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\leq'; Unsupported token '\\\\leq'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\leq'; Unsupported token '\\\\leq'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\leq'; Unsupported input at character 12",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 12; Unsupported input at character 8",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.901,
+    "wall_ms": 1339.944
+  },
+  {
+    "id": "img_110_pert_1.3",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\cos'; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.146,
+    "wall_ms": 1294.085
+  },
+  {
+    "id": "img_96_pert_2.1",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s9",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 9,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '\\\\cos'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\cos'; Unsupported token '\\\\cos'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\cos'; Unsupported token '\\\\cos'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\cos'; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.043,
+    "wall_ms": 1400.453
+  },
+  {
+    "id": "img_136_pert_2.2",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": true,
+    "first_error_step": 2,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 5,
+    "total_steps": 11,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "INVALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 4,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\implies'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\implies'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 5",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 5; Unsupported token '\\\\pm'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\pm'; Unsupported token '\\\\pm'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 10,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\pm'; Unsupported token '\\\\pm'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 11,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\pm'; Unsupported token '\\\\pm'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 142.564,
+    "wall_ms": 1565.163
+  },
+  {
+    "id": "img_203_pert_4.3",
+    "split": "test",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 7; Unsupported input at character 7",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 7; Unsupported input at character 9",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 9; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.206,
+    "wall_ms": 1406.385
+  },
+  {
+    "id": "img_398_pert_4.4",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s7",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 6,
+    "total_steps": 7,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 454.342,
+    "wall_ms": 1870.583
+  },
+  {
+    "id": "img_225_pert_2.4",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 207.031,
+    "wall_ms": 1563.688
+  },
+  {
+    "id": "img_128_pert_1.5",
+    "split": "test",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 121.256,
+    "wall_ms": 1482.752
+  },
+  {
+    "id": "img_400_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\log'; Unsupported token '\\\\log'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\log'; Unsupported token '\\\\log'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\log'; Use an integer or a braced rational exponent; |numerator| <= 20",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 217.782,
+    "wall_ms": 1522.744
+  },
+  {
+    "id": "img_374_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 8; Unsupported input at character 8",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 8; Unsupported input at character 6",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 6; Unsupported input at character 13",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 13; Unsupported input at character 22",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 22; Unsupported input at character 22",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.034,
+    "wall_ms": 1314.993
+  },
+  {
+    "id": "img_480_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\leq'; Unsupported input at character 21",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 21; Unsupported token '\\\\leq'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\leq'; Unsupported input at character 12",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.726,
+    "wall_ms": 1272.038
+  },
+  {
+    "id": "img_19_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 3; Unsupported input at character 13",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 13; Unsupported input at character 4",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported input at character 3",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 3; Unsupported input at character 2",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 2; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.656,
+    "wall_ms": 1285.535
+  },
+  {
+    "id": "img_494_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 3,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 59.073,
+    "wall_ms": 1346.177
+  },
+  {
+    "id": "img_559_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.655,
+    "wall_ms": 1313.74
+  },
+  {
+    "id": "img_464_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.629,
+    "wall_ms": 1296.059
+  },
+  {
+    "id": "img_387_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sec'; Unsupported token '\\\\sec'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 276.165,
+    "wall_ms": 1668.661
+  },
+  {
+    "id": "img_22_pert_5.1",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 3,
+    "total_steps": 5,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 17; Unsupported input at character 14",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 14",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 57.738,
+    "wall_ms": 1447.434
+  },
+  {
+    "id": "img_568_pert_5.2",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.652,
+    "wall_ms": 1462.316
+  },
+  {
+    "id": "img_482_pert_5.2",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.659,
+    "wall_ms": 1456.284
+  },
+  {
+    "id": "img_559_pert_5.2",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "OK",
+    "parsed_steps": 1,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.359,
+    "wall_ms": 1398.04
+  },
+  {
+    "id": "img_448_pert_5.2",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 26; Unsupported input at character 29",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 29; Unsupported input at character 23",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported input at character 23",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported input at character 28",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 28",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.638,
+    "wall_ms": 1298.096
+  },
+  {
+    "id": "img_173_pert_5.3",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 47.967,
+    "wall_ms": 1359.095
+  },
+  {
+    "id": "img_165_pert_5.3",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 4,
+    "total_steps": 8,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 57.681,
+    "wall_ms": 1343.708
+  },
+  {
+    "id": "img_193_pert_5.3",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.029,
+    "wall_ms": 1204.069
+  },
+  {
+    "id": "img_375_pert_5.3",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 8,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported input at character 6",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 6; Unsupported input at character 35",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 35; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.202,
+    "wall_ms": 1254.835
+  },
+  {
+    "id": "img_568_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.804,
+    "wall_ms": 1275.437
+  },
+  {
+    "id": "img_494_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s4",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 3,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 55.209,
+    "wall_ms": 1325.336
+  },
+  {
+    "id": "img_466_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s10",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 10,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 10,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.227,
+    "wall_ms": 1279.127
+  },
+  {
+    "id": "img_542_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.675,
+    "wall_ms": 1135.037
+  },
+  {
+    "id": "img_462_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.784,
+    "wall_ms": 1139.566
+  },
+  {
+    "id": "img_108_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.667,
+    "wall_ms": 1123.323
+  },
+  {
+    "id": "img_89_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 7; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported input at character 35",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.11,
+    "wall_ms": 1102.515
+  },
+  {
+    "id": "img_559_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.644,
+    "wall_ms": 1080.062
+  },
+  {
+    "id": "img_99_pert_3.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s3",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 7; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported input at character 83",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.245,
+    "wall_ms": 1109.279
+  },
+  {
+    "id": "img_233_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 182.923,
+    "wall_ms": 1283.71
+  },
+  {
+    "id": "img_190_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.618,
+    "wall_ms": 1094.365
+  },
+  {
+    "id": "img_559_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.659,
+    "wall_ms": 1117.941
+  },
+  {
+    "id": "img_172_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 35; Unsupported input at character 35",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 35; Unsupported input at character 13",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.86,
+    "wall_ms": 1091.846
+  },
+  {
+    "id": "img_151_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 226.207,
+    "wall_ms": 1402.339
+  },
+  {
+    "id": "img_586_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.591,
+    "wall_ms": 1173.058
+  },
+  {
+    "id": "img_448_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s5",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 26; Unsupported input at character 29",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 29; Unsupported input at character 23",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported input at character 23",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported input at character 28",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 28",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.803,
+    "wall_ms": 1258.353
+  },
+  {
+    "id": "img_471_pert_3.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 30; Unsupported input at character 63",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.031,
+    "wall_ms": 1292.982
+  },
+  {
+    "id": "img_462_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.753,
+    "wall_ms": 1312.058
+  },
+  {
+    "id": "img_173_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 49.668,
+    "wall_ms": 1298.674
+  },
+  {
+    "id": "img_35_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 215.611,
+    "wall_ms": 1441.389
+  },
+  {
+    "id": "img_375_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s4",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 7,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported input at character 6",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 6; Unsupported input at character 35",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 35; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.717,
+    "wall_ms": 1205.02
+  },
+  {
+    "id": "img_574_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s6",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 8,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 5; Unsupported input at character 64",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 64; Unsupported input at character 69",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 69; Unsupported input at character 87",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 87; Unsupported input at character 112",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 112; Unsupported input at character 98",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 98; Unsupported input at character 149",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 149; Unsupported input at character 63",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.622,
+    "wall_ms": 1156.883
+  },
+  {
+    "id": "img_395_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 39; Unsupported input at character 161",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.878,
+    "wall_ms": 1111.907
+  },
+  {
+    "id": "img_494_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s4",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 3,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "VALID",
+        "reason": "Exact real solution-set comparison",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 56.641,
+    "wall_ms": 1250.725
+  },
+  {
+    "id": "img_68_pert_2.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.646,
+    "wall_ms": 1216.983
+  },
+  {
+    "id": "img_111_pert_1.3",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.07,
+    "wall_ms": 1194.965
+  },
+  {
+    "id": "img_463_pert_1.3",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 5,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 18; Unsupported input at character 15",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 15; Unsupported input at character 15",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 15; Unsupported input at character 7",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 7; Unsupported input at character 17",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.349,
+    "wall_ms": 1179.637
+  },
+  {
+    "id": "img_465_pert_1.3",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s7",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 5,
+    "total_steps": 10,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 32; Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate solution-set equivalence not established",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 79",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 79",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 36",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 10,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 36; Unsupported input at character 27",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 65.788,
+    "wall_ms": 1312.828
+  },
+  {
+    "id": "img_108_pert_1.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.04,
+    "wall_ms": 1278.799
+  },
+  {
+    "id": "img_427_pert_1.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported input at character 59",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 59; Unsupported input at character 4",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported input at character 6",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.96,
+    "wall_ms": 1159.017
+  },
+  {
+    "id": "img_472_pert_1.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 30; Unsupported input at character 69",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 69; Unsupported input at character 30",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 30; Unsupported input at character 21",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.094,
+    "wall_ms": 1160.323
+  },
+  {
+    "id": "img_96_pert_1.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s8",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 8,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '\\\\cos'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\cos'; Unsupported input at character 24",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 24; Unsupported input at character 21",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 21; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported input at character 25",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 25; Unsupported input at character 21",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 21; Unsupported input at character 135",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.79,
+    "wall_ms": 1209.683
+  },
+  {
+    "id": "img_503_pert_1.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 34; Unsupported input at character 34",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 34; Unsupported input at character 34",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 34; Unsupported input at character 34",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.91,
+    "wall_ms": 1227.401
+  },
+  {
+    "id": "img_466_pert_1.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s4",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 10,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 10,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 1; Unsupported input at character 1",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.442,
+    "wall_ms": 1233.503
+  },
+  {
+    "id": "img_111_pert_2.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.073,
+    "wall_ms": 1228.807
+  },
+  {
+    "id": "img_98_pert_2.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 5,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported input at character 23",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 23; Unsupported input at character 21",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 21; Unsupported token '\\\\tan'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\tan'; Unsupported input at character 50",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.386,
+    "wall_ms": 1250.587
+  },
+  {
+    "id": "img_372_pert_2.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 8; Unsupported input at character 8",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 8; Unsupported input at character 6",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 6; Unsupported input at character 9",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.085,
+    "wall_ms": 1275.107
+  },
+  {
+    "id": "img_109_pert_2.1",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 11; Unsupported input at character 11",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.809,
+    "wall_ms": 1244.788
+  },
+  {
+    "id": "img_223_pert_2.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.643,
+    "wall_ms": 1206.948
+  },
+  {
+    "id": "img_465_pert_2.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s4",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 4,
+    "total_steps": 9,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 32; Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate solution-set equivalence not established",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 74",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 74",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 38",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 38; Unsupported input at character 28",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 54.719,
+    "wall_ms": 1337.58
+  },
+  {
+    "id": "img_529_pert_2.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.647,
+    "wall_ms": 1207.911
+  },
+  {
+    "id": "img_573_pert_2.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 5,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Undefined real expression: nonnegative restriction fails; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.305,
+    "wall_ms": 1175.914
+  },
+  {
+    "id": "img_226_pert_2.2",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.645,
+    "wall_ms": 1235.291
+  },
+  {
+    "id": "img_176_pert_4.3",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 2,
+    "total_steps": 8,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 4.272,
+    "wall_ms": 1237.54
+  },
+  {
+    "id": "img_151_pert_4.3",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 190.742,
+    "wall_ms": 1534.488
+  },
+  {
+    "id": "img_92_pert_4.3",
+    "split": "final",
+    "expected": "correct",
+    "expected_first": null,
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 104; Use an integer or a braced rational exponent; |numerator| <= 20",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Use an integer or a braced rational exponent; |numerator| <= 20; Unsupported input at character 30",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.671,
+    "wall_ms": 1330.673
+  },
+  {
+    "id": "img_91_pert_2.3",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s6",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 7,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 22; Unsupported input at character 85",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 85; Unsupported input at character 25",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 25; Unsupported input at character 22",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 22; Unsupported input at character 22",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 22; Unsupported token '\\\\sin'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\sin'; Unsupported input at character 41",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.612,
+    "wall_ms": 1289.751
+  },
+  {
+    "id": "img_373_pert_2.3",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s3",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 102; Unsupported input at character 4",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 4; Unsupported input at character 101",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 101; Unsupported input at character 79",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.129,
+    "wall_ms": 1235.827
+  },
+  {
+    "id": "img_112_pert_4.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s4",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\tan'; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='; Unsupported input at character 82",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.622,
+    "wall_ms": 1214.066
+  },
+  {
+    "id": "img_115_pert_4.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.675,
+    "wall_ms": 1202.062
+  },
+  {
+    "id": "img_529_pert_4.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 34; Unsupported input at character 26",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.771,
+    "wall_ms": 1207.702
+  },
+  {
+    "id": "img_157_pert_2.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 60.09,
+    "wall_ms": 1455.763
+  },
+  {
+    "id": "img_398_pert_2.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s5",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "OK",
+    "parsed_steps": 6,
+    "total_steps": 6,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 493.013,
+    "wall_ms": 1898.003
+  },
+  {
+    "id": "img_160_pert_2.4",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.636,
+    "wall_ms": 1402.018
+  },
+  {
+    "id": "img_157_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": true,
+    "first_error_step": 1,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 1,
+    "total_steps": 2,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '='",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 216.372,
+    "wall_ms": 1620.934
+  },
+  {
+    "id": "img_225_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 202.313,
+    "wall_ms": 1478.968
+  },
+  {
+    "id": "img_560_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s3",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unconsumed token '='; one expression/equation per step; Unconsumed token '='; one expression/equation per step",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.455,
+    "wall_ms": 1279.298
+  },
+  {
+    "id": "img_465_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 4,
+    "total_steps": 9,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 32; Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate solution-set equivalence not established",
+        "parse_status": "OK"
+      },
+      {
+        "step": 5,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 79",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 6,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 79",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 7,
+        "status": "UNSUPPORTED",
+        "reason": "Multivariate domain restrictions",
+        "parse_status": "OK"
+      },
+      {
+        "step": 8,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 36",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 9,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 36; Unsupported input at character 27",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 55.462,
+    "wall_ms": 1300.502
+  },
+  {
+    "id": "img_540_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s3",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 4,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 39; Unsupported input at character 98",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 98; Unsupported token '\\\\cos'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 4,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\cos'; Unsupported input at character 33",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 1.571,
+    "wall_ms": 1266.834
+  },
+  {
+    "id": "img_153_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 2.065,
+    "wall_ms": 1206.07
+  },
+  {
+    "id": "img_194_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s2",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 3,
+    "transitions": [
+      {
+        "step": 2,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported input at character 10; Unsupported token '\\\\text'",
+        "parse_status": "PARSE_FAILED"
+      },
+      {
+        "step": 3,
+        "status": "UNSUPPORTED",
+        "reason": "Unsupported token '\\\\text'; Unsupported input at character 6",
+        "parse_status": "PARSE_FAILED"
+      }
+    ],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 6.507,
+    "wall_ms": 1205.448
+  },
+  {
+    "id": "img_220_pert_1.5",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.62,
+    "wall_ms": 1149.476
+  },
+  {
+    "id": "img_220_pert_4.6",
+    "split": "final",
+    "expected": "incorrect",
+    "expected_first": "s1",
+    "status": "UNSUPPORTED",
+    "covered": false,
+    "has_error": null,
+    "first_error_step": null,
+    "parse_status": "PARSE_FAILED",
+    "parsed_steps": 0,
+    "total_steps": 1,
+    "transitions": [],
+    "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+    "latency_ms": 0.64,
+    "wall_ms": 1134.633
+  }
+]

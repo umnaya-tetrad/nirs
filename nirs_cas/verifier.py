@@ -31,6 +31,8 @@ def _domain(parsed: ParsedMath, variable: sp.Symbol) -> sp.Set:
         if kind == "nonzero":
             excluded = sp.solveset(expr, variable, domain=sp.S.Reals)
             constraint = sp.Complement(sp.S.Reals, excluded)
+        elif kind == "positive":
+            constraint = sp.solve_univariate_inequality(expr > 0, variable, relational=False)
         else:
             constraint = sp.solve_univariate_inequality(expr >= 0, variable, relational=False)
         if constraint.has(sp.ConditionSet):
@@ -134,6 +136,12 @@ def verify_solution(steps: list[str]) -> dict:
 This evaluates a sequence of transformations, not correctness against orig_q.
 All transitions must be supported for full coverage, even after a known error.
 """
+    if not isinstance(steps, list) or any(not isinstance(step, str) or not step.strip() for step in steps):
+        raise ValueError("Steps must be a list of nonempty LaTeX strings")
+    if len(steps) == 1 or any(step.strip().startswith("=") or step.count("=") > 1
+                              or any(marker in step for marker in (r"\begin", r"\text", r"\le", r"\ge", r"\tag", ";", ",", "<", ">")) for step in steps):
+        from .structured import verify_written_solution
+        return verify_written_solution(steps)
     parsed = [parse_latex(step) for step in steps]
     transitions = [dict(step=i + 2, **verify_step(a, b).to_dict())
                    for i, (a, b) in enumerate(zip(steps, steps[1:]))]
