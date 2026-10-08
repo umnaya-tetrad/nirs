@@ -1,0 +1,1956 @@
+[
+  {
+    "schema_version": "1.0",
+    "id": "img_509_pert_5.1",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "(f + g)(t) = t^2 + 2t + 1",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "(f - g)(t) = t^2 - 2t - 1",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "разность функций"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "(fg)(t) = t^2(2t + 1) = 2t^3 + t^2",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "произведение функций"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "\\left( \\frac{f}{g} \\right)(t) = \\frac{t^2}{2t + 1}, \\quad t \\neq -\\frac{1}{2}",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "частное функций"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "notation",
+        "severity": "warning",
+        "message": "Переменная x из условия заменена на t без пояснения; на корректность решения это не влияет.",
+        "explanation": "В условии задачи используется x, в решении повсеместно t; все выражения записаны в одной переменной последовательно, поэтому вычисления остаются верными.",
+        "correction_latex": "(f + g)(x) = x^2 + 2x + 1",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Все четыре выражения вычислены верно, ответы корректны. Замечание: вместо переменной x из условия повсеместно использовано t — это чисто внешнее переименование, на результат не влияет.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_554_pert_5.1",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "a(a - 3) + 2 = a^2 - 3a + 2",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "answer",
+        "latex": "a^2 - 3a + 2 = (1)^2 - 3(1) + 2 = 1 - 3 + 2 = 3 - 3 = 0",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "подстановка a = 1"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "initial",
+        "latex": "3b(2b - 7) - 3(b - 4) - 63 = 6b^2 - 21b - 3b + 12 - 63 = 6b^2 - 24b - 51",
+        "derives_from": [],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "раскрытие скобок"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "6(-2)^2 - 24(-2) - 51 = 6(4) + 48 - 51 = 24 + 48 - 51 = 72 - 51 = 21",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "подстановка b = -2"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "notation",
+        "severity": "warning",
+        "message": "Переменные x и y из условия заменены на a и b без пояснения; на результат это не влияет.",
+        "explanation": "Обе подстановки сделаны последовательно: x → a в части (i), y → b в части (ii), вычисления от переименования не меняются.",
+        "correction_latex": "x(x - 3) + 2 = x^2 - 3x + 2",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Обе части решены верно: 0 при подстановке и 21 при подстановке. Замечание: переменные переименованы (x → a, y → b) без пояснения, вычисления от этого не изменились.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_471_pert_5.1",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "note",
+        "latex": "\\text{Note that in the third column, two entries are zero. So expanding along third column } (D_3)",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "initial",
+        "latex": "\\Delta = 4 \\begin{vmatrix} -1 & 3 \\\\ 4 & 1 \\end{vmatrix} - 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ 4 & 1 \\end{vmatrix} + 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ -1 & 3 \\end{vmatrix}",
+        "derives_from": [],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "разложение определителя по третьему столбцу"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "answer",
+        "latex": "\\Delta = 4 \\left( -1 \\cdot 1 - 3 \\cdot 4 \\right) = 4 \\left( -1 - 12 \\right) = 4 \\cdot (-13) = -52",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление определителя 2x2"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "notation",
+        "severity": "warning",
+        "message": "Третий столбец обозначен D_3 вместо C_3, как принято в условии; обозначение отличается, но на вычисление не влияет.",
+        "explanation": "Само разложение по столбцу выполнено верно, неоднозначность только в текстовом обозначении столбца.",
+        "correction_latex": "\\text{expanding along third column } (C_3)",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "skipped",
+        "finding_ids": [
+          "f1"
+        ],
+        "note": "текстовый комментарий, не участвует в цепочке вывода"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Определитель вычислен верно (−52). Замечание: столбец назван D_3 вместо C_3 — чисто текстовое обозначение, на результат не влияет.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_462_pert_5.1",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c)",
+        "derives_from": [],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "формула определителя 2x2"
+        }
+      },
+      {
+        "step_id": "s2",
+        "kind": "answer",
+        "latex": "= 2(2) - 4(-1) = 4 + 4 = 8",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "подстановка чисел матрицы"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "notation",
+        "severity": "warning",
+        "message": "Элементы матрицы заменены на символы a, b, c, d без пояснения, из-за чего переход к числам 2(2) − 4(−1) выглядит необоснованным; на ответ это не влияет.",
+        "explanation": "В условии матрица числовая; в решении записана общая формула с буквами, а затем сразу подставлены исходные числа без промежуточной записи.",
+        "correction_latex": "\\begin{vmatrix} 2 & 4 \\\\ -1 & 2 \\end{vmatrix} = 2(2) - 4(-1) = 4 + 4 = 8",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Ответ верный (8). Единственное замечание: элементы матрицы подменены символами a, b, c, d без объяснения, поэтому переход к конкретным числам не обоснован явно.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_494_pert_5.2",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "2x = x + 5",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "answer",
+        "latex": "x = 5",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычитание x из обеих частей"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "incompleteness",
+        "severity": "warning",
+        "message": "Промежуточный шаг 2x = x + 2 + 3 опущен: из исходного 2x − 3 = x + 2 сразу записано 2x = x + 5.",
+        "explanation": "Перенос слагаемого −3 в правую часть не показан, переход к x + 5 пропущен, хотя записанный результат верен.",
+        "correction_latex": "2x = x + 2 + 3",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s2",
+        "error_code": "incompleteness",
+        "severity": "warning",
+        "message": "Шаг 2x − x = x + 5 − x опущен: ответ x = 5 записан сразу после 2x = x + 5.",
+        "explanation": "Вычитание x из обеих частей не показано, поэтому переход от 2x = x + 5 к x = 5 не обоснован в записи.",
+        "correction_latex": "2x - x = x + 5 - x \\Rightarrow x = 5",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "summary": "Ответ верный (x = 5), но два промежуточных шага пропущены: перенос −3 и вычитание x. Решение осталось корректным, хотя логический переход стал менее понятным.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_452_pert_5.2",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "(X + Y) + (X - Y) = \\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix} + \\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "(X + X) + (Y - Y) = \\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix} \\Rightarrow 2X = \\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix}",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "сложение уравнений"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "answer",
+        "latex": "X = \\begin{bmatrix} 4 & 4 \\\\ 0 & 4 \\end{bmatrix}",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "умножение матрицы на 1/2"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "(X + Y) - (X - Y) = \\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix} - \\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "(Y + Y) = \\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix} \\Rightarrow 2Y = \\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix}",
+        "derives_from": [
+          "s4"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "вычитание уравнений"
+        }
+      },
+      {
+        "step_id": "s6",
+        "kind": "answer",
+        "latex": "Y = \\begin{bmatrix} 1 & -2 \\\\ 0 & 5 \\end{bmatrix}",
+        "derives_from": [
+          "s5"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "умножение матрицы на 1/2"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s3",
+        "error_code": "incompleteness",
+        "severity": "warning",
+        "message": "Деление матрицы на 2 опущено: из 2X = [[8,8],[0,8]] сразу записан X = [[4,4],[0,4]] без шага умножения на 1/2.",
+        "explanation": "Результат верен, но промежуточное равенство X = (1/2)·[[8,8],[0,8]] в записи отсутствует.",
+        "correction_latex": "X = \\frac{1}{2} \\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix} = \\begin{bmatrix} 4 & 4 \\\\ 0 & 4 \\end{bmatrix}",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s6",
+        "error_code": "incompleteness",
+        "severity": "warning",
+        "message": "Деление матрицы на 2 опущено и для Y: из 2Y = [[2,−4],[0,10]] сразу записан Y = [[1,−2],[0,5]].",
+        "explanation": "Результат верен, но промежуточное равенство Y = (1/2)·[[2,−4],[0,10]] в записи отсутствует.",
+        "correction_latex": "Y = \\frac{1}{2} \\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix} = \\begin{bmatrix} 1 & -2 \\\\ 0 & 5 \\end{bmatrix}",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "correct",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "summary": "Ответы верны: X = [[4,4],[0,4]], Y = [[1,−2],[0,5]]. Замечание: в обоих случаях пропущен шаг деления матрицы на 2, поэтому переход от 2X и 2Y к X и Y не записан явно.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_471_pert_5.2",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\Delta = 4 \\begin{vmatrix} -1 & 3 \\\\ 4 & 1 \\end{vmatrix} - 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ 4 & 1 \\end{vmatrix} + 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ -1 & 3 \\end{vmatrix}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "answer",
+        "latex": "\\Delta = 4 \\left( -13 \\right) = -52",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление определителя"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "incompleteness",
+        "severity": "warning",
+        "message": "Промежуточные вычисления −1·1 − 3·4 = −13 опущены: из выражения с определителями сразу записан результат 4·(−13).",
+        "explanation": "Разложение по столбцу записано верно, но вычисление двумерного определителя и переход к −13 в записи отсутствуют.",
+        "correction_latex": "\\Delta = 4 \\left( -1 \\cdot 1 - 3 \\cdot 4 \\right) = 4 \\left( -1 - 12 \\right) = -52",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "summary": "Ответ верный (−52), но вычисление двумерного определителя и упрощение −1·1 − 3·4 = −13 пропущены — переход не показан явно.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_373_pert_5.2",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "note",
+        "latex": "\\text{Put } t = x^5 + 1, \\text{ then } dt = 5x^4 \\, dx.",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\int 5x^4 \\sqrt{x^5 + 1} \\, dx = \\int \\sqrt{t} \\, dt = \\frac{2}{3} t^{3/2} = \\frac{2}{3} (x^5 + 1)^{3/2}",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "substitution",
+          "rule_hint": "замена переменной t = x^5 + 1"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\int_{-1}^{1} 5x^4 \\sqrt{x^5 + 1} \\, dx = \\frac{2}{3} \\left[ (x^5 + 1)^{3/2} \\right]_{-1}^{1}",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "применение формулы Ньютона-Лейбница"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "= \\frac{2}{3} \\left[ 2^{3/2} - 0 \\right] = \\frac{2}{3} (2\\sqrt{2}) = \\frac{4\\sqrt{2}}{3}",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "подстановка пределов"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s4",
+        "error_code": "incompleteness",
+        "severity": "warning",
+        "message": "Подстановка пределов (1⁵+1)^{3/2} и ((−1)⁵+1)^{3/2} опущена: из выражения с квадратными скобками сразу записан результат с 2^{3/2} − 0.",
+        "explanation": "Сама замена переменная выполнена верно, но числовой подстановки пределов в записи нет, поэтому переход к 2^{3/2} − 0 не показан.",
+        "correction_latex": "= \\frac{2}{3} \\left[ (1^5 + 1)^{3/2} - ((-1)^5 + 1)^{3/2} \\right] = \\frac{4\\sqrt{2}}{3}",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "skipped",
+        "note": "текстовая замена переменной, комментарий к решению"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "summary": "Ответ верный (4√2/3), замена переменной выполнена правильно. Замечание: шаг подстановки пределов пропущен — переход от интеграла с квадратными скобками к числам не показан.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_221_pert_5.3",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "answer",
+        "latex": "\\left\\{ \\left( \\frac{1}{3} \\right)^{-2} - \\left( \\frac{1}{2} \\right)^{-3} \\right\\} \\div \\left( \\frac{1}{4} \\right)^{-2} = \\left\\{ \\frac{1^{-2}}{3^{-2}} - \\frac{1^{-3}}{2^{-3}} \\right\\} \\div \\frac{1^{-2}}{4^{-2}} = \\frac{3^{2} - 2^{3}}{1^{2}} \\div 4^{2} = \\frac{9 - 8}{16} = \\frac{1}{16}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "note",
+        "latex": "\\text{Note that } 3^2 = 9 \\text{ and } 2^3 = 8. \\text{ Also, } 4^2 = 16.",
+        "derives_from": []
+      },
+      {
+        "step_id": "s3",
+        "kind": "answer",
+        "latex": "\\left( \\frac{5}{8} \\right)^{-7} \\times \\left( \\frac{8}{5} \\right)^{-5} = \\frac{5^{-7}}{8^{-7}} \\times \\frac{8^{-5}}{5^{-5}} = \\frac{5^{-7} \\times 8^{-5}}{8^{-7} \\times 5^{-5}} = 5^{-2} \\times 8^{2} = \\frac{8^{2}}{5^{2}} = \\frac{64}{25}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s4",
+        "kind": "note",
+        "latex": "\\text{Here, } 8^2 = 64 \\text{ and } 5^2 = 25.",
+        "derives_from": []
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "extraneous_step",
+        "severity": "warning",
+        "message": "Добавлены пояснения 3² = 9, 2³ = 8 и 4² = 16 — они избыточны и не участвуют в решении.",
+        "explanation": "Равенства верны, но являются очевидными арифметическими фактами и не добавляют ничего к ходу решения.",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s4",
+        "error_code": "extraneous_step",
+        "severity": "warning",
+        "message": "Добавлено пояснение 8² = 64 и 5² = 25 — лишняя информация, на результат не влияет.",
+        "explanation": "Равенства верны, но это простейшая арифметика, не требующая отдельного комментария в решении.",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "skipped",
+        "finding_ids": [
+          "f1"
+        ],
+        "note": "текстовый комментарий, не участвует в цепочке вывода"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "skipped",
+        "finding_ids": [
+          "f2"
+        ],
+        "note": "текстовый комментарий, не участвует в цепочке вывода"
+      }
+    ],
+    "summary": "Оба выражения упрощены верно (1/16 и 64/25). Замечание: в решение добавлены избыточные пояснения простых равенств — на результат они не влияют, но засоряют запись.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_151_pert_5.3",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "8\\sqrt{15} \\div 2\\sqrt{3} = \\frac{8\\sqrt{3} \\times \\sqrt{5}}{2\\sqrt{3}}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "= \\frac{8 \\times \\sqrt{3} \\times \\sqrt{5}}{2 \\times \\sqrt{3}}",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "разложение √15 на множители"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "= \\frac{8 \\times \\sqrt{15}}{2 \\times \\sqrt{3}}",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "обратное перемножение корней"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "= 4\\sqrt{5}",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "сокращение на 2√3"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "extraneous_step",
+        "severity": "warning",
+        "message": "Промежуточный шаг с записью 8 × √3 × √5 / (2 × √3) избыточен: он повторяет предыдущее равенство в развёрнутой форме.",
+        "explanation": "Шаг математически верен, но не добавляет нового действия — всё уже содержалось в первом равенстве.",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s3",
+        "error_code": "extraneous_step",
+        "severity": "warning",
+        "message": "Ещё один избыточный шаг: возврат к форме 8 × √15 / (2 × √3) перед сокращением ничего не проясняет.",
+        "explanation": "Равенство верно, но возвращает запись к исходному виду без выигрыша в ясности.",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "finding_ids": [
+          "f2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Ответ верный (4√5). Два добавленных промежуточных шага математически корректны, но избыточны: они лишь переписывают одно и то же частное в разных формах.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_509_pert_3.1",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "(f + g)(x) = x^2 + 2x + 1",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "(f - g)(x) = x^2 - 2x - 1",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "разность функций"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "(fg)(x) = x^2(2x + 1) = x^2 + 2x^3",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "произведение функций"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "\\left( \\frac{f}{g} \\right)(x) = \\frac{x^2}{2x + 1}, \\quad x \\neq -\\frac{1}{2}",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "частное функций"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s3",
+        "error_code": "notation",
+        "severity": "warning",
+        "message": "Слагаемые переставлены: записано x^2 + 2x^3 вместо 2x^3 + x^2 — равенство верно, но форма отличается от принятой.",
+        "explanation": "Сложение коммутативно, поэтому x²(2x + 1) = x² + 2x³ = 2x³ + x²; на корректность это не влияет, меняется только порядок членов.",
+        "correction_latex": "(fg)(x) = x^2(2x + 1) = 2x^3 + x^2",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Все результаты вычислены верно. В (fg)(x) слагаемые переставлены местами, но равенство сохраняется благодаря коммутативности сложения.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_157_pert_3.2",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "(2\\sqrt{2} + 5\\sqrt{3}) + (\\sqrt{2} - 3\\sqrt{3})",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "= (2\\sqrt{2} \\times \\sqrt{2}) + (5\\sqrt{3} - 3\\sqrt{3})",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "группировка одинаковых иррациональных слагаемых"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "answer",
+        "latex": "= (2 \\times 1)\\sqrt{2} + (5 - 3)\\sqrt{3} = 2\\sqrt{2} + 2\\sqrt{3}",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "объединение подобных членов"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "arithmetic",
+        "severity": "error",
+        "message": "Сложение 2√2 + √2 заменено на умножение 2√2 × √2 — операция выбрана неверно.",
+        "explanation": "Слагаемые с общим множителем √2 складываются: 2√2 + √2 = 3√2; умножение же даёт 4 и меняет выражение.",
+        "correction_latex": "= (2\\sqrt{2} + \\sqrt{2}) + (5\\sqrt{3} - 3\\sqrt{3})",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s3",
+        "error_code": "arithmetic",
+        "severity": "error",
+        "message": "Из 2√2 × √2 следует 4, а записано (2 × 1)√2 = 2√2, поэтому итог 2√2 + 2√3 неверен.",
+        "explanation": "Даже при неверной группировке предыдущего шага это равенство не выполняется: 2√2 · √2 = 2 · 2 = 4, а правильный ответ всего выражения — 3√2 + 2√3.",
+        "correction_latex": "= 3\\sqrt{2} + 2\\sqrt{3}",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "summary": "Исходное выражение записано верно. На шаге s2 слагаемое сложение заменено умножением, а на шаге s3 это приводит к неверному промежуточному и итоговому результату: правильный ответ 3√2 + 2√3, записано 2√2 + 2√3.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_480_pert_2.5",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\frac{5 - 2x}{3} \\leq \\frac{x}{6} - 5",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "2(5 - 2x) \\leq 2\\left(\\frac{x}{6} - 5\\right)",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "избавление от знаменателей"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "10 - 4x \\leq x - 30",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "раскрытие скобок"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "-5x \\leq -40, \\text{ i.e., } x \\geq 8",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "перенос и деление на отрицательное число"
+        }
+      },
+      {
+        "step_id": "s5",
+        "kind": "answer",
+        "latex": "x \\in [8, \\infty)",
+        "derives_from": [
+          "s4"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Правая часть умножена на 2 вместо 6: знаменатель 6 не устранён, преобразование записано неверно.",
+        "explanation": "Чтобы избавиться от знаменателей, обе части умножают на 6: слева получается 2(5 − 2x), справа x − 30. Записанное 2(x/6 − 5) знаменатель не убирает.",
+        "correction_latex": "2(5 - 2x) \\leq x - 30",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "note": "не следует из записанного s2, но совпадает с корректным преобразованием при умножении на 6"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Первая строка верна. На шаге s2 правая часть умножена на 2 вместо 6, поэтому записанное неравенство не является преобразованием исходного. Дальнейшие строки записаны так, как если бы умножение на 6 уже было выполнено, — в цепочке появляется разрыв; ответ x ∈ [8, +∞) при этом совпадает с правильным.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_110_pert_1.3",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ)",
+        "derives_from": [],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "период косинуса 360°"
+        }
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "= \\cos(-1710^\\circ + 1700^\\circ)",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление 5 × 360°"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "= \\cos(-1710^\\circ + 1800^\\circ)",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "= \\cos 90^\\circ = 0",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление косинуса"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "arithmetic",
+        "severity": "error",
+        "message": "Умножение 5 × 360° выполнено неверно: записано 1700° вместо 1800°.",
+        "explanation": "5 · 360° = 1800°, поэтому равенство cos(−1710° + 5·360°) = cos(−1710° + 1700°) ложно; следующий шаг возвращает правильное значение, но промежуточное равенство остаётся ошибочным.",
+        "correction_latex": "= \\cos(-1710^\\circ + 1800^\\circ)",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "note": "исправляет арифметическую ошибку предыдущего шага: 5 × 360° = 1800°"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Начальный шаг с периодом косинуса верен. На шаге s2 5 × 360° записано как 1700° — арифметическая ошибка; следующий шаг возвращает правильные 1800°, и итоговый ответ 0 верный, но ложное промежуточное равенство остаётся в цепочке записи.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_96_pert_2.1",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\sin (x + y) = \\sin x \\cos y + \\cos x \\sin y \\quad \\cdots (1)",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+        "derives_from": [],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "формула связи синуса и косинуса"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\cos x = \\pm \\frac{4}{5}",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\cos x = -\\frac{4}{5}",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "assumption",
+          "rule_hint": "x во втором квадранте — косинус отрицателен"
+        }
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+        "derives_from": [],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "формула связи синуса и косинуса"
+        }
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\sin y = \\pm \\frac{5}{13}",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "\\sin y = \\frac{5}{13}",
+        "derives_from": [
+          "s6"
+        ],
+        "transformation": {
+          "type": "assumption",
+          "rule_hint": "y во втором квадранте — синус положителен"
+        }
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "\\sin (x + y) = \\frac{3}{5} \\left(-\\frac{12}{13}\\right) + \\left(-\\frac{4}{5}\\right) \\left(\\frac{5}{13}\\right)",
+        "derives_from": [
+          "s1",
+          "s4",
+          "s7"
+        ],
+        "transformation": {
+          "type": "substitution",
+          "rule_hint": "подстановка в формулу (1)"
+        }
+      },
+      {
+        "step_id": "s9",
+        "kind": "answer",
+        "latex": "= -\\frac{36}{65} + \\frac{4}{5} \\times \\frac{5}{13} = -\\frac{36}{65} + \\frac{20}{65} = -\\frac{16}{65}",
+        "derives_from": [
+          "s8"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление слагаемых"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s9",
+    "last_correct_step": "s8",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s9",
+        "error_code": "sign",
+        "severity": "error",
+        "message": "При подстановке cos x = −4/5 знак минус потерян: вместо (−4/5)·(5/13) = −20/65 записано +20/65.",
+        "explanation": "По формуле суммы второе слагаемое равно (−4/5)·(5/13) = −20/65, поэтому результат −36/65 − 20/65 = −56/65, а не −16/65.",
+        "correction_latex": "= -\\frac{36}{65} - \\frac{20}{65} = -\\frac{56}{65}",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s7",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s8",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s9",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "summary": "Определение cos x и sin y по квадратам и знакам во втором квадранте выполнено верно, подстановка в формулу суммы записана правильно. Ошибка на последнем шаге: потерян знак перед вторым слагаемым, из-за чего получен −16/65 вместо правильного −56/65.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_136_pert_2.2",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "10x^2 - 18x^3 + 14x^4 = 10x^2 + (-18x^3) + 14x^4",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "10x^2 + (-18x^3) + 14x^4 = 0",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "5x^2 - 9x^3 + 7x^4 = 0",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "деление обеих частей на 2"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "x^2(5 - 9x + 7x^2) = 0",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "вынесение общего множителя x²"
+        }
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "x^2 = 0 \\implies x = 0",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "5 - 9x + 7x^2 = 0",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "a = 7, \\ b = -9, \\ c = 5",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+        "derives_from": [
+          "s7"
+        ],
+        "transformation": {
+          "type": "definition",
+          "rule_hint": "формула корней квадратного уравнения"
+        }
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "x = \\frac{9 \\pm \\sqrt{81 - 140}}{14}",
+        "derives_from": [
+          "s8"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "подстановка коэффициентов"
+        }
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "x = \\frac{9 \\pm \\sqrt{-59}}{14}",
+        "derives_from": [
+          "s9"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление дискриминанта"
+        }
+      },
+      {
+        "step_id": "s11",
+        "kind": "answer",
+        "latex": "x = \\frac{9 \\pm i\\sqrt{59}}{14}",
+        "derives_from": [
+          "s10"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "корень из отрицательного числа"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "logic",
+        "severity": "error",
+        "message": "Задача — разложить многочлен на множители, а записано уравнение 10x² − 18x³ + 14x⁴ = 0: выбрана другая цель решения.",
+        "explanation": "Факторизация означает представление в виде произведения множителей; приравнивание к нулю превращает задачу в поиск корней, что не отвечает на вопрос условия.",
+        "correction_latex": "10x^2 - 18x^3 + 14x^4 = 2x^2(7x^2 - 9x + 5)",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s11",
+        "error_code": "final_answer",
+        "severity": "error",
+        "message": "В ответе приведены корни уравнения, а требовалось разложить многочлен на множители.",
+        "explanation": "Ответ задачи — произведение множителей 2x²(7x² − 9x + 5); найденные корни x = 0 и x = (9 ± i√59)/14 относятся к другому вопросу.",
+        "correction_latex": "10x^2 - 18x^3 + 14x^4 = 2x^2(7x^2 - 9x + 5)",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "note": "локально верно: деление уравнения на 2"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct",
+        "note": "локально верно для записанного уравнения: x² вынесен правильно"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "correct",
+        "note": "вычисление верно, но наследует неверную постановку s2"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "correct",
+        "note": "выделение квадратного трёхчлена выполнено верно"
+      },
+      {
+        "step_id": "s7",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s8",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s9",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s10",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s11",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "summary": "Разложение на множители не выполнено: решение превращено в задачу о корнях уравнения — первая ошибка на шаге s2 (приравнивание к нулю). Все вычисления внутри этого сценария выполнены верно, но ответ содержит корни, а не произведение множителей; требовалось 10x² − 18x³ + 14x⁴ = 2x²(7x² − 9x + 5).",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_203_pert_4.3",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\frac{5!}{2!(5-2)!} \\quad (\\text{since } n = 5, r = 2)",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\frac{5!}{2!(5-2)!} = \\frac{5 \\times 4}{2}",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "сокращение факториалов"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "= \\frac{5!}{2! \\times 3!}",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "answer",
+        "latex": "= 10",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление дроби"
+        }
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      }
+    ],
+    "summary": "Ответ 10 верный. Преобразования эквивалентны; запись возвращается к форме с 3!, но это не меняет корректность решения.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_398_pert_4.4",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "note",
+        "latex": "\\text{We have } y = \\sin^{-1} x",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "initial",
+        "latex": "\\frac{dy}{dx} = \\frac{1}{\\sqrt{1 - x^2}}",
+        "derives_from": [],
+        "transformation": {
+          "type": "definition",
+          "rule_hint": "производная арксинуса"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\sqrt{1 - x^2} \\frac{dy}{dx} = 1",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "умножение обеих частей на √(1 − x²)"
+        }
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\frac{d}{dx} \\left( \\sqrt{1 - x^2} \\cdot \\frac{dy}{dx} \\right) = 0",
+        "derives_from": [
+          "s3"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "дифференцирование обеих частей"
+        }
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "\\sqrt{1 - x^2} \\cdot \\frac{d^2 y}{dx^2} + \\frac{dy}{dx} \\cdot \\frac{d}{dx} \\left( \\sqrt{1 - x^2} \\right) = 0",
+        "derives_from": [
+          "s4"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "правило производной произведения"
+        }
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\sqrt{1 - x^2} \\cdot \\frac{d^2 y}{dx^2} - \\frac{dy}{dx} \\cdot \\frac{2x}{2\\sqrt{1 - x^2}} = 0",
+        "derives_from": [
+          "s5"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "вычисление производной √(1 − x²)"
+        }
+      },
+      {
+        "step_id": "s7",
+        "kind": "answer",
+        "latex": "(1 - x^2) \\frac{d^2 y}{dx^2} - x \\frac{dz}{dx} = 0",
+        "derives_from": [
+          "s6"
+        ],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "умножение обеих частей на √(1 − x²)"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s7",
+    "last_correct_step": "s6",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s7",
+        "error_code": "logic",
+        "severity": "error",
+        "message": "В заключительном равенстве вместо dy/dx записано dz/dx — производная от неопределённой функции z появляется из ниоткуда.",
+        "explanation": "На протяжении всего решения дифференцируется y = arcsin x, поэтому последний член должен быть −x·dy/dx; переменная z нигде не вводилась, и записанное равенство не следует из предыдущего шага.",
+        "correction_latex": "(1 - x^2) \\frac{d^2 y}{dx^2} - x \\frac{dy}{dx} = 0",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "skipped",
+        "note": "исходное условие, текстовый комментарий"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s7",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "summary": "Вывод выполнен верно до последней строки: дифференцирование, правило производной и упрощения записаны корректно. В заключении вместо dy/dx стоит dz/dx, из-за чего итоговое тождество содержит неопределённую функцию z; следовало записать −x·dy/dx.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_225_pert_2.4",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\left( \\frac{2}{3} \\right)^{-2} = \\frac{2^{-2}}{3^{-2}}",
+        "derives_from": [],
+        "transformation": {
+          "type": "algebraic",
+          "rule_hint": "правило отрицательной степени дроби"
+        }
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "= \\frac{3^{3}}{2^{2}}",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "избавление от отрицательных степеней"
+        }
+      },
+      {
+        "step_id": "s3",
+        "kind": "answer",
+        "latex": "= \\frac{27}{4}",
+        "derives_from": [
+          "s2"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "вычисление степеней"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "arithmetic",
+        "severity": "error",
+        "message": "В числителе записана степень 3³ вместо 3²: показатель −(−2) должен дать 2, а не 3.",
+        "explanation": "По правилу a^{−n} = 1/aⁿ: 3^{−(−2)} = 3² = 9, поэтому \frac{2^{-2}}{3^{-2}} = \frac{3^2}{2^2} = \frac{9}{4}. Запись 3³ = 27 даёт неверный результат.",
+        "correction_latex": "= \\frac{3^{2}}{2^{2}}",
+        "confidence": 1.0
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s3",
+        "error_code": "final_answer",
+        "severity": "error",
+        "message": "Ответ 27/4 неверен: значение (2/3)^{-2} равно 9/4.",
+        "explanation": "Следствие неверной степени предыдущего шага: 27/4 ≠ 9/4, проверка подстановкой (2/3)^{-2} = (3/2)^2 = 9/4.",
+        "correction_latex": "= \\frac{9}{4}",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "summary": "Первое равенство верно: (2/3)^{-2} = 2^{-2}/3^{-2}. На шаге s2 в числителе записана степень 3³ вместо 3², из-за чего итоговый ответ 27/4 неверен — правильное значение 9/4.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  },
+  {
+    "schema_version": "1.0",
+    "id": "img_128_pert_1.5",
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "8000 = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 5 \\times 5 \\times 5",
+        "derives_from": [],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "разложение на простые множители"
+        }
+      },
+      {
+        "step_id": "s2",
+        "kind": "answer",
+        "latex": "\\sqrt[3]{9000} = 2 \\times 2 \\times 5 = 20",
+        "derives_from": [
+          "s1"
+        ],
+        "transformation": {
+          "type": "arithmetic",
+          "rule_hint": "извлечение кубического корня"
+        }
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "arithmetic",
+        "severity": "error",
+        "message": "В ответе записано ∛9000 вместо ∛8000 — число перенесено из условия неверно, поэтому равенство ∛9000 = 20 не выполняется.",
+        "explanation": "Разложение 8000 выполнено правильно, но в последней строке вместо 8000 стоит 9000; кубический корень из 9000 равен 10·∛9 ≈ 20.8, а не 20.",
+        "correction_latex": "\\sqrt[3]{8000} = 2 \\times 2 \\times 5 = 20",
+        "confidence": 1.0
+      }
+    ],
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "summary": "Разложение числа на простые множители записано верно. На последнем шаге число 8000 перенесено как 9000, из-за чего равенство ∛9000 = 20 ложно; при верном переносе ответ 20 получается правильно.",
+    "meta": {
+      "run_id": "ground-truth",
+      "approach": "llm_end_to_end",
+      "stage": "report"
+    }
+  }
+]

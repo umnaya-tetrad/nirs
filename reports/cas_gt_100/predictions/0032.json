@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "img_559_pert_5.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "2x^2 - 4xy + 12y^2 + 5x - 9y + 3",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Only an unverified symbolic premise"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-43cc9876-425b-417b-8ddc-6c796cf0a37c",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:37.800899Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

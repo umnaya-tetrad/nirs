@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "img_542_pert_3.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\frac{1}{|\\vec{b}|} (\\vec{a} \\cdot \\vec{b}) = \\frac{(2 \\times 1 + 3 \\times 2 + 2 \\times 1)}{\\sqrt{(1)^2 + (2)^2 + (1)^2}} = \\frac{10}{\\sqrt{2}} = \\frac{10}{3}\\sqrt{6}",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Unsupported token '\\\\vec'; Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Unsupported token '\\\\vec'; Exact expression identity with preserved domain",
+        "actual_latex": "\\frac{1}{|\\vec{b}|} (\\vec{a} \\cdot \\vec{b}) = \\frac{(2 \\times 1 + 3 \\times 2 + 2 \\times 1)}{\\sqrt{(1)^2 + (2)^2 + (1)^2}} = \\frac{10}{\\sqrt{2}} = \\frac{10}{3}\\sqrt{6}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-dc54dc1e-f534-4b93-9e49-abb4a1153e5b",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:39.901074Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

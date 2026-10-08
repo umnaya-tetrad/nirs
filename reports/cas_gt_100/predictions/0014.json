@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "id": "img_110_pert_1.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ)",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "= \\cos(-1710^\\circ + 1700^\\circ)",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "= \\cos(-1710^\\circ + 1800^\\circ)",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "= \\cos 90^\\circ = 0",
+      "derives_from": [
+        "s3"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact expression identity with preserved domain",
+        "actual_latex": "= \\cos(-1710^\\circ + 1700^\\circ)",
+        "engine": "sympy"
+      }
+    },
+    {
+      "finding_id": "f2",
+      "step_id": "s3",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact expression identity with preserved domain",
+        "actual_latex": "= \\cos(-1710^\\circ + 1800^\\circ)",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "verdict": "error",
+      "finding_ids": [
+        "f2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-cb1655a8-a93f-4a75-9da2-17ea8bf507db",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:33.132167Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

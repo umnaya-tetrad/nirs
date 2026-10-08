@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+outputs/
+.nirs-certs/
+.vscode/
+dataset/*.parquet
+.DS_Store
+*.egg-info/
+build/
+dist/
+data/private/
+data/images/
+reports/local/

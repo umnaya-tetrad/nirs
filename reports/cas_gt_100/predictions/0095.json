@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "id": "img_465_pert_1.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "A^2 = A \\cdot A = \\begin{bmatrix} 2 & 3 \\\\ 1 & 2 \\end{bmatrix} \\begin{bmatrix} 2 & 3 \\\\ 1 & 2 \\end{bmatrix} = \\begin{bmatrix} 7 & 12 \\\\ 4 & 7 \\end{bmatrix}",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "A^2 - 4A + I = \\begin{bmatrix} 7 & 12 \\\\ 4 & 7 \\end{bmatrix} - \\begin{bmatrix} 8 & 12 \\\\ 4 & 7 \\end{bmatrix} + \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix} = O",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "A^2 - 4A + I = O",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "step",
+      "latex": "A A - 4A = -I",
+      "derives_from": [
+        "s3"
+      ]
+    },
+    {
+      "step_id": "s5",
+      "kind": "step",
+      "latex": "A A^{-1} - 4I = -A^{-1} \\quad \\text{(Post multiplying by } A^{-1} \\text{ because } |A| \\neq 0)",
+      "derives_from": [
+        "s4"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "kind": "step",
+      "latex": "A(A^{-1}) - 4I = -A^{-1}",
+      "derives_from": [
+        "s5"
+      ]
+    },
+    {
+      "step_id": "s7",
+      "kind": "step",
+      "latex": "AI - 4I = -A^{-1}",
+      "derives_from": [
+        "s6"
+      ]
+    },
+    {
+      "step_id": "s8",
+      "kind": "step",
+      "latex": "A^{-1} = 4I - A = \\begin{bmatrix} 4 & 0 \\\\ 0 & 2 \\end{bmatrix} - \\begin{bmatrix} 2 & 3 \\\\ 1 & 2 \\end{bmatrix} = \\begin{bmatrix} 2 & -3 \\\\ -1 & 2 \\end{bmatrix}",
+      "derives_from": [
+        "s7"
+      ]
+    },
+    {
+      "step_id": "s9",
+      "kind": "answer",
+      "latex": "A^{-1} = \\begin{bmatrix} 2 & -3 \\\\ -1 & 2 \\end{bmatrix}",
+      "derives_from": [
+        "s8"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Exact expression identity with preserved domain; Scalar/matrix type mismatch; Exact matrix entry comparison"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Matrix entries differ; Scalar/matrix type mismatch; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identical polynomial equations"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Unbalanced delimiters"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Scalar/matrix type mismatch; Matrix entries differ; Multivariate domain restrictions"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-b2c24e51-7f7d-4bc6-81d0-5a46e7fffae5",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:16:03.275509Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

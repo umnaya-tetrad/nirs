@@ -1,0 +1,24 @@
+# Only application sources and public test fixtures enter the build context.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!nirs_cas/
+!nirs_cas/*.py
+!nirs_llm/
+!nirs_llm/*.py
+!evaluator/
+!evaluator/*.py
+!data_contracts/
+!data_contracts/**
+!dataset/
+!dataset/test_gt.json
+!dataset/final_gt.json
+!dataset_scripts/
+!dataset_scripts/selected.json
+!prompts/
+!prompts/**
+!tests/
+!tests/*.py
+!data/
+!data/synthetic_20.json

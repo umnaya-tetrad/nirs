@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "img_225_pert_2.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\left( \\frac{2}{3} \\right)^{-2} = \\frac{2^{-2}}{3^{-2}}",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "= \\frac{3^{3}}{2^{2}}",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "answer",
+      "latex": "= \\frac{27}{4}",
+      "derives_from": [
+        "s2"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact expression identity with preserved domain",
+        "actual_latex": "= \\frac{3^{3}}{2^{2}}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-ce9f3131-dfc8-4901-a7b7-c2e078487360",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:34.430661Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

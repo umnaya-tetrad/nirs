@@ -1,0 +1,22 @@
+{
+  "provider": "gigachat",
+  "mode": "e2e",
+  "baseline_prompt_version": "v1",
+  "ids": [
+    "img_110_pert_1.3",
+    "img_128_pert_1.5",
+    "img_136_pert_2.2",
+    "img_157_pert_3.2",
+    "img_225_pert_2.4",
+    "img_398_pert_4.4",
+    "img_462_pert_5.1",
+    "img_480_pert_2.5",
+    "img_494_pert_5.2",
+    "img_96_pert_2.1"
+  ],
+  "review_basis": "FERMAT source fields plus GT review",
+  "notes": {
+    "img_221_pert_5.3": "Removed after source verification: FERMAT pert_a and the GT contain 5^{-2} times 8^2, which is correct.",
+    "img_494_pert_5.2": "Restored after source verification: the question begins with 2x, not 8x; x=5 is correct, so GigaChat v1's incorrect verdict is a model error."
+  }
+}

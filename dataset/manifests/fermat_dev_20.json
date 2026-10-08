@@ -1,0 +1,104 @@
+{
+  "cases": [
+    {
+      "id": "img_509_pert_5.1",
+      "image": "../test_gt_images/img_509_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "image": "../test_gt_images/img_554_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "image": "../test_gt_images/img_471_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "image": "../test_gt_images/img_462_pert_5.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "image": "../test_gt_images/img_494_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "image": "../test_gt_images/img_452_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "image": "../test_gt_images/img_471_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "image": "../test_gt_images/img_373_pert_5.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "image": "../test_gt_images/img_221_pert_5.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "image": "../test_gt_images/img_151_pert_5.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_509_pert_3.1",
+      "image": "../test_gt_images/img_509_pert_3.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_157_pert_3.2",
+      "image": "../test_gt_images/img_157_pert_3.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_480_pert_2.5",
+      "image": "../test_gt_images/img_480_pert_2.5.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_110_pert_1.3",
+      "image": "../test_gt_images/img_110_pert_1.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_96_pert_2.1",
+      "image": "../test_gt_images/img_96_pert_2.1.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_136_pert_2.2",
+      "image": "../test_gt_images/img_136_pert_2.2.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_203_pert_4.3",
+      "image": "../test_gt_images/img_203_pert_4.3.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_398_pert_4.4",
+      "image": "../test_gt_images/img_398_pert_4.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_225_pert_2.4",
+      "image": "../test_gt_images/img_225_pert_2.4.png",
+      "mime_type": "image/png"
+    },
+    {
+      "id": "img_128_pert_1.5",
+      "image": "../test_gt_images/img_128_pert_1.5.png",
+      "mime_type": "image/png"
+    }
+  ]
+}

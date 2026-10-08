@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.org/nirs/2.0/math_core_input.schema.json",
+  "title": "Math Core Input",
+  "description": "Контракт 2.0 для отдельной стадии распознавания. VLM передаёт только дословно распознанные математические строки и отметки визуальной неоднозначности. Семантический разбор условия, тип задачи, цель и нормализация не входят в этот контракт.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "steps", "meta"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "id": {"$ref": "#/$defs/entity_id"},
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Строки решения в порядке чтения. Их структура достраивается оркестратором, а не VLM.",
+      "items": {"$ref": "#/$defs/step"}
+    },
+    "reading": {"$ref": "#/$defs/reading_meta"},
+    "meta": {"$ref": "#/$defs/run_meta"}
+  },
+  "$defs": {
+    "entity_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "step_id": {"type": "string", "pattern": "^s[1-9][0-9]*$"},
+    "latex": {"type": "string", "minLength": 1},
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step_id", "kind", "latex", "derives_from"],
+      "properties": {
+        "step_id": {"$ref": "#/$defs/step_id"},
+        "kind": {"enum": ["initial", "step"]},
+        "latex": {"$ref": "#/$defs/latex"},
+        "derives_from": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/step_id"}}
+      }
+    },
+    "reading_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ambiguous_step_ids"],
+      "properties": {
+        "ambiguous_step_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/step_id"}}
+      }
+    },
+    "run_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "approach", "stage"],
+      "properties": {
+        "run_id": {"$ref": "#/$defs/entity_id"},
+        "approach": {"enum": ["llm_end_to_end", "llm_ocr_plus_math_core"]},
+        "stage": {"enum": ["transcribe", "verify", "report"]},
+        "model": {"type": "string"},
+        "prompt_version": {"type": "string"},
+        "temperature": {"type": "number", "minimum": 0, "maximum": 2},
+        "seed": {"type": "integer"},
+        "tokens_in": {"type": "integer", "minimum": 0},
+        "tokens_out": {"type": "integer", "minimum": 0},
+        "cost_usd": {"type": "number", "minimum": 0},
+        "duration_ms": {"type": "integer", "minimum": 0},
+        "created_at": {"type": "string", "format": "date-time"},
+        "tool_versions": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    }
+  }
+}

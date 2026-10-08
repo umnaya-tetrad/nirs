@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.0",
+  "id": "task-0042",
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-Pro",
+        "status": "ok",
+        "duration_ms": 3120,
+        "tokens_in": 1840,
+        "tokens_out": 620
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.13",
+        "status": "ok",
+        "duration_ms": 240
+      },
+      {
+        "name": "report",
+        "backend": "GigaChat-Pro",
+        "status": "ok",
+        "duration_ms": 1580,
+        "tokens_in": 720,
+        "tokens_out": 310
+      }
+    ]
+  },
+  "problem": {
+    "kind": "linear_equation",
+    "equations": [
+      {
+        "id": "e1",
+        "relation": "eq",
+        "latex": "2x - 5 = 1",
+        "normalized_latex": "2x - 5 = 1"
+      }
+    ],
+    "variables": [
+      {
+        "name": "x",
+        "domain": "real"
+      }
+    ],
+    "goal": {
+      "type": "solve",
+      "target_variables": ["x"]
+    },
+    "source": "transcribed"
+  },
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "2x - 5 = 1",
+      "normalized_latex": "2x - 5 = 1",
+      "derives_from": [],
+      "transformation": {
+        "type": "definition",
+        "rule_hint": "исходное уравнение"
+      },
+      "confidence": 0.97
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "2x = 1 - 5",
+      "normalized_latex": "2x = 1 - 5",
+      "derives_from": ["s1"],
+      "transformation": {
+        "type": "algebraic",
+        "rule_hint": "перенос слагаемого в правую часть"
+      },
+      "confidence": 0.61,
+      "alternatives": [
+        {
+          "latex": "2x = 1 + 5",
+          "normalized_latex": "2x = 1 + 5",
+          "confidence": 0.33
+        }
+      ],
+      "note": "Знак перед 5 неуверенно различен: горизонтальный штрих прочитан как минус."
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "x = \\frac{1 - 5}{2} = -2",
+      "normalized_latex": "x = (1 - 5)/2 = -2",
+      "derives_from": ["s2"],
+      "transformation": {
+        "type": "arithmetic",
+        "rule_hint": "деление обеих частей на коэффициент 2"
+      },
+      "confidence": 0.94
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "x = -2",
+      "normalized_latex": "x = -2",
+      "derives_from": ["s3"],
+      "confidence": 0.95
+    }
+  ],
+  "reading": {
+    "confidence": 0.86,
+    "ambiguous_step_ids": ["s2"],
+    "notes": [
+      "Шаг s2 распознан неуверенно; альтернативные прочтения знака вынесены в alternatives.",
+      "Проверка ответа на исходное уравнение обязательна: локально корректные шаги могут вести к неверному ответу."
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "span": {
+        "start": 7,
+        "end": 10
+      },
+      "error_code": "sign",
+      "severity": "error",
+      "message": "При переносе слагаемого -5 в правую часть знак должен поменяться на плюс.",
+      "explanation": "При переносе слагаемого в другую часть уравнения его знак меняется: 2x - 5 = 1 даёт 2x = 1 + 5, а не 1 - 5. Записано 2x = 1 - 5.",
+      "evidence": {
+        "check": "перенос слагаемого с изменением знака: lhs - rhs должно дать 2x - 6 = 0",
+        "expected_latex": "2x = 1 + 5 = 6",
+        "actual_latex": "2x = 1 - 5",
+        "engine": "rule_engine"
+      },
+      "correction_latex": "2x = 1 + 5 = 6",
+      "confidence": 0.93,
+      "detected_by": "rule_engine"
+    },
+    {
+      "finding_id": "f2",
+      "step_id": "s4",
+      "error_code": "final_answer",
+      "severity": "error",
+      "message": "Ответ x = -2 не является решением исходного уравнения.",
+      "explanation": "Подстановка x = -2 в 2x - 5 = 1 даёт -9 = 1, что неверно. Ответом является x = 3. Ошибка не в этом шаге, а в шаге s2: шаги s3 и s4 локально корректны, но опираются на неверный перенос.",
+      "evidence": {
+        "check": "подстановка ответа в исходное уравнение и сравнение с решением CAS",
+        "expected_latex": "x = 3",
+        "actual_latex": "x = -2",
+        "engine": "sympy"
+      },
+      "correction_latex": "x = 3",
+      "confidence": 0.99,
+      "detected_by": "math_core"
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "finding_ids": []
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": ["f1"]
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "finding_ids": [],
+      "note": "Преобразование локально верно для s2; собственной ошибки нет, вывод наследует ошибочность s2."
+    },
+    {
+      "step_id": "s4",
+      "verdict": "error",
+      "finding_ids": ["f2"]
+    }
+  ],
+  "corrected_solution": [
+    {
+      "step_id": "s2",
+      "corrected_latex": "2x = 1 + 5 = 6",
+      "note": "Исправлен знак при переносе слагаемого."
+    },
+    {
+      "step_id": "s3",
+      "corrected_latex": "x = \\frac{6}{2} = 3",
+      "note": "Пересчёт вслед за исправлением s2."
+    },
+    {
+      "step_id": "s4",
+      "corrected_latex": "x = 3"
+    }
+  ],
+  "summary": "Первые два шага: 2x - 5 = 1 вы записали верно. На шаге s2 при переносе слагаемого -5 в правую часть знак должен измениться на плюс: 2x = 1 + 5 = 6, а не 2x = 1 - 5. Из-за этого дальнейшие вычисления верны арифметически, но ведут к неверному ответу: при x = -2 исходное уравнение не выполняется. Правильный ход решения: 2x = 6, x = 3.",
+  "meta": {
+    "run_id": "run-2026-10-05-0001",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "report",
+    "model": "GigaChat-Pro",
+    "prompt_version": "report.v1",
+    "temperature": 0.3,
+    "seed": 42,
+    "tokens_in": 2560,
+    "tokens_out": 930,
+    "cost_usd": 0.0086,
+    "duration_ms": 4940,
+    "created_at": "2026-10-05T18:24:15Z",
+    "tool_versions": {
+      "gigachat-api": "2026-09",
+      "sympy": "1.13.0"
+    }
+  }
+}

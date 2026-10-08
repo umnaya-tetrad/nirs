@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "id": "img_96_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\sin (x + y) = \\sin x \\cos y + \\cos x \\sin y \\quad \\cdots (1)",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "\\cos x = \\pm \\frac{4}{5}.",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "step",
+      "latex": "\\cos x = -\\frac{4}{5}.",
+      "derives_from": [
+        "s3"
+      ]
+    },
+    {
+      "step_id": "s5",
+      "kind": "step",
+      "latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+      "derives_from": [
+        "s4"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "kind": "step",
+      "latex": "\\sin y = \\pm \\frac{5}{13}.",
+      "derives_from": [
+        "s5"
+      ]
+    },
+    {
+      "step_id": "s7",
+      "kind": "step",
+      "latex": "\\sin y = \\frac{5}{13}.",
+      "derives_from": [
+        "s6"
+      ]
+    },
+    {
+      "step_id": "s8",
+      "kind": "answer",
+      "latex": "\\sin (x + y) = \\frac{3}{5} \\left(-\\frac{ 11 }{13}\\right) + \\left(-\\frac{4}{5}\\right) \\left(\\frac{ 3 }{13}\\right) = -\\frac{ 33 }{65} - \\frac{ 12 }{65} = -\\frac{ 45 }{65}.",
+      "derives_from": [
+        "s7"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact expression identity with preserved domain; Exact counterexample at {x: 0}: difference=9/25; Separate equation/substitution requires task context",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact expression identity with preserved domain; Exact counterexample at {x: 0}: difference=9/25; Separate equation/substitution requires task context",
+        "actual_latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+        "engine": "sympy"
+      }
+    },
+    {
+      "finding_id": "f2",
+      "step_id": "s5",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact expression identity with preserved domain; Exact counterexample at {y: 0}: difference=-25/169; Separate equation/substitution requires task context",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact expression identity with preserved domain; Exact counterexample at {y: 0}: difference=-25/169; Separate equation/substitution requires task context",
+        "actual_latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic identity with identical source restrictions"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "error",
+      "finding_ids": [
+        "f2"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-8e7303fe-338b-4c17-8df0-40aa68010596",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:15:50.285863Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

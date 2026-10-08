@@ -1,0 +1,32 @@
+name: umnaya-tetrad
+
+services:
+  cas:
+    build:
+      context: .
+      target: runtime
+    image: umnaya-tetrad-cas:local
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    init: true
+    read_only: true
+    network_mode: none
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./data:/data:ro
+      - ./dataset:/dataset:ro
+      - ./reports/local:/reports
+    command: ["oracle", "/dataset/test_gt.json", "/dataset/final_gt.json", "--output", "/reports/gt_100"]
+
+  tests:
+    profiles: ["test"]
+    build:
+      context: .
+      target: test
+    image: umnaya-tetrad-cas-tests:local
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    init: true
+    read_only: true
+    network_mode: none
+    tmpfs:
+      - /tmp

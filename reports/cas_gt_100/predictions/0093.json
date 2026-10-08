@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "img_225_pert_1.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\left( \\frac{2}{3} \\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{2^{2}}{2^{2}} = \\frac{9}{4}",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 0
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact expression identity with preserved domain",
+        "actual_latex": "\\left( \\frac{2}{3} \\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{2^{2}}{2^{2}} = \\frac{9}{4}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-3b1b65c3-4ddf-42f0-8095-46fa063a928c",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 0,
+    "created_at": "2026-10-08T18:16:02.298079Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}
