@@ -860,7 +860,7 @@
       {
         "step_id": "s2",
         "kind": "step",
-        "latex": "(f - g)(x) = x2 - 2x - 1",
+        "latex": "(f - g)(x) = x^2 - 2x - 1",
         "derives_from": [
           "s1"
         ],
@@ -894,23 +894,13 @@
         }
       }
     ],
-    "verdict": "incorrect",
-    "is_correct": false,
-    "first_error_step": "s2",
-    "last_correct_step": "s1",
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
     "findings": [
       {
         "finding_id": "f1",
-        "step_id": "s2",
-        "error_code": "algebra",
-        "severity": "error",
-        "message": "В разности (f − g)(x) вместо x² записано x2, из-за чего выражение изменило смысл.",
-        "explanation": "По условию f(x) − g(x) = x² − (2x + 1) = x² − 2x − 1; запись x2 без показателя — уже не x², поэтому результат разности неверен.",
-        "correction_latex": "(f - g)(x) = x^2 - 2x - 1",
-        "confidence": 1.0
-      },
-      {
-        "finding_id": "f2",
         "step_id": "s3",
         "error_code": "notation",
         "severity": "warning",
@@ -927,16 +917,13 @@
       },
       {
         "step_id": "s2",
-        "verdict": "error",
-        "finding_ids": [
-          "f1"
-        ]
+        "verdict": "correct"
       },
       {
         "step_id": "s3",
         "verdict": "correct",
         "finding_ids": [
-          "f2"
+          "f1"
         ]
       },
       {
@@ -944,7 +931,7 @@
         "verdict": "correct"
       }
     ],
-    "summary": "Первый шаг верен. На шаге s2 вместо x² записано x2 — это ломает вычисление (f − g)(x). В (fg)(x) слагаемые переставлены местами, само равенство при этом верно, последний шаг корректен.",
+    "summary": "Все результаты вычислены верно. В (fg)(x) слагаемые переставлены местами, но равенство сохраняется благодаря коммутативности сложения.",
     "meta": {
       "run_id": "ground-truth",
       "approach": "llm_end_to_end",
@@ -1643,22 +1630,11 @@
         }
       }
     ],
-    "verdict": "incorrect",
-    "is_correct": false,
-    "first_error_step": "s2",
-    "last_correct_step": "s1",
-    "findings": [
-      {
-        "finding_id": "f1",
-        "step_id": "s2",
-        "error_code": "logic",
-        "severity": "error",
-        "message": "Упрощение 5 × 4 / 2 записано раньше, чем показано, почему 5!/(2!·3!) равно этому: результат выпущен вперёд обоснования.",
-        "explanation": "Правильный порядок: сначала 5!/(2!(5−2)!) = 5!/(2!·3!), затем сокращение факториалов даёт 5 × 4 / 2 = 10. Как записано, упрощение предшествует шагу, который должно обосновывать, и цепочка рассуждений теряет логику.",
-        "correction_latex": "= \\frac{5!}{2! \\times 3!} = \\frac{5 \\times 4}{2} = 10",
-        "confidence": 1.0
-      }
-    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
     "steps_reviewed": [
       {
         "step_id": "s1",
@@ -1666,23 +1642,18 @@
       },
       {
         "step_id": "s2",
-        "verdict": "error",
-        "finding_ids": [
-          "f1"
-        ]
+        "verdict": "correct"
       },
       {
         "step_id": "s3",
-        "verdict": "correct",
-        "note": "равенство верно, но стоит после результата, который должно обосновывать"
+        "verdict": "correct"
       },
       {
         "step_id": "s4",
-        "verdict": "correct",
-        "note": "ответ 10 верен"
+        "verdict": "correct"
       }
     ],
-    "summary": "Ответ 10 верный, но порядок шагов нарушен: упрощение 5 × 4 / 2 записано до разложения 5!/(2!·3!), из которого оно следует. Первая ошибка — на шаге s2, дальнейшие вычисления верны.",
+    "summary": "Ответ 10 верный. Преобразования эквивалентны; запись возвращается к форме с 3!, но это не меняет корректность решения.",
     "meta": {
       "run_id": "ground-truth",
       "approach": "llm_end_to_end",
