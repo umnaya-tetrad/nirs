@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://contracts.example.org/nirs/1.0/solution_analysis.schema.json",
   "title": "Solution Analysis",
-  "description": "Основной выходной контракт системы проверки рукописных решений. Единый артефакт для обоих подходов: `llm_end_to_end` заполняет его целиком одним вызовом модели по картинке, `llm_ocr_plus_math_core` собирает его из MathCoreInput и выводов математического ядра. Вход системы — изображение, отдельного контракта входа нет: изображение передаётся на стадию распознавания вне этих схем. Поля problem, steps, reading, meta, schema_version, id совпадают с MathCoreInput; этот контракт добавляет к ним вердикт, ошибки и отчёт. Информация об ошибках живёт только в findings / steps_reviewed — сами шаги её не содержат, поэтому steps из MathCoreInput можно переиспользовать без преобразования.",
+  "description": "Основной выходной контракт системы проверки рукописных решений. Единый артефакт для обоих подходов: `llm_end_to_end` заполняет его целиком одним вызовом модели по картинке, `llm_ocr_plus_math_core` собирает его из транскрипции и выводов математического ядра. Схема намеренно независима от версии промежуточного OCR-контракта: это сохраняет валидность GT и финальных отчётов при изменении стадии распознавания.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -19,7 +19,7 @@
       "const": "1.0"
     },
     "id": {
-      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/entity_id",
+      "$ref": "#/$defs/entity_id",
       "description": "Идентификатор задания. Сквозной ключ, по которому транскрипция, отчёт и результаты разных подходов сопоставляются между собой."
     },
     "pipeline": {
@@ -27,7 +27,7 @@
       "description": "Состав прогонов и их технический результат. Заполняется оркестратором, а не моделью."
     },
     "problem": {
-      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/problem_spec",
+      "$ref": "#/$defs/problem_spec",
       "description": "Нормированное условие задачи. На изображении условия может не быть — тогда оно выводится из начального выражения ученика."
     },
     "steps": {
@@ -35,11 +35,11 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step"
+        "$ref": "#/$defs/step"
       }
     },
     "reading": {
-      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/reading_meta",
+      "$ref": "#/$defs/reading_meta",
       "description": "Качество распознавания. Заполняется, если распознавание было отдельной стадией; для сквозного подхода можно опустить."
     },
     "verdict": {
@@ -61,7 +61,7 @@
       "description": "Первый шаг с ошибкой по порядку чтения. Основная точка входа для обратной связи ученику: показываем проблему начиная с него. `null`, если ошибок нет или вердикт не вынесен.",
       "oneOf": [
         {
-          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+          "$ref": "#/$defs/step_id"
         },
         {
           "type": "null"
@@ -72,7 +72,7 @@
       "description": "Последний шаг перед первой ошибкой. Отделяет корректную часть решения от ошибочной; `null`, если первый шаг уже ошибочен.",
       "oneOf": [
         {
-          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+          "$ref": "#/$defs/step_id"
         },
         {
           "type": "null"
@@ -106,7 +106,7 @@
       "minLength": 1
     },
     "meta": {
-      "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/run_meta",
+      "$ref": "#/$defs/run_meta",
       "description": "Техническая телеметрия последней стадии, сформировавшей контракт. Суммарные по всем стадиям значения — в `pipeline`."
     }
   },
@@ -166,7 +166,7 @@
             "const": false
           },
           "first_error_step": {
-            "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+            "$ref": "#/$defs/step_id"
           }
         }
       }
@@ -278,6 +278,60 @@
     }
   ],
   "$defs": {
+    "entity_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "step_id": {"type": "string", "pattern": "^s[1-9][0-9]*$"},
+    "latex": {"type": "string", "minLength": 1},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "problem_spec": {
+      "type": "object",
+      "description": "Необязательная структурированная информация об условии. Она не формируется OCR-стадией v2.",
+      "additionalProperties": true
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step_id", "kind", "latex"],
+      "properties": {
+        "step_id": {"$ref": "#/$defs/step_id"},
+        "kind": {"enum": ["initial", "step", "conclusion", "answer", "note", "crossed_out"]},
+        "latex": {"$ref": "#/$defs/latex"},
+        "normalized_latex": {"type": "string", "minLength": 1},
+        "derives_from": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/step_id"}},
+        "transformation": {"type": "object", "additionalProperties": true},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "alternatives": {"type": "array", "maxItems": 5, "items": {"type": "object", "additionalProperties": true}},
+        "note": {"type": "string"}
+      }
+    },
+    "reading_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "ambiguous_step_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/step_id"}},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "run_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "approach", "stage"],
+      "properties": {
+        "run_id": {"$ref": "#/$defs/entity_id"},
+        "approach": {"enum": ["llm_end_to_end", "llm_ocr_plus_math_core"]},
+        "stage": {"enum": ["transcribe", "verify", "report"]},
+        "model": {"type": "string"},
+        "prompt_version": {"type": "string"},
+        "temperature": {"type": "number", "minimum": 0, "maximum": 2},
+        "seed": {"type": "integer"},
+        "tokens_in": {"type": "integer", "minimum": 0},
+        "tokens_out": {"type": "integer", "minimum": 0},
+        "cost_usd": {"type": "number", "minimum": 0},
+        "duration_ms": {"type": "integer", "minimum": 0},
+        "created_at": {"type": "string", "format": "date-time"},
+        "tool_versions": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    },
     "pipeline": {
       "type": "object",
       "additionalProperties": false,
@@ -384,7 +438,7 @@
           "description": "Идентификатор находки внутри отчёта (`f1`, `f2`, ...)."
         },
         "step_id": {
-          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id",
+          "$ref": "#/$defs/step_id",
           "description": "Шаг, к которому относится находка. Для ошибок, не привязанных к шагу (например нечитаемое изображение), указывается ближайший шаг."
         },
         "span": {
@@ -451,7 +505,7 @@
           "description": "Исправленный фрагмент либо исправленный шаг целиком — в зависимости от того, задан ли span."
         },
         "confidence": {
-          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/confidence",
+          "$ref": "#/$defs/confidence",
           "description": "Уверенность именно в находке. Низкая уверенность при высокой уверенности в шаге — признак того, что проблема в распознавании, а не в записи ученика."
         },
         "detected_by": {
@@ -474,7 +528,7 @@
       ],
       "properties": {
         "step_id": {
-          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id"
+          "$ref": "#/$defs/step_id"
         },
         "verdict": {
           "enum": [
@@ -509,7 +563,7 @@
       ],
       "properties": {
         "step_id": {
-          "$ref": "https://contracts.example.org/nirs/1.0/math_core_input.schema.json#/$defs/step_id",
+          "$ref": "#/$defs/step_id",
           "description": "Ссылка на исправляемый шаг. Для шага, которого в записи не было, используется незанятый идентификатор следующего по порядку шага."
         },
         "corrected_latex": {

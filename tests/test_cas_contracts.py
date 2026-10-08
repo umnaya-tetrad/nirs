@@ -12,13 +12,11 @@ def _input(*, steps, ambiguous_step_ids=None):
     return build_math_core_input(
         case_id="case-1",
         projection={
-            "schema_version": "extraction_gemini_v1",
-            "problem": {"kind": "linear_equation", "equations": [{"id": "e1", "relation": "eq", "latex": "2x+3=7"}], "goal": {"type": "solve"}, "source": "transcribed"},
-            "steps": steps,
+            "schema_version": "extraction_gemini_v2",
+            "steps": [{"latex": step["latex"]} for step in steps],
             "ambiguous_step_ids": ambiguous_step_ids or [],
-            "notes": [],
         },
-        model="gemini", prompt_version="extraction_gemini_v1", duration_ms=1, usage={},
+        model="gemini", prompt_version="extraction_gemini_v2", duration_ms=1, usage={},
     )
 
 

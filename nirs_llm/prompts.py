@@ -1,85 +1,61 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+from hashlib import sha256
+from pathlib import Path
+
+
 GEMINI_MODEL = "google/gemini-3.7-flash"
 GIGACHAT_MODEL = "GigaChat-2-Pro"
-E2E_PROMPT_VERSION = "e2e_gemini_v1"
-EXTRACTION_PROMPT_VERSION = "extraction_gemini_v1"
-
-_LINKAGE_RULES = """\
-Сначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.
-Строки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,
-не меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,
-коэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без
-$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.
-"""
-
-E2E_SYSTEM_PROMPT = f"""Ты проверяешь решение математической задачи по фотографии.
-Верни только JSON-объект без Markdown и пояснений вне JSON.
-
-{_LINKAGE_RULES}
-
-Проверь переходы между строками в порядке записи. has_error=true только если найдена
-математическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной
-строки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и
-не добавляй поля, кроме schema_version, steps, has_error и first_error_step.
-
-JSON-формат:
-{{
-  "schema_version": "e2e_gemini_v1",
-  "steps": [{{"step_id": "s1", "latex": "..."}}],
-  "has_error": false,
-  "first_error_step": null
-}}
-step_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один
-шаг; если фото нельзя прочесть, используй единственный шаг s1 с latex "\\text{{unreadable}}",
-has_error=false и first_error_step=null.
-"""
-
-EXTRACTION_SYSTEM_PROMPT = f"""Ты транскрибируешь математическое решение по фотографии
-для последующей символьной проверки. Верни только JSON-объект без Markdown.
-
-{_LINKAGE_RULES}
-
-Не проверяй правильность преобразований и не исправляй их. Извлеки условие задачи в
-problem. Если условие не видно, используй начальную математическую строку как equations[0]
-и поставь source="transcribed". Для неуверенно прочитанной строки всё равно верни наиболее
-вероятный LaTeX, но перечисли её step_id в ambiguous_step_ids. Не добавляй поля, кроме
-schema_version, problem, steps, ambiguous_step_ids и notes.
-
-JSON-формат:
-{{
-  "schema_version": "extraction_gemini_v1",
-  "problem": {{
-    "kind": "linear_equation",
-    "equations": [{{"id": "e1", "relation": "eq", "latex": "..."}}],
-    "goal": {{"type": "solve"}},
-    "source": "provided"
-  }},
-  "steps": [{{"step_id": "s1", "kind": "initial", "latex": "..."}}],
-  "ambiguous_step_ids": [],
-  "notes": []
-}}
-Допустимые kind: linear_equation, quadratic_equation, polynomial_equation,
-rational_equation, inequality, system_of_equations, system_of_inequalities,
-parametric_equation, unknown. Допустимые goal.type: solve, find_value,
-determine_existence, prove, simplify, unknown.
-"""
-
-USER_PROMPT = "Проанализируй приложенную фотографию по системной инструкции."
+PROMPTS_ROOT = Path(__file__).resolve().parents[1] / "prompts"
+_DEFAULT_VERSION = {
+    ("gemini", "e2e"): "v1",
+    ("gemini", "extraction"): "v2",
+    ("gigachat", "e2e"): "v1",
+    ("gigachat", "extraction"): "v3",
+}
 
 
-def prompt_for(mode: str, provider: str = "gemini") -> tuple[str, str]:
-    if provider not in {"gemini", "gigachat"}:
-        raise ValueError(f"Unknown provider: {provider}")
-    # v2 is a provider-only correction after the first direct GigaChat extraction
-    # smoke response used a problem kind outside the repository contract.
-    version = "extraction_gigachat_v2" if (mode, provider) == ("extraction", "gigachat") else f"{mode}_{provider}_v1"
-    if mode == "e2e":
-        return version, E2E_SYSTEM_PROMPT.replace(E2E_PROMPT_VERSION, version)
-    if mode == "extraction":
-        prompt = EXTRACTION_SYSTEM_PROMPT.replace(EXTRACTION_PROMPT_VERSION, version)
-        if provider == "gigachat":
-            prompt += "\nИспользуй problem.kind только из разрешённого списка. Для тригонометрических и любых других не перечисленных задач ставь kind=\"unknown\"."
-        return version, prompt
-    raise ValueError(f"Unknown mode: {mode}")
+@dataclass(frozen=True)
+class PromptSpec:
+    provider: str
+    mode: str
+    version: str
+    schema_version: str
+    system: str
+    user: str
+    sha256: str
 
+    def artifact(self) -> dict[str, str]:
+        return {
+            "provider": self.provider,
+            "mode": self.mode,
+            "version": self.version,
+            "schema_version": self.schema_version,
+            "system": self.system,
+            "user": self.user,
+            "sha256": self.sha256,
+        }
+
+
+def load_prompt(mode: str, provider: str = "gemini", version: str | None = None) -> PromptSpec:
+    key = (provider, mode)
+    if key not in _DEFAULT_VERSION:
+        raise ValueError(f"Unsupported prompt combination: {provider}/{mode}")
+    resolved_version = version or _DEFAULT_VERSION[key]
+    directory = PROMPTS_ROOT / provider / mode / resolved_version
+    system_path = directory / "system.txt"
+    user_path = directory / "user.txt"
+    if not system_path.is_file() or not user_path.is_file():
+        raise ValueError(f"Unknown prompt version: {provider}/{mode}/{resolved_version}")
+    schema_version = f"{mode}_{provider}_{resolved_version}"
+    system = system_path.read_text(encoding="utf-8").replace("{{schema_version}}", schema_version).strip()
+    user = user_path.read_text(encoding="utf-8").strip()
+    fingerprint = sha256(f"system\0{system}\0user\0{user}".encode("utf-8")).hexdigest()
+    return PromptSpec(provider, mode, resolved_version, schema_version, system, user, fingerprint)
+
+
+def prompt_for(mode: str, provider: str = "gemini", version: str | None = None) -> tuple[str, str]:
+    """Compatibility helper for callers that only need schema version and system text."""
+    prompt = load_prompt(mode, provider, version)
+    return prompt.schema_version, prompt.system

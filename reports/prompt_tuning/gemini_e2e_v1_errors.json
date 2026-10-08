@@ -1,0 +1,14 @@
+{
+  "provider": "gemini",
+  "mode": "e2e",
+  "baseline_prompt_version": "v1",
+  "ids": [
+    "img_136_pert_2.2",
+    "img_221_pert_5.3"
+  ],
+  "review_basis": "FERMAT source fields plus GT review",
+  "notes": {
+    "img_136_pert_2.2": "The answer changes a factorisation task into solving an equation; v1 marked it correct.",
+    "img_221_pert_5.3": "The source-recorded second simplification is correct; v1 marked it incorrect."
+  }
+}

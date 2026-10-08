@@ -20,20 +20,47 @@ def test_lifts_minimal_e2e_projection_to_existing_contract() -> None:
     assert contract["last_correct_step"] == "s1"
 
 
-def test_lifts_extraction_without_normalized_latex() -> None:
+def test_lifts_visual_extraction_without_semantic_inference() -> None:
     projection = {
-        "schema_version": "extraction_gemini_v1",
-        "problem": {"kind": "linear_equation", "equations": [{"id": "e1", "relation": "eq", "latex": "2x=4"}], "goal": {"type": "solve"}, "source": "transcribed"},
-        "steps": [{"step_id": "s1", "kind": "initial", "latex": "2x=4"}, {"step_id": "s2", "kind": "step", "latex": "x=2"}],
-        "ambiguous_step_ids": ["s2"], "notes": ["Знак на s2 нечёткий."],
+        "schema_version": "extraction_gemini_v2",
+        "steps": [{"latex": "2x=4"}, {"latex": "x=2"}],
+        "ambiguous_step_ids": ["s2"],
     }
-    contract = build_math_core_input(case_id="dev-1", projection=projection, model="google/gemini-3.7-flash", prompt_version="extraction_gemini_v1", duration_ms=100, usage={})
+    contract = build_math_core_input(case_id="dev-1", projection=projection, model="google/gemini-3.7-flash", prompt_version="extraction_gemini_v2", duration_ms=100, usage={})
     validate_contract(contract, "math_core_input", ROOT)
-    assert "normalized_latex" not in contract["steps"][0]
+    assert contract["schema_version"] == "2.0"
+    assert "problem" not in contract
+    assert contract["steps"][1]["derives_from"] == ["s1"]
     assert contract["reading"]["ambiguous_step_ids"] == ["s2"]
+
+
+def test_rejects_semantic_fields_in_visual_extraction() -> None:
+    with pytest.raises(ContractError, match="unsupported semantic fields"):
+        build_math_core_input(
+            case_id="dev-1",
+            projection={
+                "schema_version": "extraction_gemini_v2",
+                "problem": {"kind": "linear_equation"},
+                "steps": [{"latex": "2x=4"}],
+                "ambiguous_step_ids": [],
+            },
+            model="m", prompt_version="extraction_gemini_v2", duration_ms=1, usage={},
+        )
+
+
+def test_rejects_vlm_supplied_step_ids() -> None:
+    with pytest.raises(ContractError, match="may only contain latex"):
+        build_math_core_input(
+            case_id="dev-1",
+            projection={
+                "schema_version": "extraction_gemini_v2",
+                "steps": [{"step_id": "s1", "latex": "2x=4"}],
+                "ambiguous_step_ids": [],
+            },
+            model="m", prompt_version="extraction_gemini_v2", duration_ms=1, usage={},
+        )
 
 
 def test_rejects_error_pointer_not_in_steps() -> None:
     with pytest.raises(ContractError):
         build_solution_analysis(case_id="dev-1", projection={"schema_version": "e2e_gemini_v1", "steps": [{"step_id": "s1", "latex": "x=1"}], "has_error": True, "first_error_step": "s2"}, model="m", prompt_version="p", duration_ms=1, usage={})
-

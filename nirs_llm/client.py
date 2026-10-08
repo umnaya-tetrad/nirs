@@ -8,7 +8,7 @@ from typing import Any
 import httpx
 
 from .config import Settings
-from .prompts import GEMINI_MODEL, USER_PROMPT, prompt_for
+from .prompts import GEMINI_MODEL, load_prompt
 
 
 class PolzaUnavailableError(RuntimeError):
@@ -52,17 +52,19 @@ class GeminiPolzaClient:
         self.model = model
         self.timeout = timeout or httpx.Timeout(settings.timeout_seconds, connect=settings.connect_timeout_seconds)
 
-    def analyze(self, image_bytes: bytes, mime_type: str, mode: str) -> ModelResponse:
+    def analyze(
+        self, image_bytes: bytes, mime_type: str, mode: str, prompt_version: str | None = None
+    ) -> ModelResponse:
         if not self.settings.polza_api_key:
             raise PolzaUnavailableError("POLZA_API_KEY is not configured. Copy .env.example to .env first.")
-        prompt_version, system_prompt = prompt_for(mode)
+        prompt = load_prompt(mode, "gemini", prompt_version)
         image_b64 = base64.b64encode(image_bytes).decode("ascii")
         payload = {
             "model": self.model,
             "messages": [
-                {"role": "system", "content": system_prompt},
+                {"role": "system", "content": prompt.system},
                 {"role": "user", "content": [
-                    {"type": "text", "text": USER_PROMPT},
+                    {"type": "text", "text": prompt.user},
                     {"type": "image_url", "image_url": {
                         "url": f"data:{mime_type};base64,{image_b64}", "detail": "high"
                     }},
@@ -129,4 +131,3 @@ def _safe_error_code(response: httpx.Response) -> str | None:
         if isinstance(value, str) and len(value) <= 100:
             return value
     return None
-

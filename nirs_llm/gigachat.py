@@ -11,7 +11,7 @@ import httpx
 
 from .client import ModelResponse, PolzaInvalidResponseError
 from .config import Settings
-from .prompts import GIGACHAT_MODEL, USER_PROMPT, prompt_for
+from .prompts import GIGACHAT_MODEL, load_prompt
 
 
 _MINCIFRY_CA_URL = "https://gu-st.ru/content/lending/russian_trusted_root_ca_pem.crt"
@@ -48,14 +48,16 @@ class GigaChatDirectClient:
         if self.timeout is None:
             self.timeout = httpx.Timeout(self.settings.timeout_seconds, connect=self.settings.connect_timeout_seconds)
 
-    def analyze(self, image_bytes: bytes, mime_type: str, mode: str) -> ModelResponse:
+    def analyze(
+        self, image_bytes: bytes, mime_type: str, mode: str, prompt_version: str | None = None
+    ) -> ModelResponse:
         if not self.settings.gigachat_authorization_key:
             raise GigaChatUnavailableError(
                 "GIGACHAT_AUTHORIZATION_KEY is not configured. Copy .env.example to .env first."
             )
         if not image_bytes:
             raise GigaChatUnavailableError("Refusing to send an empty image.")
-        prompt_version, system_prompt = prompt_for(mode, "gigachat")
+        prompt = load_prompt(mode, "gigachat", prompt_version)
         # trust_env=False deliberately bypasses HTTP(S)_PROXY variables.  A custom CA
         # bundle is opt-in and keeps certificate validation enabled for the Минцифры chain.
         verify: str | bool = self.settings.gigachat_ca_bundle or (
@@ -65,7 +67,9 @@ class GigaChatDirectClient:
             access_token = self._access_token(client)
             file_id = self._upload_image(client, access_token, image_bytes, mime_type)
             try:
-                return self._completion(client, access_token, file_id, system_prompt, prompt_version, mode)
+                return self._completion(
+                    client, access_token, file_id, prompt.system, prompt.user, prompt.schema_version, mode
+                )
             finally:
                 self._delete_file(client, access_token, file_id)
 
@@ -110,14 +114,23 @@ class GigaChatDirectClient:
         except ValueError as error:
             raise GigaChatUnavailableError("GigaChat file upload response has no usable id.") from error
 
-    def _completion(self, client: httpx.Client, token: str, file_id: str, system_prompt: str, prompt_version: str, mode: str) -> ModelResponse:
+    def _completion(
+        self,
+        client: httpx.Client,
+        token: str,
+        file_id: str,
+        system_prompt: str,
+        user_prompt: str,
+        schema_version: str,
+        mode: str,
+    ) -> ModelResponse:
         payload = {
             "model": self.model,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": USER_PROMPT, "attachments": [file_id]},
+                {"role": "user", "content": user_prompt, "attachments": [file_id]},
             ],
-            "response_format": _response_format(mode, prompt_version),
+            "response_format": _response_format(mode, schema_version),
             "temperature": 0,
             "max_tokens": self.max_completion_tokens,
         }
@@ -138,7 +151,7 @@ class GigaChatDirectClient:
             parsed = json.loads(raw_content)
             if not isinstance(parsed, dict):
                 raise TypeError("content is not a JSON object")
-            if parsed.get("schema_version") != prompt_version:
+            if parsed.get("schema_version") != schema_version:
                 raise ValueError("wrong prompt schema_version")
         except (KeyError, IndexError, TypeError, ValueError, json.JSONDecodeError) as error:
             raise PolzaInvalidResponseError("GigaChat model response is not the requested JSON object.", locals().get("raw_content")) from error
@@ -252,46 +265,20 @@ def _response_format(mode: str, prompt_version: str) -> dict[str, Any]:
             "additionalProperties": False,
         }
     elif mode == "extraction":
+        transcription_step = {
+            "type": "object",
+            "properties": {"latex": {"type": "string"}},
+            "required": ["latex"],
+            "additionalProperties": False,
+        }
         schema = {
             "type": "object",
             "properties": {
                 "schema_version": {"type": "string", "enum": [prompt_version]},
-                "problem": {
-                    "type": "object",
-                    "properties": {
-                        "kind": {"enum": ["linear_equation", "quadratic_equation", "polynomial_equation", "rational_equation", "inequality", "system_of_equations", "system_of_inequalities", "parametric_equation", "unknown"]},
-                        "equations": {
-                            "type": "array",
-                            "minItems": 1,
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {"type": "string"},
-                                    "relation": {"enum": ["eq", "ne", "lt", "le", "gt", "ge"]},
-                                    "latex": {"type": "string"},
-                                },
-                                "required": ["id", "relation", "latex"],
-                                "additionalProperties": False,
-                            },
-                        },
-                        "goal": {
-                            "type": "object",
-                            "properties": {
-                                "type": {"enum": ["solve", "find_value", "determine_existence", "prove", "simplify", "unknown"]},
-                            },
-                            "required": ["type"],
-                            "additionalProperties": False,
-                        },
-                        "source": {"enum": ["transcribed", "provided"]},
-                    },
-                    "required": ["kind", "equations", "goal"],
-                    "additionalProperties": True,
-                },
-                "steps": {"type": "array", "minItems": 1, "items": step},
+                "steps": {"type": "array", "minItems": 1, "items": transcription_step},
                 "ambiguous_step_ids": {"type": "array", "items": {"type": "string"}},
-                "notes": {"type": "array", "items": {"type": "string"}},
             },
-            "required": ["schema_version", "problem", "steps", "ambiguous_step_ids", "notes"],
+            "required": ["schema_version", "steps", "ambiguous_step_ids"],
             "additionalProperties": False,
         }
     else:

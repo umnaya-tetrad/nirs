@@ -118,26 +118,43 @@ def build_math_core_input(
     duration_ms: int,
     usage: dict[str, int | float],
 ) -> dict[str, Any]:
-    """Lift minimal transcription into MathCoreInput without inventing normalization."""
+    """Lift a strictly visual transcription into MathCoreInput 2.0.
+
+    The VLM may only return ordered LaTeX lines and IDs it could not read
+    confidently.  The linear graph is deterministic orchestration metadata,
+    not an inference made by the VLM.
+    """
     if projection.get("schema_version") != prompt_version:
         raise ContractError("Unexpected extraction projection schema_version.")
-    problem = projection.get("problem")
-    if not isinstance(problem, dict):
-        raise ContractError("Extraction response must contain problem.")
-    steps = _steps(projection.get("steps"))
+    allowed_keys = {"schema_version", "steps", "ambiguous_step_ids"}
+    unexpected = set(projection) - allowed_keys
+    if unexpected:
+        raise ContractError(f"Extraction response contains unsupported semantic fields: {', '.join(sorted(unexpected))}.")
+    raw_steps = projection.get("steps")
+    if not isinstance(raw_steps, list) or not raw_steps:
+        raise ContractError("Model response must contain a non-empty steps array.")
+    steps: list[dict[str, Any]] = []
+    for index, raw in enumerate(raw_steps, start=1):
+        if not isinstance(raw, dict) or set(raw) != {"latex"}:
+            raise ContractError(f"steps[{index - 1}] may only contain latex.")
+        if not isinstance(raw.get("latex"), str) or not raw["latex"].strip():
+            raise ContractError(f"steps[{index - 1}] must have non-empty latex.")
+        expected_id = f"s{index}"
+        steps.append({
+            "step_id": expected_id,
+            "kind": "initial" if index == 1 else "step",
+            "latex": raw["latex"].strip(),
+            "derives_from": [] if index == 1 else [f"s{index - 1}"],
+        })
     ambiguous = projection.get("ambiguous_step_ids", [])
-    notes = projection.get("notes", [])
     valid_ids = {step["step_id"] for step in steps}
     if not isinstance(ambiguous, list) or any(item not in valid_ids for item in ambiguous):
         raise ContractError("ambiguous_step_ids must only contain returned step IDs.")
-    if not isinstance(notes, list) or any(not isinstance(item, str) for item in notes):
-        raise ContractError("notes must be an array of strings.")
     return {
-        "schema_version": "1.0",
+        "schema_version": "2.0",
         "id": case_id,
-        "problem": problem,
         "steps": steps,
-        "reading": {"ambiguous_step_ids": ambiguous, "notes": notes},
+        "reading": {"ambiguous_step_ids": ambiguous},
         "meta": _run_meta(approach="llm_ocr_plus_math_core", stage="transcribe", model=model, prompt_version=prompt_version, duration_ms=duration_ms, usage=usage),
     }
 
@@ -155,4 +172,3 @@ def validate_contract(contract: dict[str, Any], name: str, repo_root: Path) -> N
     errors = sorted(Draft202012Validator(schema, registry=registry).iter_errors(contract), key=str)
     if errors:
         raise ContractError(f"{name} schema validation failed: {errors[0].message}")
-

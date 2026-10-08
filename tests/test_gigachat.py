@@ -74,14 +74,12 @@ def test_oauth_http_failure_stops_before_upload_or_inference() -> None:
     assert calls == 1
 
 
-def test_extraction_schema_constrains_the_fields_required_by_math_core() -> None:
-    schema = _response_format("extraction", "extraction_gigachat_v2")["schema"]
-    problem = schema["properties"]["problem"]
-    equation = problem["properties"]["equations"]["items"]
+def test_extraction_schema_is_strictly_visual() -> None:
+    schema = _response_format("extraction", "extraction_gigachat_v3")["schema"]
 
-    assert problem["required"] == ["kind", "equations", "goal"]
-    assert equation["required"] == ["id", "relation", "latex"]
-    assert problem["properties"]["goal"]["required"] == ["type"]
+    assert schema["required"] == ["schema_version", "steps", "ambiguous_step_ids"]
+    assert "problem" not in schema["properties"]
+    assert schema["properties"]["steps"]["items"]["properties"] == {"latex": {"type": "string"}}
 
 
 def test_gigachat_pro_cost_estimate_uses_the_fixed_synchronous_list_price() -> None:
