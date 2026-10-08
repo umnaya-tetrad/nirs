@@ -9,8 +9,9 @@
 
 - `nirs_llm/` — Gemini и GigaChat в режимах `e2e` и `extraction`.
 - `nirs_cas/` — ограниченный LaTeX → SymPy verifier.
-- `dataset/test_gt.json` и `dataset/test_gt_images/` — 20 размеченных GT-кейсов.
-- `dataset_scripts/selected.json` — manifest final-100. Сам `selected.parquet` с изображениями хранится вне Git.
+- `dataset/test_gt.json` и `dataset/test_gt_images/` — 20 размеченных dev-кейсов.
+- `dataset/final_gt.json` — 80 размеченных final-кейсов. Final-набор не используется для настройки VLM-адаптеров или CAS.
+- `dataset_scripts/selected.json` — manifest 100 уникальных FERMAT-ID. Сам `selected.parquet` с изображениями хранится вне Git.
 
 ## Установка и тесты
 
