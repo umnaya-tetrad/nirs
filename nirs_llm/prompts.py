@@ -11,8 +11,10 @@ PROMPTS_ROOT = Path(__file__).resolve().parents[1] / "prompts"
 _DEFAULT_VERSION = {
     ("gemini", "e2e"): "v1",
     ("gemini", "extraction"): "v2",
+    ("gemini", "assisted_extraction"): "v2",
     ("gigachat", "e2e"): "v1",
     ("gigachat", "extraction"): "v3",
+    ("gigachat", "assisted_extraction"): "v2",
 }
 
 

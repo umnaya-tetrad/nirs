@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.org/nirs/1.0/llm_assisted_extraction.schema.json",
+  "title": "LLM Assisted Extraction",
+  "description": "Экспериментальный контракт LLM-assisted extraction. Модель транскрибирует запись и даёт проверяемые структурные подсказки без verdict или оценки правильности.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "task", "steps", "meta"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "minLength": 1},
+    "task": {"$ref": "#/$defs/task"},
+    "steps": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/step"}},
+    "meta": {"$ref": "#/$defs/meta"}
+  },
+  "$defs": {
+    "step_id": {"type": "string", "pattern": "^s[1-9][0-9]*$"},
+    "latex": {"type": "string", "minLength": 1},
+    "task": {
+      "type": "object", "additionalProperties": false, "required": ["visibility"],
+      "properties": {
+        "visibility": {"enum": ["visible", "not_visible"]},
+        "raw_latex": {"$ref": "#/$defs/latex"},
+        "givens": {"type": "array", "items": {"$ref": "#/$defs/given"}},
+        "goal": {"$ref": "#/$defs/goal"},
+        "constraints": {"type": "array", "items": {"$ref": "#/$defs/latex"}}
+      },
+      "allOf": [{"if": {"properties": {"visibility": {"const": "visible"}}}, "then": {"required": ["raw_latex"]}}, {"if": {"properties": {"visibility": {"const": "not_visible"}}}, "then": {"not": {"anyOf": [{"required": ["raw_latex"]}, {"required": ["givens"]}, {"required": ["goal"]}, {"required": ["constraints"]}]}}}]
+    },
+    "given": {
+      "type": "object", "additionalProperties": false, "required": ["given_id", "latex"],
+      "properties": {"given_id": {"type": "string", "pattern": "^g[1-9][0-9]*$"}, "latex": {"$ref": "#/$defs/latex"}}
+    },
+    "goal": {
+      "type": "object", "additionalProperties": false, "required": ["type"],
+      "properties": {"type": {"enum": ["solve", "simplify", "evaluate", "prove", "compute_function", "unknown"]}, "target_latex": {"$ref": "#/$defs/latex"}}
+    },
+    "step": {
+      "type": "object", "additionalProperties": false,
+      "required": ["step_id", "latex", "role", "derives_from", "branch", "exactness"],
+      "properties": {
+        "step_id": {"$ref": "#/$defs/step_id"}, "latex": {"$ref": "#/$defs/latex"},
+        "role": {"enum": ["initial", "transformation", "substitution", "definition", "answer", "independent"]},
+        "derives_from": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/step_id"}},
+        "uses_givens": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^g[1-9][0-9]*$"}},
+        "branch": {"type": "string", "pattern": "^(main|independent|plus_minus_[1-9][0-9]*)$"},
+        "exactness": {"enum": ["exact", "approximate", "unknown"]}
+      }
+    },
+    "meta": {
+      "type": "object", "additionalProperties": false, "required": ["run_id", "approach", "stage", "model", "prompt_version", "duration_ms", "created_at"],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 1}, "approach": {"const": "llm_assisted_extraction"}, "stage": {"const": "extract_context"},
+        "model": {"type": "string", "minLength": 1}, "prompt_version": {"type": "string", "minLength": 1}, "temperature": {"type": "number", "minimum": 0, "maximum": 2}, "duration_ms": {"type": "integer", "minimum": 0}, "created_at": {"type": "string", "format": "date-time"},
+        "tokens_in": {"type": "integer", "minimum": 0}, "tokens_out": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

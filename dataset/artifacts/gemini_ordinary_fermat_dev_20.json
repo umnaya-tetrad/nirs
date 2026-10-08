@@ -1,0 +1,1249 @@
+{
+  "artifact_version": "1.0",
+  "ids": [
+    "img_509_pert_5.1",
+    "img_554_pert_5.1",
+    "img_471_pert_5.1",
+    "img_462_pert_5.1",
+    "img_494_pert_5.2",
+    "img_452_pert_5.2",
+    "img_471_pert_5.2",
+    "img_373_pert_5.2",
+    "img_221_pert_5.3",
+    "img_151_pert_5.3",
+    "img_509_pert_3.1",
+    "img_157_pert_3.2",
+    "img_480_pert_2.5",
+    "img_110_pert_1.3",
+    "img_96_pert_2.1",
+    "img_136_pert_2.2",
+    "img_203_pert_4.3",
+    "img_398_pert_4.4",
+    "img_225_pert_2.4",
+    "img_128_pert_1.5"
+  ],
+  "items": [
+    {
+      "id": "img_509_pert_5.1",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_509_pert_5.1",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "(f+g)(t)=t^{2}+2t+1,",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "(f-g)(t)=t^{2}-2t-1,",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "(fg)(t)=t^{2}(2t+1)=2t^{3}+t^{2},",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "\\left(\\frac{f}{g}\\right)(t)=\\frac{t^{2}}{2t+1},\\ t\\neq -\\frac{1}{2}.",
+            "derives_from": [
+              "s3"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-fee66b3f-fd99-489b-b487-7650bcbbf952",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 14054,
+          "created_at": "2026-10-08T16:25:58Z",
+          "tokens_in": 1338,
+          "tokens_out": 928
+        }
+      },
+      "contract_sha256": "42a540ac5dea5d3c98d7f967da05a4135df7b1517619b72c38b728434653bb3d",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "c1927468cccb939b5665d104c8b552f07c36a5ed85d273fd3383ba38c84707d5",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_554_pert_5.1",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "a(a-3)+2=a^2-3a+2",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\text{for } a=1:",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "a^2-3a+2=(1)^2-3(1)+2=1-3+2=3-3=0",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "3b(2b-7)-3(b-4)-63=6b^2-21b-3b+12-63",
+            "derives_from": [
+              "s3"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "kind": "step",
+            "latex": "=6b^2-24b-51",
+            "derives_from": [
+              "s4"
+            ]
+          },
+          {
+            "step_id": "s6",
+            "kind": "step",
+            "latex": "\\text{for } b=-2",
+            "derives_from": [
+              "s5"
+            ]
+          },
+          {
+            "step_id": "s7",
+            "kind": "step",
+            "latex": "6(-2)^2-24(-2)-51=6(4)+48-51=24+48",
+            "derives_from": [
+              "s6"
+            ]
+          },
+          {
+            "step_id": "s8",
+            "kind": "step",
+            "latex": "-51=72-51=21",
+            "derives_from": [
+              "s7"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-76f03c5a-8db0-48a2-b05e-cb39ee2042ff",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13164,
+          "created_at": "2026-10-08T16:25:46Z",
+          "tokens_in": 1363,
+          "tokens_out": 787
+        }
+      },
+      "contract_sha256": "8529242a10d59936eee95f8fa76ca28b7833a830ebc586d1aebc79afa05cc3f4",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "a7a31b392d9870b7d0d084718a1759f5df65b486f38b8e4f501765f7c2ad60ce",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_471_pert_5.1",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\Delta = 4 \\begin{vmatrix} -1 & 3 \\\\ 4 & 1 \\end{vmatrix} - 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ 4 & 1 \\end{vmatrix} + 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ -1 & 3 \\end{vmatrix}",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\Delta = 4(-1 \\cdot 1 - 3 \\cdot 4) = 4(-1 - 12) = 4 \\cdot",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "(-13) = -52",
+            "derives_from": [
+              "s2"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-70a0d9be-e712-4657-b83b-5400f495ed65",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 26291,
+          "created_at": "2026-10-08T16:26:23Z",
+          "tokens_in": 1354,
+          "tokens_out": 2101
+        }
+      },
+      "contract_sha256": "aded77165bda376478cc8cd4d280c46607df3569481bdb944931dcdcdf011fee",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "d063dd97fe4fef99e9f28aea30fde85e5a18760148a08bb7459d41969fed3693",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_462_pert_5.1",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c) = 2(2) - 4(-1)",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "= 4 + 4 = 8.",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-2b533a38-fcbd-427d-ac63-84c95c0655c6",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 8727,
+          "created_at": "2026-10-08T16:26:06Z",
+          "tokens_in": 1378,
+          "tokens_out": 547
+        }
+      },
+      "contract_sha256": "807760ec22cc13f40bd8e0780249abb14a8118dba416ba363fdab9f80761284b",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "9067ba443dc23f69cd2c5d901002644c18e1404599f81e0113d4dfb7db5fc3a1",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_494_pert_5.2",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "2x = x + 5",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "x = 5",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-02c939be-da2d-47b2-bb6c-5d93ac3e12e4",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 7368,
+          "created_at": "2026-10-08T16:26:14Z",
+          "tokens_in": 1366,
+          "tokens_out": 277
+        }
+      },
+      "contract_sha256": "5b155ffd871740454626a4c72afe765f565e1bbd7874906e2367730580b82564",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "c02fd2e3bededea2c3ab982d479d6d541c2a5564bcac07844e3377cc4d497c2b",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_452_pert_5.2",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "(X + Y) + (X - Y) = \\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix} + \\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "(X + X) + (Y - Y) = \\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix} \\Rightarrow 2X = \\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix}",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "X = \\begin{bmatrix} 4 & 4 \\\\ 0 & 4 \\end{bmatrix}",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "(X + Y) - (X - Y) = \\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix} - \\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}",
+            "derives_from": [
+              "s3"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "kind": "step",
+            "latex": "(Y + Y) = \\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix} \\Rightarrow 2Y = \\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix}",
+            "derives_from": [
+              "s4"
+            ]
+          },
+          {
+            "step_id": "s6",
+            "kind": "step",
+            "latex": "Y = \\begin{bmatrix} 1 & -2 \\\\ 0 & 5 \\end{bmatrix}",
+            "derives_from": [
+              "s5"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-7f3d1f79-ed41-459f-b6e1-2e58e52b5984",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12153,
+          "created_at": "2026-10-08T16:26:26Z",
+          "tokens_in": 1359,
+          "tokens_out": 823
+        }
+      },
+      "contract_sha256": "befbfa582852ad70ac53b4147ed1490d87831a867021ac7cbc2219b822d8a7b0",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "acfb8bdcce95115c4d16795a07bf9eb29351d7148a7eb5784b59a0e8c3874102",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_471_pert_5.2",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\Delta = 4 \\begin{vmatrix} -1 & 3 \\\\ 4 & 1 \\end{vmatrix} - 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ 4 & 1 \\end{vmatrix} + 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ -1 & 3 \\end{vmatrix}",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\Delta = 4 (-13) = -52",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-89aa7b93-cc12-403f-80fe-e861b8fc4c8c",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 16000,
+          "created_at": "2026-10-08T16:27:02Z",
+          "tokens_in": 1376,
+          "tokens_out": 1271
+        }
+      },
+      "contract_sha256": "4f736d1063fdde6d9700c7013e453806124715e587782ebc51d6e315db1cbc57",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "5bb5a3d011eed7e6f610d50afa94c03a030512518526b07ef73e68664aac9088",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_373_pert_5.2",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "t = x^5 + 1, \\text{ then } dt = 5x^4 dx",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\int 5x^4 \\sqrt{x^5 + 1} dx = \\int \\sqrt{t} dt = \\frac{2}{3} t^{3/2} = \\frac{2}{3} (x^5 + 1)^{3/2}",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "\\int_{-1}^{1} 5x^4 \\sqrt{x^5 + 1} dx = \\frac{2}{3} \\left[(x^5 + 1)^{3/2}\\right]_{-1}^{1}",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "= \\frac{2}{3} \\left[2^{3/2} - 0\\right] = \\frac{2}{3} (2\\sqrt{2}) = \\frac{4\\sqrt{2}}{3}",
+            "derives_from": [
+              "s3"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-04a98087-0a05-4779-8999-34ac2254fb3f",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13094,
+          "created_at": "2026-10-08T16:26:39Z",
+          "tokens_in": 1354,
+          "tokens_out": 1082
+        }
+      },
+      "contract_sha256": "77bfed9a51750ff4be389cb68dee0ed3aa53129ca2eab032899dbd7e6d3c815c",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "7bf1baaa4205893599bb2f067c5474567ab284d15b10a74977da5dfa9eaf9ad3",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_221_pert_5.3",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\left\\{\\left(\\frac{1}{3}\\right)^{-2}-\\left(\\frac{1}{2}\\right)^{-3}\\right\\}\\div\\left(\\frac{1}{4}\\right)^{-2}=\\left\\{\\frac{1^{-2}}{3^{-2}}-\\frac{1^{-3}}{2^{-3}}\\right\\}\\div\\frac{1^{-2}}{4^{-2}}=\\frac{3^{2}-2^{3}}{1^{2}}\\div 4^{2}",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "=\\frac{9-8}{16}=\\frac{1}{16}\\text{. Note that }3^{2}=9\\text{ and }2^{3}=8",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "\\left(\\frac{5}{8}\\right)^{-7}\\times\\left(\\frac{8}{5}\\right)^{-5}=\\frac{5^{-7}}{8^{-7}}\\times\\frac{8^{-5}}{5^{-5}}=\\frac{5^{-7}\\times 8^{-5}}{8^{-7}\\times 5^{-5}}=5^{-2}\\times 8^{-2}=\\frac{8^{2}}{5^{2}}=\\frac{64}{25}",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "\\text{. Here , }8^{2}=64\\text{ and }5^{2}=25.",
+            "derives_from": [
+              "s3"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-7f346918-3a75-40a3-830a-bfd5f18808c8",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 17437,
+          "created_at": "2026-10-08T16:26:56Z",
+          "tokens_in": 1376,
+          "tokens_out": 2005
+        }
+      },
+      "contract_sha256": "a849261335c43e9e1b898bdd1bd01367656943ee76193659af674aa9d4deb0c1",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "83fca17977ff02920186ab315ed5a509e5ad42f752c86c68b6f1ac23e737d65f",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_151_pert_5.3",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "8\\sqrt{15} \\div 2\\sqrt{3} = \\frac{8\\sqrt{3} \\times \\sqrt{5}}{2\\sqrt{3}} = \\frac{8 \\times \\sqrt{3} \\times \\sqrt{5}}{2 \\times \\sqrt{3}} = \\frac{8 \\times \\sqrt{15}}{2 \\times \\sqrt{3}} = 4\\sqrt{5}",
+            "derives_from": []
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-af89cda6-dd21-47f8-9e68-b69482c7e673",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 14851,
+          "created_at": "2026-10-08T16:27:11Z",
+          "tokens_in": 1354,
+          "tokens_out": 679
+        }
+      },
+      "contract_sha256": "7aef1b26a2c97e0fc5a179db631906be3b70d1a6c736dd5675d1e7c30d2c483d",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "88c5ae65cfb84176d75ce2eeb13946e311792538d3c506d2be74a3c9b233123e",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_509_pert_3.1",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_509_pert_3.1",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "(f+g)(x) = x^2 + 2x + 1,",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "(f-g)(x) = x^2 - 2x - 1,",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "(fg)(x) = x^2(2x+1) = x^2 + 2x^3,",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "\\left(\\frac{f}{g}\\right)(x) = \\frac{x^2}{2x+1}, \\quad x \\neq -\\frac{1}{2}.",
+            "derives_from": [
+              "s3"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-9a920803-72d5-4af3-8568-023d79f4d346",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12611,
+          "created_at": "2026-10-08T16:27:15Z",
+          "tokens_in": 1376,
+          "tokens_out": 641
+        }
+      },
+      "contract_sha256": "d460c11302f9d407bae792d19bb1050be61c842d7bcb4a5ecce4616ba5e9557a",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "126365ca5a1e894ee3354bfc94990c6538f7f57cde067b322651814b305faefa",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_157_pert_3.2",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_157_pert_3.2",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "(2\\sqrt{2} + 5\\sqrt{3}) + (\\sqrt{2} - 3\\sqrt{3}) = (2\\sqrt{2} \\times \\sqrt{2}) + (5\\sqrt{3} - 3\\sqrt{3})",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "= (2 \\times 1)\\sqrt{2} + (5 - 3)\\sqrt{3} = 2\\sqrt{2} + 2\\sqrt{3}",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-3a20da88-b00f-4a68-b263-023bb3cb2758",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13854,
+          "created_at": "2026-10-08T16:27:25Z",
+          "tokens_in": 1359,
+          "tokens_out": 690
+        }
+      },
+      "contract_sha256": "50cd5b5265044899943774cea501acf90fa73700ab36a2c4f29a2a6c7d9897c4",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "93870705eaca34bef8ebcc240fae3f053382d4746fd18f081da85dbe4a05d19f",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_480_pert_2.5",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_480_pert_2.5",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\frac{5-2x}{3} \\le \\frac{x}{6} - 5",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "2(5-2x) \\le 2\\left(\\frac{x}{6}-5\\right)",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "10-4x \\le x-30",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "-5x \\le -40, \\text{ i.e. } x \\ge 8",
+            "derives_from": [
+              "s3"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "kind": "step",
+            "latex": "x \\in [8, \\infty)",
+            "derives_from": [
+              "s4"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-1fdf5bf4-e7aa-4b53-98d6-3b8305d85b3a",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12004,
+          "created_at": "2026-10-08T16:27:50Z",
+          "tokens_in": 1354,
+          "tokens_out": 878
+        }
+      },
+      "contract_sha256": "d177e2e0c9433fb82cf60521af1e9fa627a1ae911c9261e9c9e6793ae24fa4d4",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "5ab2f156935867919d2b653ea600498cad6b7955bf96f8a6bd6434a09f005726",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_110_pert_1.3",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_110_pert_1.3",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ) = \\cos(-1710^\\circ + 1700^\\circ)",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "= \\cos(-1710^\\circ + 1800^\\circ) = \\cos 90^\\circ = 0",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-317db2f6-678a-4caf-bd51-d44230de8277",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 11117,
+          "created_at": "2026-10-08T16:27:47Z",
+          "tokens_in": 1355,
+          "tokens_out": 735
+        }
+      },
+      "contract_sha256": "d2764ddaabe169b7177e7cafe3ca9aff2838de33947952332ebdb86188363fde",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "c26975e9536dcb39ff71c4a2b7c8224ccce46b6fbf0f027156046fec8b98e847",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_96_pert_2.1",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_96_pert_2.1",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\sin (x+y) = \\sin x \\cos y + \\cos x \\sin y",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "\\cos x = \\pm \\frac{4}{5}",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "\\cos x = -\\frac{4}{5}",
+            "derives_from": [
+              "s3"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "kind": "step",
+            "latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+            "derives_from": [
+              "s4"
+            ]
+          },
+          {
+            "step_id": "s6",
+            "kind": "step",
+            "latex": "\\sin y = \\pm \\frac{5}{13}",
+            "derives_from": [
+              "s5"
+            ]
+          },
+          {
+            "step_id": "s7",
+            "kind": "step",
+            "latex": "\\sin y = \\frac{5}{13}",
+            "derives_from": [
+              "s6"
+            ]
+          },
+          {
+            "step_id": "s8",
+            "kind": "step",
+            "latex": "\\sin (x+y) = \\frac{3}{5}\\left(-\\frac{12}{13}\\right) + \\left(-\\frac{4}{5}\\right)\\left(\\frac{5}{13}\\right) = -\\frac{36}{65} + \\frac{4}{5} \\times \\frac{5}{13}",
+            "derives_from": [
+              "s7"
+            ]
+          },
+          {
+            "step_id": "s9",
+            "kind": "step",
+            "latex": "= -\\frac{36}{65} + \\frac{20}{65} = -\\frac{16}{65}",
+            "derives_from": [
+              "s8"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-b9804d79-f200-4583-ac9f-c7212999eea6",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 15648,
+          "created_at": "2026-10-08T16:28:26Z",
+          "tokens_in": 1376,
+          "tokens_out": 1548
+        }
+      },
+      "contract_sha256": "afa4ee4553b0848cc6b1a95394e5fbd474681548325efccf075f18cc2d964488",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "ad433d1878556a83c5cd0494b8ed32e21a5f34f85fddb2f9c587d0b734d334c5",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_136_pert_2.2",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_136_pert_2.2",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "10x^{2} - 18x^{3} + 14x^{4} = 10x^{2} + (-18x^{3}) + 14x^{4}",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "10x^{2} + (-18x^{3}) + 14x^{4} = 0",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "5x^{2} - 9x^{3} + 7x^{4} = 0",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "x^{2}(5 - 9x + 7x^{2}) = 0",
+            "derives_from": [
+              "s3"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "kind": "step",
+            "latex": "x^{2} = 0 \\Rightarrow x = 0",
+            "derives_from": [
+              "s4"
+            ]
+          },
+          {
+            "step_id": "s6",
+            "kind": "step",
+            "latex": "5 - 9x + 7x^{2} = 0",
+            "derives_from": [
+              "s5"
+            ]
+          },
+          {
+            "step_id": "s7",
+            "kind": "step",
+            "latex": "a = 7, b = -9, c = 5",
+            "derives_from": [
+              "s6"
+            ]
+          },
+          {
+            "step_id": "s8",
+            "kind": "step",
+            "latex": "x = \\frac{-b \\pm \\sqrt{b^{2} - 4ac}}{2a}",
+            "derives_from": [
+              "s7"
+            ]
+          },
+          {
+            "step_id": "s9",
+            "kind": "step",
+            "latex": "x = \\frac{9 \\pm \\sqrt{81 - 140}}{14}",
+            "derives_from": [
+              "s8"
+            ]
+          },
+          {
+            "step_id": "s10",
+            "kind": "step",
+            "latex": "x = \\frac{9 \\pm \\sqrt{-59}}{14}",
+            "derives_from": [
+              "s9"
+            ]
+          },
+          {
+            "step_id": "s11",
+            "kind": "step",
+            "latex": "x = \\frac{9 \\pm i\\sqrt{59}}{14}",
+            "derives_from": [
+              "s10"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-461f7dbc-a892-4f93-a6eb-77501b77e347",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12506,
+          "created_at": "2026-10-08T16:28:02Z",
+          "tokens_in": 1381,
+          "tokens_out": 1471
+        }
+      },
+      "contract_sha256": "f2692d9fc8d726484c1e31e548e4a1631055ef59c6ed98e878523158ff104a2b",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "304d4d76230bdf6dd652599aa9ed3d76739684e42fb463d4e2577154906382cc",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_203_pert_4.3",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_203_pert_4.3",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\frac{5!}{2!(5-2)!}\\text{ (since }n=5, r=2)",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\frac{5!}{2!(5-2)!}=\\frac{5\\times 4}{2}=\\frac{5!}{2!\\times 3!}=10",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-8a1b1ec0-f03a-4306-b3de-f0478bbb9dbc",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13562,
+          "created_at": "2026-10-08T16:28:16Z",
+          "tokens_in": 1378,
+          "tokens_out": 1219
+        }
+      },
+      "contract_sha256": "b60afdca93828e12403e755e74c99fe91992728d88ba805c35e4811c99fa73bb",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "d29a123c2ee679fea08faba8c41b23031990d81363f75c990a772ff1a130b91b",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_398_pert_4.4",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_398_pert_4.4",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\frac{dy}{dx} = \\frac{1}{\\sqrt{1-x^2}}",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\sqrt{1-x^2} \\frac{dy}{dx} = 1",
+            "derives_from": [
+              "s1"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "kind": "step",
+            "latex": "\\frac{d}{dx} \\left( \\sqrt{1-x^2} \\cdot \\frac{dy}{dx} \\right) = 0",
+            "derives_from": [
+              "s2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "kind": "step",
+            "latex": "\\sqrt{1-x^2} \\cdot \\frac{d^2 y}{dx^2} + \\frac{dy}{dx} \\cdot \\frac{d}{dx} (\\sqrt{1-x^2}) = 0",
+            "derives_from": [
+              "s3"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "kind": "step",
+            "latex": "\\sqrt{1-x^2} \\cdot \\frac{d^2 y}{dx^2} - \\frac{dy}{dx} \\cdot \\frac{2x}{2\\sqrt{1-x^2}} = 0",
+            "derives_from": [
+              "s4"
+            ]
+          },
+          {
+            "step_id": "s6",
+            "kind": "step",
+            "latex": "(1-x^2) \\frac{d^2 y}{dx^2} - x \\frac{dz}{dx} = 0",
+            "derives_from": [
+              "s5"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": [
+            "s6"
+          ]
+        },
+        "meta": {
+          "run_id": "run-225096e3-cfe3-4907-8431-9ad60c9701f5",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 15374,
+          "created_at": "2026-10-08T16:28:31Z",
+          "tokens_in": 1362,
+          "tokens_out": 1606
+        }
+      },
+      "contract_sha256": "2f1a43a3639bdd3e55e7907faec9db6cded61628f9cb2390ae7843cb89fb6dd9",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "928f17a07f7a638dfe09ccca3ad77014dc08f347d6075d1d4292bd499be51c52",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_225_pert_2.4",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_225_pert_2.4",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{3^{3}}{2^{2}} = \\frac{27}{4}",
+            "derives_from": []
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-274a940d-7df8-408e-a0b8-549370d15934",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 10064,
+          "created_at": "2026-10-08T16:28:36Z",
+          "tokens_in": 1334,
+          "tokens_out": 416
+        }
+      },
+      "contract_sha256": "99f854cf8973e25a97a4d0dbeccc818dcc3be27881f4e776057d000d43d16bd3",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "06346589010ec40bb79c07370d3fafc4a23ff158058b150ce2bdecc94d86eb5b",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    },
+    {
+      "id": "img_128_pert_1.5",
+      "contract": {
+        "schema_version": "2.0",
+        "id": "img_128_pert_1.5",
+        "steps": [
+          {
+            "step_id": "s1",
+            "kind": "initial",
+            "latex": "2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 5 \\times 5 \\times 5",
+            "derives_from": []
+          },
+          {
+            "step_id": "s2",
+            "kind": "step",
+            "latex": "\\sqrt[3]{9000} = 2 \\times 2 \\times 5 = 20",
+            "derives_from": [
+              "s1"
+            ]
+          }
+        ],
+        "reading": {
+          "ambiguous_step_ids": []
+        },
+        "meta": {
+          "run_id": "run-b69f9e0f-7cd6-4de4-b525-8b84bcb5e318",
+          "approach": "llm_ocr_plus_math_core",
+          "stage": "transcribe",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12667,
+          "created_at": "2026-10-08T16:28:44Z",
+          "tokens_in": 1352,
+          "tokens_out": 983
+        }
+      },
+      "contract_sha256": "0128ad116eb6b4c1a12a1f9c1077d7b726dec996ed12b7d3480a3666b6c496ef",
+      "source_run": "outputs/20261008T162532Z_gemini_extraction_extraction_gemini_v2",
+      "source_artifact_sha256": "1bbf8b0d832105edb362130243720c1910341b024f30bb1dbe1897682d2fca56",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4"
+    }
+  ]
+}

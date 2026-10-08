@@ -82,6 +82,13 @@ def test_extraction_schema_is_strictly_visual() -> None:
     assert schema["properties"]["steps"]["items"]["properties"] == {"latex": {"type": "string"}}
 
 
+def test_assisted_extraction_schema_has_no_verdict() -> None:
+    schema = _response_format("assisted_extraction", "assisted_extraction_gigachat_v2")["schema"]
+    assert schema["required"] == ["schema_version", "task", "steps"]
+    assert "verdict" not in schema["properties"]
+    assert schema["properties"]["steps"]["items"]["required"] == ["step_id", "latex", "role", "derives_from", "branch", "exactness"]
+
+
 def test_gigachat_pro_cost_estimate_uses_the_fixed_synchronous_list_price() -> None:
     assert estimate_gigachat_2_pro_cost_rub(1_000) == 0.5
     assert estimate_gigachat_2_pro_cost_rub(22_316) == 11.158

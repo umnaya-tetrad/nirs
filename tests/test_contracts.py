@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from nirs_llm.contracts import ContractError, build_math_core_input, build_solution_analysis, validate_contract
+from nirs_llm.contracts import ContractError, build_llm_assisted_extraction, build_math_core_input, build_solution_analysis, validate_contract
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,6 +59,20 @@ def test_rejects_vlm_supplied_step_ids() -> None:
             },
             model="m", prompt_version="extraction_gemini_v2", duration_ms=1, usage={},
         )
+
+
+def test_lifts_assisted_extraction_and_rejects_verdict_fields() -> None:
+    projection = {
+        "schema_version": "assisted_extraction_gemini_v1",
+        "task": {"visibility": "not_visible"},
+        "steps": [{"step_id": "s1", "latex": "2x=4", "role": "initial", "derives_from": [], "branch": "main", "exactness": "exact"}],
+    }
+    contract = build_llm_assisted_extraction(case_id="dev-1", projection=projection, model="gemini", prompt_version="assisted_extraction_gemini_v1", duration_ms=1, usage={})
+    validate_contract(contract, "llm_assisted_extraction", ROOT)
+    assert contract["task"] == {"visibility": "not_visible"}
+    projection["verdict"] = "correct"
+    with pytest.raises(ContractError, match="may only contain"):
+        build_llm_assisted_extraction(case_id="dev-1", projection=projection, model="gemini", prompt_version="assisted_extraction_gemini_v1", duration_ms=1, usage={})
 
 
 def test_rejects_error_pointer_not_in_steps() -> None:

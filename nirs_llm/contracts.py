@@ -159,14 +159,103 @@ def build_math_core_input(
     }
 
 
+def build_llm_assisted_extraction(
+    *,
+    case_id: str,
+    projection: dict[str, Any],
+    model: str,
+    prompt_version: str,
+    duration_ms: int,
+    usage: dict[str, int | float],
+) -> dict[str, Any]:
+    """Validate a semantic aid without allowing it to grade the solution."""
+    if projection.get("schema_version") != prompt_version:
+        raise ContractError("Unexpected assisted-extraction projection schema_version.")
+    if set(projection) != {"schema_version", "task", "steps"}:
+        raise ContractError("Assisted extraction may only contain schema_version, task, and steps.")
+    task = projection["task"]
+    if not isinstance(task, dict) or task.get("visibility") not in {"visible", "not_visible"}:
+        raise ContractError("task.visibility must be visible or not_visible.")
+    task = dict(task)
+    visibility = task.pop("visibility")
+    allowed_task = {"raw_latex", "givens", "goal", "constraints"}
+    if set(task) - allowed_task:
+        raise ContractError("task contains unsupported fields.")
+    if visibility == "not_visible" and task:
+        raise ContractError("task fields must be absent when the task is not visible.")
+    if visibility == "visible" and (not isinstance(task.get("raw_latex"), str) or not task["raw_latex"].strip()):
+        raise ContractError("Visible task must contain non-empty raw_latex.")
+    givens = task.get("givens", [])
+    if not isinstance(givens, list):
+        raise ContractError("task.givens must be an array.")
+    given_ids: set[str] = set()
+    for index, given in enumerate(givens, 1):
+        expected = f"g{index}"
+        if not isinstance(given, dict) or set(given) != {"given_id", "latex"} or given.get("given_id") != expected or not isinstance(given.get("latex"), str) or not given["latex"].strip():
+            raise ContractError("givens must have sequential IDs and non-empty latex.")
+        given_ids.add(expected)
+    goal = task.get("goal")
+    if goal is not None:
+        if not isinstance(goal, dict) or set(goal) - {"type", "target_latex"} or goal.get("type") not in {"solve", "simplify", "evaluate", "prove", "compute_function", "unknown"}:
+            raise ContractError("task.goal is invalid.")
+    constraints = task.get("constraints", [])
+    if not isinstance(constraints, list) or any(not isinstance(item, str) or not item.strip() for item in constraints):
+        raise ContractError("task.constraints must be non-empty LaTeX strings.")
+    raw_steps = projection["steps"]
+    if not isinstance(raw_steps, list) or not raw_steps:
+        raise ContractError("Model response must contain a non-empty steps array.")
+    valid_roles = {"initial", "transformation", "substitution", "definition", "answer", "independent"}
+    valid_exactness = {"exact", "approximate", "unknown"}
+    valid_branches = {"main", "independent"}
+    steps: list[dict[str, Any]] = []
+    prior_ids: set[str] = set()
+    for index, raw in enumerate(raw_steps, 1):
+        expected = f"s{index}"
+        if not isinstance(raw, dict) or set(raw) - {"step_id", "latex", "role", "derives_from", "uses_givens", "branch", "exactness"}:
+            raise ContractError(f"steps[{index - 1}] contains unsupported fields.")
+        if raw.get("step_id") != expected or not isinstance(raw.get("latex"), str) or not raw["latex"].strip():
+            raise ContractError(f"steps[{index - 1}] needs sequential step_id and non-empty latex.")
+        if raw.get("role") not in valid_roles or raw.get("exactness") not in valid_exactness:
+            raise ContractError(f"steps[{index - 1}] has invalid role or exactness.")
+        branch = raw.get("branch")
+        if branch not in valid_branches and not (isinstance(branch, str) and branch.startswith("plus_minus_") and branch.removeprefix("plus_minus_").isdigit()):
+            raise ContractError(f"steps[{index - 1}] has invalid branch.")
+        parents = raw.get("derives_from")
+        uses_givens = raw.get("uses_givens", [])
+        if not isinstance(parents, list) or len(parents) != len(set(parents)) or any(parent not in prior_ids for parent in parents):
+            raise ContractError(f"steps[{index - 1}].derives_from must name earlier steps only.")
+        if not isinstance(uses_givens, list) or len(uses_givens) != len(set(uses_givens)) or any(item not in given_ids for item in uses_givens):
+            raise ContractError(f"steps[{index - 1}].uses_givens must name task givens.")
+        step = {"step_id": expected, "latex": raw["latex"].strip(), "role": raw["role"], "derives_from": parents, "branch": branch, "exactness": raw["exactness"]}
+        if uses_givens:
+            step["uses_givens"] = uses_givens
+        steps.append(step)
+        prior_ids.add(expected)
+    canonical_task: dict[str, Any] = {"visibility": visibility}
+    if visibility == "visible":
+        canonical_task["raw_latex"] = task["raw_latex"].strip()
+        if givens:
+            canonical_task["givens"] = givens
+        if goal is not None:
+            canonical_task["goal"] = goal
+        if constraints:
+            canonical_task["constraints"] = [item.strip() for item in constraints]
+    return {
+        "schema_version": "1.0", "id": case_id, "task": canonical_task, "steps": steps,
+        "meta": _run_meta(approach="llm_assisted_extraction", stage="extract_context", model=model, prompt_version=prompt_version, duration_ms=duration_ms, usage=usage),
+    }
+
+
 def validate_contract(contract: dict[str, Any], name: str, repo_root: Path) -> None:
     """Validate against the unmodified repository schemas with local reference resolution."""
     schemas_dir = repo_root / "data_contracts" / "schemas"
     math_schema = json.loads((schemas_dir / "math_core_input.schema.json").read_text(encoding="utf-8"))
+    assisted_schema = json.loads((schemas_dir / "llm_assisted_extraction.schema.json").read_text(encoding="utf-8"))
     solution_schema = json.loads((schemas_dir / "solution_analysis.schema.json").read_text(encoding="utf-8"))
-    schema = {"math_core_input": math_schema, "solution_analysis": solution_schema}[name]
+    schema = {"math_core_input": math_schema, "solution_analysis": solution_schema, "llm_assisted_extraction": assisted_schema}[name]
     registry = Registry().with_resources([
         (math_schema["$id"], Resource.from_contents(math_schema)),
+        (assisted_schema["$id"], Resource.from_contents(assisted_schema)),
         (solution_schema["$id"], Resource.from_contents(solution_schema)),
     ])
     errors = sorted(Draft202012Validator(schema, registry=registry).iter_errors(contract), key=str)

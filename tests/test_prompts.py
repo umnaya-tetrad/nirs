@@ -21,6 +21,8 @@ def test_default_resolves_current_provider_mode_version() -> None:
     assert prompt.version == "v3"
     assert prompt.schema_version == "extraction_gigachat_v3"
     assert load_prompt("extraction", "gemini").version == "v2"
+    assert load_prompt("assisted_extraction", "gemini").schema_version == "assisted_extraction_gemini_v2"
+    assert load_prompt("assisted_extraction", "gigachat").schema_version == "assisted_extraction_gigachat_v2"
 
 
 def test_rejects_unsupported_prompt_version_and_combination() -> None:

@@ -281,6 +281,34 @@ def _response_format(mode: str, prompt_version: str) -> dict[str, Any]:
             "required": ["schema_version", "steps", "ambiguous_step_ids"],
             "additionalProperties": False,
         }
+    elif mode == "assisted_extraction":
+        assisted_step = {
+            "type": "object",
+            "properties": {
+                "step_id": {"type": "string"}, "latex": {"type": "string"},
+                "role": {"enum": ["initial", "transformation", "substitution", "definition", "answer", "independent"]},
+                "derives_from": {"type": "array", "items": {"type": "string"}},
+                "uses_givens": {"type": "array", "items": {"type": "string"}},
+                "branch": {"type": "string"}, "exactness": {"enum": ["exact", "approximate", "unknown"]},
+            },
+            "required": ["step_id", "latex", "role", "derives_from", "branch", "exactness"],
+            "additionalProperties": False,
+        }
+        task = {
+            "type": "object",
+            "properties": {
+                "visibility": {"enum": ["visible", "not_visible"]}, "raw_latex": {"type": "string"},
+                "givens": {"type": "array", "items": {"type": "object", "properties": {"given_id": {"type": "string"}, "latex": {"type": "string"}}, "required": ["given_id", "latex"], "additionalProperties": False}},
+                "goal": {"type": "object", "properties": {"type": {"enum": ["solve", "simplify", "evaluate", "prove", "compute_function", "unknown"]}, "target_latex": {"type": "string"}}, "required": ["type"], "additionalProperties": False},
+                "constraints": {"type": "array", "items": {"type": "string"}},
+            }, "required": ["visibility"], "additionalProperties": False,
+        }
+        schema = {
+            "type": "object", "properties": {
+                "schema_version": {"type": "string", "enum": [prompt_version]}, "task": task,
+                "steps": {"type": "array", "minItems": 1, "items": assisted_step},
+            }, "required": ["schema_version", "task", "steps"], "additionalProperties": False,
+        }
     else:
         raise ValueError(f"Unknown mode: {mode}")
     return {"type": "json_schema", "schema": schema, "strict": True}

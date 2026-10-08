@@ -1,0 +1,2810 @@
+{
+  "artifact_version": "1.0",
+  "ids": [
+    "hf-task13-13-1-1-maximal",
+    "hf-task13-13-1-3-non-maximal",
+    "hf-task13-13-1-4-non-maximal",
+    "hf-task13-13-2-1-maximal",
+    "hf-task13-13-2-2-maximal",
+    "hf-task13-13-2-3-non-maximal",
+    "hf-task13-13-4-3-zero",
+    "hf-task15-15-1-2-non-maximal",
+    "hf-task15-15-2-1-maximal",
+    "hf-task15-15-2-2-maximal",
+    "img_151_pert_5.3",
+    "img_221_pert_5.3",
+    "img_373_pert_5.2",
+    "img_452_pert_5.2",
+    "img_462_pert_5.1",
+    "img_471_pert_5.1",
+    "img_471_pert_5.2",
+    "img_494_pert_5.2",
+    "img_509_pert_5.1",
+    "img_554_pert_5.1"
+  ],
+  "items": [
+    {
+      "id": "hf-task13-13-1-1-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-1-1-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение }\\cos 2x-\\sqrt{2}\\sin(x+\\pi)-1=0.\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку }\\left[-\\frac{7\\pi}{2};-2\\pi\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\cos 2x-\\sqrt{2}\\sin(x+\\pi)-1=0"
+            },
+            {
+              "given_id": "g2",
+              "latex": "x\\in\\left[-\\frac{7\\pi}{2};-2\\pi\\right]"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\cos 2x - \\sqrt{2}\\sin(x+\\pi) = 1",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\cos 2x - \\sqrt{2}(-\\sin x) = 1",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\cos 2x + \\sqrt{2}\\sin x - 1 = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "1 - 2\\sin^2 x + \\sqrt{2}\\sin x - 1 = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "2\\sin^2 x - \\sqrt{2}\\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\sin x(2\\sin x - \\sqrt{2}) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "\\left[\\begin{array}{l}\\sin x = 0\\\\\\sin x = \\frac{\\sqrt{2}}{2}\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "\\left[\\begin{array}{l}x = \\pi k, k\\in\\mathbb{Z}\\\\x = \\frac{\\pi}{4}+2\\pi k, k\\in\\mathbb{Z}\\\\x = \\frac{3}{4}\\pi+2\\pi k, k\\in\\mathbb{Z}\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "x_1 = \\frac{3}{4}\\pi - 4\\pi = \\frac{3-16}{4}\\pi = -\\frac{13}{4}\\pi",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s10",
+            "latex": "x_2 = \\pi(-3) = -3\\pi",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s11",
+            "latex": "x_3 = \\pi(-2) = -2\\pi",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s12",
+            "latex": "x_4 - \\text{серия } \\frac{\\pi}{4}+2\\pi k, k\\in\\mathbb{Z} \\text{ не подходит}",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s13",
+            "latex": "\\text{Ответ: а) } \\pi k, k\\in\\mathbb{Z},\\; \\frac{\\pi}{4}+2\\pi k, k\\in\\mathbb{Z},\\; \\frac{3}{4}\\pi+2\\pi k, k\\in\\mathbb{Z}\\quad \\text{б) } -3\\pi; -2\\pi; -\\frac{13}{4}\\pi",
+            "role": "answer",
+            "derives_from": [
+              "s8",
+              "s9",
+              "s10",
+              "s11",
+              "s12"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-976302fc-9a31-4b6f-97fb-f2c1f9e66789",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 11883,
+          "created_at": "2026-10-08T19:14:32Z",
+          "tokens_in": 1798,
+          "tokens_out": 1790
+        }
+      },
+      "contract_sha256": "8df30b5470838fcea9a1152082c570dcedd9e73155d259567635521157835cea",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "cac41532869bb2e7ebe918aa2effd5a9e4f29b8ef671cb36e1393d03a3555417",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task13-13-1-3-non-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-1-3-non-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение } \\cos 2x - \\sqrt{2}\\sin(x+\\pi) - 1 = 0.\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку } \\left[-\\frac{7\\pi}{2}; -2\\pi\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\cos 2x - \\sqrt{2}\\sin(x+\\pi) - 1 = 0"
+            },
+            {
+              "given_id": "g2",
+              "latex": "x \\in \\left[-\\frac{7\\pi}{2}; -2\\pi\\right]"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\cos 2x - \\sqrt{2}\\sin(x+\\pi) - 1 = 0",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "1 - 2\\sin^2 x + \\sqrt{2}\\sin x - 1 = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "-2\\sin^2 x + \\sqrt{2}\\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "2\\sin^2 x - \\sqrt{2}\\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "\\sin x(2\\sin x - \\sqrt{2}) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\text{I. } \\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "x = \\pi n, n \\in \\mathbb{Z}",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "\\text{II. } 2\\sin x - \\sqrt{2} = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "\\sin x = \\frac{\\sqrt{2}}{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s10",
+            "latex": "x = \\frac{\\pi}{4} + 2\\pi k, k \\in \\mathbb{Z}",
+            "role": "transformation",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s11",
+            "latex": "x = \\frac{3\\pi}{4} + 2\\pi l, l \\in \\mathbb{Z}",
+            "role": "transformation",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s12",
+            "latex": "\\text{б) Отберём корни с помощью единичной окружности на отрезке } \\left[-\\frac{7\\pi}{2}; -2\\pi\\right]",
+            "role": "definition",
+            "derives_from": [
+              "s7",
+              "s10",
+              "s11"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s13",
+            "latex": "x_1 = -\\frac{7}{2}\\pi + \\frac{\\pi}{4} = -\\frac{13}{4}\\pi",
+            "role": "transformation",
+            "derives_from": [
+              "s12"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s14",
+            "latex": "x_2 = -\\pi",
+            "role": "transformation",
+            "derives_from": [
+              "s12"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s15",
+            "latex": "x_3 = -2\\pi",
+            "role": "transformation",
+            "derives_from": [
+              "s12"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s16",
+            "latex": "\\text{Ответ } \\text{а) } x = \\pi n, n \\in \\mathbb{Z}; x = \\frac{\\pi}{4} + 2\\pi k, k \\in \\mathbb{Z}, x = \\frac{3\\pi}{4} + 2\\pi l, l \\in \\mathbb{Z}",
+            "role": "answer",
+            "derives_from": [
+              "s7",
+              "s10",
+              "s11"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s17",
+            "latex": "\\text{б) } x = -\\frac{13}{4}\\pi \\quad x = -\\pi \\quad x = -2\\pi",
+            "role": "answer",
+            "derives_from": [
+              "s13",
+              "s14",
+              "s15"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-ea223caa-2669-4912-8f1f-2336982ad3f9",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 19349,
+          "created_at": "2026-10-08T19:15:24Z",
+          "tokens_in": 1795,
+          "tokens_out": 3141
+        }
+      },
+      "contract_sha256": "355abe4ab5591413d9b89eafa2b822f1dc624165b084dd1980ea5f957b6fa5dd",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "b23cc7b68cb5ce1efab8f0a49f322b3869309b62d1b42f93bde498c4c2162d22",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task13-13-1-4-non-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-1-4-non-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение } \\cos 2x - \\sqrt{2}\\sin(x+\\pi) - 1 = 0.\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку } \\left[-\\frac{7\\pi}{2}; -2\\pi\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\cos 2x - \\sqrt{2}\\sin(x+\\pi) - 1 = 0"
+            }
+          ],
+          "goal": {
+            "type": "solve",
+            "target_latex": "x"
+          },
+          "constraints": [
+            "x \\in \\left[-\\frac{7\\pi}{2}; -2\\pi\\right]"
+          ]
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\text{a) } \\cos 2x - \\sqrt{2}\\sin(x+\\pi) - 1 = 0",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "1 - 2\\sin^2 x + \\sqrt{2}\\sin x - 1 = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "2\\sin^2 x - \\sqrt{2}\\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "\\sin x(2\\sin x - \\sqrt{2}) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "\\left[\\begin{array}{l}\\sin x = 0\\\\\\sin x = \\frac{\\sqrt{2}}{2}\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\left[\\begin{array}{l}x = \\pi k, k \\in \\mathbb{Z}\\\\x = \\frac{\\pi}{4} + 2\\pi k, k \\in \\mathbb{Z}\\\\x = \\frac{3\\pi}{4} + 2\\pi k, k \\in \\mathbb{Z}\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "\\text{Ответ: a) } x \\in \\left\\{\\pi k; \\frac{\\pi}{4} + 2\\pi k; \\frac{3\\pi}{4} + 2\\pi k\\right\\}, k \\in \\mathbb{Z}",
+            "role": "answer",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "\\text{б) } x \\in \\left\\{-\\frac{13\\pi}{4}; -3\\pi; -2\\pi\\right\\}",
+            "role": "answer",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-1e741ce6-3eb7-40ad-8f9a-3eaca0eafcb4",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 8923,
+          "created_at": "2026-10-08T19:15:33Z",
+          "tokens_in": 1790,
+          "tokens_out": 1226
+        }
+      },
+      "contract_sha256": "b8609d3aa70b0d57960ea365eac28bec33b5195f997d5effc4fde82db43a72cd",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "5fddfd6138f9c076fe7f584f53b6cfcdd4a8ea144dae411a3126265ee6600b59",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task13-13-2-1-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-2-1-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение } \\sin x \\cdot \\cos 2x + \\sqrt{2}\\cos^2 x + \\sin x = 0.\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку } \\left[\\frac{3\\pi}{2}; 3\\pi\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\sin x \\cdot \\cos 2x + \\sqrt{2}\\cos^2 x + \\sin x = 0"
+            },
+            {
+              "given_id": "g2",
+              "latex": "x \\in \\left[\\frac{3\\pi}{2}; 3\\pi\\right]"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\sin x \\cdot \\cos 2x + \\sqrt{2}\\cos^2 x + \\sin x = 0",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\sin x \\cdot (\\cos^2 x - \\sin^2 x) + \\sqrt{2}(1 - \\sin^2 x) + \\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\sin x (1 - \\sin^2 x - \\sin^2 x) + \\sqrt{2}(1 - \\sin^2 x) + \\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "\\sin x (1 - 2\\sin^2 x) + \\sqrt{2}(1 - \\sin^2 x) + \\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "\\sin x + \\sin x - 2\\sin^3 x + \\sqrt{2}(1 - \\sin^2 x) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "2\\sin x - 2\\sin^3 x + \\sqrt{2}(1 - \\sin^2 x) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "2\\sin x (1 - \\sin^2 x) + \\sqrt{2}(1 - \\sin^2 x) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "(1 - \\sin^2 x)(2\\sin x + \\sqrt{2}) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "1 - \\sin^2 x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s10",
+            "latex": "\\cos^2 x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s11",
+            "latex": "x = \\pm \\frac{\\pi}{2} + \\pi n, n \\in \\mathbb{Z}",
+            "role": "transformation",
+            "derives_from": [
+              "s10"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s12",
+            "latex": "2\\sin x + \\sqrt{2} = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s13",
+            "latex": "2\\sin x = -\\sqrt{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s12"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s14",
+            "latex": "\\sin x = -\\frac{\\sqrt{2}}{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s13"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s15",
+            "latex": "\\left[\\begin{array}{l} x = -\\frac{\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z} \\\\ x = -\\frac{3\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z} \\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s14"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s16",
+            "latex": "\\left[\\frac{3\\pi}{2}; 3\\pi\\right]",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "independent",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s17",
+            "latex": "x_1 = \\frac{3\\pi}{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s11",
+              "s15",
+              "s16"
+            ],
+            "branch": "independent",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s18",
+            "latex": "x_2 = \\frac{7\\pi}{4}",
+            "role": "transformation",
+            "derives_from": [
+              "s11",
+              "s15",
+              "s16"
+            ],
+            "branch": "independent",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s19",
+            "latex": "x_3 = \\frac{5\\pi}{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s11",
+              "s15",
+              "s16"
+            ],
+            "branch": "independent",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s20",
+            "latex": "\\text{Ответ: а) } \\pm\\frac{\\pi}{2} + \\pi n, n \\in \\mathbb{Z}; -\\frac{\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}; -\\frac{3\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}.",
+            "role": "answer",
+            "derives_from": [
+              "s11",
+              "s15"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s21",
+            "latex": "\\text{б) } \\frac{3\\pi}{2}; \\frac{7\\pi}{4}; \\frac{5\\pi}{2}",
+            "role": "answer",
+            "derives_from": [
+              "s17",
+              "s18",
+              "s19"
+            ],
+            "branch": "independent",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-71fc82b7-5b61-4d16-9c82-a23f6085bdf5",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 15288,
+          "created_at": "2026-10-08T19:14:47Z",
+          "tokens_in": 1790,
+          "tokens_out": 2507
+        }
+      },
+      "contract_sha256": "2d1351cbbcbb2d49897909348664e746f3601ffdd1ccfc235f433223cabf2b84",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "e2abe7b350333c4bee7fda139b3b7a84648903cd87dc7c9e913fc827e0f25afa",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task13-13-2-2-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-2-2-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение } \\sin x\\cdot \\cos 2x+\\sqrt{2}\\cos^2 x+\\sin x=0.\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку }\\left[\\frac{3\\pi}{2}; 3\\pi\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\sin x\\cdot \\cos 2x+\\sqrt{2}\\cos^2 x+\\sin x=0"
+            },
+            {
+              "given_id": "g2",
+              "latex": "x\\in\\left[\\frac{3\\pi}{2}; 3\\pi\\right]"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\sin x\\cdot \\cos 2x+\\sqrt{2}\\cos^2 x+\\sin x=0",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\sin x(2\\cos^2 x-1)+\\sqrt{2}\\cos^2 x+\\sin x=0",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "2\\sin x\\cos^2 x-\\sin x+\\sqrt{2}\\cos^2 x+\\sin x=0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "2\\sin x\\cos^2 x+\\sqrt{2}\\cos^2 x=0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "\\cos^2 x(2\\sin x+\\sqrt{2})=0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\sin x=-\\frac{\\sqrt{2}}{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "\\left[\\begin{array}{l}x=-\\frac{\\pi}{4}+2\\pi n, n\\in\\mathbb{Z}\\\\x=-\\frac{5\\pi}{4}+2\\pi n, n\\in\\mathbb{Z}\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "\\cos^2 x=0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "\\cos x=0",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s10",
+            "latex": "x=\\frac{\\pi}{2}+\\pi n, n\\in\\mathbb{Z}",
+            "role": "transformation",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s11",
+            "latex": "\\left[\\frac{3\\pi}{2}; 3\\pi\\right]",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s12",
+            "latex": "2\\pi-\\frac{\\pi}{4}=\\frac{8\\pi-\\pi}{4}=\\frac{7\\pi}{4}",
+            "role": "transformation",
+            "derives_from": [
+              "s7",
+              "s11"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s13",
+            "latex": "\\text{Ответ: а) } -\\frac{\\pi}{4}+2\\pi n, n\\in\\mathbb{Z}; -\\frac{5\\pi}{4}+2\\pi n, n\\in\\mathbb{Z}; \\frac{\\pi}{2}+\\pi n, n\\in\\mathbb{Z}",
+            "role": "answer",
+            "derives_from": [
+              "s7",
+              "s10"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s14",
+            "latex": "\\text{б) } \\frac{3\\pi}{2}; \\frac{7\\pi}{4}; \\frac{5\\pi}{2}",
+            "role": "answer",
+            "derives_from": [
+              "s10",
+              "s12"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-fcbb38fa-7901-413e-80fc-45e800edad4a",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 15891,
+          "created_at": "2026-10-08T19:14:50Z",
+          "tokens_in": 1798,
+          "tokens_out": 2122
+        }
+      },
+      "contract_sha256": "9d64f070f19a492536c29f72833537ecef7c3699fb4b0d95e8ef5f8d615009a0",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "d8aabb16cd2b2a57ef149c5721986d96cad1ece81e2724eb382f48f511f170c1",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task13-13-2-3-non-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-2-3-non-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение } \\sin x \\cdot \\cos 2x + \\sqrt{2} \\cos^2 x + \\sin x = 0.\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку } \\left[\\frac{3\\pi}{2}; 3\\pi\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\sin x \\cdot \\cos 2x + \\sqrt{2} \\cos^2 x + \\sin x = 0"
+            },
+            {
+              "given_id": "g2",
+              "latex": "x \\in \\left[\\frac{3\\pi}{2}; 3\\pi\\right]"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\sin x \\cdot \\cos 2x + \\sqrt{2} \\cos^2 x + \\sin x = 0",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\sin x(1 - 2\\sin^2 x) + \\sqrt{2} \\cos^2 x + \\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\sin x - 2\\sin^3 x + \\sqrt{2} \\cos^2 x + \\sin x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "2\\sin x - 2\\sin^3 x + \\sqrt{2} \\cos^2 x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "2\\sin x(1 - \\sin^2 x) + \\sqrt{2} \\cos^2 x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "2\\sin x \\cdot \\cos^2 x + \\sqrt{2} \\cos^2 x = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "\\cos^2 x(2\\sin x + \\sqrt{2}) = 0",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "\\left[\\begin{array}{l}\\cos^2 x = 0 \\\\ 2\\sin x = -\\sqrt{2}\\end{array}\\right. \\Rightarrow \\left[\\begin{array}{l}\\cos x = 0 \\\\ \\sin x = -\\frac{\\sqrt{2}}{2}\\end{array}\\right. \\Rightarrow \\left[\\begin{array}{l}x = \\frac{\\pi}{2} + \\pi n, n \\in \\mathbb{Z} \\\\ x = -\\frac{\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z} \\\\ x = -\\frac{3\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "t_1 = 2\\pi - \\frac{\\pi}{4} = \\frac{8\\pi - \\pi}{4} = \\frac{7\\pi}{4}",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s10",
+            "latex": "\\Rightarrow \\text{нам подх. } \\frac{3\\pi}{2}, \\frac{7\\pi}{4}, \\frac{5\\pi}{2}",
+            "role": "transformation",
+            "derives_from": [
+              "s8",
+              "s9"
+            ],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s11",
+            "latex": "\\text{Ответ: а) } x = \\frac{\\pi}{2} + \\pi n, n \\in \\mathbb{Z}, x = -\\frac{\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}, x = -\\frac{3\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}",
+            "role": "answer",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s12",
+            "latex": "\\text{б) } \\frac{3\\pi}{2}; \\frac{7\\pi}{4}; \\frac{5\\pi}{2}",
+            "role": "answer",
+            "derives_from": [
+              "s10"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-d7bc0d29-ed0d-418f-aac5-30e5afef7588",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 19754,
+          "created_at": "2026-10-08T19:15:47Z",
+          "tokens_in": 1798,
+          "tokens_out": 2198
+        }
+      },
+      "contract_sha256": "8d7bab1fec069725b724fd4061e266e632594317e7a693f8abaafe2c07f2e5a2",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "397d7d6267c00f2ed2723a537fe5d5f23059f225699f6d79736f13bca6b1ef3e",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task13-13-4-3-zero",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task13-13-4-3-zero",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{а) Решите уравнение }\\cos 2x+2=\\sqrt{3}\\cos\\left(\\frac{3\\pi}{2}-x\\right).\\\\\n\\text{б) Укажите корни этого уравнения, принадлежащие отрезку }\\left[-3\\pi; -\\frac{3\\pi}{2}\\right].",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\cos 2x+2=\\sqrt{3}\\cos\\left(\\frac{3\\pi}{2}-x\\right)"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          },
+          "constraints": [
+            "x\\in\\left[-3\\pi; -\\frac{3\\pi}{2}\\right]"
+          ]
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\text{а) }\\cos 2x+2=\\sqrt{3}\\cos\\left(\\frac{3\\pi}{2}-x\\right)",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\cos^2 x-\\sin^2 x+2=\\sqrt{3}\\cdot\\sin x",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "1-\\sin^2 x-\\sin^2 x-\\sqrt{3}\\sin x+2=0",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "-2\\sin^2 x-\\sqrt{3}\\sin x+3=0",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "2\\sin^2 x+\\sqrt{3}\\sin x-3=0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\text{замена }\\sin x=t,\\; t\\in[-1; 1]",
+            "role": "definition",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "2t^2+\\sqrt{3}t-3=0",
+            "role": "substitution",
+            "derives_from": [
+              "s5",
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "D=3-4\\cdot 2\\cdot(-3)=3+24=27=(3\\sqrt{3})^2",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "t_1=\\frac{-\\sqrt{3}+3\\sqrt{3}}{4}=\\frac{2\\sqrt{3}}{4}=\\frac{\\sqrt{3}}{2};\\; t_2=\\frac{-\\sqrt{3}-3\\sqrt{3}}{4}=-\\frac{4\\sqrt{3}}{4}=-\\sqrt{3}",
+            "role": "transformation",
+            "derives_from": [
+              "s7",
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s10",
+            "latex": "\\sin x=\\frac{\\sqrt{3}}{2}",
+            "role": "substitution",
+            "derives_from": [
+              "s6",
+              "s9"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s11",
+            "latex": "\\sin x=-\\sqrt{3};\\; -\\sqrt{3}\\notin[-1; 1]",
+            "role": "substitution",
+            "derives_from": [
+              "s6",
+              "s9"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s12",
+            "latex": "x=(-1)^k\\frac{\\pi}{3}+\\pi k,\\; k\\in\\mathbb{Z}",
+            "role": "transformation",
+            "derives_from": [
+              "s10"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s13",
+            "latex": "\\text{б) }\\left[-3\\pi; -\\frac{3\\pi}{2}\\right]",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s14",
+            "latex": "\\text{Ответ: а) }(-1)^k\\frac{\\pi}{3}+\\pi k,\\; k\\in\\mathbb{Z};\\;\\text{б) }-\\frac{5\\pi}{3}",
+            "role": "answer",
+            "derives_from": [
+              "s12",
+              "s13"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-8a8a220d-4e90-4588-8443-fd9b0e395745",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13055,
+          "created_at": "2026-10-08T19:15:46Z",
+          "tokens_in": 1795,
+          "tokens_out": 1710
+        }
+      },
+      "contract_sha256": "d46a31e985b82e6e7501fc59c5a4c02c2f4d58805fe672bd062632ccc95c10fa",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "c95bee0c0a998a83f21e01373acf33e31f6861f80946eb859d8b42336e1159e6",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task15-15-1-2-non-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task15-15-1-2-non-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Решите неравенство } \\frac{3^x + 9}{3^x - 9} + \\frac{3^x - 9}{3^x + 9} \\ge \\frac{4\\cdot 3^{x+1} + 144}{9^x - 81}.",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\frac{3^x + 9}{3^x - 9} + \\frac{3^x - 9}{3^x + 9} \\ge \\frac{4\\cdot 3^{x+1} + 144}{9^x - 81}"
+            }
+          ],
+          "goal": {
+            "type": "solve",
+            "target_latex": "x"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\frac{3^x + 9}{3^x - 9} + \\frac{3^x - 9}{3^x + 9} \\ge \\frac{4 \\cdot 3^{x+1} + 144}{9^x - 81} \\Leftrightarrow \\frac{3^x + 9}{3^x - 9} + \\frac{3^x - 9}{3^x + 9} \\ge \\frac{12 \\cdot 3^x + 144}{3^{2x} - 81}",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\text{Введём новую переменную } t = 3^x \\ (t > 0):",
+            "role": "definition",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\frac{t+9}{t-9}^{\\backslash \\cdot t+9} + \\frac{t-9}{t+9}^{\\backslash \\cdot t-9} \\ge \\frac{12t+144}{t^2-81}",
+            "role": "substitution",
+            "derives_from": [
+              "s1",
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "\\frac{t^2 + 18t + 81 + t^2 - 18t + 81}{t^2 - 81} \\ge \\frac{12t + 144}{t^2 - 81}",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "\\frac{2t^2 + 162 - 12t - 144}{t^2 - 81} \\ge 0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\frac{2t^2 - 12t + 18}{t^2 - 81} \\ge 0 \\overset{/:2}{\\Leftrightarrow} \\frac{t^2 - 6t + 9}{t^2 - 81} \\ge 0 \\quad \\frac{(t-3)^2}{t^2 - 81} \\ge 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "\\frac{(t-3)^2}{t^2 - 81} \\ge 0 \\quad \\frac{(t-3)^2}{(t-9)(t+9)} \\ge 0 \\quad t = 3, \\ t \\neq \\pm 9",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "3^x \\stackrel{t > 9}{>} 9 \\Leftrightarrow x > 2",
+            "role": "transformation",
+            "derives_from": [
+              "s2",
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "\\text{Ответ: } (2; +\\infty)",
+            "role": "answer",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-d5174f11-f560-465f-b2b8-aed67c7ff839",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13948,
+          "created_at": "2026-10-08T19:16:00Z",
+          "tokens_in": 1790,
+          "tokens_out": 2204
+        }
+      },
+      "contract_sha256": "12402d15597ec0ab2697970d3cf85c0b00047a6ecb130dc6c53100bbee755976",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "155acd928089995b19f0d24e49bac1ae2299512b1c7f758554f44cab34764ed6",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task15-15-2-1-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task15-15-2-1-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Решите неравенство }\\log_8(x^3 - 3x^2 + 3x - 1) \\ge \\log_2(x^2 - 1) - 5.",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\log_8(x^3 - 3x^2 + 3x - 1) \\ge \\log_2(x^2 - 1) - 5"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "N^\\circ 15.\\quad \\log_8(x^3-3x^2+3x-1) \\ge \\log_2(x^2-1)-5",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\log_{2^3}(x-1)^3 \\ge \\log_2(x^2-1) - \\log_2 32",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\frac{1}{3}\\log_2(x-1)^3 \\ge \\log_2\\frac{x^2-1}{32}",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "\\log_2(x-1) \\ge \\log_2\\frac{(x-1)(x+1)}{32}",
+            "role": "transformation",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "\\begin{cases} x-1 \\ge \\frac{(x-1)(x+1)}{32} & (1) \\\\ x-1 > 0 & (2) \\\\ \\frac{(x-1)(x+1)}{32} > 0 & (3) \\end{cases}",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "(1)\\quad x-1 \\ge \\frac{(x-1)(x+1)}{32} \\quad |\\cdot 32",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "32x-32 \\ge (x-1)(x+1)",
+            "role": "transformation",
+            "derives_from": [
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "32(x-1) - (x-1)(x+1) \\ge 0",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "(x-1)(32-(x+1)) \\ge 0",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s10",
+            "latex": "(x-1)(32-x-1) \\ge 0 \\quad |\\cdot (-1)",
+            "role": "transformation",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s11",
+            "latex": "(x-1)(x-31) \\le 0",
+            "role": "transformation",
+            "derives_from": [
+              "s10"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s12",
+            "latex": "1 \\le x \\le 31",
+            "role": "transformation",
+            "derives_from": [
+              "s11"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s13",
+            "latex": "(2)\\quad x-1 > 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s14",
+            "latex": "x > 1",
+            "role": "transformation",
+            "derives_from": [
+              "s13"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s15",
+            "latex": "(3)\\quad \\frac{(x-1)(x+1)}{32} > 0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s16",
+            "latex": "\\left[\\begin{array}{l} x < -1 \\\\ x > 1 \\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s15"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s17",
+            "latex": "x \\in (1; 31]",
+            "role": "transformation",
+            "derives_from": [
+              "s12",
+              "s14",
+              "s16"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s18",
+            "latex": "\\text{Ответ: } (1; 31]",
+            "role": "answer",
+            "derives_from": [
+              "s17"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-7573e2cc-23f6-485d-922e-2aafd56b144b",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 17724,
+          "created_at": "2026-10-08T19:15:05Z",
+          "tokens_in": 1795,
+          "tokens_out": 2775
+        }
+      },
+      "contract_sha256": "a5d618d3fd73499e44a97b4ad3eae1e1f43534020911664a6fce7b343bec3944",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "67ced747797987428f1e8a1316b115c94820c5caec1ab2828837921f8c0d2fec",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "hf-task15-15-2-2-maximal",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "hf-task15-15-2-2-maximal",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Решите неравенство }\\log_{8}\\left(x^{3}-3 x^{2}+3 x-1\\right) \\ge \\log_{2}\\left(x^{2}-1\\right)-5.",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\log_{8}(x^{3}-3 x^{2}+3 x-1) \\ge \\log_{2}(x^{2}-1)-5"
+            }
+          ],
+          "goal": {
+            "type": "solve"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\log_{8}(x^{3}-3 x^{2}+3 x-1) \\ge \\log_{2}(x^{2}-1)-5",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "1)\\ x^{3}-3 x^{2}+3 x-1=0",
+            "role": "independent",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\text{Заметим, что } x=1 \\text{ - корень ур-ия}",
+            "role": "independent",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "(x-1)(x^{2}-2 x+1)=0",
+            "role": "transformation",
+            "derives_from": [
+              "s2",
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "(x-1)(x-1)^{2}=0",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "(x-1)^{3}=0",
+            "role": "transformation",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "2)\\ \\frac{1}{3}\\log_{2}(x-1)^{3}-\\log_{2}(x^{2}-1) \\ge -5",
+            "role": "substitution",
+            "derives_from": [
+              "s1",
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "\\log_{2}(x-1)-\\log_{2}(x^{2}-1) \\ge -5",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s9",
+            "latex": "\\begin{cases} \\text{① } \\log_{2}\\left(\\frac{x-1}{x^{2}-1}\\right) \\ge \\log_{2}\\frac{1}{32} \\\\ \\text{② } (x-1)^{3}>0 \\\\ \\text{③ } x^{2}-1>0 \\end{cases}",
+            "role": "transformation",
+            "derives_from": [
+              "s8"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s10",
+            "latex": "\\text{① } \\log_{2}\\left(\\frac{x-1}{x^{2}-1}\\right) \\ge \\log_{2}\\left(\\frac{1}{32}\\right)",
+            "role": "independent",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s11",
+            "latex": "\\frac{x-1}{x^{2}-1} \\ge \\frac{1}{32} \\quad |\\cdot 32",
+            "role": "transformation",
+            "derives_from": [
+              "s10"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s12",
+            "latex": "\\frac{32 x-32}{x^{2}-1}-1 \\ge 0",
+            "role": "transformation",
+            "derives_from": [
+              "s11"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s13",
+            "latex": "\\frac{32 x-32-x^{2}+1}{x^{2}-1} \\ge 0",
+            "role": "transformation",
+            "derives_from": [
+              "s12"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s14",
+            "latex": "\\frac{-x^{2}+32 x-31}{x^{2}-1} \\ge 0 \\quad |\\cdot(-1)",
+            "role": "transformation",
+            "derives_from": [
+              "s13"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s15",
+            "latex": "\\frac{x^{2}-32 x+31}{(x-1)(x+1)} \\le 0",
+            "role": "transformation",
+            "derives_from": [
+              "s14"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s16",
+            "latex": "\\frac{(x-1)(x-31)}{(x-1)(x+1)} \\le 0",
+            "role": "transformation",
+            "derives_from": [
+              "s15"
+            ],
+            "branch": "plus_minus_1",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s17",
+            "latex": "\\text{② } (x-1)^{3}>0",
+            "role": "independent",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s18",
+            "latex": "x-1>0",
+            "role": "transformation",
+            "derives_from": [
+              "s17"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s19",
+            "latex": "x>1",
+            "role": "transformation",
+            "derives_from": [
+              "s18"
+            ],
+            "branch": "plus_minus_2",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s20",
+            "latex": "\\text{③ } x^{2}-1>0",
+            "role": "independent",
+            "derives_from": [
+              "s9"
+            ],
+            "branch": "plus_minus_3",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s21",
+            "latex": "(x-1)(x+1)>0",
+            "role": "transformation",
+            "derives_from": [
+              "s20"
+            ],
+            "branch": "plus_minus_3",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s22",
+            "latex": "\\left[\\begin{array}{l}x<-1 \\\\ x>1\\end{array}\\right.",
+            "role": "transformation",
+            "derives_from": [
+              "s21"
+            ],
+            "branch": "plus_minus_3",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s23",
+            "latex": "\\begin{cases} \\left[\\begin{array}{l}-1<x<1 \\\\ 1<x \\le 31\\end{array}\\right. \\\\ x>1 \\\\ \\left[\\begin{array}{l}x<-1 \\\\ x>1\\end{array}\\right. \\end{cases}",
+            "role": "transformation",
+            "derives_from": [
+              "s16",
+              "s19",
+              "s22"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s24",
+            "latex": "(1; 31]",
+            "role": "transformation",
+            "derives_from": [
+              "s23"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s25",
+            "latex": "\\text{Ответ: } (1; 31]",
+            "role": "answer",
+            "derives_from": [
+              "s24"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-52e4a32e-71d4-4800-84bf-d1522eba1310",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 25558,
+          "created_at": "2026-10-08T19:15:27Z",
+          "tokens_in": 1798,
+          "tokens_out": 2725
+        }
+      },
+      "contract_sha256": "b2e07d4eb8fce2d6a7d4cdab37488666bfa317482bc3e58c5e59825676c8bee5",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "a29cc17f916dbcb91fe524c0a9c90444ed04243a06ed353db471f36f34e76ee4",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_151_pert_5.3",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question: Divide } 8\\sqrt{15} \\text{ by } 2\\sqrt{3}.",
+          "goal": {
+            "type": "evaluate"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "8\\sqrt{15} \\div 2\\sqrt{3} = \\frac{8\\sqrt{3} \\times \\sqrt{5}}{2\\sqrt{3}} = \\frac{8 \\times \\sqrt{3} \\times \\sqrt{5}}{2 \\times \\sqrt{3}} = \\frac{8 \\times \\sqrt{15}}{2 \\times \\sqrt{3}} = 4\\sqrt{5}",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-b9a6cb76-19b7-42a0-93de-406fde76e385",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 18016,
+          "created_at": "2026-10-08T19:14:35Z",
+          "tokens_in": 1790,
+          "tokens_out": 2037
+        }
+      },
+      "contract_sha256": "b8a34bc657dffdb16a69b895a57cddc7d279d912dd25a0cfc04266d026854e80",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "7fd606fc82754baee8a1db893ce971b164594ddd7fbab6e4bec97c60a05ea099",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_221_pert_5.3",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Simplify } \\left\\{\\left(\\frac{1}{3}\\right)^{-2}-\\left(\\frac{1}{2}\\right)^{-3}\\right\\}\\div\\left(\\frac{1}{4}\\right)^{-2} \\text{ and } \\left(\\frac{5}{8}\\right)^{-7}\\times\\left(\\frac{8}{5}\\right)^{-5}",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\left\\{\\left(\\frac{1}{3}\\right)^{-2}-\\left(\\frac{1}{2}\\right)^{-3}\\right\\}\\div\\left(\\frac{1}{4}\\right)^{-2}"
+            },
+            {
+              "given_id": "g2",
+              "latex": "\\left(\\frac{5}{8}\\right)^{-7}\\times\\left(\\frac{8}{5}\\right)^{-5}"
+            }
+          ],
+          "goal": {
+            "type": "simplify"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\left\\{\\left(\\frac{1}{3}\\right)^{-2}-\\left(\\frac{1}{2}\\right)^{-3}\\right\\}\\div\\left(\\frac{1}{4}\\right)^{-2}=\\left\\{\\frac{1^{-2}}{3^{-2}}-\\frac{1^{-3}}{2^{-3}}\\right\\}\\div\\frac{1^{-2}}{4^{-2}}=\\frac{3^2-2^3}{1^2}\\div 4^2",
+            "role": "transformation",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "=\\frac{9-8}{16}=\\frac{1}{16}.\\text{ Note that }3^2=9\\text{ and }2^3=8",
+            "role": "answer",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\left(\\frac{5}{8}\\right)^{-7}\\times\\left(\\frac{8}{5}\\right)^{-5}=\\frac{5^{-7}}{8^{-7}}\\times\\frac{8^{-5}}{5^{-5}}=\\frac{5^{-7}\\times 8^{-5}}{8^{-7}\\times 5^{-5}}=5^{-2}\\times 8^{-2}=\\frac{8^2}{5^2}=\\frac{64}{25}",
+            "role": "transformation",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "latex": ".\\text{ Here },8^2=64\\text{ and }5^2=25.",
+            "role": "definition",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-44d2e5eb-c821-41bd-95e7-a909f5865e46",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12955,
+          "created_at": "2026-10-08T19:14:20Z",
+          "tokens_in": 1812,
+          "tokens_out": 1331
+        }
+      },
+      "contract_sha256": "a1779990c349563a0118b8fef7c078771efc581cc18178f49c29ee5d4bb75955",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "a5f00a0d8a250bc59a957f8225945b4cbee4c46da386c047e74310a2c771a054",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_373_pert_5.2",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question: Evaluate } \\int_{-1}^{1} 5x^4\\sqrt{x^5+1}\\,dx.",
+          "goal": {
+            "type": "evaluate",
+            "target_latex": "\\int_{-1}^{1} 5x^4\\sqrt{x^5+1}\\,dx"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\text{Put } t=x^5+1\\text{, then } dt=5x^4\\,dx.",
+            "role": "definition",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\int 5x^4\\sqrt{x^5+1}\\,dx = \\int \\sqrt{t}\\,dt = \\frac{2}{3} t^{3/2} = \\frac{2}{3} (x^5+1)^{3/2}",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "\\int_{-1}^{1} 5x^4\\sqrt{x^5+1}\\,dx = \\frac{2}{3} \\left[(x^5+1)^{3/2}\\right]_{-1}^{1}",
+            "role": "transformation",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "= \\frac{2}{3} \\left[2^{3/2}-0\\right] = \\frac{2}{3}(2\\sqrt{2}) = \\frac{4\\sqrt{2}}{3}",
+            "role": "answer",
+            "derives_from": [
+              "s3"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-3b501769-b988-4e29-a9d9-50770d6d02bb",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13999,
+          "created_at": "2026-10-08T19:14:17Z",
+          "tokens_in": 1790,
+          "tokens_out": 1082
+        }
+      },
+      "contract_sha256": "abbae27047a351c52206e4cff6acf469977d8f269b5f0fd9ecd1085abcf97d55",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "311abd42f356c22a840f242c679d05e7dd5a6c5f79d32ea8d8fb26cd0f90def9",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_452_pert_5.2",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Find } X \\text{ and } Y, \\text{ if } X+Y=\\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix} \\text{ and } X-Y=\\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}.",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "X+Y=\\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix}"
+            },
+            {
+              "given_id": "g2",
+              "latex": "X-Y=\\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}"
+            }
+          ],
+          "goal": {
+            "type": "solve",
+            "target_latex": "X, Y"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "(X+Y)+(X-Y)=\\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix}+\\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}",
+            "role": "substitution",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1",
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "(X+X)+(Y-Y)=\\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix} \\Rightarrow 2X=\\begin{bmatrix} 8 & 8 \\\\ 0 & 8 \\end{bmatrix}",
+            "role": "transformation",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "X=\\begin{bmatrix} 4 & 4 \\\\ 0 & 4 \\end{bmatrix}",
+            "role": "answer",
+            "derives_from": [
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "(X+Y)-(X-Y)=\\begin{bmatrix} 5 & 2 \\\\ 0 & 9 \\end{bmatrix}-\\begin{bmatrix} 3 & 6 \\\\ 0 & -1 \\end{bmatrix}",
+            "role": "substitution",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1",
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s5",
+            "latex": "(Y+Y)=\\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix} \\Rightarrow 2Y=\\begin{bmatrix} 2 & -4 \\\\ 0 & 10 \\end{bmatrix}",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "Y=\\begin{bmatrix} 1 & -2 \\\\ 0 & 5 \\end{bmatrix}",
+            "role": "answer",
+            "derives_from": [
+              "s5"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-f3186d6a-806b-428f-920e-bcd0556173a5",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 21279,
+          "created_at": "2026-10-08T19:14:03Z",
+          "tokens_in": 1795,
+          "tokens_out": 2114
+        }
+      },
+      "contract_sha256": "477aec7e2a67c2613b6946ea42f350bf7d1fe5aba443c131982aa469f83b6f8f",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "08a0b34abef838bf1728614ec36674ee0b4051c06de45e4ecfee2e4b4c239a0c",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_462_pert_5.1",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Evaluate } \\begin{vmatrix} 2 & 4 \\\\ -1 & 2 \\end{vmatrix}",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\begin{vmatrix} 2 & 4 \\\\ -1 & 2 \\end{vmatrix}"
+            }
+          ],
+          "goal": {
+            "type": "evaluate",
+            "target_latex": "\\begin{vmatrix} 2 & 4 \\\\ -1 & 2 \\end{vmatrix}"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c) = 2(2) - 4(-1)",
+            "role": "substitution",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "= 4 + 4 = 8.",
+            "role": "answer",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-4b78a644-12c9-4e2b-a27a-61478de574a5",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12145,
+          "created_at": "2026-10-08T19:13:41Z",
+          "tokens_in": 1814,
+          "tokens_out": 707
+        }
+      },
+      "contract_sha256": "b0b8670b3bafd72f100534633297e39bb86ed486b4ca10b6b5e5708076f5b032",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "1ddd8eb8c5ff34d79b544191a72456c77446f71dc23e42e79f7be36b5fb8b106",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_471_pert_5.1",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Evaluate the determinant. }\\Delta = \\begin{vmatrix} 1 & 2 & 4 \\\\ -1 & 3 & 0 \\\\ 4 & 1 & 0 \\end{vmatrix}.",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\Delta = \\begin{vmatrix} 1 & 2 & 4 \\\\ -1 & 3 & 0 \\\\ 4 & 1 & 0 \\end{vmatrix}"
+            }
+          ],
+          "goal": {
+            "type": "evaluate",
+            "target_latex": "\\Delta"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\Delta = 4 \\begin{vmatrix} -1 & 3 \\\\ 4 & 1 \\end{vmatrix} - 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ 4 & 1 \\end{vmatrix} + 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ -1 & 3 \\end{vmatrix}",
+            "role": "initial",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\Delta = 4(-1 \\cdot 1 - 3 \\cdot 4) = 4(-1 - 12) = 4 \\cdot (-13) = -52",
+            "role": "answer",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-347ac5e2-a101-4d12-9af4-589d71263c82",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 13168,
+          "created_at": "2026-10-08T19:13:36Z",
+          "tokens_in": 1790,
+          "tokens_out": 659
+        }
+      },
+      "contract_sha256": "6e992cf1643e5835cec57046093c147efb0738140e14be0aebfb73b872ff2f07",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "4c326512efafc2c863e1875b4f9eaebc717ecb721879f0f09f70eed31ddfa5ea",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_471_pert_5.2",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Evaluate the determinant. } \\Delta = \\begin{vmatrix} 1 & 2 & 4 \\\\ -1 & 3 & 0 \\\\ 4 & 1 & 0 \\end{vmatrix}",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "\\Delta = \\begin{vmatrix} 1 & 2 & 4 \\\\ -1 & 3 & 0 \\\\ 4 & 1 & 0 \\end{vmatrix}"
+            }
+          ],
+          "goal": {
+            "type": "evaluate",
+            "target_latex": "\\Delta"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "\\Delta = 4 \\begin{vmatrix} -1 & 3 \\\\ 4 & 1 \\end{vmatrix} - 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ 4 & 1 \\end{vmatrix} + 0 \\cdot \\begin{vmatrix} 1 & 2 \\\\ -1 & 3 \\end{vmatrix}",
+            "role": "transformation",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\Delta = 4 (-13) = -52",
+            "role": "answer",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-2aa895e5-ae31-46c9-9e82-a2992742ed53",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 12881,
+          "created_at": "2026-10-08T19:14:07Z",
+          "tokens_in": 1812,
+          "tokens_out": 935
+        }
+      },
+      "contract_sha256": "960fc6570894533168b91bb2e9a9d0043e0c46f90e6b0552ad95914791b2e36a",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "2fb36d01308d43bf51a1c23be47822117d5bad88d5f39a3395e09684a064262b",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_494_pert_5.2",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Solve } 2x - 3 = x + 2",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "2x - 3 = x + 2"
+            }
+          ],
+          "goal": {
+            "type": "solve",
+            "target_latex": "x"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "2x = x + 5",
+            "role": "transformation",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "x = 5",
+            "role": "answer",
+            "derives_from": [
+              "s1"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-7a176e6f-0062-4764-b5c2-cf70d4a80cfd",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 7566,
+          "created_at": "2026-10-08T19:13:54Z",
+          "tokens_in": 1802,
+          "tokens_out": 480
+        }
+      },
+      "contract_sha256": "c7ddba2001e64bdeb2bd0991a0939194bdb4c1bdf3449a0e15abc2ce1e2e3086",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "8e8cbb9d18b47cf61d462d5a66fd91e89274595e520a51d38cb1bb03f0062b99",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_509_pert_5.1",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_509_pert_5.1",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Let } f(x)=x^2 \\text{ and } g(x)=2x+1 \\text{ be two real funtion . Find } (f+g), (f-g)(x), (fg)(x), \\left(\\frac{f}{g}\\right)(x)",
+          "givens": [
+            {
+              "given_id": "g1",
+              "latex": "f(x)=x^2"
+            },
+            {
+              "given_id": "g2",
+              "latex": "g(x)=2x+1"
+            }
+          ],
+          "goal": {
+            "type": "compute_function"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "(f+g)(t)=t^2+2t+1",
+            "role": "answer",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1",
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s2",
+            "latex": "(f-g)(t)=t^2-2t-1",
+            "role": "answer",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1",
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s3",
+            "latex": "(fg)(t)=t^2(2t+1)=2t^3+t^2",
+            "role": "answer",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1",
+              "g2"
+            ]
+          },
+          {
+            "step_id": "s4",
+            "latex": "\\left(\\frac{f}{g}\\right)(t)=\\frac{t^2}{2t+1}, t\\neq -\\frac{1}{2}",
+            "role": "answer",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact",
+            "uses_givens": [
+              "g1",
+              "g2"
+            ]
+          }
+        ],
+        "meta": {
+          "run_id": "run-ae7a19d1-260b-49b6-b8d2-6def30fffd02",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 15856,
+          "created_at": "2026-10-08T19:13:23Z",
+          "tokens_in": 1774,
+          "tokens_out": 1675
+        }
+      },
+      "contract_sha256": "4da7518918a8ccf786c895442b1ee4033ad6c466a11c2a83b719dcefc31010b0",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "a1689667155ced554b1e9edad3b189fef33d25f2129e20aa7ea8e6b2a3b10b21",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "contract": {
+        "schema_version": "1.0",
+        "id": "img_554_pert_5.1",
+        "task": {
+          "visibility": "visible",
+          "raw_latex": "\\text{Question : Simplify the expressions and evaluate them as directed : } (i)\\ x(x-3)+2\\text{ for } x=1,\\ (ii)\\ 3y(2x-7)-3(y-4)-63\\text{ for } y=-2.",
+          "goal": {
+            "type": "evaluate"
+          }
+        },
+        "steps": [
+          {
+            "step_id": "s1",
+            "latex": "a(a-3)+2=a^2-3a+2",
+            "role": "transformation",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s2",
+            "latex": "\\text{for } a=1 :",
+            "role": "definition",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s3",
+            "latex": "a^2-3a+2=(1)^2-3(1)+2=1-3+2=3-3=0",
+            "role": "substitution",
+            "derives_from": [
+              "s1",
+              "s2"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s4",
+            "latex": "3b(2b-7)-3(b-4)-63=6b^2-21b-3b+12-63",
+            "role": "transformation",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s5",
+            "latex": "=6b^2-24b-51",
+            "role": "transformation",
+            "derives_from": [
+              "s4"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s6",
+            "latex": "\\text{for } b=-2",
+            "role": "definition",
+            "derives_from": [],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s7",
+            "latex": "6(-2)^2-24(-2)-51=6(4)+48-51=24+48",
+            "role": "substitution",
+            "derives_from": [
+              "s5",
+              "s6"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          },
+          {
+            "step_id": "s8",
+            "latex": "-51=72-51=21",
+            "role": "transformation",
+            "derives_from": [
+              "s7"
+            ],
+            "branch": "main",
+            "exactness": "exact"
+          }
+        ],
+        "meta": {
+          "run_id": "run-80c9a9bb-b8f0-4276-9640-ed7ebad4edb2",
+          "approach": "llm_assisted_extraction",
+          "stage": "extract_context",
+          "model": "google/gemini-3.7-flash",
+          "prompt_version": "assisted_extraction_gemini_v2",
+          "temperature": 0,
+          "duration_ms": 22388,
+          "created_at": "2026-10-08T19:13:29Z",
+          "tokens_in": 1799,
+          "tokens_out": 1827
+        }
+      },
+      "contract_sha256": "af6d60bb463b425eaaff3cc26c97c0bb1e17ca93a46b13f5b034f9bd73f7391e",
+      "source_run": "outputs/20261008T191307Z_gemini_assisted_extraction_assisted_extraction_gemini_v2",
+      "source_artifact_sha256": "c20ba4c277ea9e93d2b692d96d11caebc73f6763159660091f74b47a583099c6",
+      "provider": "gemini",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+    }
+  ]
+}

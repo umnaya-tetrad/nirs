@@ -11,7 +11,7 @@ from typing import Any
 
 from .client import GeminiPolzaClient, PolzaInvalidResponseError, PolzaProviderError, PolzaUnavailableError
 from .config import Settings
-from .contracts import ContractError, build_math_core_input, build_solution_analysis, validate_contract
+from .contracts import ContractError, build_llm_assisted_extraction, build_math_core_input, build_solution_analysis, validate_contract
 from .gigachat import GigaChatDirectClient, GigaChatProviderError, GigaChatUnavailableError
 from .prompts import load_prompt
 
@@ -124,6 +124,9 @@ def _run_case(
         if mode == "e2e":
             contract = build_solution_analysis(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt.schema_version, duration_ms=duration_ms, usage=response.usage)
             schema_name = "solution_analysis"
+        elif mode == "assisted_extraction":
+            contract = build_llm_assisted_extraction(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt.schema_version, duration_ms=duration_ms, usage=response.usage)
+            schema_name = "llm_assisted_extraction"
         else:
             contract = build_math_core_input(case_id=case["id"], projection=response.content, model=response.provider_model or client.model, prompt_version=prompt.schema_version, duration_ms=duration_ms, usage=response.usage)
             schema_name = "math_core_input"
@@ -199,7 +202,7 @@ def run(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a fixed NIRS VLM baseline on a local manifest.")
     parser.add_argument("--provider", choices=("gemini", "gigachat"), default="gemini")
-    parser.add_argument("--mode", choices=("e2e", "extraction"), required=True)
+    parser.add_argument("--mode", choices=("e2e", "extraction", "assisted_extraction"), required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, default=Path("outputs"))
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1])

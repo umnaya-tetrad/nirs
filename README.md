@@ -4,6 +4,7 @@
 
 - `MathCoreInput 2.0` — дословная транскрипция VLM, передаваемая математическому ядру;
 - `SolutionAnalysis` — единый результат E2E-VLM, GT и ветки VLM → CAS.
+- `TaskSpec 1.0` — консервативный детерминированный контекст для экспериментальной assisted-CAS ветки.
 
 Поток работы: VLM либо сразу выдаёт `SolutionAnalysis` (режим `e2e`), либо сначала
 транскрибирует изображение в `MathCoreInput` (режим `extraction`). Во втором режиме
@@ -81,6 +82,35 @@ Gemini выполняет до двух запросов параллельно 
 Текущие prompts: Gemini extraction `v2`, GigaChat extraction `v3`. Ранее сохранённые
 extraction-артефакты версии 1.0 с полем `problem` — исторические и не валидируются
 как `MathCoreInput 2.0`; E2E-артефакты и GT `SolutionAnalysis 1.0` от этого не меняются.
+
+## Assisted extraction → TaskSpec → CAS (исследовательская ветка)
+
+Обычный OCR→CAS остаётся baseline. Отдельный режим `assisted_extraction` Gemini v2
+может вернуть видимое условие, явные givens, цель и структуру записанных шагов — но
+никогда не verdict. `nirs_cas/task_spec.py` детерминированно компилирует только эти
+поля в `TaskSpec 1.0`; он не читает поля FERMAT, GT-метки или эталонный ответ.
+Неразбираемое условие и неподдерживаемая математика дают структурированную причину
+и `indeterminate`, а не догадку.
+
+Три фиксированных набора без изображений находятся в `dataset/artifacts/`:
+
+- `gemini_assisted_mixed_20.json` — инженерное покрытие разных классов;
+- `gemini_assisted_fermat_dev_20.json` — полный FERMAT dev-20;
+- `gemini_ordinary_fermat_dev_20.json` — сопоставимый OCR baseline.
+
+В каждом элементе сохранены исходный контракт, provider/model/prompt version,
+source-run и SHA-256 контракта, prompt и исходного артефакта. Сравнение двух
+веток на FERMAT dev-20 воспроизводится так:
+
+```sh
+python -m nirs_cas assisted-compare \
+  --ordinary dataset/artifacts/gemini_ordinary_fermat_dev_20.json \
+  --assisted dataset/artifacts/gemini_assisted_fermat_dev_20.json \
+  --gt dataset/test_gt.json --output reports/local/assisted_comparison
+```
+
+GT подключается только после построения CAS-предсказания, чтобы посчитать метрики;
+mixed-20 не используется для общей GT-оценки.
 
 ## Проверка CAS на GT
 

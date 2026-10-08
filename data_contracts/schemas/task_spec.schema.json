@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.example.org/nirs/1.0/task_spec.schema.json",
+  "title": "TaskSpec",
+  "description": "Deterministic, conservative compilation of LLM assisted extraction for CAS.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "task", "steps", "compilation"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "minLength": 1},
+    "task": {
+      "type": "object", "additionalProperties": false,
+      "required": ["visibility", "raw_latex", "givens", "constraints", "goal"],
+      "properties": {
+        "visibility": {"enum": ["visible", "not_visible"]},
+        "raw_latex": {"type": ["string", "null"]},
+        "givens": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["given_id", "raw_latex", "parse"], "properties": {"given_id": {"type": "string"}, "raw_latex": {"type": "string"}, "parse": {"type": "object"}}},
+        "constraints": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["raw_latex", "parse"], "properties": {"raw_latex": {"type": "string"}, "parse": {"type": "object"}}},
+        "goal": {"type": "object", "additionalProperties": false, "required": ["type", "target_latex"], "properties": {"type": {"type": "string"}, "target_latex": {"type": ["string", "null"]}}}
+      }
+    },
+    "steps": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "compilation": {"type": "object", "additionalProperties": false, "required": ["status", "task_class", "reasons"], "properties": {"status": {"enum": ["supported", "unsupported"]}, "task_class": {"enum": ["equation", "inequality", "trigonometric", "expression", "determinant", "matrix_system", "function_operation", "definite_integral", "unknown"]}, "reasons": {"type": "array", "items": {"type": "string"}}}
+  }
+}

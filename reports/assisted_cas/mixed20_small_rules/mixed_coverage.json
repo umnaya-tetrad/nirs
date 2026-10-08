@@ -1,0 +1,125 @@
+{
+  "evaluation": "mixed-20 engineering coverage only; no GT labels loaded",
+  "results": [
+    {
+      "id": "hf-task13-13-1-1-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: Ответ: а); Text/units/conditions are outside the symbolic grammar: б); Polynomial identity test; Unsupported token '\\\\in'"
+    },
+    {
+      "id": "hf-task13-13-1-3-non-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: parametric trig families require an exact family parser"
+    },
+    {
+      "id": "hf-task13-13-1-4-non-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: selected finite trig roots differ from the exact intersection of written families and interval"
+    },
+    {
+      "id": "hf-task13-13-2-1-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: selected finite trig roots differ from the exact intersection of written families and interval"
+    },
+    {
+      "id": "hf-task13-13-2-2-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: selected finite trig roots differ from the exact intersection of written families and interval"
+    },
+    {
+      "id": "hf-task13-13-2-3-non-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "Text/units/conditions are outside the symbolic grammar: б)"
+    },
+    {
+      "id": "hf-task13-13-4-3-zero",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: parametric trig families require an exact family parser"
+    },
+    {
+      "id": "hf-task15-15-1-2-non-maximal",
+      "task_class": "inequality",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: inequality is outside the exact univariate parser subset"
+    },
+    {
+      "id": "hf-task15-15-2-1-maximal",
+      "task_class": "inequality",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: inequality is outside the exact univariate parser subset"
+    },
+    {
+      "id": "hf-task15-15-2-2-maximal",
+      "task_class": "inequality",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: inequality is outside the exact univariate parser subset"
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "task_class": "expression",
+      "verdict": "correct",
+      "fallback_reason": null
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "task_class": "expression",
+      "verdict": "incorrect",
+      "fallback_reason": "assisted context unavailable: task has no explicit mathematical target"
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "task_class": "definite_integral",
+      "verdict": "incorrect",
+      "fallback_reason": "Continuation has no readable predecessor; Exact expression identity with preserved domain"
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "task_class": "matrix_system",
+      "verdict": "indeterminate",
+      "fallback_reason": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "task_class": "determinant",
+      "verdict": "incorrect",
+      "fallback_reason": null
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "task_class": "determinant",
+      "verdict": "correct",
+      "fallback_reason": null
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "task_class": "determinant",
+      "verdict": "correct",
+      "fallback_reason": null
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "task_class": "equation",
+      "verdict": "correct",
+      "fallback_reason": "assisted context unavailable: answer equality does not isolate the task variable"
+    },
+    {
+      "id": "img_509_pert_5.1",
+      "task_class": "function_operation",
+      "verdict": "correct",
+      "fallback_reason": null
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "task_class": "equation",
+      "verdict": "indeterminate",
+      "fallback_reason": "assisted context unavailable: requires exactly one exact parsed given"
+    }
+  ]
+}

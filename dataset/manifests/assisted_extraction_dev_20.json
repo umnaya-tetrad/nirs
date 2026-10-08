@@ -1,0 +1,25 @@
+{
+  "description": "Экспериментальный набор для assisted_extraction из 20 решений с видимым условием: 10 FERMAT и 10 EGE. Не является ни dev-, ни final-набором для метрик проекта.",
+  "cases": [
+    {"id": "img_509_pert_5.1", "image": "../test_gt_images/img_509_pert_5.1.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_554_pert_5.1", "image": "../test_gt_images/img_554_pert_5.1.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_471_pert_5.1", "image": "../test_gt_images/img_471_pert_5.1.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_462_pert_5.1", "image": "../test_gt_images/img_462_pert_5.1.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_494_pert_5.2", "image": "../test_gt_images/img_494_pert_5.2.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_452_pert_5.2", "image": "../test_gt_images/img_452_pert_5.2.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_471_pert_5.2", "image": "../test_gt_images/img_471_pert_5.2.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_373_pert_5.2", "image": "../test_gt_images/img_373_pert_5.2.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_221_pert_5.3", "image": "../test_gt_images/img_221_pert_5.3.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "img_151_pert_5.3", "image": "../test_gt_images/img_151_pert_5.3.png", "mime_type": "image/png", "task_visibility_expected": "visible", "reference_gt": "test_gt.json"},
+    {"id": "hf-task13-13-1-1-maximal", "image": "../../inputExamples/llmJsonTest/hf-13.1.1-score-2.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task13-13-2-1-maximal", "image": "../../inputExamples/llmJsonTest/hf-13.2.1-score-2.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task13-13-2-2-maximal", "image": "../../inputExamples/llmJsonTest/hf-13.2.2-score-2.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task15-15-2-1-maximal", "image": "../../inputExamples/llmJsonTest/hf-15.2.1-score-2.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task15-15-2-2-maximal", "image": "../../inputExamples/llmJsonTest/hf-15.2.2-score-2.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task13-13-1-3-non-maximal", "image": "../../inputExamples/llmJsonTest/hf-13.1.3-score-1.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task13-13-1-4-non-maximal", "image": "../../inputExamples/llmJsonTest/hf-13.1.4-score-1.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task13-13-2-3-non-maximal", "image": "../../inputExamples/llmJsonTest/hf-13.2.3-score-1.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task13-13-4-3-zero", "image": "../../inputExamples/llmJsonTest/hf-13.4.3-score-0.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"},
+    {"id": "hf-task15-15-1-2-non-maximal", "image": "../../inputExamples/llmJsonTest/hf-15.1.2-score-1.jpg", "mime_type": "image/jpeg", "task_visibility_expected": "visible"}
+  ]
+}

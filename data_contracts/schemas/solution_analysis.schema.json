@@ -318,7 +318,7 @@
       "required": ["run_id", "approach", "stage"],
       "properties": {
         "run_id": {"$ref": "#/$defs/entity_id"},
-        "approach": {"enum": ["llm_end_to_end", "llm_ocr_plus_math_core"]},
+        "approach": {"enum": ["llm_end_to_end", "llm_ocr_plus_math_core", "llm_assisted_extraction_plus_math_core"]},
         "stage": {"enum": ["transcribe", "verify", "report"]},
         "model": {"type": "string"},
         "prompt_version": {"type": "string"},
@@ -343,7 +343,8 @@
         "approach": {
           "enum": [
             "llm_end_to_end",
-            "llm_ocr_plus_math_core"
+            "llm_ocr_plus_math_core",
+            "llm_assisted_extraction_plus_math_core"
           ],
           "description": "Подход, давший этот отчёт. `llm_end_to_end` — картинка и промпт уходят в LLM, структурированный ответ приходит сразу готовым. `llm_ocr_plus_math_core` — LLM даёт только транскрипцию (MathCoreInput), а проверку выполняет собственное математическое ядро."
         },
@@ -367,6 +368,8 @@
         "name": {
           "enum": [
             "transcribe",
+            "extract_context",
+            "compile_task_spec",
             "verify",
             "report"
           ]
