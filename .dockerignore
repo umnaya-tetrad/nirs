@@ -7,6 +7,8 @@
 !nirs_cas/*.py
 !nirs_llm/
 !nirs_llm/*.py
+!evaluator/
+!evaluator/*.py
 !data_contracts/
 !data_contracts/**
 !dataset/

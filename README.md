@@ -96,9 +96,16 @@ python -m nirs_cas oracle dataset/test_gt.json dataset/final_gt.json --output re
 ```
 
 Результат: `report.json`, `results.csv`, `report.md` и канонические
-`SolutionAnalysis` в `predictions/`. Каждый пример проверяется в отдельном
+`SolutionAnalysis` в `predictions/` и общий массив `predictions.json` для evaluator.
+Каждый пример проверяется в отдельном
 процессе с таймаутом; по умолчанию одновременно работают четыре процесса.
 Можно передать только один файл или JSON с сохранёнными распознанными шагами.
+
+Общий evaluator принимает полученный массив и оба GT-файла:
+
+```sh
+python -m evaluator.evaluator --gt dataset/test_gt.json dataset/final_gt.json --predictions reports/local/gt_100/predictions.json --output-dir reports/local/evaluation
+```
 
 Docker использует тот же GT-вход:
 

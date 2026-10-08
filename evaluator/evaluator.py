@@ -17,6 +17,7 @@ if __package__ in (None, ""):
 import sympy as sp
 
 from nirs_cas.benchmark import run_isolated
+from nirs_cas.adapter import extract_step_latex
 
 SYSTEM_VERDICTS = ("correct", "incorrect", "indeterminate")
 GT_VERDICTS = ("correct", "incorrect")
@@ -49,22 +50,29 @@ def _read_array(path: Path) -> list[Any]:
     return data
 
 
-def load_gt(path: Path) -> list[dict[str, Any]]:
-    records = _read_array(path)
+def _gt_paths(path: Path | list[Path]) -> list[Path]:
+    paths = path if isinstance(path, list) else [path]
+    if not paths:
+        raise EvaluationInputError("At least one GT file is required")
+    return [Path(item) for item in paths]
+
+
+def load_gt(path: Path | list[Path]) -> list[dict[str, Any]]:
     seen: set[str] = set()
     result: list[dict[str, Any]] = []
-    for index, record in enumerate(records):
-        if not isinstance(record, dict):
-            raise EvaluationInputError(f"{path}: record #{index} is not an object")
-        record_id = record.get("id")
-        if not isinstance(record_id, str) or not record_id:
-            raise EvaluationInputError(f"{path}: record #{index} needs a nonempty string id")
-        if record_id in seen:
-            raise EvaluationInputError(f"{path}: duplicate GT id {record_id}")
-        if record.get("verdict") not in GT_VERDICTS:
-            raise EvaluationInputError(f"{path}: {record_id}: GT verdict must be correct or incorrect")
-        seen.add(record_id)
-        result.append(record)
+    for source in _gt_paths(path):
+        for index, record in enumerate(_read_array(source)):
+            if not isinstance(record, dict):
+                raise EvaluationInputError(f"{source}: record #{index} is not an object")
+            record_id = record.get("id")
+            if not isinstance(record_id, str) or not record_id:
+                raise EvaluationInputError(f"{source}: record #{index} needs a nonempty string id")
+            if record_id in seen:
+                raise EvaluationInputError(f"{source}: duplicate GT id {record_id}")
+            if record.get("verdict") not in GT_VERDICTS:
+                raise EvaluationInputError(f"{source}: {record_id}: GT verdict must be correct or incorrect")
+            seen.add(record_id)
+            result.append(record)
     if not result:
         raise EvaluationInputError(f"{path}: GT is empty")
     return result
@@ -98,7 +106,7 @@ def load_predictions(path: Path) -> tuple[dict[str, dict[str, Any]], list[dict[s
                 raise EvaluationInputError(f"{path}: duplicate prediction id {record_id}")
             valid[record_id] = record
         else:
-            invalid.append({"index": index, "id": record.get("id") or record.get("case_id"), "reason": reason})
+            invalid.append({"index": index, "id": (record.get("id") or record.get("case_id")) if isinstance(record, dict) else None, "reason": reason})
     return valid, invalid, len(records)
 
 
@@ -165,7 +173,7 @@ def _case_row(gt: dict[str, Any], pred: dict[str, Any] | None, status: str, note
             row["step_union"] = union
             row["step_accuracy"] = agreements / union if union else 1.0
             row["solution_match"] = row["verdict_match"] and agreements == union
-        cas = run_isolated([step["latex"] for step in pred["steps"]], timeout)
+        cas = run_isolated(extract_step_latex(pred), timeout)
         row["cas_status"] = cas["status"]
         row["cas_covered"] = bool(cas["covered"])
         row["cas_parse_status"] = cas["parse_status"]
@@ -240,7 +248,7 @@ def _summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def evaluate(gt_path: Path, predictions_path: Path, *, timeout: float = 10.0) -> dict[str, Any]:
+def evaluate(gt_path: Path | list[Path], predictions_path: Path, *, timeout: float = 10.0) -> dict[str, Any]:
     if timeout <= 0:
         raise EvaluationInputError("Timeout must be positive")
     gt_records = load_gt(gt_path)
@@ -264,7 +272,9 @@ def evaluate(gt_path: Path, predictions_path: Path, *, timeout: float = 10.0) ->
 
     return {
         "generated_at_utc": _now(),
-        "gt": {"path": str(gt_path), "sha256": _sha256(gt_path), "cases": len(gt_records)},
+        "gt": {"sources": [{"path": str(path), "sha256": _sha256(path)} for path in _gt_paths(gt_path)],
+               **({"path": str(_gt_paths(gt_path)[0]), "sha256": _sha256(_gt_paths(gt_path)[0])} if len(_gt_paths(gt_path)) == 1 else {}),
+               "cases": len(gt_records)},
         "predictions": {
             "path": str(predictions_path),
             "sha256": _sha256(predictions_path),
@@ -312,13 +322,13 @@ def write_outputs(report: dict[str, Any], output_dir: Path) -> list[Path]:
 
 def main(argv: list[str] | None = None) -> dict[str, Any]:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--gt", type=Path, default=Path("dataset/test_gt.json"), help="Ground-truth SolutionAnalysis array.")
+    parser.add_argument("--gt", type=Path, nargs="+", default=[Path("dataset/test_gt.json")], help="One or more ground-truth SolutionAnalysis arrays.")
     parser.add_argument("--predictions", type=Path, required=True, help="System SolutionAnalysis array to evaluate.")
     parser.add_argument("--output-dir", type=Path, default=Path("reports/evaluation"), help="Directory for report.json, results.csv and confusion_matrix.csv.")
     parser.add_argument("--timeout", type=float, default=10.0, help="Per-case CAS process timeout in seconds.")
     args = parser.parse_args(argv)
 
-    report = evaluate(args.gt.resolve(), args.predictions.resolve(), timeout=args.timeout)
+    report = evaluate([path.resolve() for path in args.gt], args.predictions.resolve(), timeout=args.timeout)
     paths = write_outputs(report, args.output_dir.resolve())
 
     solution = report["summary"]["solution"]

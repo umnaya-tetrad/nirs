@@ -94,6 +94,7 @@ def run_oracle(paths, output, *, timeout=10, workers=4, split_name='exploratory_
     # Fixed numbered paths avoid interpreting user-provided IDs as filesystem paths.
     for index, (_, canonical) in enumerate(checked, 1):
         (output / 'predictions' / f'{index:04}.json').write_text(json.dumps(canonical, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (output / 'predictions.json').write_text(json.dumps([canonical for _, canonical in checked], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     report = {'generated_at_utc': datetime.now(timezone.utc).isoformat(), 'backend': 'sympy',
               'sympy_version': sympy.__version__, 'python_version': platform.python_version(),
               'evaluation': split_name, 'sources': sources, 'timeout_seconds': timeout, 'workers': workers,

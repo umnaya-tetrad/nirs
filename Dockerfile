@@ -8,6 +8,7 @@ WORKDIR /app
 COPY pyproject.toml ./
 COPY nirs_cas/ ./nirs_cas/
 COPY nirs_llm/ ./nirs_llm/
+COPY evaluator/ ./evaluator/
 COPY data_contracts/ ./data_contracts/
 RUN python -m pip install --no-cache-dir . \
     && groupadd --gid 1000 app \

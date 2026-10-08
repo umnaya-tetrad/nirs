@@ -4,7 +4,7 @@
 
 ## Вход
 
-- `--gt` — JSON-массив `SolutionAnalysis` (по умолчанию `dataset/test_gt.json`); вердикты только `correct`/`incorrect`.
+- `--gt` — один или несколько файлов с JSON-массивами `SolutionAnalysis` (по умолчанию `dataset/test_gt.json`); вердикты только `correct`/`incorrect`. ID должны быть уникальны во всех файлах.
 - `--predictions` — JSON-массив `SolutionAnalysis` с выводом системы (обязательный аргумент).
 
 Записи сопоставляются по `id`. Запись без корректного `verdict` (например, `MathCoreInput` из режима extraction) помечается `invalid`, отсутствующий `id` — `missing`; обе ситуации входят в знаменатели accuracy как несовпадение. `id` из GT отсутствуют в predictions → `extra` перечисляются в отчёте и не влияют на метрики.
@@ -15,6 +15,8 @@
 python evaluator/evaluator.py --predictions outputs/run.json
 python evaluator/evaluator.py --predictions outputs/run.json --gt dataset/test_gt.json \
     --output-dir reports/evaluation --timeout 10
+python -m evaluator.evaluator --gt dataset/test_gt.json dataset/final_gt.json \
+    --predictions reports/cas_gt_100/predictions.json --output-dir reports/local/evaluation
 ```
 
 | Параметр | По умолчанию | Смысл |
