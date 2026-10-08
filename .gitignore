@@ -7,3 +7,8 @@ outputs/
 .vscode/
 dataset/*.parquet
 .DS_Store
+*.egg-info/
+build/
+dist/
+data/private/
+reports/local/

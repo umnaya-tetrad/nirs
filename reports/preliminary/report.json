@@ -1,0 +1,499 @@
+{
+  "generated_at_utc": "2026-10-06T17:54:14.205410+00:00",
+  "backend": "sympy",
+  "sympy_version": "1.14.0",
+  "python_version": "3.12.14",
+  "dataset_kind": "synthetic",
+  "dataset_name": "20 handcrafted school-algebra smoke cases; NOT FERMAT",
+  "dataset_sha256": "09a7608adbb6ed154dffe17c9b5954c11b2ce66cf4968d56d4bcdf89b2b8950a",
+  "timeout_seconds": 10,
+  "summary": {
+    "examples": 20,
+    "covered_examples": 17,
+    "coverage": 0.85,
+    "parseable_examples": 17,
+    "parse_rate": 0.85,
+    "threshold": 0.7,
+    "required_covered": 14,
+    "threshold_met": true,
+    "decision": "PRELIMINARY_ONLY",
+    "labelled_covered_examples": 17,
+    "has_error_accuracy_on_covered": 1.0,
+    "first_error_accuracy_on_covered": 1.0,
+    "note": "Synthetic fixtures do not establish FERMAT feasibility. GO measures coverage, not grading accuracy."
+  },
+  "results": [
+    {
+      "id": "s01-arithmetic",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 56.674,
+      "wall_ms": 982.295,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s02-decimal",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 56.675,
+      "wall_ms": 986.464,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s03-linear",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 3,
+      "total_steps": 3,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        },
+        {
+          "step": 3,
+          "status": "VALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 78.199,
+      "wall_ms": 1014.503,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s04-linear-error",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 3,
+      "parse_status": "OK",
+      "parsed_steps": 3,
+      "total_steps": 3,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        },
+        {
+          "step": 3,
+          "status": "INVALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 69.2,
+      "wall_ms": 1018.947,
+      "expected_has_error": true,
+      "expected_first_error_step": 3
+    },
+    {
+      "id": "s05-fractions",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 215.847,
+      "wall_ms": 1139.029,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s06-distribution",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 64.407,
+      "wall_ms": 989.515,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s07-square",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 223.74,
+      "wall_ms": 1206.249,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s08-factor-equation",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 77.869,
+      "wall_ms": 1037.535,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s09-lost-root",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 2,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "INVALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 70.6,
+      "wall_ms": 1007.882,
+      "expected_has_error": true,
+      "expected_first_error_step": 2
+    },
+    {
+      "id": "s10-multiple-variables",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Polynomial identity test",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 57.512,
+      "wall_ms": 975.432,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s11-multivariate-equation",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Equations differ by a nonzero constant factor",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 60.268,
+      "wall_ms": 1015.01,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s12-square-root",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 67.42,
+      "wall_ms": 1019.456,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s13-radical-equation",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 79.207,
+      "wall_ms": 1039.512,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s14-cube-root",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact expression identity with preserved domain",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 57.296,
+      "wall_ms": 1008.059,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s15-domain-loss",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 2,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "INVALID",
+          "reason": "Expression domains differ",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 27.08,
+      "wall_ms": 981.708,
+      "expected_has_error": true,
+      "expected_first_error_step": 2
+    },
+    {
+      "id": "s16-rational-equation",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "VALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 240.582,
+      "wall_ms": 1179.01,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s17-false-first-equation",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 1,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "INVALID",
+          "reason": "Exact real solution-set comparison",
+          "parse_status": "OK"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 60.062,
+      "wall_ms": 1031.712,
+      "expected_has_error": true,
+      "expected_first_error_step": 1
+    },
+    {
+      "id": "s18-unsupported-trigonometry",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 1,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\sin'",
+          "parse_status": "PARSE_FAILED"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 0.903,
+      "wall_ms": 935.423,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s19-unsupported-inequality",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 0,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 2; Unsupported input at character 1",
+          "parse_status": "PARSE_FAILED"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 0.696,
+      "wall_ms": 955.842,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    },
+    {
+      "id": "s20-unsupported-prose",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 1,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\text'",
+          "parse_status": "PARSE_FAILED"
+        }
+      ],
+      "reason": "First symbolic step is a trusted premise; no check against the problem statement",
+      "latency_ms": 1.79,
+      "wall_ms": 948.526,
+      "expected_has_error": false,
+      "expected_first_error_step": null
+    }
+  ]
+}
