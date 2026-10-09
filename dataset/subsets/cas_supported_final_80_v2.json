@@ -1,0 +1,60 @@
+{
+  "subset_version": "1.0",
+  "kind": "cas_supported",
+  "created_at_utc": "2026-10-09T22:29:52.663435+00:00",
+  "ids": [
+    "img_559_pert_5.1",
+    "img_464_pert_5.1",
+    "img_568_pert_5.2",
+    "img_173_pert_5.3",
+    "img_193_pert_5.3",
+    "img_233_pert_3.2",
+    "img_190_pert_3.2",
+    "img_559_pert_3.2",
+    "img_172_pert_3.2",
+    "img_586_pert_3.2",
+    "img_173_pert_2.5",
+    "img_68_pert_2.5",
+    "img_108_pert_1.4",
+    "img_223_pert_2.2",
+    "img_573_pert_2.2",
+    "img_226_pert_2.2",
+    "img_115_pert_4.4",
+    "img_529_pert_4.5",
+    "img_160_pert_2.4",
+    "img_153_pert_1.5",
+    "img_220_pert_1.5",
+    "img_489_pert_5.1",
+    "img_490_pert_5.1",
+    "img_483_pert_5.1",
+    "img_27_pert_5.1",
+    "img_77_pert_5.1",
+    "img_78_pert_5.1"
+  ],
+  "candidate_count": 80,
+  "selected_count": 27,
+  "selection_criterion": {
+    "status_in": [
+      "VALID",
+      "INVALID"
+    ],
+    "covered": true,
+    "parse_status": "OK",
+    "has_error_type": "bool"
+  },
+  "selection_rule": "Selected solely from the completed GT→CAS operational statuses; GT verdict and first-error labels are not read for selection.",
+  "limitations": [
+    "The CAS implementation was tuned using all 100 GT examples; this is not an independent CAS holdout.",
+    "The subset defines the current verifier applicability domain, not a guarantee of CAS correctness."
+  ],
+  "source_oracle_report": {
+    "path": "reports/cas_gt_final80_v2_frozen/report.json",
+    "sha256": "08740e9b5fb4ca9ed9c18dea098b48d1f0ea50e0890bf96a80c2c9e82a93ba32"
+  },
+  "source_gt": [
+    {
+      "path": "dataset/final_gt_v2.json",
+      "sha256": "fbbfe5c5fc8de610016764c01d38678f478ee5d3eb6987da64d0747ce8ca01a2"
+    }
+  ]
+}

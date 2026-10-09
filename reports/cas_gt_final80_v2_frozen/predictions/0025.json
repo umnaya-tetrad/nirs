@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "id": "img_574_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "a = 3, \\quad b = -5, \\quad c = -11, \\quad d = -3.",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "p(3) = 3 \\cdot 3^3 - (5 \\cdot 3^2) - (11 \\cdot 3) - 3 = 81 - 45 - 33 - 3 = 0,",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "p(-1) = 3 \\cdot (-1)^3 - 5 \\cdot (-1)^2 - 11 \\cdot (-1) - 3 = -3 - 5 + 11 - 3 = 0,",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "step",
+      "latex": "p\\left(-\\frac{1}{3}\\right) = 3 \\cdot \\left(-\\frac{1}{3}\\right)^3 - 5 \\cdot \\left(-\\frac{1}{3}\\right)^2 - 11 \\cdot \\left(-\\frac{1}{3}\\right) - 3,",
+      "derives_from": [
+        "s3"
+      ]
+    },
+    {
+      "step_id": "s5",
+      "kind": "step",
+      "latex": "= 3 \\cdot \\left(-\\frac{1}{27}\\right) - 5 \\cdot \\left(\\frac{1}{9}\\right) + \\frac{11}{3} - 3 = -\\frac{1}{9} - \\frac{5}{9} + \\frac{11}{3} - 3 = 0.",
+      "derives_from": [
+        "s4"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "kind": "step",
+      "latex": "\\alpha + \\beta + \\gamma = 3 + (-1) + \\left(-\\frac{1}{3}\\right) = 2 - \\frac{1}{3} = \\frac{5}{3} = -\\frac{a}{b},",
+      "derives_from": [
+        "s5"
+      ]
+    },
+    {
+      "step_id": "s7",
+      "kind": "step",
+      "latex": "\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = 3 \\cdot (-1) + \\left(-1\\right) \\cdot \\left(-\\frac{1}{3}\\right) + \\left(-\\frac{1}{3}\\right) \\cdot 3 = -3 + \\frac{1}{3} - 1 = -\\frac{11}{3} = \\frac{c}{a},",
+      "derives_from": [
+        "s6"
+      ]
+    },
+    {
+      "step_id": "s8",
+      "kind": "answer",
+      "latex": "\\alpha\\beta\\gamma = 3 \\cdot (-1) \\cdot \\left(-\\frac{1}{3}\\right) = 1 = \\frac{d}{a}.",
+      "derives_from": [
+        "s7"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 826
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Exact real solution-set comparison"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Exact counterexample at {a: 1, b: 1}: difference=8/3; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Exact counterexample at {a: 1, c: 1}: difference=-14/3; Separate equation/substitution requires task context"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate domain restrictions; Separate equation/substitution requires task context"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-4dc37dcb-bee3-4bab-b80c-542bed56b9ef",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 826,
+    "created_at": "2026-10-09T22:28:17.675836Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

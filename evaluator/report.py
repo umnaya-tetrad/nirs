@@ -49,20 +49,22 @@ def _write_cases(path: Path, payload: dict[str, Any]) -> None:
 
 
 def _write_h1(path: Path, payload: dict[str, Any]) -> None:
-    columns = ["id", "gt_verdict", "e2e_label", "cas_label", "e2e_correct", "cas_correct"]
+    columns = ["provider", "id", "gt_verdict", "e2e_label", "cas_label", "e2e_correct", "cas_correct"]
     _csv(path, columns, payload["h1"]["per_case"])
 
 
 def _write_h2(path: Path, payload: dict[str, Any]) -> None:
-    columns = ["id", "gt_verdict", "error_class", "transcription_error_class", "ocr_available", "exact",
+    columns = ["provider", "run_id", "id", "gt_verdict", "error_class", "transcription_error_class", "ocr_available", "exact",
                "step_edit_distance", "total_gt_tokens", "missed_steps", "extra_steps",
-               "cas_ext_verdict", "cas_gt_verdict", "cas_flip", "final_correct", "final_wrong"]
+               "cas_ext_verdict", "cas_gt_verdict", "cas_flip", "final_correct", "final_wrong",
+               "task_spec_available", "task_spec_class", "task_visibility", "cas_indeterminate", "cas_fallback_reasons"]
     _csv(path, columns, payload["h2"]["per_case"])
 
 
 def _write_h3(path: Path, payload: dict[str, Any]) -> None:
-    columns = ["id", "gt_verdict", "ocr_error_class", "e2e_label", "cas_label", "agree", "comparison_status"]
-    for policy in payload["h3"]["policies"]:
+    columns = ["provider", "id", "gt_verdict", "ocr_error_class", "e2e_label", "cas_label", "agree", "comparison_status"]
+    policies = {name for pair in payload["h3"]["pairs"].values() for name in pair["policies"]}
+    for policy in sorted(policies):
         columns += [f"{policy}_source", f"{policy}_label", f"{policy}_correct"]
     _csv(path, columns, payload["h3"]["per_case"])
 
@@ -107,10 +109,10 @@ def _write_plots(path: Path, payload: dict[str, Any]) -> None:
     h1_values: list[tuple[str, float | None]] = []
     for key, pair in payload["h1"]["pairs"].items():
         h1_values.append((f"{key} E2E", pair["e2e"]["accuracy_all"]))
-        h1_values.append((f"{key} extraction→CAS", pair["cas"]["accuracy_all"]))
+        h1_values.append((f"{key} assisted→Task-aware CAS", pair["cas"]["accuracy_all"]))
     _bar_svg(path / "h1_accuracy.svg", "H1 verdict accuracy (all manifest IDs)", h1_values)
-    h3_values = [(f"{name}: automation", stats["automation_rate"])
-                 for name, stats in payload["h3"]["policies"].items()]
+    h3_values = [(f"{key} {name}: automation", stats["automation_rate"])
+                 for key, pair in payload["h3"]["pairs"].items() for name, stats in pair["policies"].items()]
     _bar_svg(path / "h3_automation.svg", "H3 automation rate", h3_values)
 
 
@@ -142,7 +144,7 @@ def _markdown(payload: dict[str, Any]) -> str:
     for key, pair in payload["h1"]["pairs"].items():
         paired = pair["paired"]
         lines += [
-            "", f"## H1 — paired E2E vs extraction→CAS ({key})", "",
+            "", f"## H1 — paired Direct E2E vs Assisted Extraction → Task-aware CAS ({key})", "",
             f"Provider `{pair['provider']}`. E2E run `{pair['e2e_run']}`, CAS run `{pair['cas_run']}`.", "",
             f"- Verdict accuracy: E2E {_percent(pair['e2e']['accuracy_all'])} vs CAS {_percent(pair['cas']['accuracy_all'])} "
             f"(Δ {paired['accuracy_difference']:+.3f}, paired bootstrap 95% CI "
@@ -167,35 +169,39 @@ def _markdown(payload: dict[str, Any]) -> str:
             f"| Balanced accuracy | {_percent(pair['e2e']['incorrect_detection']['balanced_accuracy'])} | {_percent(pair['cas']['incorrect_detection']['balanced_accuracy'])} |",
             f"| Always Incorrect baseline | {_percent(pair['e2e']['always_incorrect_baseline']['accuracy_all'])} | {_percent(pair['cas']['always_incorrect_baseline']['accuracy_all'])} |",
         ]
-    h2 = payload["h2"]["overall"]
     lines += ["", "## H2 — OCR quality and propagation", ""]
-    if h2:
-        lines += [
-            f"Run `{payload['h2']['run_id']}`. Exactly transcribed: {h2['exact_transcriptions']}/{h2['examples']} "
-            f"({_percent(h2['exact_match_rate'])}). Mean step edit distance {_number(h2['mean_step_edit_distance'])} "
-            f"({_number(h2['normalized_edit_distance'])} normalized).", "",
-            f"CAS verdict accuracy: {_percent(h2['extraction_cas_verdict_accuracy'])} on OCR steps vs "
-            f"{_percent(h2['cas_on_gt_verdict_accuracy'])} on GT steps (drop {h2['verdict_accuracy_drop']:+.3f}). "
-            f"CAS flips due to OCR: {h2['cas_flips']}/{h2['examples']} ({_percent(h2['cas_flip_rate'])}).", "",
-            "| Error class | Cases | Share | CAS flips | Final wrong | Failure share |", "|---|---|---|---|---|---|",
-        ]
-        for entry in payload["h2"]["by_error_class"]:
-            lines.append(
-                f"| {entry['error_class']} | {entry['cases']} | {_percent(entry['share'])} | "
-                f"{entry['cas_flips']} ({_percent(entry['cas_flip_rate'])}) | {_percent(entry['final_wrong_rate'])} | "
-                f"{_percent(entry['failure_fraction'])} |")
+    if payload["h2"]["pairs"]:
+        for key, pair in payload["h2"]["pairs"].items():
+            h2 = pair["overall"]
+            lines += [f"### {key}", "",
+                f"Run `{pair['run_id']}`. Exactly transcribed: {h2['exact_transcriptions']}/{h2['examples']} "
+                f"({_percent(h2['exact_match_rate'])}). Mean step edit distance {_number(h2['mean_step_edit_distance'])} "
+                f"({_number(h2['normalized_edit_distance'])} normalized).", "",
+                f"Assisted determinate-verdict accuracy: {_percent(h2['extraction_cas_verdict_accuracy'])}; "
+                f"indeterminate: {h2['assisted_indeterminate']}/{h2['examples']} ({_percent(h2['assisted_indeterminate_rate'])}).", "",
+                "| Transcription error class | Cases | Share | Final wrong | Failure share |", "|---|---|---|---|---|",
+            ]
+            if h2["cas_on_gt_available"]:
+                lines += [f"Diagnostic-only GT→step-only CAS comparison: {_percent(h2['cas_on_gt_verdict_accuracy'])} on GT steps; "
+                          f"difference {_number(h2['verdict_accuracy_drop'])}. This is not a compared architecture.", ""]
+            else:
+                lines += ["No GT→step-only CAS was used. TaskSpec fields have no independent GT and are reported only as structural diagnostics.", ""]
+            for entry in pair["by_error_class"]:
+                lines.append(
+                    f"| {entry['error_class']} | {entry['cases']} | {_percent(entry['share'])} | "
+                    f"{_percent(entry['final_wrong_rate'])} | {_percent(entry['failure_fraction'])} |")
     else:
-        lines.append("H2 unavailable: CAS-on-GT predictions and extraction artifacts are required.")
-    policies = payload["h3"]["policies"]
+        lines.append("H2 unavailable: assisted-extraction artifacts are required.")
     lines += [
         "", "## H3 — selective automation", "",
         "| Policy | Accuracy (all) | Accuracy (automated) | Automation rate | Manual E2E error rate | Captured E2E errors |", "|---|---|---|---|---|---|",
     ]
-    for name, stats in policies.items():
-        lines.append(
-            f"| {name} | {_percent(stats['accuracy_all'])} | {_percent(stats['accuracy_on_automated'])} | "
-            f"{_percent(stats['automation_rate'])} | {_percent(stats['manual_queue_e2e_error_rate'])} | "
-            f"{_percent(stats['captured_e2e_error_recall'])} |")
+    for key, pair in payload["h3"]["pairs"].items():
+        for name, stats in pair["policies"].items():
+            lines.append(
+                f"| {key}: {name} | {_percent(stats['accuracy_all'])} | {_percent(stats['accuracy_on_automated'])} | "
+                f"{_percent(stats['automation_rate'])} | {_percent(stats['manual_queue_e2e_error_rate'])} | "
+                f"{_percent(stats['captured_e2e_error_recall'])} |")
     lines += ["", "## Limitations", ""]
     lines += [f"- {item}" for item in payload["limitations"]]
     return "\n".join(lines) + "\n"

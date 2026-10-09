@@ -71,6 +71,18 @@ def _ids_from_file(path: Path) -> list[str]:
     return ids
 
 
+def _ids_from_dataset_manifest(path: Path) -> list[str]:
+    payload = json.loads(path.read_bytes().decode("utf-8-sig"))
+    cases = payload.get("cases") if isinstance(payload, dict) else payload
+    if not isinstance(cases, list):
+        raise EvaluationInputError(f"{path}: dataset manifest must contain cases")
+    ids = [item.get("id") for item in cases if isinstance(item, dict)]
+    if (len(ids) != len(cases) or not ids or any(not isinstance(item, str) or not item for item in ids)
+            or len(ids) != len(set(ids))):
+        raise EvaluationInputError(f"{path}: dataset manifest cases need unique nonempty ids")
+    return ids
+
+
 def _check_git_commit(commit: str, repo_root: Path) -> None:
     probe = subprocess.run(
         ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
@@ -170,13 +182,19 @@ def load_manifest(path: Path, repo_root: Path | None = None) -> ExperimentManife
     ids_path = None
     ids = dataset.get("ids")
     ids_file = dataset.get("ids_file")
-    if ids is not None and ids_file is not None:
-        raise EvaluationInputError(f"{path}: dataset provides both ids and ids_file")
+    dataset_manifest = dataset.get("dataset_manifest")
+    if sum(value is not None for value in (ids, ids_file, dataset_manifest)) > 1:
+        raise EvaluationInputError(f"{path}: dataset provides more than one of ids, ids_file, dataset_manifest")
     if ids_file is not None:
         ids_path = _resolve(ids_file, repo_root)
         if not ids_path.is_file():
             raise EvaluationInputError(f"{path}: dataset.ids_file does not exist: {ids_path}")
         ids = _ids_from_file(ids_path)
+    if dataset_manifest is not None:
+        ids_path = _resolve(dataset_manifest, repo_root)
+        if not ids_path.is_file():
+            raise EvaluationInputError(f"{path}: dataset.dataset_manifest does not exist: {ids_path}")
+        ids = _ids_from_dataset_manifest(ids_path)
     if not isinstance(ids, list) or not ids or any(not isinstance(item, str) or not item for item in ids):
         raise EvaluationInputError(f"{path}: dataset.ids must be a nonempty list of strings")
     if len(ids) != len(set(ids)):
@@ -208,6 +226,14 @@ def load_manifest(path: Path, repo_root: Path | None = None) -> ExperimentManife
     runs = [_run_spec(raw, index, repo_root, path) for index, raw in enumerate(raw_runs)]
     if str(payload.get("evaluation_note", "")).lower() == "final" and any(run.simulated for run in runs):
         raise EvaluationInputError(f"{path}: final evaluation must not contain simulated runs")
+    if experiment_id == "final80_v2_four_routes":
+        if len(ids) != 80:
+            raise EvaluationInputError(f"{path}: final80_v2_four_routes requires exactly 80 IDs")
+        if cas_on_gt_path is not None:
+            raise EvaluationInputError(f"{path}: final80_v2_four_routes must not use cas_on_gt")
+        systems = [run.system for run in runs]
+        if systems.count("e2e") != 2 or systems.count("assisted_cas") != 2 or len(runs) != 4:
+            raise EvaluationInputError(f"{path}: final80_v2_four_routes requires exactly two e2e and two assisted_cas runs")
     run_ids = [spec.run_id for spec in runs]
     if len(run_ids) != len(set(run_ids)):
         raise EvaluationInputError(f"{path}: duplicate run_id")

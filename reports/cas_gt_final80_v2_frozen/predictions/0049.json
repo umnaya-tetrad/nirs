@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "img_115_pert_4.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\sin \\left( \\frac{\\pi}{4} \\right) = \\frac{1}{\\sqrt{2}}.",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 718
+      }
+    ]
+  },
+  "verdict": "correct",
+  "is_correct": true,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-c81e3022-0737-4c27-a212-9f52b0f8fd3e",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 718,
+    "created_at": "2026-10-09T22:29:07.199234Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

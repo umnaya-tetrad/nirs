@@ -52,8 +52,8 @@ an `ids` field):
 python -m nirs_llm.run --provider gemini --mode assisted_extraction --manifest dataset/manifests/fermat_final_80.json --case-ids-file dataset/subsets/cas_supported_final_80.json --output-dir outputs/final80-cas-supported --run-name gemini-assisted-extraction --workers 1
 python -m nirs_llm.run --provider gigachat --mode assisted_extraction --manifest dataset/manifests/fermat_final_80.json --case-ids-file dataset/subsets/cas_supported_final_80.json --output-dir outputs/final80-cas-supported --run-name gigachat-assisted-extraction --workers 1
 
-python -m nirs_cas oracle outputs/final80-cas-supported/gemini-assisted-extraction --output reports/final80-cas-supported/gemini-assisted-cas --split-name final80_cas_supported_gemini --workers 4
-python -m nirs_cas oracle outputs/final80-cas-supported/gigachat-assisted-extraction --output reports/final80-cas-supported/gigachat-assisted-cas --split-name final80_cas_supported_gigachat --workers 4
+python -m nirs_cas assisted-oracle outputs/final80-cas-supported/gemini-assisted-extraction --output reports/final80-cas-supported/gemini-assisted-cas --split-name final80_cas_supported_gemini --timeout 10
+python -m nirs_cas assisted-oracle outputs/final80-cas-supported/gigachat-assisted-extraction --output reports/final80-cas-supported/gigachat-assisted-cas --split-name final80_cas_supported_gigachat --timeout 10
 python -m evaluator experiment --manifest evaluator/manifests/final80_cas_supported_template.json --output-dir reports/final80-cas-supported/evaluation
 ```
 
@@ -67,3 +67,44 @@ Experiment B reuses the final-80 E2E artifacts from Experiment A through an expl
 For Gemini, a `cost_rub.provider_reported` value is used whenever Polza returned `usage.cost_rub`.
 Otherwise the report labels the calculation as `token_rate_estimate`; the rate in the templates is
 the Polza catalogue value checked on 2026-10-10, not a billing receipt.
+
+## Frozen final-80 v2 (the next paid run)
+
+`final-80 v1` remains in place for reproducibility.  Do not reuse its output folders,
+manifests or CAS subset for v2.  The v2 release has 80 IDs in
+`dataset/manifests/fermat_final_80_v2.json`, canonical labels in
+`dataset/final_gt_v2.json`, and its own 28-ID (current local CAS result) subset in
+`dataset/subsets/cas_supported_final_80_v2.json`.  The 20 replacement images must be
+present under `data/images/final_v2/`; verify the frozen release before sending a request:
+
+```powershell
+python dataset_scripts/build_final80_v2.py
+python -m pytest tests/test_gt_splits.py
+python -m nirs_cas oracle dataset/final_gt_v2.json --output reports/cas_gt_final80_v2_frozen --timeout 10 --workers 4 --split-name final80_v2_gt_frozen
+python -m nirs_cas supported-subset --oracle-report reports/cas_gt_final80_v2_frozen/report.json --gt dataset/final_gt_v2.json --output dataset/subsets/cas_supported_final_80_v2.json
+```
+
+Experiment A (80 images, no CAS) uses separate persistent output paths:
+
+```powershell
+python -m nirs_llm.run --provider gemini --mode e2e --manifest dataset/manifests/fermat_final_80_v2.json --output-dir outputs/final80_v2 --run-name gemini-e2e --workers 1
+python -m nirs_llm.run --provider gigachat --mode e2e --manifest dataset/manifests/fermat_final_80_v2.json --output-dir outputs/final80_v2 --run-name gigachat-e2e --workers 1
+# Do not evaluate E2E alone as a final result bundle. The four-route evaluator
+# command appears after the Assisted routes below.
+```
+
+The final v2 experiment uses all 80 IDs for every route. The historic 27-ID
+step-only-CAS subset is not a final comparison and must not be used below.
+Run the two assisted extraction routes on all 80, then route their saved
+contracts through the task-aware verifier:
+
+```powershell
+python -m nirs_llm.run --provider gemini --mode assisted_extraction --manifest dataset/manifests/fermat_final_80_v2.json --output-dir outputs/final80_v2-assisted --run-name gemini-assisted-extraction --workers 1
+python -m nirs_llm.run --provider gigachat --mode assisted_extraction --manifest dataset/manifests/fermat_final_80_v2.json --output-dir outputs/final80_v2-assisted --run-name gigachat-assisted-extraction --workers 1
+python -m nirs_cas assisted-oracle outputs/final80_v2-assisted/gemini-assisted-extraction --output reports/final80_v2/assisted/gemini-assisted-cas --split-name final80_v2_gemini_assisted --timeout 10
+python -m nirs_cas assisted-oracle outputs/final80_v2-assisted/gigachat-assisted-extraction --output reports/final80_v2/assisted/gigachat-assisted-cas --split-name final80_v2_gigachat_assisted --timeout 10
+python -m evaluator experiment --manifest evaluator/manifests/final80_v2_four_routes_template.json --output-dir reports/final80_v2/four-routes-evaluation
+```
+
+For any interrupted paid run, add `--resume` to the same command.  The runner keeps
+the already persisted successful and failed IDs and does not resubmit them.

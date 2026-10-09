@@ -28,6 +28,7 @@ CASE_COLUMNS = [
     "step_agreements", "step_union", "step_accuracy", "solution_match",
     "first_error_match", "first_error_category",
     "cas_status", "cas_covered", "cas_parse_status", "cas_parsed_steps", "cas_total_steps",
+    "assisted_task_aware_covered",
 ]
 
 
@@ -139,6 +140,32 @@ def _first_error_outcome(gt: dict[str, Any], row: dict[str, Any]) -> tuple[bool,
     return False, "wrong_index"
 
 
+def _assisted_cas_coverage(prediction: dict[str, Any]) -> tuple[bool, bool] | None:
+    """Return full and task-aware coverage for an assisted-CAS prediction.
+
+    An assisted result has already been checked using task context.  Re-running
+    the ordinary step-only oracle here would measure a different architecture
+    and silently understate its coverage.
+    """
+    pipeline = prediction.get("pipeline")
+    problem = prediction.get("problem")
+    if not isinstance(pipeline, dict) or not isinstance(problem, dict):
+        return None
+    if pipeline.get("approach") != "llm_assisted_extraction_plus_math_core":
+        return None
+    full = problem.get("verified_solution_covered")
+    if not isinstance(full, bool):
+        return None
+    # `task_aware_covered` is used by newer artifacts.  Existing canonical
+    # assisted-analysis output records the same intermediate signal as a
+    # valid/invalid context check, so accept both without rewriting history.
+    task_aware = problem.get("task_aware_covered")
+    if not isinstance(task_aware, bool):
+        context = problem.get("context_check")
+        task_aware = isinstance(context, dict) and context.get("status") in {"valid", "invalid"}
+    return full, task_aware
+
+
 def _case_row(gt: dict[str, Any], pred: dict[str, Any] | None, status: str, note: str, timeout: float) -> dict[str, Any]:
     gt_reviews = _review_map(gt)
     row: dict[str, Any] = {
@@ -161,6 +188,7 @@ def _case_row(gt: dict[str, Any], pred: dict[str, Any] | None, status: str, note
         "cas_parse_status": "NOT_MEASURED",
         "cas_parsed_steps": None,
         "cas_total_steps": None,
+        "assisted_task_aware_covered": None,
     }
     if status == "ok" and pred is not None:
         row["pred_verdict"] = pred.get("verdict")
@@ -173,12 +201,22 @@ def _case_row(gt: dict[str, Any], pred: dict[str, Any] | None, status: str, note
             row["step_union"] = union
             row["step_accuracy"] = agreements / union if union else 1.0
             row["solution_match"] = row["verdict_match"] and agreements == union
-        cas = run_isolated(extract_step_latex(pred), timeout)
-        row["cas_status"] = cas["status"]
-        row["cas_covered"] = bool(cas["covered"])
-        row["cas_parse_status"] = cas["parse_status"]
-        row["cas_parsed_steps"] = cas["parsed_steps"]
-        row["cas_total_steps"] = cas["total_steps"]
+        assisted_coverage = _assisted_cas_coverage(pred)
+        if assisted_coverage is not None:
+            full_covered, task_aware_covered = assisted_coverage
+            row["cas_status"] = "ASSISTED"
+            row["cas_covered"] = full_covered
+            row["cas_parse_status"] = "TASK_AWARE"
+            row["cas_parsed_steps"] = len(pred["steps"])
+            row["cas_total_steps"] = len(pred["steps"])
+            row["assisted_task_aware_covered"] = task_aware_covered
+        else:
+            cas = run_isolated(extract_step_latex(pred), timeout)
+            row["cas_status"] = cas["status"]
+            row["cas_covered"] = bool(cas["covered"])
+            row["cas_parse_status"] = cas["parse_status"]
+            row["cas_parsed_steps"] = cas["parsed_steps"]
+            row["cas_total_steps"] = cas["total_steps"]
     elif gt_reviews is not None:
         row["step_agreements"] = 0
         row["step_union"] = len(gt_reviews)
@@ -215,7 +253,15 @@ def _summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
     first_error_matches = sum(bool(row["first_error_match"]) for row in gt_incorrect)
     categories = Counter(row["first_error_category"] for row in gt_incorrect)
     covered = sum(bool(row["cas_covered"]) for row in rows)
-    parseable = sum(row["cas_parse_status"] == "OK" for row in rows)
+    assisted_rows = [row for row in rows if row["cas_status"] == "ASSISTED"]
+    # An assisted prediction is already the output of the task-aware checker:
+    # its meaningful intermediate coverage is task-aware coverage, not the
+    # ordinary parser status used by legacy step-only results.
+    parseable = (
+        sum(bool(row["assisted_task_aware_covered"]) for row in assisted_rows)
+        if assisted_rows
+        else sum(row["cas_parse_status"] == "OK" for row in rows)
+    )
     return {
         "solution": {
             "gt_cases": total,
@@ -243,6 +289,10 @@ def _summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "coverage": covered / total if total else None,
             "parseable_examples": parseable,
             "parse_rate": parseable / total if total else None,
+            "task_aware_covered_examples": sum(bool(row["assisted_task_aware_covered"]) for row in rows),
+            "task_aware_coverage": (
+                sum(bool(row["assisted_task_aware_covered"]) for row in rows) / total if assisted_rows else None
+            ),
         },
         "confusion_matrix": _confusion(rows),
     }
@@ -341,7 +391,11 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         print(f"step_accuracy: {solution['step_accuracy']:.2%} ({solution['step_compared_cases']} comparable)")
     if first_error["first_error_accuracy"] is not None:
         print(f"first_error_accuracy: {first_error['first_error_accuracy']:.2%} ({first_error['matches']}/{first_error['gt_incorrect_cases']})")
-    print(f"cas coverage: {cas['coverage']:.2%} ({cas['covered_examples']}/{cas['total_examples']}); parse_rate: {cas['parse_rate']:.2%}")
+    if cas["task_aware_coverage"] is not None:
+        print(f"assisted full coverage: {cas['coverage']:.2%} ({cas['covered_examples']}/{cas['total_examples']}); "
+              f"task-aware coverage: {cas['task_aware_coverage']:.2%} ({cas['task_aware_covered_examples']}/{cas['total_examples']})")
+    else:
+        print(f"cas coverage: {cas['coverage']:.2%} ({cas['covered_examples']}/{cas['total_examples']}); parse_rate: {cas['parse_rate']:.2%}")
     for path in paths:
         print(f"wrote {path}")
     return report

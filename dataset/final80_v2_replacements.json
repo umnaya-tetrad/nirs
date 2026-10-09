@@ -1,0 +1,143 @@
+{
+  "release": "final-80-v2",
+  "base_release": "final-80-v1",
+  "selection_policy": "20 v1 incorrect cases plus 2 dev-overlap v1 correct cases replaced by reviewed FERMAT correct handwritten cases; no CAS outcome was used for selection.",
+  "removed_ids": [
+    "img_494_pert_3.1",
+    "img_462_pert_3.1",
+    "img_151_pert_3.2",
+    "img_471_pert_3.2",
+    "img_462_pert_2.5",
+    "img_494_pert_2.5",
+    "img_96_pert_1.4",
+    "img_151_pert_4.3",
+    "img_373_pert_2.3",
+    "img_157_pert_2.4",
+    "img_398_pert_2.4",
+    "img_157_pert_1.5",
+    "img_225_pert_1.5",
+    "img_568_pert_3.1",
+    "img_466_pert_3.1",
+    "img_542_pert_3.1",
+    "img_108_pert_3.1",
+    "img_89_pert_3.1",
+    "img_559_pert_3.1",
+    "img_99_pert_3.1",
+    "img_480_pert_5.1",
+    "img_494_pert_5.1"
+  ],
+  "added_ids": [
+    "img_476_pert_5.1",
+    "img_579_pert_5.1",
+    "img_578_pert_5.1",
+    "img_489_pert_5.1",
+    "img_490_pert_5.1",
+    "img_483_pert_5.1",
+    "img_592_pert_5.1",
+    "img_456_pert_5.1",
+    "img_455_pert_5.1",
+    "img_458_pert_5.1",
+    "img_566_pert_5.1",
+    "img_572_pert_5.1",
+    "img_65_pert_5.1",
+    "img_27_pert_5.1",
+    "img_14_pert_5.1",
+    "img_49_pert_5.1",
+    "img_77_pert_5.1",
+    "img_78_pert_5.1",
+    "img_37_pert_5.1",
+    "img_20_pert_5.1",
+    "img_492_pert_5.1",
+    "img_488_pert_5.1"
+  ],
+  "pairs": [
+    {
+      "removed_id": "img_494_pert_3.1",
+      "added_id": "img_476_pert_5.1"
+    },
+    {
+      "removed_id": "img_462_pert_3.1",
+      "added_id": "img_579_pert_5.1"
+    },
+    {
+      "removed_id": "img_151_pert_3.2",
+      "added_id": "img_578_pert_5.1"
+    },
+    {
+      "removed_id": "img_471_pert_3.2",
+      "added_id": "img_489_pert_5.1"
+    },
+    {
+      "removed_id": "img_462_pert_2.5",
+      "added_id": "img_490_pert_5.1"
+    },
+    {
+      "removed_id": "img_494_pert_2.5",
+      "added_id": "img_483_pert_5.1"
+    },
+    {
+      "removed_id": "img_96_pert_1.4",
+      "added_id": "img_592_pert_5.1"
+    },
+    {
+      "removed_id": "img_151_pert_4.3",
+      "added_id": "img_456_pert_5.1"
+    },
+    {
+      "removed_id": "img_373_pert_2.3",
+      "added_id": "img_455_pert_5.1"
+    },
+    {
+      "removed_id": "img_157_pert_2.4",
+      "added_id": "img_458_pert_5.1"
+    },
+    {
+      "removed_id": "img_398_pert_2.4",
+      "added_id": "img_566_pert_5.1"
+    },
+    {
+      "removed_id": "img_157_pert_1.5",
+      "added_id": "img_572_pert_5.1"
+    },
+    {
+      "removed_id": "img_225_pert_1.5",
+      "added_id": "img_65_pert_5.1"
+    },
+    {
+      "removed_id": "img_568_pert_3.1",
+      "added_id": "img_27_pert_5.1"
+    },
+    {
+      "removed_id": "img_466_pert_3.1",
+      "added_id": "img_14_pert_5.1"
+    },
+    {
+      "removed_id": "img_542_pert_3.1",
+      "added_id": "img_49_pert_5.1"
+    },
+    {
+      "removed_id": "img_108_pert_3.1",
+      "added_id": "img_77_pert_5.1"
+    },
+    {
+      "removed_id": "img_89_pert_3.1",
+      "added_id": "img_78_pert_5.1"
+    },
+    {
+      "removed_id": "img_559_pert_3.1",
+      "added_id": "img_37_pert_5.1"
+    },
+    {
+      "removed_id": "img_99_pert_3.1",
+      "added_id": "img_20_pert_5.1"
+    },
+    {
+      "removed_id": "img_480_pert_5.1",
+      "added_id": "img_492_pert_5.1"
+    },
+    {
+      "removed_id": "img_494_pert_5.1",
+      "added_id": "img_488_pert_5.1"
+    }
+  ]
+}

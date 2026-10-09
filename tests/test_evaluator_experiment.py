@@ -230,12 +230,13 @@ def test_h3_disagreement_routes_to_manual():
                            "bad": RunRecord("bad", STATUS_OK, bad)},
                   id_set={"good", "bad"})
     analysis = analyze_h3(e2e, cas, gt_by_id, ["good", "bad"], {"good": "exact", "bad": "exact"})
-    assert analysis["policies"]["disagreement_routing"]["automation_rate"] == 0.5
-    assert analysis["policies"]["disagreement_routing"]["accuracy_on_automated"] == 1.0
-    assert analysis["rows"][0]["disagreement_routing_source"] == "manual"
+    assert analysis["policies"]["disagreement_or_cas_indeterminate"]["automation_rate"] == 0.5
+    assert analysis["policies"]["disagreement_or_cas_indeterminate"]["accuracy_on_automated"] == 1.0
+    assert analysis["rows"][0]["disagreement_or_cas_indeterminate_source"] == "manual_disagreement_or_cas_indeterminate"
+    assert analysis["policies"]["disagreement_only"]["automation_rate"] == 1.0
     assert analysis["rows"][0]["agree"] is None
     assert analysis["comparison"]["comparable_pairs"] == 1
-    assert analysis["policies"]["disagreement_routing"]["captured_e2e_error_recall"] is None
+    assert analysis["policies"]["disagreement_or_cas_indeterminate"]["captured_e2e_error_recall"] is None
 
 
 def _integration_workspace(tmp_path, cas_ids=("good", "bad")):
@@ -287,7 +288,7 @@ def test_run_experiment_writes_all_outputs(tmp_path):
     assert payload["h1"]["pairs"][key]["e2e"]["accuracy_all"] == 1.0
     assert payload["h1"]["pairs"][key]["cas"]["accuracy_all"] == 0.5
     assert payload["h2"]["overall"]["exact_match_rate"] == 1.0
-    assert set(payload["h3"]["policies"]) == {"disagreement_routing", "e2e_only", "cas_only"}
+    assert set(payload["h3"]["policies"]) == {"disagreement_only", "disagreement_or_cas_indeterminate"}
     assert payload["experiment"]["ids_count"] == 2
 
 
@@ -311,11 +312,19 @@ def test_run_experiment_without_optional_ocr_inputs(tmp_path, omit):
     output = tmp_path / "out"
     payload = experiment.run_experiment(manifest_path, output, repo_root=tmp_path)
 
-    assert payload["h2"]["overall"] == {}
-    assert payload["h2"]["per_case"] == []
-    assert payload["h3"]["policies"]["disagreement_routing"]["automation_rate"] == 0.5
+    if omit == "baseline":
+        assert payload["h2"]["overall"]["cas_on_gt_available"] is False
+        assert len(payload["h2"]["per_case"]) == 2
+    else:
+        assert payload["h2"]["overall"] == {}
+        assert payload["h2"]["per_case"] == []
+    assert payload["h3"]["policies"]["disagreement_or_cas_indeterminate"]["automation_rate"] == 0.5
     assert len(payload["h1"]["per_case"]) == 2
-    assert "H2 unavailable" in (output / "report.md").read_text(encoding="utf-8")
+    markdown = (output / "report.md").read_text(encoding="utf-8")
+    if omit == "baseline":
+        assert "No GT→step-only CAS was used" in markdown
+    else:
+        assert "H2 unavailable" in markdown
 
 
 def test_run_experiment_with_runner_directory(tmp_path):

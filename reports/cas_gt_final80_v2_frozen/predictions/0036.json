@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "id": "img_111_pert_2.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\sin^{-1}\\left(2x\\sqrt{1-x^2}\\right) = \\sin^{-1}\\left(2\\sin \\theta \\sqrt{1-\\sin^2 \\theta}\\right)",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "= \\sin^{-1}(2\\sin \\theta \\cos \\theta) = 2\\sin^{-1}(\\sin \\theta \\cos \\theta) = 2 \\theta = 2 \\sin^{-1} x",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "answer",
+      "latex": "\\sin^{-1}\\left(2x\\sqrt{1-x^2}\\right) = 2 \\sin^{-1}( \\cos \\theta \\sin \\theta ) = 2 \\cos^{-1} x",
+      "derives_from": [
+        "s2"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 3342
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Exact counterexample at {theta: pi/6, x: pi/6}: difference=-pi/3 + asin(2*sin(sqrt(3)*pi/12)); Exact counterexample at {theta: 1}: difference=-2 - 2*asin(sin(2)/2) + pi; Exact counterexample at {theta: 1}: difference=-2 + 2*asin(sin(2)/2); Exact counterexample at {theta: 1, x: 1}: difference=2 - pi",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact counterexample at {theta: pi/6, x: pi/6}: difference=-pi/3 + asin(2*sin(sqrt(3)*pi/12)); Exact counterexample at {theta: 1}: difference=-2 - 2*asin(sin(2)/2) + pi; Exact counterexample at {theta: 1}: difference=-2 + 2*asin(sin(2)/2); Exact counterexample at {theta: 1, x: 1}: difference=2 - pi",
+        "actual_latex": "= \\sin^{-1}(2\\sin \\theta \\cos \\theta) = 2\\sin^{-1}(\\sin \\theta \\cos \\theta) = 2 \\theta = 2 \\sin^{-1} x",
+        "engine": "sympy"
+      }
+    },
+    {
+      "finding_id": "f2",
+      "step_id": "s3",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact counterexample at {theta: 0, x: 0}: difference=-pi; Separate equation/substitution requires task context",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact counterexample at {theta: 0, x: 0}: difference=-pi; Separate equation/substitution requires task context",
+        "actual_latex": "\\sin^{-1}\\left(2x\\sqrt{1-x^2}\\right) = 2 \\sin^{-1}( \\cos \\theta \\sin \\theta ) = 2 \\cos^{-1} x",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "verdict": "error",
+      "finding_ids": [
+        "f2"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-a33808ca-77d1-4c4a-8c75-db1ea4215fdc",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 3342,
+    "created_at": "2026-10-09T22:28:31.455312Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}
