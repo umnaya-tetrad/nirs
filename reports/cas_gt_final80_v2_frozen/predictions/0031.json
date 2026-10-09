@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "img_108_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\sin \\frac{31\\pi}{3} = \\sin\\left(10\\pi + \\frac{\\pi}{3}\\right) = \\sin \\left( \\pi - \\frac{\\pi}{3} \\right) = \\sin \\left( \\frac{2\\pi}{3} \\right) = \\frac{\\sqrt{3}}{2}.",
+      "derives_from": []
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 709
+      }
+    ]
+  },
+  "verdict": "correct",
+  "is_correct": true,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-b3c28139-6950-403a-8f4c-eac1a715a8bf",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 709,
+    "created_at": "2026-10-09T22:28:25.270127Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

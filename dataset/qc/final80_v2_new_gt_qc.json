@@ -1,0 +1,208 @@
+{
+  "release": "final-80-v2",
+  "records": [
+    {
+      "id": "img_476_pert_5.1",
+      "img_id": "476",
+      "fermat_domain": "alg/lin",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_579_pert_5.1",
+      "img_id": "579",
+      "fermat_domain": "alg/pyn",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_578_pert_5.1",
+      "img_id": "578",
+      "fermat_domain": "alg/pyn",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_489_pert_5.1",
+      "img_id": "489",
+      "fermat_domain": "alg/leq",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_490_pert_5.1",
+      "img_id": "490",
+      "fermat_domain": "alg/leq",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_483_pert_5.1",
+      "img_id": "483",
+      "fermat_domain": "alg/leq",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_592_pert_5.1",
+      "img_id": "592",
+      "fermat_domain": "alg/pyn",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_456_pert_5.1",
+      "img_id": "456",
+      "fermat_domain": "alg/mat",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_455_pert_5.1",
+      "img_id": "455",
+      "fermat_domain": "alg/mat",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_458_pert_5.1",
+      "img_id": "458",
+      "fermat_domain": "alg/mat",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_566_pert_5.1",
+      "img_id": "566",
+      "fermat_domain": "alg/cpx",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_572_pert_5.1",
+      "img_id": "572",
+      "fermat_domain": "alg/cpx",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_65_pert_5.1",
+      "img_id": "65",
+      "fermat_domain": "mgm/3dg",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_27_pert_5.1",
+      "img_id": "27",
+      "fermat_domain": "mgm/lns",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_14_pert_5.1",
+      "img_id": "14",
+      "fermat_domain": "mgm/lns",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_49_pert_5.1",
+      "img_id": "49",
+      "fermat_domain": "mgm/plg",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_77_pert_5.1",
+      "img_id": "77",
+      "fermat_domain": "mgm/sfa",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_78_pert_5.1",
+      "img_id": "78",
+      "fermat_domain": "mgm/sfa",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_37_pert_5.1",
+      "img_id": "37",
+      "fermat_domain": "mgm/vol",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_20_pert_5.1",
+      "img_id": "20",
+      "fermat_domain": "mgm/lns",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_492_pert_5.1",
+      "img_id": "492",
+      "fermat_domain": "alg/leq",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    },
+    {
+      "id": "img_488_pert_5.1",
+      "img_id": "488",
+      "fermat_domain": "alg/leq",
+      "image_review": "reviewed_visually",
+      "needs_manual_review": false,
+      "review_scope": "all visible mathematical lines transcribed in reading order",
+      "note": "The canonical GT preserves the written notation; no idealized correction was inserted."
+    }
+  ],
+  "summary": {
+    "added": 22,
+    "reviewed_visually": 22,
+    "needs_manual_review": 0
+  }
+}

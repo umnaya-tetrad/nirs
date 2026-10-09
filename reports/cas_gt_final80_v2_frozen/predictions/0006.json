@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "img_387_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\frac{dz}{du} = 3u^2 + \\sec^2 u",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "answer",
+      "latex": "\\frac{d^2 z}{du^2} = \\frac{d}{du} (3u^2 + \\sec^2 u) = 6u + 2 \\sec u \\tan u",
+      "derives_from": [
+        "s1"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1004
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact counterexample at {d: 1, u: 1}: difference=-2*sin(1)/cos(1)**2 - 3 + cos(1)**(-2); Multivariate domain restrictions",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact counterexample at {d: 1, u: 1}: difference=-2*sin(1)/cos(1)**2 - 3 + cos(1)**(-2); Multivariate domain restrictions",
+        "actual_latex": "\\frac{d^2 z}{du^2} = \\frac{d}{du} (3u^2 + \\sec^2 u) = 6u + 2 \\sec u \\tan u",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-f841a77f-d784-4b01-9f9a-6058e158f5e7",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1004,
+    "created_at": "2026-10-09T22:28:05.125021Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

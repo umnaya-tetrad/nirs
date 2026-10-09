@@ -67,3 +67,41 @@ Experiment B reuses the final-80 E2E artifacts from Experiment A through an expl
 For Gemini, a `cost_rub.provider_reported` value is used whenever Polza returned `usage.cost_rub`.
 Otherwise the report labels the calculation as `token_rate_estimate`; the rate in the templates is
 the Polza catalogue value checked on 2026-10-10, not a billing receipt.
+
+## Frozen final-80 v2 (the next paid run)
+
+`final-80 v1` remains in place for reproducibility.  Do not reuse its output folders,
+manifests or CAS subset for v2.  The v2 release has 80 IDs in
+`dataset/manifests/fermat_final_80_v2.json`, canonical labels in
+`dataset/final_gt_v2.json`, and its own 28-ID (current local CAS result) subset in
+`dataset/subsets/cas_supported_final_80_v2.json`.  The 20 replacement images must be
+present under `data/images/final_v2/`; verify the frozen release before sending a request:
+
+```powershell
+python dataset_scripts/build_final80_v2.py
+python -m pytest tests/test_gt_splits.py
+python -m nirs_cas oracle dataset/final_gt_v2.json --output reports/cas_gt_final80_v2_frozen --timeout 10 --workers 4 --split-name final80_v2_gt_frozen
+python -m nirs_cas supported-subset --oracle-report reports/cas_gt_final80_v2_frozen/report.json --gt dataset/final_gt_v2.json --output dataset/subsets/cas_supported_final_80_v2.json
+```
+
+Experiment A (80 images, no CAS) uses separate persistent output paths:
+
+```powershell
+python -m nirs_llm.run --provider gemini --mode e2e --manifest dataset/manifests/fermat_final_80_v2.json --output-dir outputs/final80_v2 --run-name gemini-e2e --workers 1
+python -m nirs_llm.run --provider gigachat --mode e2e --manifest dataset/manifests/fermat_final_80_v2.json --output-dir outputs/final80_v2 --run-name gigachat-e2e --workers 1
+python -m evaluator experiment --manifest evaluator/manifests/final80_v2_e2e_template.json --output-dir reports/final80_v2/e2e-evaluation
+```
+
+Experiment B uses exactly the frozen v2 subset for both providers and reuses the v2 E2E
+artifacts via `select_manifest_ids`:
+
+```powershell
+python -m nirs_llm.run --provider gemini --mode assisted_extraction --manifest dataset/manifests/fermat_final_80_v2.json --case-ids-file dataset/subsets/cas_supported_final_80_v2.json --output-dir outputs/final80_v2-cas-supported --run-name gemini-assisted-extraction --workers 1
+python -m nirs_llm.run --provider gigachat --mode assisted_extraction --manifest dataset/manifests/fermat_final_80_v2.json --case-ids-file dataset/subsets/cas_supported_final_80_v2.json --output-dir outputs/final80_v2-cas-supported --run-name gigachat-assisted-extraction --workers 1
+python -m nirs_cas oracle outputs/final80_v2-cas-supported/gemini-assisted-extraction --output reports/final80_v2-cas-supported/gemini-assisted-cas --split-name final80_v2_cas_supported_gemini --workers 4
+python -m nirs_cas oracle outputs/final80_v2-cas-supported/gigachat-assisted-extraction --output reports/final80_v2-cas-supported/gigachat-assisted-cas --split-name final80_v2_cas_supported_gigachat --workers 4
+python -m evaluator experiment --manifest evaluator/manifests/final80_v2_cas_supported_template.json --output-dir reports/final80_v2-cas-supported/evaluation
+```
+
+For any interrupted paid run, add `--resume` to the same command.  The runner keeps
+the already persisted successful and failed IDs and does not resubmit them.
