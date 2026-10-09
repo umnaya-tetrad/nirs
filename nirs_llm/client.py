@@ -16,10 +16,11 @@ class PolzaUnavailableError(RuntimeError):
 
 
 class PolzaProviderError(RuntimeError):
-    def __init__(self, status_code: int, error_code: str | None = None) -> None:
+    def __init__(self, status_code: int, error_code: str | None = None, retry_after_seconds: float | None = None) -> None:
         super().__init__(f"Polza AI returned HTTP {status_code}")
         self.status_code = status_code
         self.error_code = error_code
+        self.retry_after_seconds = retry_after_seconds
 
 
 class PolzaInvalidResponseError(RuntimeError):
@@ -85,7 +86,7 @@ class GeminiPolzaClient:
                 response.raise_for_status()
                 provider_payload = response.json()
         except httpx.HTTPStatusError as error:
-            raise PolzaProviderError(error.response.status_code, _safe_error_code(error.response)) from error
+            raise PolzaProviderError(error.response.status_code, _safe_error_code(error.response), _retry_after(error.response)) from error
         except httpx.HTTPError as error:
             raise PolzaUnavailableError("Polza AI is unavailable.") from error
         except ValueError as error:
@@ -131,3 +132,13 @@ def _safe_error_code(response: httpx.Response) -> str | None:
         if isinstance(value, str) and len(value) <= 100:
             return value
     return None
+
+
+def _retry_after(response: httpx.Response) -> float | None:
+    """Return a bounded Retry-After delay when the provider supplies one."""
+    raw = response.headers.get("Retry-After")
+    try:
+        value = float(raw) if raw is not None else None
+    except ValueError:
+        return None
+    return value if value is not None and 0 <= value <= 300 else None

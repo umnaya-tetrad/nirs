@@ -32,6 +32,7 @@ class RunSpec:
     extraction_kind: str | None
     extraction_path: Path | None
     pricing: dict[str, float] | None
+    select_manifest_ids: bool = False
 
 
 @dataclass(frozen=True)
@@ -42,7 +43,9 @@ class ExperimentManifest:
     split: str
     gt_paths: list[Path]
     ids: list[str]
+    ids_path: Path | None
     cas_on_gt_path: Path | None
+    domain_annotations_path: Path | None
     error_policy: dict[str, Any]
     runs: list[RunSpec]
     h1_pairs: list[dict[str, str]]
@@ -58,6 +61,14 @@ def _require_str(value: Any, field: str, where: str) -> str:
     if not isinstance(value, str) or not value:
         raise EvaluationInputError(f"{where}: {field} must be a nonempty string")
     return value
+
+
+def _ids_from_file(path: Path) -> list[str]:
+    payload = json.loads(path.read_bytes().decode("utf-8-sig"))
+    ids = payload.get("ids") if isinstance(payload, dict) else payload
+    if not isinstance(ids, list):
+        raise EvaluationInputError(f"{path}: ids file must be an array or object with ids array")
+    return ids
 
 
 def _check_git_commit(commit: str, repo_root: Path) -> None:
@@ -130,6 +141,9 @@ def _run_spec(raw: Any, index: int, repo_root: Path, manifest_path: Path) -> Run
         if not isinstance(pricing, dict) or set(pricing) != {"input_per_million", "output_per_million"}:
             raise EvaluationInputError(f"{where}: pricing needs input_per_million and output_per_million")
         pricing = {key: float(value) for key, value in pricing.items()}
+    select_manifest_ids = raw.get("select_manifest_ids", False)
+    if not isinstance(select_manifest_ids, bool):
+        raise EvaluationInputError(f"{where}: select_manifest_ids must be boolean")
     return RunSpec(
         run_id=run_id, system=system, provider=provider, mode=mode,
         model=raw.get("model"), prompt_version=raw.get("prompt_version"),
@@ -137,6 +151,7 @@ def _run_spec(raw: Any, index: int, repo_root: Path, manifest_path: Path) -> Run
         timestamp=raw.get("timestamp"), simulated=bool(raw.get("simulated", False)),
         source_kind=source_kind, source_path=source_path, source_key=source_key,
         extraction_kind=extraction_kind, extraction_path=extraction_path, pricing=pricing,
+        select_manifest_ids=select_manifest_ids,
     )
 
 
@@ -152,7 +167,16 @@ def load_manifest(path: Path, repo_root: Path | None = None) -> ExperimentManife
     dataset = payload.get("dataset")
     if not isinstance(dataset, dict):
         raise EvaluationInputError(f"{path}: dataset section is required")
+    ids_path = None
     ids = dataset.get("ids")
+    ids_file = dataset.get("ids_file")
+    if ids is not None and ids_file is not None:
+        raise EvaluationInputError(f"{path}: dataset provides both ids and ids_file")
+    if ids_file is not None:
+        ids_path = _resolve(ids_file, repo_root)
+        if not ids_path.is_file():
+            raise EvaluationInputError(f"{path}: dataset.ids_file does not exist: {ids_path}")
+        ids = _ids_from_file(ids_path)
     if not isinstance(ids, list) or not ids or any(not isinstance(item, str) or not item for item in ids):
         raise EvaluationInputError(f"{path}: dataset.ids must be a nonempty list of strings")
     if len(ids) != len(set(ids)):
@@ -170,16 +194,26 @@ def load_manifest(path: Path, repo_root: Path | None = None) -> ExperimentManife
         cas_on_gt_path = _resolve(cas_on_gt.get("path"), repo_root)
         if not cas_on_gt_path.is_file():
             raise EvaluationInputError(f"{path}: cas_on_gt path does not exist: {cas_on_gt_path}")
+    domain_annotations_path = None
+    domain_annotations = dataset.get("domain_annotations")
+    if domain_annotations is not None:
+        if not isinstance(domain_annotations, dict):
+            raise EvaluationInputError(f"{path}: domain_annotations must be an object with path")
+        domain_annotations_path = _resolve(domain_annotations.get("path"), repo_root)
+        if not domain_annotations_path.is_file():
+            raise EvaluationInputError(f"{path}: domain_annotations path does not exist: {domain_annotations_path}")
     raw_runs = payload.get("runs")
     if not isinstance(raw_runs, list) or not raw_runs:
         raise EvaluationInputError(f"{path}: runs must be a nonempty list")
     runs = [_run_spec(raw, index, repo_root, path) for index, raw in enumerate(raw_runs)]
+    if str(payload.get("evaluation_note", "")).lower() == "final" and any(run.simulated for run in runs):
+        raise EvaluationInputError(f"{path}: final evaluation must not contain simulated runs")
     run_ids = [spec.run_id for spec in runs]
     if len(run_ids) != len(set(run_ids)):
         raise EvaluationInputError(f"{path}: duplicate run_id")
-    pairs = payload.get("h1_pairs")
-    if not isinstance(pairs, list) or not pairs:
-        raise EvaluationInputError(f"{path}: h1_pairs must be a nonempty list")
+    pairs = payload.get("h1_pairs", [])
+    if not isinstance(pairs, list):
+        raise EvaluationInputError(f"{path}: h1_pairs must be a list")
     by_id = {spec.run_id: spec for spec in runs}
     h1_pairs: list[dict[str, str]] = []
     for index, raw in enumerate(pairs):
@@ -203,7 +237,9 @@ def load_manifest(path: Path, repo_root: Path | None = None) -> ExperimentManife
         manifest_version="1.0", experiment_id=experiment_id,
         evaluation_note=str(payload.get("evaluation_note", "")),
         split=str(dataset.get("split", "")), gt_paths=gt_paths, ids=list(ids),
+        ids_path=ids_path,
         cas_on_gt_path=cas_on_gt_path,
+        domain_annotations_path=domain_annotations_path,
         error_policy=payload.get("error_policy") if isinstance(payload.get("error_policy"), dict) else {},
         runs=runs, h1_pairs=h1_pairs, path=path,
     )

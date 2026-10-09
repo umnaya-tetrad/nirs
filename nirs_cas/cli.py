@@ -40,6 +40,11 @@ def main():
     improvement.add_argument("--ocr", type=Path, required=True)
     improvement.add_argument("--gt", type=Path, nargs="+", required=True)
     improvement.add_argument("--output", type=Path, required=True)
+    subset = commands.add_parser("supported-subset", help="Freeze CAS-supported IDs from a completed GT→CAS report")
+    subset.add_argument("--oracle-report", type=Path, required=True)
+    subset.add_argument("--gt", type=Path, nargs="+", required=True,
+                        help="GT file(s) defining the candidate split and its order")
+    subset.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     try:
         if args.command == "parse":
@@ -58,11 +63,17 @@ def main():
         elif args.command == "improvement-report":
             from .improvement_report import write_improvement_report
             result = write_improvement_report(args.before, args.after, args.ocr, args.gt, args.output, Path(__file__).resolve().parents[1])["metrics"]
+        elif args.command == "supported-subset":
+            from .subset import build_supported_subset
+            result = build_supported_subset(args.oracle_report, args.gt, args.output)
         else:
             result = run_benchmark(args.dataset, args.output, args.timeout)["summary"]
     except (OSError, ValueError) as exc:
         parser.error(str(exc))
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    # PowerShell on some Windows machines still exposes a cp1251 stdout.  The
+    # CLI result is intended for machine consumption, so ASCII escapes make
+    # every subcommand printable without altering the UTF-8 result files.
+    print(json.dumps(result, ensure_ascii=True, indent=2))
 
 
 if __name__ == "__main__":

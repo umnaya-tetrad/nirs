@@ -91,6 +91,40 @@ def test_manifest_rejects_pair_with_wrong_system(tmp_path):
         load_manifest(path, tmp_path)
 
 
+def test_manifest_rejects_simulated_final_evaluation(tmp_path):
+    _write(tmp_path / "gt.json", [_sa("c1", "correct", ["x=1"])])
+    _write(tmp_path / "e2e.json", [_runner_artifact("c1", _sa("c1", "correct", ["x=1"]))])
+    payload = {
+        "manifest_version": "1.0", "experiment_id": "final", "evaluation_note": "final",
+        "dataset": {"split": "final", "gt_paths": ["gt.json"], "ids": ["c1"]},
+        "h1_pairs": [{"provider": "gemini", "e2e_run": "e2e", "cas_run": "cas"}],
+        "runs": [
+            {"run_id": "e2e", "system": "e2e", "provider": "gemini", "mode": "e2e", "simulated": True,
+             "source": {"kind": "runner_artifacts", "path": "e2e.json"}},
+            {"run_id": "cas", "system": "extraction_cas", "provider": "gemini", "mode": "extraction",
+             "source": {"kind": "solution_analysis_array", "path": "gt.json"}},
+        ],
+    }
+    with pytest.raises(EvaluationInputError, match="must not contain simulated"):
+        load_manifest(_write(tmp_path / "manifest.json", payload), tmp_path)
+
+
+def test_manifest_loads_ids_from_fixed_subset_file(tmp_path):
+    _write(tmp_path / "gt.json", [_sa("c1", "correct", ["x=1"])])
+    _write(tmp_path / "subset.json", {"ids": ["c1"]})
+    _write(tmp_path / "source.json", [_runner_artifact("c1", _sa("c1", "correct", ["x=1"]))])
+    payload = {
+        "manifest_version": "1.0", "experiment_id": "subset", "dataset": {
+            "split": "final", "gt_paths": ["gt.json"], "ids_file": "subset.json"},
+        "runs": [{"run_id": "e2e", "system": "e2e", "provider": "gemini", "mode": "e2e",
+                  "source": {"kind": "runner_artifacts", "path": "source.json"}}],
+        "h1_pairs": [],
+    }
+    manifest = load_manifest(_write(tmp_path / "manifest.json", payload), tmp_path)
+    assert manifest.ids == ["c1"]
+    assert manifest.ids_path == tmp_path / "subset.json"
+
+
 def test_run_metrics_keep_api_failures_in_denominator():
     good = _sa("good", "correct", ["x=1"])
     bad = _sa("bad", "incorrect", ["2x=4", "x=3"], first_error="s2")
@@ -105,6 +139,52 @@ def test_run_metrics_keep_api_failures_in_denominator():
     assert metrics["status_counts"]["api_failed"] == 1
     assert metrics["missing_ids"] == ["bad"]
     assert metrics["coverage"] == 0.5
+    assert metrics["confusion_matrix"] == {"tp": 0, "fp": 0, "tn": 1, "fn": 1,
+                                            "positive_class": "incorrect", "policy": "abstention_as_not_detected"}
+
+
+def test_imbalance_metrics_and_always_incorrect_baseline_are_explicit():
+    gt = {
+        "a": _sa("a", "incorrect", ["x=1"], first_error="s1"),
+        "b": _sa("b", "incorrect", ["x=1"], first_error="s1"),
+        "c": _sa("c", "correct", ["x=1"]),
+    }
+    predicted = {
+        "a": RunRecord("a", STATUS_OK, gt["a"]),
+        "b": RunRecord("b", STATUS_OK, _sa("b", "correct", ["x=1"])),
+        "c": RunRecord("c", STATUS_OK, _sa("c", "incorrect", ["x=1"], first_error="s1")),
+    }
+    run = RunData(spec=_run_spec("e2e", "e2e", "e2e", "solution_analysis_array", "x.json"), records=predicted, id_set=set(predicted))
+    metrics = run_metrics(run, gt, ["a", "b", "c"])
+    assert metrics["confusion_matrix"] == {"tp": 1, "fp": 1, "tn": 0, "fn": 1,
+                                            "positive_class": "incorrect", "policy": "abstention_as_not_detected"}
+    assert metrics["incorrect_detection"]["specificity"] == 0.0
+    assert metrics["incorrect_detection"]["balanced_accuracy"] == 0.25
+    assert metrics["always_incorrect_baseline"]["accuracy_all"] == pytest.approx(2 / 3)
+
+
+def test_run_metrics_reports_vlm_cas_and_end_to_end_latency_separately():
+    good = _sa("good", "correct", ["x=1"])
+    spec = _run_spec("cas", "extraction_cas", "extraction", "solution_analysis_array", "x.json")
+    run = RunData(spec=spec, records={
+        "good": RunRecord("good", STATUS_OK, good, vlm_latency_ms=12_000, cas_latency_ms=250),
+    }, id_set={"good"})
+    metrics = run_metrics(run, {"good": good}, ["good"])
+    assert metrics["mean_vlm_latency_ms"] == 12_000
+    assert metrics["mean_cas_latency_ms"] == 250
+    assert metrics["mean_pipeline_latency_ms"] == 12_250
+
+
+def test_first_error_metric_aligns_different_step_ids():
+    gt = _sa("case", "incorrect", ["2x=4", "x=3"], first_error="s2")
+    prediction = _sa("case", "incorrect", ["2x=4", "x=3"], first_error="model_step_b")
+    prediction["steps"][0]["step_id"] = "model_step_a"
+    prediction["steps"][1]["step_id"] = "model_step_b"
+    run = RunData(spec=_run_spec("e2e", "e2e", "e2e", "solution_analysis_array", "x.json"),
+                  records={"case": RunRecord("case", STATUS_OK, prediction)}, id_set={"case"})
+    metrics = run_metrics(run, {"case": gt}, ["case"])
+    assert metrics["first_error_accuracy_on_incorrect"] == 0.0
+    assert metrics["first_error_accuracy_aligned_on_incorrect"] == 1.0
 
 
 def test_h1_paired_metrics_and_bootstrap():
@@ -153,6 +233,9 @@ def test_h3_disagreement_routes_to_manual():
     assert analysis["policies"]["disagreement_routing"]["automation_rate"] == 0.5
     assert analysis["policies"]["disagreement_routing"]["accuracy_on_automated"] == 1.0
     assert analysis["rows"][0]["disagreement_routing_source"] == "manual"
+    assert analysis["rows"][0]["agree"] is None
+    assert analysis["comparison"]["comparable_pairs"] == 1
+    assert analysis["policies"]["disagreement_routing"]["captured_e2e_error_recall"] is None
 
 
 def _integration_workspace(tmp_path, cas_ids=("good", "bad")):
@@ -197,7 +280,8 @@ def test_run_experiment_writes_all_outputs(tmp_path):
     manifest_path = _integration_workspace(tmp_path)
     output = tmp_path / "out"
     payload = experiment.run_experiment(manifest_path, output, repo_root=tmp_path)
-    for name in ("report.json", "cases.csv", "h1_paired.csv", "h2_ocr.csv", "h3_routing.csv", "report.md"):
+    for name in ("report.json", "cases.csv", "h1_paired.csv", "h2_ocr.csv", "h3_routing.csv", "report.md",
+                 "plots/h1_accuracy.svg", "plots/h3_automation.svg"):
         assert (output / name).exists(), name
     key = next(iter(payload["h1"]["pairs"]))
     assert payload["h1"]["pairs"][key]["e2e"]["accuracy_all"] == 1.0
@@ -207,10 +291,11 @@ def test_run_experiment_writes_all_outputs(tmp_path):
     assert payload["experiment"]["ids_count"] == 2
 
 
-def test_run_experiment_rejects_id_set_mismatch(tmp_path):
+def test_run_experiment_marks_id_set_mismatch_incomplete(tmp_path):
     manifest_path = _integration_workspace(tmp_path, cas_ids=("good",))
-    with pytest.raises(EvaluationInputError, match="id sets differ"):
-        experiment.run_experiment(manifest_path, tmp_path / "out", repo_root=tmp_path)
+    payload = experiment.run_experiment(manifest_path, tmp_path / "out", repo_root=tmp_path)
+    assert payload["experiment"]["complete"] is False
+    assert payload["experiment"]["incomplete_runs"] == {"cas": ["bad"]}
 
 
 @pytest.mark.parametrize("omit", ["baseline", "extraction", "both"])

@@ -1,0 +1,7 @@
+{
+  "ids": [
+    "img_509_pert_5.1",
+    "img_221_pert_5.3"
+  ],
+  "purpose": "bounded real API smoke: one GT-correct and one GT-incorrect dev solution"
+}

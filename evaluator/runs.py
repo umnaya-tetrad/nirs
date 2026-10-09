@@ -29,6 +29,8 @@ class RunRecord:
     vlm_tokens_in: int | None = None
     vlm_tokens_out: int | None = None
     cas_latency_ms: int | None = None
+    cost_rub: float | None = None
+    cost_kind: str | None = None
 
 
 @dataclass
@@ -39,6 +41,7 @@ class RunData:
     unmapped: list[dict[str, Any]] = field(default_factory=list)
     provenance: dict[str, Any] = field(default_factory=dict)
     extraction: dict[str, dict[str, Any]] | None = None
+    extraction_usage: dict[str, dict[str, Any]] | None = None
 
 
 def _file_sha256(path: Path) -> str:
@@ -49,9 +52,13 @@ def _source_provenance(spec: RunSpec) -> dict[str, Any]:
     source = {"kind": spec.source_kind, "path": str(spec.source_path), "key": spec.source_key}
     if spec.source_kind == "runner_artifacts" and spec.source_path.is_dir():
         files = [{"path": path.name, "sha256": _file_sha256(path)}
-                 for path in sorted(spec.source_path.glob("*.json"))]
+                 for path in sorted(spec.source_path.glob("*.json")) if path.name != "run_metadata.json"]
         canonical = json.dumps(files, sort_keys=True, separators=(",", ":")).encode("utf-8")
         source.update(files=files, sha256=hashlib.sha256(canonical).hexdigest())
+        metadata = spec.source_path / "run_metadata.json"
+        if metadata.is_file():
+            source["run_metadata"] = {"path": metadata.name, "sha256": _file_sha256(metadata),
+                                      "data": _read_json(metadata)}
     else:
         source["sha256"] = _file_sha256(spec.source_path)
     return source
@@ -93,6 +100,16 @@ def _meta_usage(meta: Any) -> tuple[int | None, int | None, int | None]:
     return _int_or_none(meta.get("duration_ms")), _int_or_none(meta.get("tokens_in")), _int_or_none(meta.get("tokens_out"))
 
 
+def _usage_cost(usage: Any) -> tuple[float | None, str | None]:
+    if not isinstance(usage, dict):
+        return None, None
+    if isinstance(usage.get("cost_rub"), (int, float)):
+        return float(usage["cost_rub"]), "provider_reported"
+    if isinstance(usage.get("estimated_cost_rub"), (int, float)):
+        return float(usage["estimated_cost_rub"]), "estimated"
+    return None, None
+
+
 def _record_from_sa(record: Any, repo_root: Path, index: int, unmapped: list[dict[str, Any]]) -> RunRecord | None:
     if not isinstance(record, dict):
         unmapped.append({"index": index, "reason": "record is not an object"})
@@ -124,11 +141,14 @@ def _record_from_artifact(artifact: Any, repo_root: Path, index: int, unmapped: 
         latency = _int_or_none(artifact.get("latency_ms"))
         tokens_in = _int_or_none(usage.get("prompt_tokens"))
         tokens_out = _int_or_none(usage.get("completion_tokens"))
+        cost_rub, cost_kind = _usage_cost(usage)
         if status is None:
             return RunRecord(id=record_id, status=STATUS_OK, contract=contract,
-                             vlm_latency_ms=latency, vlm_tokens_in=tokens_in, vlm_tokens_out=tokens_out)
+                             vlm_latency_ms=latency, vlm_tokens_in=tokens_in, vlm_tokens_out=tokens_out,
+                             cost_rub=cost_rub, cost_kind=cost_kind)
         return RunRecord(id=record_id, status=STATUS_INVALID_CONTRACT, note=note,
-                         vlm_latency_ms=latency, vlm_tokens_in=tokens_in, vlm_tokens_out=tokens_out)
+                         vlm_latency_ms=latency, vlm_tokens_in=tokens_in, vlm_tokens_out=tokens_out,
+                         cost_rub=cost_rub, cost_kind=cost_kind)
     error_type = artifact.get("error_type") or "UnknownError"
     status = STATUS_INVALID_CONTRACT if "Contract" in str(error_type) else STATUS_API_FAILED
     return RunRecord(id=record_id, status=status, error_type=str(error_type), note=artifact.get("error"))
@@ -182,11 +202,13 @@ def _load_bundle(path: Path, repo_root: Path) -> dict[str, RunRecord]:
     return records
 
 
-def _load_extraction(spec: RunSpec, repo_root: Path) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+def _load_extraction(spec: RunSpec, repo_root: Path) -> tuple[dict[str, dict[str, Any]], dict[str, Any], dict[str, dict[str, Any]]]:
     assert spec.extraction_path is not None
     from nirs_cas.adapter import extract_step_latex
     path = spec.extraction_path
     contracts: dict[str, dict[str, Any]] = {}
+    usage_by_id: dict[str, dict[str, Any]] = {}
+    failed_artifacts: list[dict[str, Any]] = []
     provenance: dict[str, Any]
     if spec.extraction_kind == "bundle":
         payload = _read_json(path)
@@ -202,16 +224,43 @@ def _load_extraction(spec: RunSpec, repo_root: Path) -> tuple[dict[str, dict[str
                 raise EvaluationInputError(f"{path}: items[{index}] contract_sha256 mismatch")
             extract_step_latex(contract)
             contracts[record_id] = contract
+            usage_by_id[record_id] = contract.get("meta") if isinstance(contract.get("meta"), dict) else {}
         provenance = {"path": str(path), "sha256": _file_sha256(path)}
     else:
-        records = _load_array(path, repo_root, [], artifact_style=True)
-        for record in records.values():
-            if record.status != STATUS_OK or not isinstance(record.contract, dict):
-                raise EvaluationInputError(f"{path}: extraction artifact {record.id} is not a valid contract")
-            extract_step_latex(record.contract)
-            contracts[record.id] = record.contract
-        provenance = {"path": str(path), "sha256": _file_sha256(path)}
-    return contracts, provenance
+        if path.is_dir():
+            artifact_paths = [artifact_path for artifact_path in sorted(path.glob("*.json"))
+                              if artifact_path.name != "run_metadata.json"]
+        else:
+            artifact_paths = [path]
+        for artifact_path in artifact_paths:
+            artifact = _read_json(artifact_path)
+            record_id = artifact.get("case_id") if isinstance(artifact, dict) else None
+            contract = artifact.get("contract") if isinstance(artifact, dict) else None
+            if not isinstance(record_id, str) or not record_id:
+                raise EvaluationInputError(f"{artifact_path}: extraction artifact needs case_id")
+            if artifact.get("status") != STATUS_OK:
+                failed_artifacts.append({"id": record_id, "error_type": artifact.get("error_type"), "error": artifact.get("error")})
+                continue
+            if not isinstance(contract, dict):
+                raise EvaluationInputError(f"{artifact_path}: successful extraction artifact needs a contract")
+            if record_id in contracts:
+                raise EvaluationInputError(f"{path}: duplicate extraction id {record_id}")
+            # Extraction contracts intentionally are MathCoreInput, not
+            # SolutionAnalysis; only their steps[].latex is required here.
+            extract_step_latex(contract)
+            contracts[record_id] = contract
+            usage_by_id[record_id] = {
+                "duration_ms": artifact.get("latency_ms"),
+                **(artifact.get("usage") if isinstance(artifact.get("usage"), dict) else {}),
+            }
+        if path.is_dir():
+            files = [{"path": artifact_path.name, "sha256": _file_sha256(artifact_path)}
+                     for artifact_path in sorted(path.glob("*.json")) if artifact_path.name != "run_metadata.json"]
+            provenance = {"path": str(path), "files": files, "failed_artifacts": failed_artifacts,
+                          "sha256": hashlib.sha256(json.dumps(files, sort_keys=True, separators=(",", ":")).encode()).hexdigest()}
+        else:
+            provenance = {"path": str(path), "sha256": _file_sha256(path)}
+    return contracts, provenance, usage_by_id
 
 
 def load_run(spec: RunSpec, manifest: ExperimentManifest, repo_root: Path) -> RunData:
@@ -222,6 +271,8 @@ def load_run(spec: RunSpec, manifest: ExperimentManifest, repo_root: Path) -> Ru
         if spec.source_path.is_dir():
             records = {}
             for path in sorted(spec.source_path.glob("*.json")):
+                if path.name == "run_metadata.json":
+                    continue
                 for record_id, record in _load_array(path, repo_root, unmapped, artifact_style=True).items():
                     if record_id in records:
                         raise EvaluationInputError(f"{spec.source_path}: duplicate id {record_id}")
@@ -240,31 +291,51 @@ def load_run(spec: RunSpec, manifest: ExperimentManifest, repo_root: Path) -> Ru
     manifest_ids = set(manifest.ids)
     unknown = set(records) - manifest_ids
     if unknown:
-        raise EvaluationInputError(f"run {spec.run_id}: ids absent from the manifest: {sorted(unknown)}")
+        if spec.select_manifest_ids:
+            records = {record_id: record for record_id, record in records.items() if record_id in manifest_ids}
+        else:
+            raise EvaluationInputError(f"run {spec.run_id}: ids absent from the manifest: {sorted(unknown)}")
 
     extraction = None
+    extraction_usage = None
     provenance: dict[str, Any] = {"source": _source_provenance(spec)}
     if spec.extraction_path is not None:
-        extraction, extraction_provenance = _load_extraction(spec, repo_root)
+        extraction, extraction_provenance, extraction_usage = _load_extraction(spec, repo_root)
         unknown = set(extraction) - manifest_ids
         if unknown:
-            raise EvaluationInputError(f"run {spec.run_id}: extraction ids absent from the manifest: {sorted(unknown)}")
+            if spec.select_manifest_ids:
+                extraction = {record_id: contract for record_id, contract in extraction.items() if record_id in manifest_ids}
+                extraction_usage = {record_id: usage for record_id, usage in (extraction_usage or {}).items() if record_id in manifest_ids}
+            else:
+                raise EvaluationInputError(f"run {spec.run_id}: extraction ids absent from the manifest: {sorted(unknown)}")
         provenance["extraction_artifacts"] = extraction_provenance
 
     for record_id, record in records.items():
+        # The primary source of an extraction→CAS run is a CAS-produced
+        # SolutionAnalysis.  Its ``meta.duration_ms`` is therefore CAS time,
+        # not OCR/VLM time.  Keep the two components separate; otherwise a
+        # 10–20 second VLM request is incorrectly reported as a sub-second
+        # pipeline run.
+        if spec.system in ("extraction_cas", "assisted_cas"):
+            record.cas_latency_ms = record.vlm_latency_ms
+            record.vlm_latency_ms = None
         if extraction is not None and record_id in extraction:
-            latency, tokens_in, tokens_out = _meta_usage(extraction[record_id].get("meta"))
-            record.vlm_latency_ms = record.vlm_latency_ms if record.vlm_latency_ms is not None else latency
-            record.vlm_tokens_in = record.vlm_tokens_in if record.vlm_tokens_in is not None else tokens_in
-            record.vlm_tokens_out = record.vlm_tokens_out if record.vlm_tokens_out is not None else tokens_out
+            usage = (extraction_usage or {}).get(record_id, extraction[record_id].get("meta"))
+            latency, tokens_in, tokens_out = _meta_usage(usage)
+            record.vlm_latency_ms = latency
+            record.vlm_tokens_in = tokens_in
+            record.vlm_tokens_out = tokens_out
+            record.cost_rub, record.cost_kind = _usage_cost(usage)
         if record.status == STATUS_OK and isinstance(record.contract, dict):
             meta = record.contract.get("meta")
-            if isinstance(meta, dict) and record.vlm_latency_ms is None and isinstance(meta.get("duration_ms"), (int, float)):
+            if (spec.system == "e2e" and isinstance(meta, dict)
+                    and record.vlm_latency_ms is None and isinstance(meta.get("duration_ms"), (int, float))):
                 record.vlm_latency_ms = int(meta["duration_ms"])
-            record.cas_latency_ms = _int_or_none((meta or {}).get("duration_ms")) if record.contract.get("pipeline") else None
+            if spec.system in ("extraction_cas", "assisted_cas") and record.cas_latency_ms is None:
+                record.cas_latency_ms = _int_or_none((meta or {}).get("duration_ms"))
 
     return RunData(spec=spec, records=records, id_set=set(records), unmapped=unmapped,
-                   provenance=provenance, extraction=extraction)
+                   provenance=provenance, extraction=extraction, extraction_usage=extraction_usage)
 
 
 def _load_array_from_records(payload: list[Any], repo_root: Path, unmapped: list[dict[str, Any]]) -> dict[str, RunRecord]:

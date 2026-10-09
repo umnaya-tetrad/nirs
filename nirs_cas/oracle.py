@@ -18,7 +18,17 @@ from .contracts import analyze_contract
 
 def load_records(paths):
     records, sources, ids = [], [], set()
-    for path in paths:
+    expanded_paths = []
+    for supplied in paths:
+        supplied = Path(supplied)
+        if supplied.is_dir():
+            files = sorted(path for path in supplied.glob('*.json') if path.name != 'run_metadata.json')
+            if not files:
+                raise ValueError(f'Runner artifact directory contains no JSON files: {supplied}')
+            expanded_paths.extend(files)
+        else:
+            expanded_paths.append(supplied)
+    for path in expanded_paths:
         path = Path(path)
         raw = path.read_bytes()
         data = json.loads(raw.decode('utf-8-sig'))
@@ -89,6 +99,16 @@ def run_oracle(paths, output, *, timeout=10, workers=4, split_name='exploratory_
             canonical = analyze_exact_contract(item, result=result)
         else:
             canonical = analyze_contract(item, result=result)
+        # Preserve isolated-worker wall time in the emitted artifact without
+        # changing CAS mathematics. ``analyze_contract`` intentionally times
+        # only its own pure adapter call; the experiment needs process time.
+        worker_ms = result.get('wall_ms') if isinstance(result.get('wall_ms'), (int, float)) else result.get('latency_ms')
+        if isinstance(worker_ms, (int, float)):
+            canonical = json.loads(json.dumps(canonical))
+            canonical.setdefault('meta', {})['duration_ms'] = round(worker_ms)
+            for stage in canonical.get('pipeline', {}).get('stages', []):
+                if stage.get('name') == 'verify':
+                    stage['duration_ms'] = round(worker_ms)
         step_ids = [s.get('step_id', f's{i}') for i, s in enumerate(item['steps'], 1)]
         first = result['first_error_step']
         row = {'id': item['id'], **result, 'verdict': canonical['verdict'],

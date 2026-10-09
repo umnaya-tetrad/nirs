@@ -1,0 +1,26 @@
+{
+  "manifest_version": "1.0",
+  "experiment_id": "final80_e2e",
+  "evaluation_note": "final",
+  "dataset": {
+    "split": "final-80",
+    "gt_paths": ["dataset/final_gt.json"],
+    "domain_annotations": {"path": "dataset/annotations/math_domains_final80.json"},
+    "ids": [
+      "img_400_pert_5.1", "img_374_pert_5.1", "img_480_pert_5.1", "img_19_pert_5.1", "img_494_pert_5.1", "img_559_pert_5.1", "img_464_pert_5.1", "img_387_pert_5.1", "img_22_pert_5.1", "img_568_pert_5.2", "img_482_pert_5.2", "img_559_pert_5.2", "img_448_pert_5.2", "img_173_pert_5.3", "img_165_pert_5.3", "img_193_pert_5.3", "img_375_pert_5.3", "img_568_pert_3.1", "img_494_pert_3.1", "img_466_pert_3.1", "img_542_pert_3.1", "img_462_pert_3.1", "img_108_pert_3.1", "img_89_pert_3.1", "img_559_pert_3.1", "img_99_pert_3.1", "img_233_pert_3.2", "img_190_pert_3.2", "img_559_pert_3.2", "img_172_pert_3.2", "img_151_pert_3.2", "img_586_pert_3.2", "img_448_pert_3.2", "img_471_pert_3.2", "img_462_pert_2.5", "img_173_pert_2.5", "img_35_pert_2.5", "img_375_pert_2.5", "img_574_pert_2.5", "img_395_pert_2.5", "img_494_pert_2.5", "img_68_pert_2.5", "img_111_pert_1.3", "img_463_pert_1.3", "img_465_pert_1.3", "img_108_pert_1.4", "img_427_pert_1.4", "img_472_pert_1.4", "img_96_pert_1.4", "img_503_pert_1.4", "img_466_pert_1.4", "img_111_pert_2.1", "img_98_pert_2.1", "img_372_pert_2.1", "img_109_pert_2.1", "img_223_pert_2.2", "img_465_pert_2.2", "img_529_pert_2.2", "img_573_pert_2.2", "img_226_pert_2.2", "img_176_pert_4.3", "img_151_pert_4.3", "img_92_pert_4.3", "img_91_pert_2.3", "img_373_pert_2.3", "img_112_pert_4.4", "img_115_pert_4.4", "img_529_pert_4.5", "img_157_pert_2.4", "img_398_pert_2.4", "img_160_pert_2.4", "img_157_pert_1.5", "img_225_pert_1.5", "img_560_pert_1.5", "img_465_pert_1.5", "img_540_pert_1.5", "img_153_pert_1.5", "img_194_pert_1.5", "img_220_pert_1.5", "img_220_pert_4.6"
+    ]
+  },
+  "runs": [
+    {
+      "run_id": "gemini_e2e", "system": "e2e", "provider": "gemini", "mode": "e2e",
+      "model": "google/gemini-3.7-flash", "prompt_version": "v1", "prompt_sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad",
+      "simulated": false, "pricing": {"input_per_million": 88.23, "output_per_million": 441.16}, "source": {"kind": "runner_artifacts", "path": "outputs/final80/gemini-e2e"}
+    },
+    {
+      "run_id": "gigachat_e2e", "system": "e2e", "provider": "gigachat", "mode": "e2e",
+      "model": "GigaChat-2-Pro", "prompt_version": "v1", "prompt_sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d",
+      "simulated": false, "source": {"kind": "runner_artifacts", "path": "outputs/final80/gigachat-e2e"}
+    }
+  ],
+  "h1_pairs": []
+}

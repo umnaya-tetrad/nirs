@@ -3,7 +3,7 @@ from pathlib import Path
 from threading import Barrier, get_ident
 
 from nirs_llm.client import ModelResponse
-from nirs_llm.client import PolzaInvalidResponseError, PolzaUnavailableError
+from nirs_llm.client import PolzaInvalidResponseError, PolzaProviderError, PolzaUnavailableError
 from nirs_llm import run as runner
 import pytest
 
@@ -53,6 +53,40 @@ def test_accepts_llm_json_test_manifest_format(tmp_path: Path, monkeypatch) -> N
 
     monkeypatch.setattr(runner, "GeminiPolzaClient", FakeClient)
     assert runner.run("e2e", manifest, tmp_path / "out", Path(__file__).resolve().parents[1])
+
+
+def test_retry_then_resume_never_resends_saved_success(tmp_path: Path, monkeypatch) -> None:
+    image = tmp_path / "solution.jpg"
+    image.write_bytes(b"mock")
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps({"cases": [{"id": "a", "image": "solution.jpg"}]}), encoding="utf-8")
+    calls = []
+
+    class FakeClient:
+        model = "google/gemini-3.7-flash"
+        def __init__(self, _settings): pass
+        def analyze(self, *_args):
+            calls.append(1)
+            if len(calls) == 1:
+                raise PolzaProviderError(503, retry_after_seconds=0)
+            projection = {"schema_version": "e2e_gemini_v1", "steps": [{"step_id": "s1", "latex": "x=1"}], "has_error": False, "first_error_step": None}
+            return ModelResponse(projection, json.dumps(projection), self.model, {})
+
+    monkeypatch.setattr(runner, "GeminiPolzaClient", FakeClient)
+    monkeypatch.setattr(runner.time, "sleep", lambda _delay: None)
+    runner.run("e2e", manifest, tmp_path / "out", Path(__file__).resolve().parents[1], run_name="resumable", max_attempts=2)
+    assert len(calls) == 2
+    runner.run("e2e", manifest, tmp_path / "out", Path(__file__).resolve().parents[1], run_name="resumable", resume=True)
+    assert len(calls) == 2
+    metadata = json.loads((tmp_path / "out" / "resumable" / "run_metadata.json").read_text(encoding="utf-8"))
+    assert metadata["completion"]["successful"] == 1
+
+
+def test_permanent_provider_error_is_not_retryable():
+    assert runner._is_retryable(PolzaProviderError(429))
+    assert runner._is_retryable(PolzaProviderError(503))
+    assert not runner._is_retryable(PolzaProviderError(401))
+    assert not runner._is_retryable(PolzaProviderError(400))
 
 
 def test_smoke_run_records_invalid_model_response_and_continues(tmp_path: Path, monkeypatch) -> None:
@@ -121,6 +155,29 @@ def test_fail_fast_writes_artifact_then_raises(tmp_path: Path, monkeypatch) -> N
     assert json.loads(artifact.read_text(encoding="utf-8"))["status"] == "error"
 
 
+def test_fail_fast_does_not_submit_a_second_paid_case(tmp_path: Path, monkeypatch) -> None:
+    for name in ("first.jpg", "second.jpg"):
+        (tmp_path / name).write_bytes(b"image")
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps([
+        {"case_id": "first", "filename": "first.jpg"},
+        {"case_id": "second", "filename": "second.jpg"},
+    ]), encoding="utf-8")
+
+    class FailingClient:
+        model = "google/gemini-3.7-flash"
+        def __init__(self): self.calls = 0
+        def analyze(self, *_args):
+            self.calls += 1
+            raise PolzaInvalidResponseError("bad JSON", "not json")
+
+    client = FailingClient()
+    monkeypatch.setattr(runner, "_client_for", lambda *_args: client)
+    with pytest.raises(runner.RunFailedError):
+        runner.run("e2e", manifest, tmp_path / "out", Path(__file__).resolve().parents[1], fail_fast=True, workers=1)
+    assert client.calls == 1
+
+
 def test_case_selection_uses_manifest_order_and_rejects_unknown_ids(tmp_path: Path, monkeypatch) -> None:
     for name in ("first.jpg", "second.jpg"):
         (tmp_path / name).write_bytes(b"image")
@@ -146,7 +203,7 @@ def test_case_selection_uses_manifest_order_and_rejects_unknown_ids(tmp_path: Pa
         runner.run("e2e", manifest, tmp_path / "other", Path(__file__).resolve().parents[1], case_ids={"missing"})
 
 
-def test_gemini_cases_run_in_parallel_but_result_paths_stay_in_manifest_order(tmp_path: Path, monkeypatch) -> None:
+def test_gemini_cases_persist_serially_in_manifest_order(tmp_path: Path, monkeypatch) -> None:
     for name in ("first.jpg", "second.jpg"):
         (tmp_path / name).write_bytes(b"image")
     manifest = tmp_path / "manifest.json"
@@ -154,7 +211,6 @@ def test_gemini_cases_run_in_parallel_but_result_paths_stay_in_manifest_order(tm
         json.dumps([{"case_id": "first", "filename": "first.jpg"}, {"case_id": "second", "filename": "second.jpg"}]),
         encoding="utf-8",
     )
-    barrier = Barrier(2, timeout=2)
     thread_ids: list[int] = []
 
     class FakeClient:
@@ -162,7 +218,6 @@ def test_gemini_cases_run_in_parallel_but_result_paths_stay_in_manifest_order(tm
         def __init__(self, _settings): pass
         def analyze(self, _image, _mime, _mode, _prompt_version=None):
             thread_ids.append(get_ident())
-            barrier.wait()
             return ModelResponse(
                 {"schema_version": "e2e_gemini_v1", "steps": [{"step_id": "s1", "latex": "x=1"}], "has_error": False, "first_error_step": None},
                 "{}", self.model, {},
@@ -171,7 +226,7 @@ def test_gemini_cases_run_in_parallel_but_result_paths_stay_in_manifest_order(tm
     monkeypatch.setattr(runner, "GeminiPolzaClient", FakeClient)
     paths = runner.run("e2e", manifest, tmp_path / "out", Path(__file__).resolve().parents[1], workers=2)
     assert [path.stem for path in paths] == ["first", "second"]
-    assert len(set(thread_ids)) == 2
+    assert len(set(thread_ids)) == 1
 
 
 def test_gigachat_rejects_parallel_workers() -> None:

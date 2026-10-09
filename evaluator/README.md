@@ -93,6 +93,17 @@ PYTHONPATH=. python -m evaluator experiment \
 и **симулированный** e2e (`evaluator/fixtures/e2e_simulated_dev_20.json`, флаг `simulated: true`,
 регенерируется `python evaluator/fixtures/simulate_e2e.py`) для провайдера gemini.
 
+Каждый source и связанный extraction-бандл обязаны содержать **ровно полный набор ID** из
+`dataset.ids` manifest. Неполный запуск не может быть случайно выдан за парный эксперимент.
+`evaluation_note: "final"` запрещает simulated runs; exploratory-отчёт с ними получает явную
+пометку, что он не готов для научного результата.
+
+Для extraction→CAS latency разложена на `mean_vlm_latency_ms`, `mean_cas_latency_ms` и
+`mean_pipeline_latency_ms` (сумма компонентов). H3 считает agreement только среди двух
+decidable verdicts: `UNSUPPORTED`/timeout/indeterminate CAS направляются в ручную очередь, но
+не считаются содержательным disagreement. В отчёт добавлены error-rate ручной очереди и recall
+захваченных ошибочных E2E-решений.
+
 ### Выходные файлы
 
 `report.json` (полный отчёт с провенансом), `cases.csv`, `h1_paired.csv`, `h2_ocr.csv`,

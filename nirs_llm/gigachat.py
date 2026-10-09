@@ -26,12 +26,13 @@ class GigaChatUnavailableError(RuntimeError):
 
 
 class GigaChatProviderError(RuntimeError):
-    def __init__(self, operation: str, status_code: int, error_code: str | None = None) -> None:
+    def __init__(self, operation: str, status_code: int, error_code: str | None = None, retry_after_seconds: float | None = None) -> None:
         suffix = f" ({error_code})" if error_code else ""
         super().__init__(f"GigaChat {operation} returned HTTP {status_code}{suffix}")
         self.operation = operation
         self.status_code = status_code
         self.error_code = error_code
+        self.retry_after_seconds = retry_after_seconds
 
 
 @dataclass
@@ -87,7 +88,7 @@ class GigaChatDirectClient:
                 raise ValueError("access_token is missing")
             return token
         except httpx.HTTPStatusError as error:
-            raise GigaChatProviderError("OAuth", error.response.status_code, _safe_error_code(error.response)) from error
+            raise GigaChatProviderError("OAuth", error.response.status_code, _safe_error_code(error.response), _retry_after(error.response)) from error
         except httpx.HTTPError as error:
             raise GigaChatUnavailableError("GigaChat OAuth endpoint is unavailable.") from error
         except ValueError as error:
@@ -108,7 +109,7 @@ class GigaChatDirectClient:
                 raise ValueError("file id is missing")
             return file_id
         except httpx.HTTPStatusError as error:
-            raise GigaChatProviderError("file upload", error.response.status_code, _safe_error_code(error.response)) from error
+            raise GigaChatProviderError("file upload", error.response.status_code, _safe_error_code(error.response), _retry_after(error.response)) from error
         except httpx.HTTPError as error:
             raise GigaChatUnavailableError("GigaChat file endpoint is unavailable.") from error
         except ValueError as error:
@@ -139,7 +140,7 @@ class GigaChatDirectClient:
             response.raise_for_status()
             provider_payload = response.json()
         except httpx.HTTPStatusError as error:
-            raise GigaChatProviderError("chat completion", error.response.status_code, _safe_error_code(error.response)) from error
+            raise GigaChatProviderError("chat completion", error.response.status_code, _safe_error_code(error.response), _retry_after(error.response)) from error
         except httpx.HTTPError as error:
             raise GigaChatUnavailableError("GigaChat chat endpoint is unavailable.") from error
         except ValueError as error:
@@ -205,6 +206,15 @@ def _safe_error_code(response: httpx.Response) -> str | None:
         return None
     value = error.get("code") or error.get("type")
     return value if isinstance(value, str) and len(value) <= 100 else None
+
+
+def _retry_after(response: httpx.Response) -> float | None:
+    raw = response.headers.get("Retry-After")
+    try:
+        value = float(raw) if raw is not None else None
+    except ValueError:
+        return None
+    return value if value is not None and 0 <= value <= 300 else None
 
 
 def _ensure_mincifry_ca_bundle() -> str:

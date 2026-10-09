@@ -1,0 +1,40 @@
+{
+  "manifest_version": "1.0",
+  "experiment_id": "final80_cas_supported",
+  "evaluation_note": "final",
+  "dataset": {
+    "split": "final-80-cas-supported",
+    "gt_paths": ["dataset/final_gt.json"],
+    "ids_file": "dataset/subsets/cas_supported_final_80.json",
+    "cas_on_gt": {"path": "reports/cas_gt_100/predictions.json"},
+    "domain_annotations": {"path": "dataset/annotations/math_domains_final80.json"}
+  },
+  "runs": [
+    {
+      "run_id": "gemini_e2e", "system": "e2e", "provider": "gemini", "mode": "e2e",
+      "model": "google/gemini-3.7-flash", "prompt_version": "v1", "prompt_sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad",
+      "simulated": false, "select_manifest_ids": true, "pricing": {"input_per_million": 88.23, "output_per_million": 441.16}, "source": {"kind": "runner_artifacts", "path": "outputs/final80/gemini-e2e"}
+    },
+    {
+      "run_id": "gemini_assisted_cas", "system": "assisted_cas", "provider": "gemini", "mode": "assisted_extraction",
+      "model": "google/gemini-3.7-flash", "prompt_version": "v2", "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5",
+      "simulated": false, "pricing": {"input_per_million": 88.23, "output_per_million": 441.16}, "source": {"kind": "solution_analysis_array", "path": "reports/final80-cas-supported/gemini-assisted-cas/predictions.json"},
+      "extraction_artifacts": {"kind": "runner_artifacts", "path": "outputs/final80-cas-supported/gemini-assisted-extraction"}
+    },
+    {
+      "run_id": "gigachat_e2e", "system": "e2e", "provider": "gigachat", "mode": "e2e",
+      "model": "GigaChat-2-Pro", "prompt_version": "v1", "prompt_sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d",
+      "simulated": false, "select_manifest_ids": true, "source": {"kind": "runner_artifacts", "path": "outputs/final80/gigachat-e2e"}
+    },
+    {
+      "run_id": "gigachat_assisted_cas", "system": "assisted_cas", "provider": "gigachat", "mode": "assisted_extraction",
+      "model": "GigaChat-2-Pro", "prompt_version": "v2", "prompt_sha256": "f35da71fe3c123ee868179debc8bcc6fdffe52adcd51b05beb0652617bc286c6",
+      "simulated": false, "source": {"kind": "solution_analysis_array", "path": "reports/final80-cas-supported/gigachat-assisted-cas/predictions.json"},
+      "extraction_artifacts": {"kind": "runner_artifacts", "path": "outputs/final80-cas-supported/gigachat-assisted-extraction"}
+    }
+  ],
+  "h1_pairs": [
+    {"provider": "gemini", "e2e_run": "gemini_e2e", "cas_run": "gemini_assisted_cas"},
+    {"provider": "gigachat", "e2e_run": "gigachat_e2e", "cas_run": "gigachat_assisted_cas"}
+  ]
+}

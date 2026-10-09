@@ -1,0 +1,67 @@
+{
+  "subset_version": "1.0",
+  "kind": "cas_supported",
+  "created_at_utc": "2026-10-09T20:37:15.224314+00:00",
+  "ids": [
+    "img_480_pert_5.1",
+    "img_559_pert_5.1",
+    "img_464_pert_5.1",
+    "img_568_pert_5.2",
+    "img_173_pert_5.3",
+    "img_193_pert_5.3",
+    "img_568_pert_3.1",
+    "img_462_pert_3.1",
+    "img_108_pert_3.1",
+    "img_89_pert_3.1",
+    "img_559_pert_3.1",
+    "img_233_pert_3.2",
+    "img_190_pert_3.2",
+    "img_559_pert_3.2",
+    "img_172_pert_3.2",
+    "img_151_pert_3.2",
+    "img_586_pert_3.2",
+    "img_471_pert_3.2",
+    "img_462_pert_2.5",
+    "img_173_pert_2.5",
+    "img_68_pert_2.5",
+    "img_108_pert_1.4",
+    "img_223_pert_2.2",
+    "img_573_pert_2.2",
+    "img_226_pert_2.2",
+    "img_151_pert_4.3",
+    "img_115_pert_4.4",
+    "img_529_pert_4.5",
+    "img_157_pert_2.4",
+    "img_160_pert_2.4",
+    "img_157_pert_1.5",
+    "img_225_pert_1.5",
+    "img_153_pert_1.5",
+    "img_220_pert_1.5"
+  ],
+  "candidate_count": 80,
+  "selected_count": 34,
+  "selection_criterion": {
+    "status_in": [
+      "VALID",
+      "INVALID"
+    ],
+    "covered": true,
+    "parse_status": "OK",
+    "has_error_type": "bool"
+  },
+  "selection_rule": "Selected solely from the completed GT→CAS operational statuses; GT verdict and first-error labels are not read for selection.",
+  "limitations": [
+    "The CAS implementation was tuned using all 100 GT examples; this is not an independent CAS holdout.",
+    "The subset defines the current verifier applicability domain, not a guarantee of CAS correctness."
+  ],
+  "source_oracle_report": {
+    "path": "reports/cas_gt_100/report.json",
+    "sha256": "aeaf03beda1593543276b88674ef42b972f4aaf673a93b682c827ece5e354d8b"
+  },
+  "source_gt": [
+    {
+      "path": "dataset/final_gt.json",
+      "sha256": "7f671f8b9729aa876649441ce8849a53cb3d1e87b8fa1934ad93f99dfd27a487"
+    }
+  ]
+}

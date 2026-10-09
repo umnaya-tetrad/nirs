@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 import argparse
-from concurrent.futures import ThreadPoolExecutor
+import hashlib
 import json
 import mimetypes
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+import re
+import random
+import subprocess
 
 from .client import GeminiPolzaClient, PolzaInvalidResponseError, PolzaProviderError, PolzaUnavailableError
 from .config import Settings
@@ -23,6 +26,9 @@ class RunFailedError(RuntimeError):
 DEFAULT_GEMINI_WORKERS = 2
 DEFAULT_MAX_ATTEMPTS = 3
 RETRY_BASE_DELAY_SECONDS = 1.0
+RETRY_MAX_DELAY_SECONDS = 30.0
+PROVIDER_COOLDOWN_AFTER_CONSECUTIVE_FAILURES = 3
+PROVIDER_COOLDOWN_SECONDS = 60.0
 
 
 def _cases(manifest_path: Path) -> list[dict[str, Any]]:
@@ -87,6 +93,26 @@ def _worker_count(provider: str, requested: int | None) -> int:
     raise ValueError(f"Unknown provider: {provider}")
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _git_commit(repo_root: Path) -> str | None:
+    result = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root, capture_output=True, text=True)
+    return result.stdout.strip() if result.returncode == 0 and result.stdout.strip() else None
+
+
+def _validate_saved(path: Path, case_id: str, provider: str, mode: str, prompt_version: str) -> None:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(f"Cannot resume: invalid saved artifact {path}") from error
+    if not isinstance(payload, dict) or payload.get("case_id") != case_id:
+        raise ValueError(f"Cannot resume: {path} does not belong to {case_id}")
+    if (payload.get("provider"), payload.get("mode"), payload.get("prompt_version")) != (provider, mode, prompt_version):
+        raise ValueError(f"Cannot resume: {path} belongs to a different provider, mode, or prompt version")
+
+
 def _is_retryable(error: Exception) -> bool:
     """Retry transport failures and transient HTTP statuses, never bad model JSON or contracts."""
     if isinstance(error, (PolzaProviderError, GigaChatProviderError)):
@@ -97,13 +123,20 @@ def _is_retryable(error: Exception) -> bool:
     return False
 
 
+def _retry_delay(error: Exception, attempt: int) -> float:
+    """Bounded exponential backoff with provider Retry-After and jitter."""
+    requested = getattr(error, "retry_after_seconds", None)
+    base = requested if isinstance(requested, (int, float)) else RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
+    return round(min(RETRY_MAX_DELAY_SECONDS, max(0.0, base)) + random.uniform(0.0, 0.25), 3)
+
+
 def _run_case(
     case: dict[str, Any], *, client: Any, mode: str, provider: str, prompt: Any, repo_root: Path,
     max_attempts: int,
 ) -> dict[str, Any]:
     response = None
     duration_ms = None
-    retry_errors: list[str] = []
+    retry_errors: list[dict[str, Any]] = []
     try:
         mime_type = case["mime_type"] or mimetypes.guess_type(case["path"].name)[0] or "application/octet-stream"
         image_bytes = case["path"].read_bytes()
@@ -117,8 +150,9 @@ def _run_case(
                 duration_ms = round((time.perf_counter() - started) * 1000)
                 if not _is_retryable(error) or attempt == max_attempts:
                     raise
-                retry_errors.append(f"attempt {attempt}: {type(error).__name__}: {error}")
-                time.sleep(RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1)))
+                delay = _retry_delay(error, attempt)
+                retry_errors.append({"attempt": attempt, "error_type": type(error).__name__, "error": str(error), "retry_delay_seconds": delay})
+                time.sleep(delay)
         if response is None:
             raise RuntimeError("Retry loop completed without a response.")
         if mode == "e2e":
@@ -164,6 +198,8 @@ def run(
     fail_fast: bool = False,
     max_cases: int | None = None,
     skip_cases: int = 0,
+    run_name: str | None = None,
+    resume: bool = False,
 ) -> list[Path]:
     prompt = load_prompt(mode, provider, prompt_version)
     settings = Settings.from_environment(repo_root / ".env")
@@ -174,9 +210,11 @@ def run(
     if max_attempts < 1:
         raise ValueError("max_attempts must be at least 1.")
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    run_dir = output_dir / f"{timestamp}_{provider}_{mode}_{prompt.schema_version}"
-    run_dir.mkdir(parents=True, exist_ok=False)
-    outputs: list[Path] = []
+    if run_name is not None and not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", run_name):
+        raise ValueError("run_name must contain only letters, digits, dot, underscore or hyphen.")
+    if resume and run_name is None:
+        raise ValueError("resume requires an explicit run_name.")
+    run_dir = output_dir / (run_name or f"{timestamp}_{provider}_{mode}_{prompt.schema_version}")
     cases = _select_cases(_cases(manifest), case_ids)
     if skip_cases < 0:
         raise ValueError("skip_cases cannot be negative.")
@@ -187,16 +225,88 @@ def run(
         cases = cases[:max_cases]
     if not cases:
         raise ValueError("Manifest contains no cases to run.")
-    with ThreadPoolExecutor(max_workers=resolved_workers) as executor:
-        futures = [executor.submit(_run_case, case, client=client, mode=mode, provider=provider, prompt=prompt, repo_root=repo_root, max_attempts=max_attempts) for case in cases]
-        artifacts = [future.result() for future in futures]
-    for case, artifact in zip(cases, artifacts, strict=True):
+    metadata_path = run_dir / "run_metadata.json"
+    if run_dir.exists():
+        if not resume:
+            raise FileExistsError(f"Run directory already exists: {run_dir}. Use --resume to avoid duplicate requests.")
+        if not metadata_path.is_file():
+            raise ValueError(f"Cannot resume: missing {metadata_path}")
+    else:
+        run_dir.mkdir(parents=True, exist_ok=False)
+        metadata_path.write_text(json.dumps({
+            "artifact_version": "1.0", "created_at_utc": datetime.now(timezone.utc).isoformat(),
+            "provider": provider, "mode": mode, "model": client.model, "prompt": prompt.artifact(),
+            "git_commit": _git_commit(repo_root),
+            "dataset_manifest": {"path": str(manifest), "sha256": _sha256(manifest), "ids": [case["id"] for case in cases]},
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    completed: dict[str, Path] = {}
+    prior_failures: dict[str, list[dict[str, Any]]] = {}
+    if resume:
+        for case in cases:
+            path = run_dir / f"{case['id']}.json"
+            if path.is_file():
+                _validate_saved(path, case["id"], provider, mode, prompt.version)
+                saved = json.loads(path.read_text(encoding="utf-8"))
+                if saved.get("status") == "ok":
+                    completed[case["id"]] = path
+                else:
+                    prior_failures[case["id"]] = [{
+                        "error_type": saved.get("error_type"), "error": saved.get("error"),
+                        "attempts": saved.get("attempts"), "retry_errors": saved.get("retry_errors", []),
+                    }]
+    pending = [case for case in cases if case["id"] not in completed]
+    outputs: list[Path] = list(completed.values())
+    def save(case: dict[str, Any], artifact: dict[str, Any]) -> Path:
+        if case["id"] in prior_failures:
+            artifact["prior_failures"] = prior_failures[case["id"]]
         path = run_dir / f"{case['id']}.json"
         path.write_text(json.dumps(artifact, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         outputs.append(path)
-        if artifact["status"] == "error" and fail_fast:
-            raise RunFailedError(f"Stopped after {case['id']}: {artifact['error']}. Diagnostic: {path}")
-    return outputs
+        return path
+
+    def finalize_metadata() -> None:
+        artifacts: list[dict[str, Any]] = []
+        for case in cases:
+            path = run_dir / f"{case['id']}.json"
+            if not path.is_file():
+                artifacts.append({"case_id": case["id"], "status": "not_attempted"})
+                continue
+            try:
+                saved = json.loads(path.read_text(encoding="utf-8"))
+                artifacts.append({"case_id": case["id"], "status": saved.get("status", "invalid_artifact"),
+                                  "error_type": saved.get("error_type"), "error": saved.get("error")})
+            except (OSError, json.JSONDecodeError):
+                artifacts.append({"case_id": case["id"], "status": "invalid_artifact"})
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        metadata["last_updated_utc"] = datetime.now(timezone.utc).isoformat()
+        metadata["completion"] = {
+            "expected": len(cases), "successful": sum(item["status"] == "ok" for item in artifacts),
+            "failed": sum(item["status"] == "error" for item in artifacts),
+            "not_attempted": sum(item["status"] == "not_attempted" for item in artifacts), "artifacts": artifacts,
+        }
+        metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    # Serial persistence is intentional: every completed request is durable before
+    # another potentially billable request starts.  ``workers`` is retained for
+    # compatibility but experiments use one worker to make resume unambiguous.
+    consecutive_transient_failures = 0
+    for case in pending:
+        if consecutive_transient_failures >= PROVIDER_COOLDOWN_AFTER_CONSECUTIVE_FAILURES:
+            time.sleep(PROVIDER_COOLDOWN_SECONDS)
+            consecutive_transient_failures = 0
+        artifact = _run_case(case, client=client, mode=mode, provider=provider, prompt=prompt,
+                             repo_root=repo_root, max_attempts=max_attempts)
+        path = save(case, artifact)
+        if artifact["status"] == "error":
+            transient = artifact.get("error_type") in {"PolzaUnavailableError", "PolzaProviderError", "GigaChatUnavailableError", "GigaChatProviderError"}
+            consecutive_transient_failures = consecutive_transient_failures + 1 if transient else 0
+            if fail_fast:
+                finalize_metadata()
+                raise RunFailedError(f"Stopped after {case['id']}: {artifact['error']}. Diagnostic: {path}")
+        else:
+            consecutive_transient_failures = 0
+    finalize_metadata()
+    return [run_dir / f"{case['id']}.json" for case in cases]
 
 
 def main() -> None:
@@ -213,6 +323,8 @@ def main() -> None:
     parser.add_argument("--fail-fast", action="store_true", help="Stop with a non-zero exit after the first HTTP, JSON, or contract failure.")
     parser.add_argument("--max-cases", type=int, help="Run only this many manifest cases; use 1 for a paid smoke request.")
     parser.add_argument("--skip-cases", type=int, default=0, help="Skip already validated leading cases when resuming an interrupted run.")
+    parser.add_argument("--run-name", help="Stable subdirectory name for a reproducible run; must not already exist.")
+    parser.add_argument("--resume", action="store_true", help="Reuse saved artifacts under --run-name and request only missing IDs.")
     args = parser.parse_args()
     paths = run(
         args.mode, args.manifest.resolve(), args.output_dir.resolve(), args.repo_root.resolve(),
@@ -221,6 +333,8 @@ def main() -> None:
         workers=args.workers,
         max_attempts=args.max_attempts,
         fail_fast=args.fail_fast, max_cases=args.max_cases, skip_cases=args.skip_cases,
+        run_name=args.run_name,
+        resume=args.resume,
     )
     print(f"Saved {len(paths)} result(s) to {paths[0].parent if paths else args.output_dir}")
 
