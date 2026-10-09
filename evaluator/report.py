@@ -106,21 +106,24 @@ def _markdown(payload: dict[str, Any]) -> str:
             f"| Incorrect F1 | {_number(pair['e2e']['incorrect_detection']['f1'])} | {_number(pair['cas']['incorrect_detection']['f1'])} |",
         ]
     h2 = payload["h2"]["overall"]
-    lines += [
-        "", "## H2 — OCR quality and propagation", "",
-        f"Run `{payload['h2']['run_id']}`. Exactly transcribed: {h2['exact_transcriptions']}/{h2['examples']} "
-        f"({_percent(h2['exact_match_rate'])}). Mean step edit distance {_number(h2['mean_step_edit_distance'])} "
-        f"({_number(h2['normalized_edit_distance'])} normalized).", "",
-        f"CAS verdict accuracy: {_percent(h2['extraction_cas_verdict_accuracy'])} on OCR steps vs "
-        f"{_percent(h2['cas_on_gt_verdict_accuracy'])} on GT steps (drop {h2['verdict_accuracy_drop']:+.3f}). "
-        f"CAS flips due to OCR: {h2['cas_flips']}/{h2['examples']} ({_percent(h2['cas_flip_rate'])}).", "",
-        "| Error class | Cases | Share | CAS flips | Final wrong | Failure share |", "|---|---|---|---|---|---|",
-    ]
-    for entry in payload["h2"]["by_error_class"]:
-        lines.append(
-            f"| {entry['error_class']} | {entry['cases']} | {_percent(entry['share'])} | "
-            f"{entry['cas_flips']} ({_percent(entry['cas_flip_rate'])}) | {_percent(entry['final_wrong_rate'])} | "
-            f"{_percent(entry['failure_fraction'])} |")
+    lines += ["", "## H2 — OCR quality and propagation", ""]
+    if h2:
+        lines += [
+            f"Run `{payload['h2']['run_id']}`. Exactly transcribed: {h2['exact_transcriptions']}/{h2['examples']} "
+            f"({_percent(h2['exact_match_rate'])}). Mean step edit distance {_number(h2['mean_step_edit_distance'])} "
+            f"({_number(h2['normalized_edit_distance'])} normalized).", "",
+            f"CAS verdict accuracy: {_percent(h2['extraction_cas_verdict_accuracy'])} on OCR steps vs "
+            f"{_percent(h2['cas_on_gt_verdict_accuracy'])} on GT steps (drop {h2['verdict_accuracy_drop']:+.3f}). "
+            f"CAS flips due to OCR: {h2['cas_flips']}/{h2['examples']} ({_percent(h2['cas_flip_rate'])}).", "",
+            "| Error class | Cases | Share | CAS flips | Final wrong | Failure share |", "|---|---|---|---|---|---|",
+        ]
+        for entry in payload["h2"]["by_error_class"]:
+            lines.append(
+                f"| {entry['error_class']} | {entry['cases']} | {_percent(entry['share'])} | "
+                f"{entry['cas_flips']} ({_percent(entry['cas_flip_rate'])}) | {_percent(entry['final_wrong_rate'])} | "
+                f"{_percent(entry['failure_fraction'])} |")
+    else:
+        lines.append("H2 unavailable: CAS-on-GT predictions and extraction artifacts are required.")
     policies = payload["h3"]["policies"]
     lines += [
         "", "## H3 — selective automation", "",

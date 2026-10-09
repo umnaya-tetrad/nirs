@@ -158,7 +158,7 @@ def test_h3_disagreement_routes_to_manual():
 def _integration_workspace(tmp_path, cas_ids=("good", "bad")):
     good = _sa("good", "correct", ["x=1"])
     bad = _sa("bad", "incorrect", ["2x=4", "x=3"], first_error="s2")
-    gt = _write(tmp_path / "gt.json", [good, bad])
+    _write(tmp_path / "gt.json", [good, bad])
     _write(tmp_path / "e2e.json", [
         _runner_artifact("good", _sa("good", "correct", ["x=1"])),
         _runner_artifact("bad", _sa("bad", "incorrect", ["2x=4", "x=3"], first_error="s2")),
@@ -211,3 +211,67 @@ def test_run_experiment_rejects_id_set_mismatch(tmp_path):
     manifest_path = _integration_workspace(tmp_path, cas_ids=("good",))
     with pytest.raises(EvaluationInputError, match="id sets differ"):
         experiment.run_experiment(manifest_path, tmp_path / "out", repo_root=tmp_path)
+
+
+@pytest.mark.parametrize("omit", ["baseline", "extraction", "both"])
+def test_run_experiment_without_optional_ocr_inputs(tmp_path, omit):
+    manifest_path = _integration_workspace(tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if omit in ("baseline", "both"):
+        del manifest["dataset"]["cas_on_gt"]
+    if omit in ("extraction", "both"):
+        del manifest["runs"][1]["extraction_artifacts"]
+    _write(manifest_path, manifest)
+
+    output = tmp_path / "out"
+    payload = experiment.run_experiment(manifest_path, output, repo_root=tmp_path)
+
+    assert payload["h2"]["overall"] == {}
+    assert payload["h2"]["per_case"] == []
+    assert payload["h3"]["policies"]["disagreement_routing"]["automation_rate"] == 0.5
+    assert len(payload["h1"]["per_case"]) == 2
+    assert "H2 unavailable" in (output / "report.md").read_text(encoding="utf-8")
+
+
+def test_run_experiment_with_runner_directory(tmp_path):
+    manifest_path = _integration_workspace(tmp_path)
+    artifacts = json.loads((tmp_path / "e2e.json").read_text(encoding="utf-8"))
+    directory = tmp_path / "runner"
+    directory.mkdir()
+    for artifact in artifacts:
+        _write(directory / f"{artifact['case_id']}.json", artifact)
+    (directory / "notes.txt").write_text("Not a run artifact", encoding="utf-8")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["runs"][0]["source"]["path"] = "runner"
+    _write(manifest_path, manifest)
+
+    first = experiment.run_experiment(manifest_path, tmp_path / "out", repo_root=tmp_path)
+    source = first["runs"][0]["provenance"]["source"]
+    assert {item["path"] for item in source["files"]} == {"bad.json", "good.json"}
+    assert first["runs"][0]["metrics"]["accuracy_all"] == 1.0
+
+    artifacts[0]["latency_ms"] += 1
+    _write(directory / "good.json", artifacts[0])
+    second = experiment.run_experiment(manifest_path, tmp_path / "out2", repo_root=tmp_path)
+    assert source["sha256"] != second["runs"][0]["provenance"]["source"]["sha256"]
+
+
+def test_h3_uses_ocr_classes_from_each_paired_run(tmp_path):
+    manifest_path = _integration_workspace(tmp_path)
+    extraction = json.loads((tmp_path / "extraction.json").read_text(encoding="utf-8"))
+    extraction["items"][1]["contract"]["steps"][1]["latex"] = "x=5"
+    _write(tmp_path / "assisted_extraction.json", extraction)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assisted_run = {**manifest["runs"][1], "run_id": "assisted", "system": "assisted_cas",
+                    "mode": "assisted_extraction",
+                    "extraction_artifacts": {"kind": "bundle", "path": "assisted_extraction.json"}}
+    manifest["runs"].append(assisted_run)
+    manifest["h1_pairs"].append({"provider": "gemini", "e2e_run": "e2e", "cas_run": "assisted"})
+    _write(manifest_path, manifest)
+
+    payload = experiment.run_experiment(manifest_path, tmp_path / "out", repo_root=tmp_path)
+    pairs = payload["h3"]["pairs"]
+    ordinary = {row["id"]: row for row in pairs["gemini:e2e__cas"]["rows"]}
+    assisted = {row["id"]: row for row in pairs["gemini:e2e__assisted"]["rows"]}
+    assert ordinary["bad"]["ocr_error_class"] == "exact"
+    assert assisted["bad"]["ocr_error_class"] == "digit"

@@ -45,6 +45,18 @@ def _file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _source_provenance(spec: RunSpec) -> dict[str, Any]:
+    source = {"kind": spec.source_kind, "path": str(spec.source_path), "key": spec.source_key}
+    if spec.source_kind == "runner_artifacts" and spec.source_path.is_dir():
+        files = [{"path": path.name, "sha256": _file_sha256(path)}
+                 for path in sorted(spec.source_path.glob("*.json"))]
+        canonical = json.dumps(files, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        source.update(files=files, sha256=hashlib.sha256(canonical).hexdigest())
+    else:
+        source["sha256"] = _file_sha256(spec.source_path)
+    return source
+
+
 def _contract_sha256(contract: dict[str, Any]) -> str:
     canonical = json.dumps(contract, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
     return hashlib.sha256(canonical).hexdigest()
@@ -231,8 +243,7 @@ def load_run(spec: RunSpec, manifest: ExperimentManifest, repo_root: Path) -> Ru
         raise EvaluationInputError(f"run {spec.run_id}: ids absent from the manifest: {sorted(unknown)}")
 
     extraction = None
-    provenance: dict[str, Any] = {"source": {"kind": spec.source_kind, "path": str(spec.source_path),
-                                             "key": spec.source_key, "sha256": _file_sha256(spec.source_path)}}
+    provenance: dict[str, Any] = {"source": _source_provenance(spec)}
     if spec.extraction_path is not None:
         extraction, extraction_provenance = _load_extraction(spec, repo_root)
         unknown = set(extraction) - manifest_ids

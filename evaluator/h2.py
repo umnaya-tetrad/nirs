@@ -1,7 +1,7 @@
 """H2: OCR quality and how transcription errors propagate to CAS."""
 from __future__ import annotations
 
-from collections import Counter, defaultdict
+from collections import defaultdict
 from typing import Any
 
 from .h1 import DECIDABLE, system_label

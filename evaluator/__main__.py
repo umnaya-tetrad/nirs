@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from .evaluator import evaluate, main as cases_main, write_outputs
+from .evaluator import main as cases_main
 from .experiment import run_experiment
 
 

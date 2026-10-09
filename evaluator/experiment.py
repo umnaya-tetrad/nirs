@@ -60,6 +60,7 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
     runs = {spec.run_id: load_run(spec, manifest, repo_root) for spec in manifest.runs}
 
     pair_payload: dict[str, Any] = {}
+    h2_payload: dict[str, Any] = {}
     h3_payload: dict[str, Any] = {}
     selected_cas: str | None = None
     for pair in manifest.h1_pairs:
@@ -77,14 +78,16 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
             selected_cas = pair["cas_run"]
     if cas_on_gt is not None and selected_cas is not None:
         h2_analysis = analyze_h2(runs[selected_cas], gt_by_id, cas_on_gt, manifest.ids)
-        ocr_by_id = _ocr_classes(h2_analysis)
         h2_payload = {"run_id": selected_cas, "per_case": h2_analysis["rows"],
                       "by_error_class": h2_analysis["by_error_class"], "overall": h2_analysis["overall"]}
-        for pair in manifest.h1_pairs:
-            e2e_run, cas_run = runs[pair["e2e_run"]], runs[pair["cas_run"]]
-            analysis = analyze_h3(e2e_run, cas_run, gt_by_id, manifest.ids, ocr_by_id)
-            h3_payload[_key(pair)] = {"provider": pair["provider"], "e2e_run": pair["e2e_run"],
-                                      "cas_run": pair["cas_run"], **analysis}
+    for pair in manifest.h1_pairs:
+        e2e_run, cas_run = runs[pair["e2e_run"]], runs[pair["cas_run"]]
+        ocr_by_id = {}
+        if cas_on_gt is not None and cas_run.extraction is not None:
+            ocr_by_id = _ocr_classes(analyze_h2(cas_run, gt_by_id, cas_on_gt, manifest.ids))
+        analysis = analyze_h3(e2e_run, cas_run, gt_by_id, manifest.ids, ocr_by_id)
+        h3_payload[_key(pair)] = {"provider": pair["provider"], "e2e_run": pair["e2e_run"],
+                                  "cas_run": pair["cas_run"], **analysis}
     payload = {
         "experiment": {
             "manifest_path": str(manifest.path.relative_to(repo_root)) if repo_root in manifest.path.parents else str(manifest.path),
