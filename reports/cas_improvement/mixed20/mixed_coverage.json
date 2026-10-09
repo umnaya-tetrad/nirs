@@ -1,0 +1,3793 @@
+{
+  "evaluation": "mixed-20 engineering coverage only; no GT labels loaded",
+  "input_sha256": {
+    "gemini_assisted_mixed_20.json": "fb93ad4d44883987ae87aa8030380a133ba71e773340d09aee5e936a293f23f7"
+  },
+  "verified_solution_coverage": 0.3,
+  "context_metrics": {
+    "examples": 20,
+    "task_aware_coverage": 0.7,
+    "context_valid": 13,
+    "context_invalid": 1,
+    "context_unsupported": 6
+  },
+  "class_coverage": {
+    "definite_integral": {
+      "examples": 1,
+      "verified_solution_coverage": 0.0,
+      "verdict_coverage": 0.0,
+      "task_aware_coverage": 1.0,
+      "indeterminate_reasons": {
+        "Continuation requires one readable dependency": 1,
+        "Unsupported token '\\\\int'": 1,
+        "Prose/conditions are not a fully parsed mathematical step": 1
+      }
+    },
+    "determinant": {
+      "examples": 3,
+      "verified_solution_coverage": 0.6666666666666666,
+      "verdict_coverage": 0.6666666666666666,
+      "task_aware_coverage": 1.0,
+      "indeterminate_reasons": {
+        "Continuation requires one readable dependency": 1,
+        "Symbolic determinant template has no explicit entry bindings": 1
+      }
+    },
+    "equation": {
+      "examples": 2,
+      "verified_solution_coverage": 0.5,
+      "verdict_coverage": 0.5,
+      "task_aware_coverage": 0.5,
+      "indeterminate_reasons": {
+        "Task has no explicit mathematical target": 1,
+        "At least one node/edge proof is unresolved": 1,
+        "Prose/conditions are not a fully parsed mathematical step": 1
+      }
+    },
+    "expression": {
+      "examples": 2,
+      "verified_solution_coverage": 0.5,
+      "verdict_coverage": 0.5,
+      "task_aware_coverage": 0.0,
+      "indeterminate_reasons": {
+        "Task has no explicit mathematical target": 1,
+        "Prose/conditions are not a fully parsed mathematical step": 1,
+        "Unsupported input at character 0": 1
+      }
+    },
+    "function_operation": {
+      "examples": 1,
+      "verified_solution_coverage": 1.0,
+      "verdict_coverage": 1.0,
+      "task_aware_coverage": 1.0,
+      "indeterminate_reasons": {}
+    },
+    "inequality": {
+      "examples": 3,
+      "verified_solution_coverage": 0.0,
+      "verdict_coverage": 0.0,
+      "task_aware_coverage": 1.0,
+      "indeterminate_reasons": {
+        "Unsupported token '\\\\backslash'": 1,
+        "Prose/conditions are not a fully parsed mathematical step": 2,
+        "Requires one explicit inequality": 3,
+        "Unsupported input at character 2": 3,
+        "Unsupported input at character 12": 1,
+        "At least one node/edge proof is unresolved": 3,
+        "Unconsumed token '|'; one expression/equation per step": 2,
+        "Unsupported input at character 10": 1,
+        "Nonlinear logarithmic inequality": 1,
+        "Unbalanced delimiters": 1,
+        "Unconsumed token ')'; one expression/equation per step": 1
+      }
+    },
+    "matrix_system": {
+      "examples": 1,
+      "verified_solution_coverage": 1.0,
+      "verdict_coverage": 1.0,
+      "task_aware_coverage": 1.0,
+      "indeterminate_reasons": {}
+    },
+    "trigonometric": {
+      "examples": 7,
+      "verified_solution_coverage": 0.0,
+      "verdict_coverage": 0.14285714285714285,
+      "task_aware_coverage": 0.5714285714285714,
+      "indeterminate_reasons": {
+        "Prose is not a mathematical answer": 1,
+        "Unbalanced delimiters": 3,
+        "Prose/conditions are not a fully parsed mathematical step": 3,
+        "Unsupported input at character 20": 1,
+        "At least one node/edge proof is unresolved": 6,
+        "Bare word is not an exact mathematical token": 4,
+        "Expected one expression": 2,
+        "Unconsumed token '='; one expression/equation per step": 1,
+        "expected string or bytes-like object, got 'NoneType'": 2,
+        "Unsupported input at character 15": 2,
+        "Unsupported input at character 21": 1
+      }
+    }
+  },
+  "indeterminate_count": 13,
+  "results": [
+    {
+      "id": "hf-task13-13-1-1-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "unsupported",
+        "reason": "Prose is not a mathematical answer",
+        "step_id": "s13",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s6",
+          "s7",
+          "s8",
+          "s9",
+          "s10",
+          "s11",
+          "s12",
+          "s13"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 20",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 20",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 20",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 20"
+          },
+          {
+            "from": "s8",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 20"
+          },
+          {
+            "from": "s8",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 20"
+          },
+          {
+            "from": "s8",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "g2",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s8",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s9",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s10",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s11",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s12",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "At least one node/edge proof is unresolved",
+        "Unbalanced delimiters",
+        "Bare word is not an exact mathematical token",
+        "Unsupported input at character 20",
+        "Unsupported input at character 20",
+        "Unsupported input at character 20",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose is not a mathematical answer"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: а) } \\pi k, k\\in\\mathbb{Z},\\; \\frac{\\pi}{4}+2\\pi k, k\\in\\mathbb{Z},\\; \\frac{3}{4}\\pi+2\\pi k, k\\in\\mathbb{Z}\\quad \\text{б) } -3\\pi; -2\\pi; -\\frac{13}{4}\\pi",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Prose is not a mathematical answer"
+        }
+      ]
+    },
+    {
+      "id": "hf-task13-13-1-3-non-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "unsupported",
+        "reason": "Unconsumed token '='; one expression/equation per step",
+        "step_id": "s17",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": true,
+        "invalid_steps": [
+          "s10",
+          "s11",
+          "s17"
+        ],
+        "unsupported_steps": [
+          "s5",
+          "s6",
+          "s8",
+          "s12",
+          "s13",
+          "s14",
+          "s15"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s7",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s9",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s10",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s11",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          },
+          {
+            "step_id": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s16",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s17",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s11",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s10",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s11",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "g2",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s12",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s12",
+            "to": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s12",
+            "to": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s16",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s10",
+            "to": "s16",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s11",
+            "to": "s16",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s13",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s14",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s15",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "At least one node/edge proof is unresolved",
+        "Expected one expression",
+        "Expected one expression",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Unconsumed token '='; one expression/equation per step"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ } \\text{а) } x = \\pi n, n \\in \\mathbb{Z}; x = \\frac{\\pi}{4} + 2\\pi k, k \\in \\mathbb{Z}, x = \\frac{3\\pi}{4} + 2\\pi l, l \\in \\mathbb{Z}",
+          "status": "OK",
+          "set": "Union(ImageSet(Lambda(k, 2*pi*k + pi/4), Integers), ImageSet(Lambda(l, 2*pi*l + 3*pi/4), Integers), ImageSet(Lambda(n, pi*n), Integers))",
+          "reason": null
+        },
+        {
+          "raw_latex": "\\text{б) } x = -\\frac{13}{4}\\pi \\quad x = -\\pi \\quad x = -2\\pi",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unconsumed token '='; one expression/equation per step"
+        }
+      ]
+    },
+    {
+      "id": "hf-task13-13-1-4-non-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete canonical trig root-set comparison",
+        "step_id": "s8",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s4",
+          "s5",
+          "s6",
+          "s7",
+          "s8"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "At least one node/edge proof is unresolved",
+        "Unbalanced delimiters",
+        "Bare word is not an exact mathematical token",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: a) } x \\in \\left\\{\\pi k; \\frac{\\pi}{4} + 2\\pi k; \\frac{3\\pi}{4} + 2\\pi k\\right\\}, k \\in \\mathbb{Z}",
+          "status": "OK",
+          "set": "Union(ImageSet(Lambda(k, pi*k), Integers), ImageSet(Lambda(k, 2*pi*k + pi/4), Integers), ImageSet(Lambda(k, 2*pi*k + 3*pi/4), Integers))",
+          "reason": null
+        },
+        {
+          "raw_latex": "\\text{б) } x \\in \\left\\{-\\frac{13\\pi}{4}; -3\\pi; -2\\pi\\right\\}",
+          "status": "OK",
+          "set": "{-13*pi/4, -3*pi, -2*pi}",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "hf-task13-13-2-1-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete canonical trig root-set comparison",
+        "step_id": "s21",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s3",
+          "s5",
+          "s7",
+          "s8",
+          "s9",
+          "s12",
+          "s15",
+          "s16",
+          "s17",
+          "s18",
+          "s19",
+          "s20",
+          "s21"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s10",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s11",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s13",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s14",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s16",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 15",
+            "role": "initial",
+            "branch": "independent"
+          },
+          {
+            "step_id": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "independent"
+          },
+          {
+            "step_id": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "independent"
+          },
+          {
+            "step_id": "s19",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "independent"
+          },
+          {
+            "step_id": "s20",
+            "status": "UNSUPPORTED",
+            "reason": "expected string or bytes-like object, got 'NoneType'",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s21",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "answer",
+            "branch": "independent"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s10",
+            "to": "s11",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s8",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s12",
+            "to": "s13",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s13",
+            "to": "s14",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s14",
+            "to": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token"
+          },
+          {
+            "from": "g2",
+            "to": "s16",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 15"
+          },
+          {
+            "from": "s11",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s15",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s16",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s11",
+            "to": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s15",
+            "to": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s16",
+            "to": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s11",
+            "to": "s19",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s15",
+            "to": "s19",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s16",
+            "to": "s19",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s11",
+            "to": "s20",
+            "status": "UNSUPPORTED",
+            "reason": "expected string or bytes-like object, got 'NoneType'"
+          },
+          {
+            "from": "s15",
+            "to": "s20",
+            "status": "UNSUPPORTED",
+            "reason": "expected string or bytes-like object, got 'NoneType'"
+          },
+          {
+            "from": "s17",
+            "to": "s21",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s18",
+            "to": "s21",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s19",
+            "to": "s21",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token",
+        "Unsupported input at character 15",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "expected string or bytes-like object, got 'NoneType'",
+        "At least one node/edge proof is unresolved"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: а) } \\pm\\frac{\\pi}{2} + \\pi n, n \\in \\mathbb{Z}; -\\frac{\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}; -\\frac{3\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}.",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unsupported input at character 24"
+        },
+        {
+          "raw_latex": "\\text{б) } \\frac{3\\pi}{2}; \\frac{7\\pi}{4}; \\frac{5\\pi}{2}",
+          "status": "OK",
+          "set": "{3*pi/2, 7*pi/4, 5*pi/2}",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "hf-task13-13-2-2-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete canonical trig root-set comparison",
+        "step_id": "s14",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": true,
+        "invalid_steps": [
+          "s14"
+        ],
+        "unsupported_steps": [
+          "s2",
+          "s3",
+          "s5",
+          "s6",
+          "s7",
+          "s8",
+          "s11",
+          "s12",
+          "s13"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s9",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s10",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 15",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "expected string or bytes-like object, got 'NoneType'",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s14",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Bare word is not an exact mathematical token"
+          },
+          {
+            "from": "s5",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Expected one expression"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 15"
+          },
+          {
+            "from": "s7",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s11",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s10",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "expected string or bytes-like object, got 'NoneType'"
+          },
+          {
+            "from": "s10",
+            "to": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s12",
+            "to": "s14",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Expected one expression",
+        "Bare word is not an exact mathematical token",
+        "Expected one expression",
+        "Unsupported input at character 15",
+        "At least one node/edge proof is unresolved",
+        "expected string or bytes-like object, got 'NoneType'"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: а) } -\\frac{\\pi}{4}+2\\pi n, n\\in\\mathbb{Z}; -\\frac{5\\pi}{4}+2\\pi n, n\\in\\mathbb{Z}; \\frac{\\pi}{2}+\\pi n, n\\in\\mathbb{Z}",
+          "status": "OK",
+          "set": "Union(ImageSet(Lambda(n, pi*n + pi/2), Integers), ImageSet(Lambda(n, 2*pi*n - 5*pi/4), Integers), ImageSet(Lambda(n, 2*pi*n - pi/4), Integers))",
+          "reason": null
+        },
+        {
+          "raw_latex": "\\text{б) } \\frac{3\\pi}{2}; \\frac{7\\pi}{4}; \\frac{5\\pi}{2}",
+          "status": "OK",
+          "set": "{3*pi/2, 7*pi/4, 5*pi/2}",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "hf-task13-13-2-3-non-maximal",
+      "task_class": "trigonometric",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete canonical trig root-set comparison",
+        "step_id": "s12",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s2",
+          "s3",
+          "s5",
+          "s6",
+          "s7",
+          "s8",
+          "s9",
+          "s10",
+          "s11",
+          "s12"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 21",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 21"
+          },
+          {
+            "from": "s8",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "g2",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s8",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s10",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Unbalanced delimiters",
+        "Unsupported input at character 21",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: а) } x = \\frac{\\pi}{2} + \\pi n, n \\in \\mathbb{Z}, x = -\\frac{\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}, x = -\\frac{3\\pi}{4} + 2\\pi n, n \\in \\mathbb{Z}",
+          "status": "OK",
+          "set": "Union(ImageSet(Lambda(n, pi*n + pi/2), Integers), ImageSet(Lambda(n, 2*pi*n - 3*pi/4), Integers), ImageSet(Lambda(n, 2*pi*n - pi/4), Integers))",
+          "reason": null
+        },
+        {
+          "raw_latex": "\\text{б) } \\frac{3\\pi}{2}; \\frac{7\\pi}{4}; \\frac{5\\pi}{2}",
+          "status": "OK",
+          "set": "{3*pi/2, 7*pi/4, 5*pi/2}",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "hf-task13-13-4-3-zero",
+      "task_class": "trigonometric",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "unsupported",
+        "reason": "Prose is not a mathematical answer",
+        "step_id": "s14",
+        "rule": "trigonometric",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": "s2",
+        "localization_blocked": false,
+        "invalid_steps": [
+          "s2"
+        ],
+        "unsupported_steps": [
+          "s6",
+          "s7",
+          "s8",
+          "s9",
+          "s10",
+          "s11",
+          "s12",
+          "s13",
+          "s14"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "substitution",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 18",
+            "role": "substitution",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 27",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 6",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s5",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 18"
+          },
+          {
+            "from": "s9",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 18"
+          },
+          {
+            "from": "s10",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 27"
+          },
+          {
+            "from": "s12",
+            "to": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s13",
+            "to": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Unsupported input at character 18",
+        "Unsupported input at character 27",
+        "Unsupported input at character 6",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose is not a mathematical answer"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: а) }(-1)^k\\frac{\\pi}{3}+\\pi k,\\; k\\in\\mathbb{Z};\\;\\text{б) }-\\frac{5\\pi}{3}",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Prose is not a mathematical answer"
+        }
+      ]
+    },
+    {
+      "id": "hf-task15-15-1-2-non-maximal",
+      "task_class": "inequality",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "invalid",
+        "reason": "Exact complete inequality solution-set comparison",
+        "step_id": "s9",
+        "rule": "inequality",
+        "localization_blocked": true
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s2",
+          "s3",
+          "s4",
+          "s6",
+          "s7",
+          "s8",
+          "s9"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\backslash'",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 12",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s1",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\backslash'"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\backslash'"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 12"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s2",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Unsupported token '\\\\backslash'",
+        "At least one node/edge proof is unresolved",
+        "Unsupported input at character 12",
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Unsupported input at character 2"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: } (2; +\\infty)",
+          "status": "OK",
+          "set": "Interval.open(2, oo)",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "hf-task15-15-2-1-maximal",
+      "task_class": "inequality",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete inequality solution-set comparison",
+        "step_id": "s18",
+        "rule": "inequality",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": true,
+        "invalid_steps": [
+          "s14",
+          "s17"
+        ],
+        "unsupported_steps": [
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s7",
+          "s10",
+          "s11",
+          "s12",
+          "s13",
+          "s15",
+          "s16",
+          "s18"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 10",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Nonlinear logarithmic inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Nonlinear logarithmic inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s14",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s16",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s17",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 10"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Nonlinear logarithmic inequality"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Nonlinear logarithmic inequality"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step"
+          },
+          {
+            "from": "s10",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s11",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s5",
+            "to": "s13",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s13",
+            "to": "s14",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s15",
+            "to": "s16",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s12",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s14",
+            "to": "s17",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s16",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s17",
+            "to": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Unsupported input at character 10",
+        "Nonlinear logarithmic inequality",
+        "Nonlinear logarithmic inequality",
+        "At least one node/edge proof is unresolved",
+        "Requires one explicit inequality",
+        "Unconsumed token '|'; one expression/equation per step",
+        "At least one node/edge proof is unresolved",
+        "Unconsumed token '|'; one expression/equation per step",
+        "At least one node/edge proof is unresolved",
+        "Requires one explicit inequality",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Requires one explicit inequality",
+        "Unsupported input at character 2"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: } (1; 31]",
+          "status": "OK",
+          "set": "Interval.Lopen(1, 31)",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "hf-task15-15-2-2-maximal",
+      "task_class": "inequality",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete inequality solution-set comparison",
+        "step_id": "s25",
+        "rule": "inequality",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s2",
+          "s3",
+          "s4",
+          "s7",
+          "s8",
+          "s9",
+          "s10",
+          "s11",
+          "s12",
+          "s14",
+          "s15",
+          "s17",
+          "s18",
+          "s20",
+          "s21",
+          "s22",
+          "s23",
+          "s24",
+          "s25"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters",
+            "role": "independent",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "independent",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token ')'; one expression/equation per step",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "independent",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s13",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s16",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_1"
+          },
+          {
+            "step_id": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "independent",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s19",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "plus_minus_2"
+          },
+          {
+            "step_id": "s20",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "independent",
+            "branch": "plus_minus_3"
+          },
+          {
+            "step_id": "s21",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "plus_minus_3"
+          },
+          {
+            "step_id": "s22",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "plus_minus_3"
+          },
+          {
+            "step_id": "s23",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s24",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s25",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Unbalanced delimiters"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s2",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token ')'; one expression/equation per step"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token ')'; one expression/equation per step"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s8",
+            "to": "s9",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s9",
+            "to": "s10",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s10",
+            "to": "s11",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step"
+          },
+          {
+            "from": "s11",
+            "to": "s12",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s12",
+            "to": "s13",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s13",
+            "to": "s14",
+            "status": "UNSUPPORTED",
+            "reason": "Unconsumed token '|'; one expression/equation per step"
+          },
+          {
+            "from": "s14",
+            "to": "s15",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s15",
+            "to": "s16",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s17",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s17",
+            "to": "s18",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s18",
+            "to": "s19",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s9",
+            "to": "s20",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "s20",
+            "to": "s21",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s21",
+            "to": "s22",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s16",
+            "to": "s23",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s19",
+            "to": "s23",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s22",
+            "to": "s23",
+            "status": "UNSUPPORTED",
+            "reason": "Requires one explicit inequality"
+          },
+          {
+            "from": "s23",
+            "to": "s24",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2"
+          },
+          {
+            "from": "s24",
+            "to": "s25",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 2"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Unbalanced delimiters",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "Unconsumed token ')'; one expression/equation per step",
+        "At least one node/edge proof is unresolved",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Unconsumed token '|'; one expression/equation per step",
+        "At least one node/edge proof is unresolved",
+        "Unconsumed token '|'; one expression/equation per step",
+        "At least one node/edge proof is unresolved",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Unsupported input at character 2",
+        "Unsupported input at character 2"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\text{Ответ: } (1; 31]",
+          "status": "OK",
+          "set": "Interval.Lopen(1, 31)",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "task_class": "expression",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": true,
+      "context_check": {
+        "status": "unsupported",
+        "reason": "Task has no explicit mathematical target",
+        "step_id": "s1",
+        "rule": "expression",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": true,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          }
+        ],
+        "edges": []
+      },
+      "fallback_reason": [
+        "Task has no explicit mathematical target"
+      ],
+      "answer_normalization": []
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "task_class": "expression",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "unsupported",
+        "reason": "Task has no explicit mathematical target",
+        "step_id": "s4",
+        "rule": "expression",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": true,
+        "invalid_steps": [
+          "s3"
+        ],
+        "unsupported_steps": [
+          "s1",
+          "s2",
+          "s4"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 0",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported input at character 0"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          },
+          {
+            "from": "g2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Unsupported input at character 0",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Task has no explicit mathematical target"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "=\\frac{9-8}{16}=\\frac{1}{16}.\\text{ Note that }3^2=9\\text{ and }2^3=8",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Prose is not a mathematical answer"
+        }
+      ]
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "task_class": "definite_integral",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "exact definite integral evaluation",
+        "step_id": "s4",
+        "rule": "definite_integral",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\int'",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\int'",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Continuation requires one readable dependency",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\int'"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Unsupported token '\\\\int'"
+          },
+          {
+            "from": "s3",
+            "to": "s4",
+            "status": "UNSUPPORTED",
+            "reason": "Continuation requires one readable dependency"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Unsupported token '\\\\int'",
+        "Unsupported token '\\\\int'",
+        "Continuation requires one readable dependency"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "= \\frac{2}{3} \\left[2^{3/2}-0\\right] = \\frac{2}{3}(2\\sqrt{2}) = \\frac{4\\sqrt{2}}{3}",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unsupported token '='"
+        }
+      ]
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "task_class": "matrix_system",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": true,
+      "context_check": {
+        "status": "valid",
+        "reason": "both matrices satisfy the two exact given equations",
+        "step_id": "s6",
+        "rule": "matrix_system",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": true,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "g1",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s6",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [],
+      "answer_normalization": [
+        {
+          "raw_latex": "X=\\begin{bmatrix} 4 & 4 \\\\ 0 & 4 \\end{bmatrix}",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Expected explicit real roots"
+        },
+        {
+          "raw_latex": "Y=\\begin{bmatrix} 1 & -2 \\\\ 0 & 5 \\end{bmatrix}",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Expected explicit real roots"
+        }
+      ]
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "task_class": "determinant",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "valid",
+        "reason": "exact determinant evaluation",
+        "step_id": "s2",
+        "rule": "determinant",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [
+          "s1",
+          "s2"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Symbolic determinant template has no explicit entry bindings",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Continuation requires one readable dependency",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "UNSUPPORTED",
+            "reason": "Symbolic determinant template has no explicit entry bindings"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Continuation requires one readable dependency"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Symbolic determinant template has no explicit entry bindings",
+        "Continuation requires one readable dependency"
+      ],
+      "answer_normalization": [
+        {
+          "raw_latex": "= 4 + 4 = 8.",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unsupported input at character 11"
+        }
+      ]
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "task_class": "determinant",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": true,
+      "context_check": {
+        "status": "valid",
+        "reason": "exact determinant evaluation",
+        "step_id": "s2",
+        "rule": "determinant",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": true,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "initial",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\Delta = 4(-1 \\cdot 1 - 3 \\cdot 4) = 4(-1 - 12) = 4 \\cdot (-13) = -52",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unconsumed token '='; one expression/equation per step"
+        }
+      ]
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "task_class": "determinant",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": true,
+      "context_check": {
+        "status": "valid",
+        "reason": "exact determinant evaluation",
+        "step_id": "s2",
+        "rule": "determinant",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": true,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [],
+      "answer_normalization": [
+        {
+          "raw_latex": "\\Delta = 4 (-13) = -52",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unconsumed token '='; one expression/equation per step"
+        }
+      ]
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "task_class": "equation",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": true,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact complete equation root-set comparison",
+        "step_id": "s2",
+        "rule": "equation",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": true,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact given statement comparison"
+          },
+          {
+            "from": "s1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [],
+      "answer_normalization": [
+        {
+          "raw_latex": "x = 5",
+          "status": "OK",
+          "set": "{5}",
+          "reason": null
+        }
+      ]
+    },
+    {
+      "id": "img_509_pert_5.1",
+      "task_class": "function_operation",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": true,
+      "context_check": {
+        "status": "valid",
+        "reason": "Exact function value and domain comparison",
+        "step_id": "s4",
+        "rule": "function_operation",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": true,
+        "first_error_step": null,
+        "localization_blocked": false,
+        "invalid_steps": [],
+        "unsupported_steps": [],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison",
+            "role": "answer",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison",
+            "role": "answer",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "g1",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s1",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g1",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s2",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g1",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s3",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g1",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          },
+          {
+            "from": "g2",
+            "to": "s4",
+            "status": "VALID",
+            "reason": "Exact function value and domain comparison"
+          }
+        ]
+      },
+      "fallback_reason": [],
+      "answer_normalization": [
+        {
+          "raw_latex": "(f+g)(t)=t^2+2t+1",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Expected one expression"
+        },
+        {
+          "raw_latex": "(f-g)(t)=t^2-2t-1",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Expected one expression"
+        },
+        {
+          "raw_latex": "(fg)(t)=t^2(2t+1)=2t^3+t^2",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unconsumed token '='; one expression/equation per step"
+        },
+        {
+          "raw_latex": "\\left(\\frac{f}{g}\\right)(t)=\\frac{t^2}{2t+1}, t\\neq -\\frac{1}{2}",
+          "status": "PARSE_FAILED",
+          "set": null,
+          "reason": "Unsupported input at character 16"
+        }
+      ]
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "task_class": "equation",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "context_check": {
+        "status": "unsupported",
+        "reason": "Task has no explicit mathematical target",
+        "step_id": "s8",
+        "rule": "equation",
+        "localization_blocked": false
+      },
+      "graph_check": {
+        "covered": false,
+        "first_error_step": null,
+        "localization_blocked": true,
+        "invalid_steps": [
+          "s3",
+          "s7",
+          "s8"
+        ],
+        "unsupported_steps": [
+          "s2",
+          "s5",
+          "s6"
+        ],
+        "nodes": [
+          {
+            "step_id": "s1",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s2",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          },
+          {
+            "step_id": "s3",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s4",
+            "status": "VALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "At least one node/edge proof is unresolved",
+            "role": "transformation",
+            "branch": "main"
+          },
+          {
+            "step_id": "s6",
+            "status": "UNSUPPORTED",
+            "reason": "Prose/conditions are not a fully parsed mathematical step",
+            "role": "definition",
+            "branch": "main"
+          },
+          {
+            "step_id": "s7",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "substitution",
+            "branch": "main"
+          },
+          {
+            "step_id": "s8",
+            "status": "INVALID",
+            "reason": "Exact node and dependency checks",
+            "role": "transformation",
+            "branch": "main"
+          }
+        ],
+        "edges": [
+          {
+            "from": "s1",
+            "to": "s3",
+            "status": "INVALID",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s2",
+            "to": "s3",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s4",
+            "to": "s5",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s5",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s6",
+            "to": "s7",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          },
+          {
+            "from": "s7",
+            "to": "s8",
+            "status": "UNSUPPORTED",
+            "reason": "Exact dependency statement comparison"
+          }
+        ]
+      },
+      "fallback_reason": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Task has no explicit mathematical target"
+      ],
+      "answer_normalization": []
+    }
+  ]
+}

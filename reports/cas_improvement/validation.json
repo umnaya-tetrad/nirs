@@ -1,0 +1,120 @@
+{
+  "base_commit": "19073c7",
+  "tests": {
+    "command": "python -m pytest -q --basetemp ../.cas-work/pytest-cas-improvement-final --tb=short",
+    "passed": 356,
+    "seconds": 38.5
+  },
+  "lint": "Ruff F rules passed on all modified/new Python files; frozen ordinary structured.py has a pre-existing unused local and was not modified",
+  "diff_check": "passed",
+  "ordinary_regression": "All 20 frozen ordinary predictions and frozen parser/verifier/structured/analyze_contract source checks passed",
+  "canonical_prediction_validation": {
+    "gt100": 100,
+    "ocr_dev20": 20
+  },
+  "code_sha256": {
+    "written_exact.py": "f4e67830539771d2235eadf1d2f383f6cc709621bba8ed09a68d036e751c2625",
+    "written_layout.py": "bf50dfddad40af17594df262973ee68aef6230b0618e04b87bdda1d8cd8e6a21",
+    "exact_math.py": "fd243d0c180be6dde5ee32e86194852f25e6f2f4aa341b362743b82e9feb11cd",
+    "assisted_rules.py": "e1fabe2eda1c51fd60f34c9bd9e1af5ee9428888b73d540c0b8cd983d4ec1ce6",
+    "oracle.py": "2fd2b53627a7efa8f0a1d2e90c40ef9ea5ce8146768d8d28070a793b8b3b2547",
+    "contracts.py": "c6669d4dee9f4b1e683aca24edc33e132d69c1c36705ad3ed7e101214845b6e6",
+    "improvement_report.py": "61c0e60003332719ddcf9cb9eb19835ffbed34df215736d00e825e23e811c0a3"
+  },
+  "metrics": {
+    "ordinary_gt100": {
+      "examples": 100,
+      "full_coverage": 0.42,
+      "verdict_coverage": 0.63,
+      "verdict_accuracy_all": 0.51,
+      "verdict_accuracy_decided": 0.8095238095238095,
+      "first_error_examples": 70,
+      "first_error_accuracy_incorrect": 0.5142857142857142,
+      "error_signals_on_gt_correct": 10,
+      "incorrect_verdicts_on_gt_correct": 6,
+      "indeterminate_count": 37,
+      "timeouts_or_worker_errors": 4
+    },
+    "exact_gt100": {
+      "examples": 100,
+      "full_coverage": 0.45,
+      "verdict_coverage": 0.58,
+      "verdict_accuracy_all": 0.5,
+      "verdict_accuracy_decided": 0.8620689655172413,
+      "first_error_examples": 70,
+      "first_error_accuracy_incorrect": 0.5428571428571428,
+      "error_signals_on_gt_correct": 6,
+      "incorrect_verdicts_on_gt_correct": 4,
+      "indeterminate_count": 42,
+      "timeouts_or_worker_errors": 3
+    },
+    "exact_gt_dev20": {
+      "examples": 20,
+      "full_coverage": 0.4,
+      "verdict_coverage": 0.45,
+      "verdict_accuracy_all": 0.4,
+      "verdict_accuracy_decided": 0.8888888888888888,
+      "first_error_examples": 9,
+      "first_error_accuracy_incorrect": 0.5555555555555556,
+      "error_signals_on_gt_correct": 2,
+      "incorrect_verdicts_on_gt_correct": 1,
+      "indeterminate_count": 11,
+      "timeouts_or_worker_errors": 0
+    },
+    "exact_ocr_dev20": {
+      "examples": 20,
+      "full_coverage": 0.35,
+      "verdict_coverage": 0.4,
+      "verdict_accuracy_all": 0.4,
+      "verdict_accuracy_decided": 1.0,
+      "first_error_examples": 9,
+      "first_error_accuracy_incorrect": 0.2222222222222222,
+      "error_signals_on_gt_correct": 3,
+      "incorrect_verdicts_on_gt_correct": 0,
+      "indeterminate_count": 12,
+      "timeouts_or_worker_errors": 0
+    }
+  },
+  "assisted_dev20": {
+    "examples": 20,
+    "coverage": 0.45,
+    "verified_solution_coverage": 0.45,
+    "verdict_coverage": 0.55,
+    "indeterminate_count": 9,
+    "indeterminate_reasons": {
+      "Task has no explicit mathematical target": 2,
+      "At least one node/edge proof is unresolved": 4,
+      "Prose/conditions are not a fully parsed mathematical step": 5,
+      "Continuation requires one readable dependency": 2,
+      "Symbolic determinant template has no explicit entry bindings": 1,
+      "Unsupported token '\\\\int'": 1,
+      "Unsupported input at character 0": 1,
+      "Unsupported token '\\\\pm'": 2,
+      "Quadrant prose is not an explicit mathematical constraint": 1,
+      "Unsupported token '\\\\dots'": 1,
+      "Unanchored mathematical statement": 1,
+      "Bare word is not an exact mathematical token": 1,
+      "Differential notation needs a calculus verifier": 1,
+      "Requires one task equation": 1,
+      "Unsupported input at character 8": 1
+    },
+    "indeterminate_share": 0.45,
+    "verdict_accuracy": 0.55,
+    "first_error_accuracy": 0.1111111111111111,
+    "first_error_examples": 9,
+    "first_error_accuracy_all": 0.4
+  },
+  "mixed20": {
+    "verified_solution_coverage": 0.3,
+    "context_metrics": {
+      "examples": 20,
+      "task_aware_coverage": 0.7,
+      "context_valid": 13,
+      "context_invalid": 1,
+      "context_unsupported": 6
+    },
+    "indeterminate_count": 13
+  },
+  "changes": "CAS rules and parsing only; no model, prompt or frozen extraction changes",
+  "evaluation": "All 100 GT examples are exploratory development data; no independent holdout"
+}

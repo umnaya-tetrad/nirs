@@ -1,0 +1,1832 @@
+{
+  "generated_at_utc": "2026-10-09T18:26:04.731289+00:00",
+  "backend": "sympy",
+  "sympy_version": "1.14.0",
+  "python_version": "3.12.14",
+  "evaluation": "frozen_ocr_dev20_exact_final",
+  "mode": "exact",
+  "sources": [
+    {
+      "path": "dataset/artifacts/gemini_ordinary_fermat_dev_20.json",
+      "sha256": "a3de3d392134069001929ff43fadf47a795e298e8e3577f2a16452427eb3b3e4"
+    }
+  ],
+  "timeout_seconds": 10,
+  "workers": 2,
+  "input_projection": "steps[].latex only, original order",
+  "summary": {
+    "examples": 20,
+    "covered_examples": 7,
+    "coverage": 0.35,
+    "decidable_has_error_examples": 14,
+    "parseable_examples": 12,
+    "parsed_steps": 61,
+    "total_steps": 80,
+    "has_error_accuracy_all": null,
+    "has_error_accuracy_on_covered": null,
+    "has_error_accuracy_on_decidable": null,
+    "first_error_accuracy_all": null,
+    "first_error_accuracy_on_incorrect": null,
+    "first_error_accuracy_on_covered": null,
+    "canonical_verdict_accuracy_all": null,
+    "confusion_has_error": {},
+    "timeouts_or_worker_errors": 0,
+    "mean_latency_ms": 304.4539,
+    "unsupported_reasons": {
+      "Unsupported token '\\\\pm'": 6,
+      "Differential notation needs a calculus verifier": 6,
+      "equation_transition": 5,
+      "exact_identity_and_domain; missing_explicit_substitution": 3,
+      "missing_substitution_or_equation_anchor": 3,
+      "equation_transition; exact_identity_and_domain": 2,
+      "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'": 2,
+      "Unsupported input at character 1": 1,
+      "missing_substitution_or_equation_anchor; exact_identity_and_domain": 1,
+      "Expected token, got end of input; exact_identity_and_domain": 1,
+      "trusted_initial_equation; equation_transition": 1,
+      "Unsupported token '\\\\int'; Unconsumed token '_'; one expression/equation per step": 1,
+      "missing_continuation; exact_identity_and_domain": 1,
+      "Unsupported prose/condition: . Note that; exact_identity_and_domain": 1,
+      "Unsupported prose/condition: . Here ,; exact_identity_and_domain": 1,
+      "initial_relation": 1,
+      "missing_explicit_substitution": 1,
+      "Unbalanced delimiters": 1
+    }
+  },
+  "results": [
+    {
+      "id": "img_509_pert_5.1",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 4,
+      "total_steps": 4,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "trusted_initial_equation",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "trusted_initial_equation",
+              "reason": "trusted_initial_equation"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [
+        2,
+        3,
+        4
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 425.714,
+      "wall_ms": 1320.443,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 7,
+      "total_steps": 8,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported input at character 1",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Unsupported input at character 1"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "missing_substitution_or_equation_anchor; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_substitution_or_equation_anchor",
+              "reason": "missing_substitution_or_equation_anchor"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 6,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 7,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 8,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        7,
+        8
+      ],
+      "unsupported_steps": [
+        2,
+        3,
+        6
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 377.771,
+      "wall_ms": 1273.45,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 2,
+      "total_steps": 3,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "explicit_numeric_definition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Expected token, got end of input; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Expected token, got end of input"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        3
+      ],
+      "unsupported_steps": [
+        2
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 182.394,
+      "wall_ms": 1067.939,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain; missing_explicit_substitution",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_explicit_substitution",
+              "reason": "missing_explicit_substitution"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [
+        1
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 241.467,
+      "wall_ms": 1123.214,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "trusted_initial_equation",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "trusted_initial_equation",
+              "reason": "trusted_initial_equation"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 191.208,
+      "wall_ms": 1119.133,
+      "verdict": "correct",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 4,
+      "total_steps": 6,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "trusted_initial_equation",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "trusted_initial_equation",
+              "reason": "trusted_initial_equation"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "explicit_numeric_definition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "missing_substitution_or_equation_anchor",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_substitution_or_equation_anchor",
+              "reason": "missing_substitution_or_equation_anchor"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'"
+            }
+          ]
+        },
+        {
+          "step": 6,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "explicit_numeric_definition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [
+        2,
+        4,
+        5
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 264.283,
+      "wall_ms": 1186.193,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "explicit_numeric_definition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 171.845,
+      "wall_ms": 1061.762,
+      "verdict": "correct",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 2,
+      "total_steps": 4,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "trusted_initial_equation; equation_transition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "trusted_initial_equation",
+              "reason": "trusted_initial_equation"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "INVALID",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\int'; Exact witness {t: 0, x: 0}: difference=-2/3",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Unsupported token '\\\\int'"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Unsupported token '\\\\int'"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_counterexample",
+              "reason": "Exact witness {t: 0, x: 0}: difference=-2/3"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\int'; Unconsumed token '_'; one expression/equation per step",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Unsupported token '\\\\int'"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Unconsumed token '_'; one expression/equation per step"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "missing_continuation; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_continuation",
+              "reason": "missing_continuation"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        2
+      ],
+      "unsupported_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 326.723,
+      "wall_ms": 1208.307,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 4,
+      "total_steps": 4,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "Unsupported prose/condition: . Note that; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "prose",
+              "reason": "Unsupported prose/condition: . Note that"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "Unsupported prose/condition: . Here ,; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "prose",
+              "reason": "Unsupported prose/condition: . Here ,"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        3
+      ],
+      "unsupported_steps": [
+        2,
+        4
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 224.567,
+      "wall_ms": 1147.937,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "status": "VALID",
+      "covered": true,
+      "has_error": false,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 1,
+      "total_steps": 1,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 272.82,
+      "wall_ms": 1178.102,
+      "verdict": "correct",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_509_pert_3.1",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "OK",
+      "parsed_steps": 4,
+      "total_steps": 4,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "trusted_initial_equation",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "trusted_initial_equation",
+              "reason": "trusted_initial_equation"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [
+        2,
+        3,
+        4
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 407.512,
+      "wall_ms": 1288.172,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_157_pert_3.2",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 1,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        1,
+        2
+      ],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 275.509,
+      "wall_ms": 1143.069,
+      "verdict": "incorrect",
+      "first_error_step_id": "s1"
+    },
+    {
+      "id": "img_480_pert_2.5",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": 2,
+      "parse_status": "OK",
+      "parsed_steps": 5,
+      "total_steps": 5,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "initial_relation",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "initial_relation",
+              "reason": "initial_relation"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_solution_set",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_solution_set",
+              "reason": "exact_solution_set"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_solution_set",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_solution_set",
+              "reason": "exact_solution_set"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_solution_set",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_solution_set",
+              "reason": "exact_solution_set"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_solution_set",
+              "reason": "exact_solution_set"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "initial_relation",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "initial_relation",
+              "reason": "initial_relation"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        2,
+        3
+      ],
+      "unsupported_steps": [
+        5
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 357.72,
+      "wall_ms": 1181.829,
+      "verdict": "incorrect",
+      "first_error_step_id": "s2"
+    },
+    {
+      "id": "img_110_pert_1.3",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 1,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        1,
+        2
+      ],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 199.757,
+      "wall_ms": 1026.364,
+      "verdict": "incorrect",
+      "first_error_step_id": "s1"
+    },
+    {
+      "id": "img_96_pert_2.1",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 7,
+      "total_steps": 9,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain; missing_explicit_substitution",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_explicit_substitution",
+              "reason": "missing_explicit_substitution"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\pm'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "Unsupported token '\\\\pm'"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "missing_substitution_or_equation_anchor",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_substitution_or_equation_anchor",
+              "reason": "missing_substitution_or_equation_anchor"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain; missing_explicit_substitution",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_explicit_substitution",
+              "reason": "missing_explicit_substitution"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 6,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\pm'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "Unsupported token '\\\\pm'"
+            }
+          ]
+        },
+        {
+          "step": 7,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "missing_substitution_or_equation_anchor",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_substitution_or_equation_anchor",
+              "reason": "missing_substitution_or_equation_anchor"
+            }
+          ]
+        },
+        {
+          "step": 8,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "equation_transition; exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 9,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        8
+      ],
+      "unsupported_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 992.14,
+      "wall_ms": 1833.263,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_136_pert_2.2",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": true,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 7,
+      "total_steps": 11,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "OK",
+          "reason": "missing_explicit_substitution",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "missing_explicit_substitution",
+              "reason": "missing_explicit_substitution"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "equation_transition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            },
+            {
+              "status": "VALID",
+              "rule": "equation_transition",
+              "reason": "equation_transition"
+            }
+          ]
+        },
+        {
+          "step": 6,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        },
+        {
+          "step": 7,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "explicit_numeric_definition",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            },
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            },
+            {
+              "status": "VALID",
+              "rule": "explicit_numeric_definition",
+              "reason": "explicit_numeric_definition"
+            }
+          ]
+        },
+        {
+          "step": 8,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\pm'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "Unsupported token '\\\\pm'"
+            }
+          ]
+        },
+        {
+          "step": 9,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\pm'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "Unsupported token '\\\\pm'"
+            }
+          ]
+        },
+        {
+          "step": 10,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\pm'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "Unsupported token '\\\\pm'"
+            }
+          ]
+        },
+        {
+          "step": 11,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unsupported token '\\\\pm'",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse_or_rule",
+              "reason": "Unsupported token '\\\\pm'"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        6
+      ],
+      "unsupported_steps": [
+        2,
+        8,
+        9,
+        10,
+        11
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 581.161,
+      "wall_ms": 1426.998,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_203_pert_4.3",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 1,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Unbalanced delimiters",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "layout",
+              "reason": "Unbalanced delimiters"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [
+        1
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 43.936,
+      "wall_ms": 919.74,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_398_pert_4.4",
+      "status": "UNSUPPORTED",
+      "covered": false,
+      "has_error": null,
+      "first_error_step": null,
+      "parse_status": "PARSE_FAILED",
+      "parsed_steps": 0,
+      "total_steps": 6,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Differential notation needs a calculus verifier",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Differential notation needs a calculus verifier"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Differential notation needs a calculus verifier",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Differential notation needs a calculus verifier"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Differential notation needs a calculus verifier",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Differential notation needs a calculus verifier"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Differential notation needs a calculus verifier",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Differential notation needs a calculus verifier"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Differential notation needs a calculus verifier",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Differential notation needs a calculus verifier"
+            }
+          ]
+        },
+        {
+          "step": 6,
+          "status": "UNSUPPORTED",
+          "parse_status": "PARSE_FAILED",
+          "reason": "Differential notation needs a calculus verifier",
+          "checks": [
+            {
+              "status": "UNSUPPORTED",
+              "rule": "parse",
+              "reason": "Differential notation needs a calculus verifier"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [],
+      "unsupported_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 199.968,
+      "wall_ms": 1113.064,
+      "verdict": "indeterminate",
+      "first_error_step_id": null
+    },
+    {
+      "id": "img_225_pert_2.4",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 1,
+      "parse_status": "OK",
+      "parsed_steps": 1,
+      "total_steps": 1,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        1
+      ],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 170.694,
+      "wall_ms": 1076.994,
+      "verdict": "incorrect",
+      "first_error_step_id": "s1"
+    },
+    {
+      "id": "img_128_pert_1.5",
+      "status": "INVALID",
+      "covered": true,
+      "has_error": true,
+      "first_error_step": 2,
+      "parse_status": "OK",
+      "parsed_steps": 2,
+      "total_steps": 2,
+      "transitions": [
+        {
+          "step": 1,
+          "status": "VALID",
+          "parse_status": "OK",
+          "reason": "trusted_initial_expression",
+          "checks": [
+            {
+              "status": "VALID",
+              "rule": "trusted_initial_expression",
+              "reason": "trusted_initial_expression"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "status": "INVALID",
+          "parse_status": "OK",
+          "reason": "exact_identity_and_domain",
+          "checks": [
+            {
+              "status": "INVALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            },
+            {
+              "status": "VALID",
+              "rule": "exact_identity_and_domain",
+              "reason": "exact_identity_and_domain"
+            }
+          ]
+        }
+      ],
+      "known_error_steps": [
+        2
+      ],
+      "unsupported_steps": [],
+      "reason": "Only written LaTeX; initial premise trusted; task context and completeness not established",
+      "latency_ms": 181.889,
+      "wall_ms": 1036.002,
+      "verdict": "incorrect",
+      "first_error_step_id": "s2"
+    }
+  ]
+}

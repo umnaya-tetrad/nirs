@@ -1,0 +1,504 @@
+{
+  "evaluation": "Exploratory: all 100 GT examples already used for development; no independent holdout",
+  "input_projection": "steps[].latex only; no GT labels, hints, corrections or graph fields",
+  "report_sha256": {
+    "report.json:0": "177b5ba0af0dc0881aa87f99fec17f82a4a4ba3bcf3b1e56339aaf1f1dea0878",
+    "report.json:1": "6d8ff23fcfa332888d8b0caaa466c80a7f6f9036944d7f639fccd324cbadc9b5",
+    "report.json:2": "8b5cbf6eb28f78d1eb969bc14d603c7e095f1114e96a2270b1a56e45175befbb"
+  },
+  "code_sha256": {
+    "written_exact.py": "f4e67830539771d2235eadf1d2f383f6cc709621bba8ed09a68d036e751c2625",
+    "written_layout.py": "bf50dfddad40af17594df262973ee68aef6230b0618e04b87bdda1d8cd8e6a21",
+    "exact_math.py": "fd243d0c180be6dde5ee32e86194852f25e6f2f4aa341b362743b82e9feb11cd",
+    "assisted_rules.py": "e1fabe2eda1c51fd60f34c9bd9e1af5ee9428888b73d540c0b8cd983d4ec1ce6",
+    "oracle.py": "2fd2b53627a7efa8f0a1d2e90c40ef9ea5ce8146768d8d28070a793b8b3b2547",
+    "contracts.py": "c6669d4dee9f4b1e683aca24edc33e132d69c1c36705ad3ed7e101214845b6e6",
+    "improvement_report.py": "61c0e60003332719ddcf9cb9eb19835ffbed34df215736d00e825e23e811c0a3"
+  },
+  "metrics": {
+    "ordinary_gt100": {
+      "examples": 100,
+      "full_coverage": 0.42,
+      "verdict_coverage": 0.63,
+      "verdict_accuracy_all": 0.51,
+      "verdict_accuracy_decided": 0.8095238095238095,
+      "first_error_examples": 70,
+      "first_error_accuracy_incorrect": 0.5142857142857142,
+      "error_signals_on_gt_correct": 10,
+      "incorrect_verdicts_on_gt_correct": 6,
+      "indeterminate_count": 37,
+      "timeouts_or_worker_errors": 4
+    },
+    "exact_gt100": {
+      "examples": 100,
+      "full_coverage": 0.45,
+      "verdict_coverage": 0.58,
+      "verdict_accuracy_all": 0.5,
+      "verdict_accuracy_decided": 0.8620689655172413,
+      "first_error_examples": 70,
+      "first_error_accuracy_incorrect": 0.5428571428571428,
+      "error_signals_on_gt_correct": 6,
+      "incorrect_verdicts_on_gt_correct": 4,
+      "indeterminate_count": 42,
+      "timeouts_or_worker_errors": 3
+    },
+    "exact_gt_dev20": {
+      "examples": 20,
+      "full_coverage": 0.4,
+      "verdict_coverage": 0.45,
+      "verdict_accuracy_all": 0.4,
+      "verdict_accuracy_decided": 0.8888888888888888,
+      "first_error_examples": 9,
+      "first_error_accuracy_incorrect": 0.5555555555555556,
+      "error_signals_on_gt_correct": 2,
+      "incorrect_verdicts_on_gt_correct": 1,
+      "indeterminate_count": 11,
+      "timeouts_or_worker_errors": 0
+    },
+    "exact_ocr_dev20": {
+      "examples": 20,
+      "full_coverage": 0.35,
+      "verdict_coverage": 0.4,
+      "verdict_accuracy_all": 0.4,
+      "verdict_accuracy_decided": 1.0,
+      "first_error_examples": 9,
+      "first_error_accuracy_incorrect": 0.2222222222222222,
+      "error_signals_on_gt_correct": 3,
+      "incorrect_verdicts_on_gt_correct": 0,
+      "indeterminate_count": 12,
+      "timeouts_or_worker_errors": 0
+    }
+  },
+  "changed_examples": [
+    {
+      "id": "img_96_pert_2.1",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_136_pert_2.2",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_19_pert_5.1",
+      "gt_verdict": "correct",
+      "before": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_494_pert_5.1",
+      "gt_verdict": "correct",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s3",
+        "has_error": true
+      },
+      "after": {
+        "covered": true,
+        "verdict": "correct",
+        "first_error_step_id": null,
+        "has_error": false
+      }
+    },
+    {
+      "id": "img_387_pert_5.1",
+      "gt_verdict": "correct",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_22_pert_5.1",
+      "gt_verdict": "correct",
+      "before": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_494_pert_3.1",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s3",
+        "has_error": true
+      },
+      "after": {
+        "covered": true,
+        "verdict": "incorrect",
+        "first_error_step_id": "s4",
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_172_pert_3.2",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": true,
+        "verdict": "correct",
+        "first_error_step_id": null,
+        "has_error": false
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_35_pert_2.5",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s1",
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_395_pert_2.5",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_494_pert_2.5",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s3",
+        "has_error": true
+      },
+      "after": {
+        "covered": true,
+        "verdict": "incorrect",
+        "first_error_step_id": "s4",
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_463_pert_1.3",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      },
+      "after": {
+        "covered": true,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_96_pert_1.4",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_176_pert_4.3",
+      "gt_verdict": "correct",
+      "before": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      },
+      "after": {
+        "covered": true,
+        "verdict": "correct",
+        "first_error_step_id": null,
+        "has_error": false
+      }
+    },
+    {
+      "id": "img_112_pert_4.4",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      },
+      "after": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s3",
+        "has_error": true
+      }
+    },
+    {
+      "id": "img_529_pert_4.5",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": true,
+        "verdict": "correct",
+        "first_error_step_id": null,
+        "has_error": false
+      },
+      "after": {
+        "covered": false,
+        "verdict": "indeterminate",
+        "first_error_step_id": null,
+        "has_error": null
+      }
+    },
+    {
+      "id": "img_194_pert_1.5",
+      "gt_verdict": "incorrect",
+      "before": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s1",
+        "has_error": true
+      },
+      "after": {
+        "covered": false,
+        "verdict": "incorrect",
+        "first_error_step_id": "s2",
+        "has_error": true
+      }
+    }
+  ],
+  "unsupported_checks_by_rule": {
+    "parse": 86,
+    "equation_transition": 33,
+    "missing_substitution_or_equation_anchor": 24,
+    "missing_explicit_substitution": 19,
+    "prose": 19,
+    "parse_or_rule": 19,
+    "missing_continuation": 6,
+    "separate_expression_without_context": 6,
+    "exact_matrix_identity": 3,
+    "layout": 3,
+    "unanchored_definition": 2,
+    "identity_unresolved": 2,
+    "initial_relation": 1,
+    "only_unverified_premises": 1
+  },
+  "gt_vs_ocr": [
+    {
+      "id": "img_509_pert_5.1",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "gt_input_covered": true,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "incorrect",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "correct",
+      "ocr_input_verdict": "correct"
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "correct",
+      "ocr_input_verdict": "correct"
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "correct",
+      "ocr_input_verdict": "correct"
+    },
+    {
+      "id": "img_509_pert_3.1",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_157_pert_3.2",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "incorrect",
+      "ocr_input_verdict": "incorrect"
+    },
+    {
+      "id": "img_480_pert_2.5",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "incorrect",
+      "ocr_input_verdict": "incorrect"
+    },
+    {
+      "id": "img_110_pert_1.3",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "incorrect",
+      "ocr_input_verdict": "incorrect"
+    },
+    {
+      "id": "img_96_pert_2.1",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_136_pert_2.2",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_203_pert_4.3",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_398_pert_4.4",
+      "gt_input_covered": false,
+      "ocr_input_covered": false,
+      "gt_input_verdict": "indeterminate",
+      "ocr_input_verdict": "indeterminate"
+    },
+    {
+      "id": "img_225_pert_2.4",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "incorrect",
+      "ocr_input_verdict": "incorrect"
+    },
+    {
+      "id": "img_128_pert_1.5",
+      "gt_input_covered": true,
+      "ocr_input_covered": true,
+      "gt_input_verdict": "incorrect",
+      "ocr_input_verdict": "incorrect"
+    }
+  ]
+}

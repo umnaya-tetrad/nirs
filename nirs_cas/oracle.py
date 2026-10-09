@@ -22,7 +22,7 @@ def load_records(paths):
         path = Path(path)
         raw = path.read_bytes()
         data = json.loads(raw.decode('utf-8-sig'))
-        items = data if isinstance(data, list) else [data]
+        items = data if isinstance(data, list) else data['items'] if isinstance(data, dict) and isinstance(data.get('items'), list) else [data]
         sources.append({'path': path.as_posix(), 'sha256': hashlib.sha256(raw).hexdigest()})
         for item in items:
             extract_step_latex(item)
@@ -67,7 +67,9 @@ def summarize(rows):
             'unsupported_reasons': dict(reasons.most_common())}
 
 
-def run_oracle(paths, output, *, timeout=10, workers=4, split_name='exploratory_gt'):
+def run_oracle(paths, output, *, timeout=10, workers=4, split_name='exploratory_gt', mode='ordinary'):
+    if mode not in {'ordinary', 'exact'}:
+        raise ValueError('mode must be ordinary or exact')
     if workers < 1 or workers > 16:
         raise ValueError('workers must be between 1 and 16')
     if timeout <= 0:
@@ -77,8 +79,16 @@ def run_oracle(paths, output, *, timeout=10, workers=4, split_name='exploratory_
     output.mkdir(parents=True, exist_ok=True)
     (output / 'predictions').mkdir(exist_ok=True)
     def check(item):
-        result = run_isolated(extract_step_latex(item), timeout)
-        canonical = analyze_contract(item, result=result)
+        if mode == 'exact':
+            from .written_exact import run_exact_isolated
+            result = run_exact_isolated(extract_step_latex(item), timeout)
+        else:
+            result = run_isolated(extract_step_latex(item), timeout)
+        if mode == 'exact':
+            from .contracts import analyze_exact_contract
+            canonical = analyze_exact_contract(item, result=result)
+        else:
+            canonical = analyze_contract(item, result=result)
         step_ids = [s.get('step_id', f's{i}') for i, s in enumerate(item['steps'], 1)]
         first = result['first_error_step']
         row = {'id': item['id'], **result, 'verdict': canonical['verdict'],
@@ -97,7 +107,7 @@ def run_oracle(paths, output, *, timeout=10, workers=4, split_name='exploratory_
     (output / 'predictions.json').write_text(json.dumps([canonical for _, canonical in checked], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     report = {'generated_at_utc': datetime.now(timezone.utc).isoformat(), 'backend': 'sympy',
               'sympy_version': sympy.__version__, 'python_version': platform.python_version(),
-              'evaluation': split_name, 'sources': sources, 'timeout_seconds': timeout, 'workers': workers,
+              'evaluation': split_name, 'mode': mode, 'sources': sources, 'timeout_seconds': timeout, 'workers': workers,
               'input_projection': 'steps[].latex only, original order', 'summary': summarize(rows), 'results': rows}
     (output / 'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     columns = ['id', 'status', 'covered', 'parse_status', 'has_error', 'verdict', 'first_error_step_id', 'expected_verdict', 'expected_first_error_step', 'parsed_steps', 'total_steps', 'latency_ms', 'wall_ms']

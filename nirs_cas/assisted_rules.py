@@ -161,35 +161,54 @@ def trig_solutions(raw, interval=None):
         raise ParseError("Requires one real trigonometric equation")
     x = parsed.symbols[0]
     residual = sp.trigsimp(parsed.sides[0] - parsed.sides[1])
-    # Direct sin/cos = c only. Hard transformations remain graph/local work.
+    if not residual.free_symbols:
+        if residual.is_zero is None:
+            raise ParseError("Constant trigonometric residual is unresolved")
+        result = sp.S.Reals if residual.is_zero else sp.S.EmptySet
+        return (sp.Intersection(result, interval) if interval is not None else result), x
+    # A bounded polynomial in one sin/cos of an affine argument. No finite
+    # root sampling: solve every polynomial root, then construct full families.
     atoms = list(residual.atoms(sp.sin, sp.cos))
-    if len(atoms) != 1 or atoms[0].args != (x,):
-        raise ParseError("Requires a canonical sin x=c or cos x=c equation")
+    if len(atoms) != 1:
+        expanded = sp.expand(sp.expand_trig(residual))
+        # Exact double-angle/Pythagorean reduction, only when it produces a
+        # polynomial in one function. Mixed sin*cos remains unsupported.
+        for old, replacement in ((sp.cos(x)**2, 1-sp.sin(x)**2), (sp.sin(x)**2, 1-sp.cos(x)**2)):
+            candidate = sp.expand(expanded.subs(old, replacement))
+            candidate_atoms = list(candidate.atoms(sp.sin, sp.cos))
+            if len(candidate_atoms) == 1:
+                residual, atoms = candidate, candidate_atoms
+                break
+    if len(atoms) != 1:
+        raise ParseError("Requires a polynomial in one sin/cos function")
     trig = atoms[0]
+    argument = sp.expand(trig.args[0])
+    slope = sp.simplify(sp.diff(argument, x))
+    shift = sp.simplify(argument.subs(x, 0))
+    if slope.free_symbols or slope.is_real is not True or slope.is_zero is not False or shift.free_symbols or shift.is_real is not True or sp.simplify(argument - slope*x - shift) != 0:
+        raise ParseError("Requires a resolved affine trigonometric argument")
     t = sp.Dummy("trig", real=True)
     polynomial = sp.Poly(residual.xreplace({trig: t}), t)
-    if polynomial.degree() != 1 or polynomial.as_expr().free_symbols - {t}:
-        raise ParseError("Canonical trig equation must be linear in one trig function")
-    a, b = polynomial.all_coeffs()
-    c = sp.simplify(-b / a)
-    if (1 - c**2).is_nonnegative is False:
-        result = sp.S.EmptySet
-    elif (1 - c**2).is_nonnegative is not True:
-        raise ParseError("Trig value range is unresolved")
-    else:
-        k = sp.Symbol("k", integer=True)
+    if not 1 <= polynomial.degree() <= 4 or polynomial.as_expr().free_symbols - {t}:
+        raise ParseError("Trig polynomial must have degree 1 to 4 and constant coefficients")
+    roots = resolved(sp.solveset(polynomial.as_expr(), t, domain=sp.Interval(-1, 1)))
+    if not isinstance(roots, sp.FiniteSet) and roots != sp.S.EmptySet:
+        raise ParseError("Trig polynomial roots are not an exact finite set")
+    families = []
+    k = sp.Symbol("k", integer=True)
+    for c in roots:
+        c = sp.simplify(c)
+        if (1 - c**2).is_nonnegative is not True:
+            raise ParseError("Trig value range is unresolved")
         if trig.func == sp.sin:
             angle = sp.asin(c)
-            result = sp.Union(
-                sp.ImageSet(sp.Lambda(k, angle + 2 * sp.pi * k), sp.S.Integers),
-                sp.ImageSet(sp.Lambda(k, sp.pi - angle + 2 * sp.pi * k), sp.S.Integers),
-            )
+            offsets = (angle, sp.pi - angle)
         else:
             angle = sp.acos(c)
-            result = sp.Union(
-                sp.ImageSet(sp.Lambda(k, angle + 2 * sp.pi * k), sp.S.Integers),
-                sp.ImageSet(sp.Lambda(k, -angle + 2 * sp.pi * k), sp.S.Integers),
-            )
+            offsets = (angle, -angle)
+        for offset in offsets:
+            families.append(sp.ImageSet(sp.Lambda(k, sp.simplify((offset-shift)/slope) + 2*sp.pi/abs(slope)*k), sp.S.Integers))
+    result = sp.Union(*families)
     if interval is not None:
         if isinstance(interval, sp.FiniteSet):
             result = resolved(sp.Intersection(result, interval))

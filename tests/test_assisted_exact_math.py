@@ -96,6 +96,40 @@ def test_noncanonical_trig_is_unsupported():
         trig_solutions(r"\sin(2x)+\cos x=0")
 
 
+@pytest.mark.parametrize("raw,answer", [
+    (r"\sin(2x)=0", r"x=\frac{\pi}{2} k,k\in\mathbb{Z}"),
+    (r"\sin(2x+\pi/3)=0", r"x=-\pi/6+\pi k/2,k\in\mathbb{Z}"),
+    (r"\cos(3x)=1", r"x=2\pi k/3,k\in\mathbb{Z}"),
+    (r"\sin(-2x)=0", r"x=\pi k/2,k\in\mathbb{Z}"),
+    (r"\sin^2 x=1", r"x=\pi/2+\pi k,k\in\mathbb{Z}"),
+    (r"\sin^2 x-\sin x=0", r"x=\pi k,k\in\mathbb{Z}; x=\pi/2+2\pi k,k\in\mathbb{Z}"),
+    (r"\cos(2x)-\sqrt{2}\sin(x+\pi)-1=0", r"x=\pi k,k\in\mathbb{Z}; x=\pi/4+2\pi k,k\in\mathbb{Z}; x=3\pi/4+2\pi k,k\in\mathbb{Z}"),
+])
+def test_affine_and_polynomial_trig_families(raw, answer):
+    roots, _ = trig_solutions(raw)
+    actual = parse_answer(answer)
+    assert actual.status == "OK", actual.reason
+    assert equal_sets(roots, actual.value) is True
+
+
+def test_affine_trig_wrong_spacing_and_exact_interval():
+    roots, _ = trig_solutions(r"\sin(2x)=0")
+    assert equal_sets(roots, parse_answer(r"x=\pi k,k\in\mathbb{Z}").value) is False
+    roots, _ = trig_solutions(r"\sin(2x)=0", sp.Interval(100*sp.pi, 101*sp.pi))
+    assert roots == sp.FiniteSet(100*sp.pi, sp.Rational(201, 2)*sp.pi, 101*sp.pi)
+
+
+@pytest.mark.parametrize("equation,expected", [(r"\sin^2x+\cos^2x=1", sp.S.Reals), (r"\sin^2x+\cos^2x=0", sp.S.EmptySet)])
+def test_trig_identity_solution_sets(equation, expected):
+    assert trig_solutions(equation)[0] == expected
+
+
+@pytest.mark.parametrize("raw", [r"\sin(x^2)=0", r"\sin(ax)=0", r"\sin^5 x=0"])
+def test_new_trig_rules_abstain_outside_bounded_class(raw):
+    with pytest.raises(ValueError):
+        trig_solutions(raw)
+
+
 @pytest.mark.parametrize(
     "raw,answer,status",
     [

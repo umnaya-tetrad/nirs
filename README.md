@@ -121,6 +121,11 @@ Assisted CAS теперь отдельно проверяет граф шаго�
 
 ## Проверка CAS на GT
 
+Экспериментальный `oracle --mode exact` и API `analyze_exact_contract` проверяют
+шаги дополнительными точными правилами. Обычный режим остаётся по умолчанию.
+Разбор алгоритма и команды: [docs/cas_improvement.md](docs/cas_improvement.md).
+Сравнение GT-100 и сохранённого OCR: [reports/cas_improvement](reports/cas_improvement/README.md).
+
 Файл `dataset/final_gt.json` содержит 80 решений (6402 строки),
 `dataset/test_gt.json` — ещё 20. Адаптер `nirs_cas/adapter.py`, функция
 `extract_step_latex`, извлекает только `steps[].latex`, сохраняя порядок.

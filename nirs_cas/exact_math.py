@@ -21,6 +21,9 @@ from .verifier import _domain, _set_equal
 
 class ExactParser(_Parser):
     def exponent(self):
+        if self.peek() in ("+", "-"):
+            sign = -1 if self.take() == "-" else 1
+            return sign * super().exponent()
         if self.peek() == "{":
             value = self.group("{")
         elif re.fullmatch(r"[A-Za-z]", self.peek()):
@@ -115,10 +118,15 @@ class ExactParser(_Parser):
 
 def math(source: str, bindings=None) -> ParsedMath:
     text = normalize_latex(source)
-    if re.search(r"\\frac\{d(?:\^\{?\d+\}?)?[A-Za-z]", text):
+    if re.search(r"\\frac\{d(?:\^\{?\d+\}?)?[A-Za-z]", text) or re.search(
+        r"\\frac\s*\{\s*d(?:\s*\^\s*(?:\{\s*\d+\s*\}|\d+))?\s*(?:[A-Za-z]|\\[A-Za-z]+)?\s*\}\s*\{\s*d", text
+    ):
         raise ParseError("Differential notation needs a calculus verifier")
     text, atoms, constraints = _matrix_atoms(text)
-    return ExactParser(text, {**atoms, **(bindings or {})}, constraints).parse()
+    if re.search(r"(?<![\\A-Za-z])[A-Za-z]{4,}(?![A-Za-z])", text):
+        raise ParseError("Bare word is not an exact mathematical token")
+    complex_mode = bool(re.search(r"(?<![A-Za-z])i(?![A-Za-z])", text))
+    return ExactParser(text, {**atoms, **(bindings or {})}, constraints, complex_mode=complex_mode).parse()
 
 
 def expression(source: str) -> sp.Expr:

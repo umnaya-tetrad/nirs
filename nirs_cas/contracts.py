@@ -72,3 +72,24 @@ def analyze_assisted_contract(input_contract, repo_root=None, *, timeout=10, res
     """Separate assisted graph/context evaluation with bounded worker stages."""
     from .assisted_analysis import analyze_assisted
     return analyze_assisted(input_contract, repo_root, timeout=timeout, result=result)
+
+
+def analyze_exact_contract(input_contract, repo_root=None, *, timeout=10, result=None):
+    """Opt-in exact written checker; only steps[].latex enters the engine."""
+    from .written_exact import run_exact_isolated, verify_exact_written
+
+    latex = extract_step_latex(input_contract)
+    if result is None:
+        result = run_exact_isolated(latex, timeout) if timeout is not None else verify_exact_written(latex)
+    output = analyze_contract(input_contract, result=result)
+    identifiers = [step['step_id'] for step in output['steps']]
+    output['problem'] = {
+        'verification_mode': 'exact_written',
+        'known_error_step_ids': [identifiers[i - 1] for i in result.get('known_error_steps', [])],
+        'first_error_established': result['first_error_step'] is not None,
+        'checks': result['transitions'],
+    }
+    if repo_root is not None:
+        from nirs_llm.contracts import validate_contract
+        validate_contract(output, 'solution_analysis', repo_root)
+    return output
