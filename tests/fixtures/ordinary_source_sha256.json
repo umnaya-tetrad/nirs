@@ -1,0 +1,6 @@
+{
+  "nirs_cas/parser.py": "f4c0174e4ccc51b496c231284ef52aafdbcf26b6635ddc9c7cf6359062a00f09",
+  "nirs_cas/verifier.py": "72ba708a4e4acc32be61afa9c1ea9890a837d2e4ac16e956bbc3fe15ab164669",
+  "nirs_cas/structured.py": "31da48aab3bb6a382c7da94cf5f2469af0cbeb1ec0e3bbbac5c3001361483c05",
+  "nirs_cas/contracts.py": "442f72fddc0c2afff3b23f0cd96d68d291f607dfe59c28fa57d9bce77920a8a8"
+}

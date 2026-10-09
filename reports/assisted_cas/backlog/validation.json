@@ -1,0 +1,105 @@
+{
+  "base_commit": "15cddad",
+  "tests": {
+    "passed": 299,
+    "command": "python -m pytest -q --basetemp ../.cas-work/pytest-final-approved"
+  },
+  "ordinary_regression": "Source SHA-256 and all 20 semantic predictions match the frozen baseline",
+  "development_checks": {
+    "before": 182,
+    "block_1": 216,
+    "block_2": 238,
+    "block_3": 247,
+    "block_4": 263,
+    "final": 299
+  },
+  "evaluation": "Frozen dev-20 paired OCR artifacts; mixed-20 engineering only. No final-80 or VLM rerun.",
+  "code_sha256": {
+    "answers.py": "b0a192f5113ec5aba84c5733bde7e51e0b6fb8a4d76bc91096ea85d71f32eed2",
+    "assisted_analysis.py": "c41a86ca7a4f18de45f79026a591a8b785cba3aa1f0f1ec4aaff834290a1a0e6",
+    "assisted_rules.py": "069066aa57198bc64b5e6e38322b52bd6118667fe20e66e98084ad13e2db4242",
+    "assisted_oracle.py": "48336782323a152b3780d8962fa221ce15c788ef99b69c9b97ef260e0bd06009",
+    "context_extensions.py": "54216791b522e4744b356ad67862512ab84a3743c63f088e91cb86bd0fbdf73f",
+    "context_rules.py": "55a937966ae371e74beb452ca53faed794626ae7d9de1c2c170dcece9709bd03",
+    "environment.py": "f6e370742a4b59b3fc4ceb0734132cb578a9461bddb99d19861a418fbf0ed2c7",
+    "exact_math.py": "886b866b886a74f72a839f3594e453f79f4108c99a5359228e94054b087819fe",
+    "graph_verifier.py": "82a477f6130328b4dda4e3d3157151138f54f609fabf1bb3e73fc73eb9df3187",
+    "task_spec.py": "354d7b96e3d85d7f93c3bf95730184b44f6ace60e1b321860eb04ab77e3217ac",
+    "contracts.py": "8b6dde5b3f4a91dd8acfa4470fc54558548cc9135d3739fa6a6ae7266e5623b7"
+  },
+  "ordinary": {
+    "examples": 20,
+    "coverage": 0.4,
+    "verified_solution_coverage": 0.4,
+    "verdict_coverage": 0.55,
+    "indeterminate_count": 9,
+    "indeterminate_reasons": {
+      "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established": 2,
+      "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate solution-set equivalence not established": 2,
+      "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context; Unsupported token '\\\\neq'": 2,
+      "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context": 1,
+      "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain": 2,
+      "Text/units/conditions are outside the symbolic grammar: for; Unsupported input at character 1": 1,
+      "Text/units/conditions are outside the symbolic grammar: for; Symbolic equation is a premise; checked against previous equation when applicable": 1,
+      "Expected token, got end of input; Exact expression identity with preserved domain": 1,
+      "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context": 3,
+      "Continuation has no readable predecessor; Exact expression identity with preserved domain": 1,
+      "Text/units/conditions are outside the symbolic grammar: then; Symbolic equation is a premise; checked against previous equation when applicable": 1,
+      "Unsupported token '\\\\int'; Unconsumed token '_'; one expression/equation per step": 1,
+      "Найдено неверное равенство, но первая ошибка не установлена: Unsupported token '\\\\int'; Unsupported token '\\\\int'; Exact counterexample at {t: 0, x: 0}: difference=-2/3": 1,
+      "Symbolic equation is a premise; checked against previous equation when applicable; Identity to substituted value needs an explicit substitution": 1,
+      "Unsupported token '\\\\pm'": 1,
+      "Unbalanced delimiters": 1,
+      "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions": 1
+    },
+    "indeterminate_share": 0.45,
+    "verdict_accuracy": 0.5,
+    "first_error_accuracy": 0.2222222222222222,
+    "first_error_examples": 9,
+    "first_error_accuracy_all": 0.25
+  },
+  "assisted": {
+    "examples": 20,
+    "coverage": 0.45,
+    "verified_solution_coverage": 0.45,
+    "verdict_coverage": 0.55,
+    "indeterminate_count": 9,
+    "indeterminate_reasons": {
+      "At least one node/edge proof is unresolved": 4,
+      "Task has no explicit mathematical target": 2,
+      "Prose/conditions are not a fully parsed mathematical step": 5,
+      "Symbolic determinant template has no explicit entry bindings": 1,
+      "Continuation requires one readable dependency": 2,
+      "Unsupported token '\\\\int'": 1,
+      "Unsupported input at character 0": 1,
+      "Unsupported token '\\\\dots'": 1,
+      "Quadrant prose is not an explicit mathematical constraint": 1,
+      "Unsupported token '\\\\pm'": 2,
+      "Unanchored mathematical statement": 1,
+      "Unsupported token '\\\\text'": 1,
+      "Differential notation needs a calculus verifier": 1,
+      "Requires one task equation": 1,
+      "Unsupported input at character 8": 1
+    },
+    "indeterminate_share": 0.45,
+    "verdict_accuracy": 0.55,
+    "first_error_accuracy": 0.1111111111111111,
+    "first_error_examples": 9,
+    "first_error_accuracy_all": 0.4
+  },
+  "task_aware": {
+    "examples": 20,
+    "task_aware_coverage": 0.55,
+    "context_valid": 9,
+    "context_invalid": 2,
+    "context_unsupported": 9
+  },
+  "mixed_verified_solution_coverage": 0.3,
+  "mixed_task_aware": {
+    "examples": 20,
+    "task_aware_coverage": 0.5,
+    "context_valid": 9,
+    "context_invalid": 1,
+    "context_unsupported": 10
+  }
+}

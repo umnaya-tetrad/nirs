@@ -1,0 +1,848 @@
+[
+  {
+    "id": "img_509_pert_5.1",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate solution-set equivalence not established"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context; Unsupported token '\\\\neq'"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_554_pert_5.1",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Text/units/conditions are outside the symbolic grammar: for; Unsupported input at character 1"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "indeterminate",
+        "note": "Text/units/conditions are outside the symbolic grammar: for; Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s7",
+        "verdict": "indeterminate",
+        "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s8",
+        "verdict": "indeterminate",
+        "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_471_pert_5.1",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Expected token, got end of input; Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_462_pert_5.1",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s1",
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "note": "Polynomial identity test; Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Polynomial identity test",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Polynomial identity test",
+          "actual_latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c) = 2(2) - 4(-1)",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_494_pert_5.2",
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "First symbolic step is a trusted premise; no check against the problem statement"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "note": "Exact real solution-set comparison"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_452_pert_5.2",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_471_pert_5.2",
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain; Exact real solution-set comparison"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_373_pert_5.2",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "indeterminate",
+        "note": "Text/units/conditions are outside the symbolic grammar: then; Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Найдено неверное равенство, но первая ошибка не установлена: Unsupported token '\\\\int'; Unsupported token '\\\\int'; Exact counterexample at {t: 0, x: 0}: difference=-2/3"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\int'; Unconsumed token '_'; one expression/equation per step"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Continuation has no readable predecessor; Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_221_pert_5.3",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Text/units/conditions are outside the symbolic grammar: . Here ,; Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Text/units/conditions are outside the symbolic grammar: . Note that; Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Text/units/conditions are outside the symbolic grammar: . Note that; Exact expression identity with preserved domain",
+          "actual_latex": "=\\frac{9-8}{16}=\\frac{1}{16}\\text{. Note that }3^{2}=9\\text{ and }2^{3}=8",
+          "engine": "sympy"
+        }
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s3",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "\\left(\\frac{5}{8}\\right)^{-7}\\times\\left(\\frac{8}{5}\\right)^{-5}=\\frac{5^{-7}}{8^{-7}}\\times\\frac{8^{-5}}{5^{-5}}=\\frac{5^{-7}\\times 8^{-5}}{8^{-7}\\times 5^{-5}}=5^{-2}\\times 8^{-2}=\\frac{8^{2}}{5^{2}}=\\frac{64}{25}",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_151_pert_5.3",
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_509_pert_3.1",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate solution-set equivalence not established"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context; Unsupported token '\\\\neq'"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_157_pert_3.2",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s1",
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "(2\\sqrt{2} + 5\\sqrt{3}) + (\\sqrt{2} - 3\\sqrt{3}) = (2\\sqrt{2} \\times \\sqrt{2}) + (5\\sqrt{3} - 3\\sqrt{3})",
+          "engine": "sympy"
+        }
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "= (2 \\times 1)\\sqrt{2} + (5 - 3)\\sqrt{3} = 2\\sqrt{2} + 2\\sqrt{3}",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_480_pert_2.5",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Trusted initial expression"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct",
+        "note": "Exact inequality solution-set comparison"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "indeterminate",
+        "note": "Unbalanced delimiters"
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact inequality solution-set comparison",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact inequality solution-set comparison",
+          "actual_latex": "2(5-2x) \\le 2\\left(\\frac{x}{6}-5\\right)",
+          "engine": "sympy"
+        }
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s3",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact inequality solution-set comparison",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact inequality solution-set comparison",
+          "actual_latex": "10-4x \\le x-30",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_110_pert_1.3",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s1",
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ) = \\cos(-1710^\\circ + 1700^\\circ)",
+          "engine": "sympy"
+        }
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "= \\cos(-1710^\\circ + 1800^\\circ) = \\cos 90^\\circ = 0",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_96_pert_2.1",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic identity with identical source restrictions"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\pm'"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "error",
+        "finding_ids": [
+          "f2"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\pm'"
+      },
+      {
+        "step_id": "s7",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s8",
+        "verdict": "error",
+        "finding_ids": [
+          "f3"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "verdict": "correct",
+        "note": "Polynomial identity test; Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain; Exact counterexample at {x: 0}: difference=9/25; Separate equation/substitution requires task context",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain; Exact counterexample at {x: 0}: difference=9/25; Separate equation/substitution requires task context",
+          "actual_latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+          "engine": "sympy"
+        }
+      },
+      {
+        "finding_id": "f2",
+        "step_id": "s5",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain; Exact counterexample at {y: 0}: difference=-25/169; Separate equation/substitution requires task context",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain; Exact counterexample at {y: 0}: difference=-25/169; Separate equation/substitution requires task context",
+          "actual_latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+          "engine": "sympy"
+        }
+      },
+      {
+        "finding_id": "f3",
+        "step_id": "s8",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context",
+          "actual_latex": "\\sin (x+y) = \\frac{3}{5}\\left(-\\frac{12}{13}\\right) + \\left(-\\frac{4}{5}\\right)\\left(\\frac{5}{13}\\right) = -\\frac{36}{65} + \\frac{4}{5} \\times \\frac{5}{13}",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_136_pert_2.2",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identity to substituted value needs an explicit substitution"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      },
+      {
+        "step_id": "s7",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s8",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\pm'"
+      },
+      {
+        "step_id": "s9",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\pm'"
+      },
+      {
+        "step_id": "s10",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\pm'"
+      },
+      {
+        "step_id": "s11",
+        "verdict": "indeterminate",
+        "note": "Unsupported token '\\\\pm'"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_203_pert_4.3",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "indeterminate",
+        "note": "Unbalanced delimiters"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "correct",
+        "note": "Exact expression identity with preserved domain"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_398_pert_4.4",
+    "verdict": "indeterminate",
+    "is_correct": null,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+      },
+      {
+        "step_id": "s3",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+      },
+      {
+        "step_id": "s4",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+      },
+      {
+        "step_id": "s5",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+      },
+      {
+        "step_id": "s6",
+        "verdict": "indeterminate",
+        "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+      }
+    ],
+    "findings": []
+  },
+  {
+    "id": "img_225_pert_2.4",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s1",
+    "last_correct_step": null,
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s1",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{3^{3}}{2^{2}} = \\frac{27}{4}",
+          "engine": "sympy"
+        }
+      }
+    ]
+  },
+  {
+    "id": "img_128_pert_1.5",
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "steps_reviewed": [
+      {
+        "step_id": "s1",
+        "verdict": "correct",
+        "note": "Trusted initial expression"
+      },
+      {
+        "step_id": "s2",
+        "verdict": "error",
+        "finding_ids": [
+          "f1"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "finding_id": "f1",
+        "step_id": "s2",
+        "error_code": "algebra",
+        "severity": "error",
+        "message": "Символьная проверка обнаружила неверное равенство или переход.",
+        "explanation": "Exact expression identity with preserved domain",
+        "confidence": 1.0,
+        "detected_by": "math_core",
+        "evidence": {
+          "check": "Exact expression identity with preserved domain",
+          "actual_latex": "\\sqrt[3]{9000} = 2 \\times 2 \\times 5 = 20",
+          "engine": "sympy"
+        }
+      }
+    ]
+  }
+]
