@@ -1,0 +1,85 @@
+{
+  "manifest_version": "1.0",
+  "experiment_id": "dev20_demo",
+  "evaluation_note": "exploratory",
+  "dataset": {
+    "split": "dev-20",
+    "gt_paths": ["dataset/test_gt.json"],
+    "ids": [
+      "img_509_pert_5.1",
+      "img_554_pert_5.1",
+      "img_471_pert_5.1",
+      "img_462_pert_5.1",
+      "img_494_pert_5.2",
+      "img_452_pert_5.2",
+      "img_471_pert_5.2",
+      "img_373_pert_5.2",
+      "img_221_pert_5.3",
+      "img_151_pert_5.3",
+      "img_509_pert_3.1",
+      "img_157_pert_3.2",
+      "img_480_pert_2.5",
+      "img_110_pert_1.3",
+      "img_96_pert_2.1",
+      "img_136_pert_2.2",
+      "img_203_pert_4.3",
+      "img_398_pert_4.4",
+      "img_225_pert_2.4",
+      "img_128_pert_1.5"
+    ],
+    "cas_on_gt": {"path": "reports/cas_gt_100/predictions.json"}
+  },
+  "error_policy": {
+    "api_failed": "counts as wrong in verdict accuracy, stays in denominator",
+    "invalid_contract": "counts as wrong in verdict accuracy, stays in denominator",
+    "missing": "counts as wrong in verdict accuracy, stays in denominator",
+    "note": "indeterminate is an explicit system abstention and never equals correct"
+  },
+  "runs": [
+    {
+      "run_id": "e2e_gemini_v2",
+      "system": "e2e",
+      "provider": "gemini",
+      "mode": "e2e",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "74b21a54157884616ac9587bbae0ee5b57cb1ef310a33618c2724ec875bad1b8",
+      "git_commit": null,
+      "timestamp": "2026-10-09T00:00:00Z",
+      "simulated": true,
+      "source": {"kind": "runner_artifacts", "path": "evaluator/fixtures/e2e_simulated_dev_20.json"}
+    },
+    {
+      "run_id": "cas_gemini_v2",
+      "system": "extraction_cas",
+      "provider": "gemini",
+      "mode": "extraction",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "06a57a021c0a5d257aa1ea0c876251b800dc72ffcec2eeed2f8c8e7fe8aad1f4",
+      "git_commit": null,
+      "timestamp": "2026-10-08T16:25:58Z",
+      "simulated": false,
+      "source": {"kind": "json_key", "path": "reports/assisted_cas/dev20/comparison.json", "key": "ordinary.predictions"},
+      "extraction_artifacts": {"kind": "bundle", "path": "dataset/artifacts/gemini_ordinary_fermat_dev_20.json"}
+    },
+    {
+      "run_id": "assisted_cas_gemini_v2",
+      "system": "assisted_cas",
+      "provider": "gemini",
+      "mode": "assisted_extraction",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5",
+      "git_commit": null,
+      "timestamp": "2026-10-08T16:25:58Z",
+      "simulated": false,
+      "source": {"kind": "json_key", "path": "reports/assisted_cas/dev20/comparison.json", "key": "assisted.predictions"},
+      "extraction_artifacts": {"kind": "bundle", "path": "dataset/artifacts/gemini_assisted_fermat_dev_20.json"}
+    }
+  ],
+  "h1_pairs": [
+    {"provider": "gemini", "e2e_run": "e2e_gemini_v2", "cas_run": "cas_gemini_v2"},
+    {"provider": "gemini", "e2e_run": "e2e_gemini_v2", "cas_run": "assisted_cas_gemini_v2"}
+  ]
+}
