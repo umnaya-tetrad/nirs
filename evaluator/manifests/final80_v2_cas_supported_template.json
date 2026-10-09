@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0",
   "experiment_id": "final80_v2_cas_supported",
-  "evaluation_note": "final",
+  "evaluation_note": "deprecated_subset_prototype_not_for_final_results",
   "dataset": {
     "split": "final-80-v2-cas-supported",
     "gt_paths": [

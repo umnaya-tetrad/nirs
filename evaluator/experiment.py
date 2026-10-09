@@ -52,7 +52,10 @@ def _ocr_classes(h2: dict[str, Any]) -> dict[str, str]:
 def _domain_metrics(path: Path | None, manifest: ExperimentManifest, runs: dict[str, RunData], gt_by_id: dict[str, dict[str, Any]], repo_root: Path) -> dict[str, Any]:
     if path is None:
         return {"available": False, "reason": "No domain sidecar declared."}
-    summary = validate_domains(path, repo_root / "dataset/manifests/fermat_final_80.json")
+    # A manifest loaded from dataset_manifest retains that exact source in
+    # ids_path.  Never validate a v2 sidecar against the old final-80 list.
+    domain_manifest = manifest.ids_path if manifest.ids_path is not None else repo_root / "dataset/manifests/fermat_final_80.json"
+    summary = validate_domains(path, domain_manifest)
     import json
     annotations = json.loads(path.read_text(encoding="utf-8")).get("records", [])
     by_id = {row["solution_id"]: row for row in annotations}
@@ -97,7 +100,6 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
     pair_payload: dict[str, Any] = {}
     h2_payload: dict[str, Any] = {}
     h3_payload: dict[str, Any] = {}
-    selected_cas: str | None = None
     for pair in manifest.h1_pairs:
         e2e_run, cas_run = runs[pair["e2e_run"]], runs[pair["cas_run"]]
         # A partial run is evaluable but must never masquerade as a complete
@@ -108,17 +110,14 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
         key = _key(pair)
         pair_payload[key] = {"provider": pair["provider"], "e2e_run": pair["e2e_run"], "cas_run": pair["cas_run"],
                              "e2e": e2e_metrics, "cas": cas_metrics, "paired": paired}
-        if selected_cas is None and cas_run.extraction is not None:
-            selected_cas = pair["cas_run"]
-    if cas_on_gt is not None and selected_cas is not None and runs[selected_cas].id_set == expected_ids:
-        h2_analysis = analyze_h2(runs[selected_cas], gt_by_id, cas_on_gt, manifest.ids)
-        h2_payload = {"run_id": selected_cas, "per_case": h2_analysis["rows"],
-                      "by_error_class": h2_analysis["by_error_class"], "overall": h2_analysis["overall"]}
     for pair in manifest.h1_pairs:
         e2e_run, cas_run = runs[pair["e2e_run"]], runs[pair["cas_run"]]
         ocr_by_id = {}
-        if cas_on_gt is not None and cas_run.extraction is not None and cas_run.id_set == expected_ids:
-            ocr_by_id = _ocr_classes(analyze_h2(cas_run, gt_by_id, cas_on_gt, manifest.ids))
+        if cas_run.extraction is not None and cas_run.id_set == expected_ids:
+            h2_analysis = analyze_h2(cas_run, gt_by_id, cas_on_gt, manifest.ids)
+            key = _key(pair)
+            h2_payload[key] = {"provider": pair["provider"], "run_id": pair["cas_run"], **h2_analysis}
+            ocr_by_id = _ocr_classes(h2_analysis)
         analysis = analyze_h3(e2e_run, cas_run, gt_by_id, manifest.ids, ocr_by_id)
         h3_payload[_key(pair)] = {"provider": pair["provider"], "e2e_run": pair["e2e_run"],
                                   "cas_run": pair["cas_run"], **analysis}
@@ -148,11 +147,21 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
                   "provenance": runs[spec.run_id].provenance, "unmapped": runs[spec.run_id].unmapped,
                   "metrics": run_metrics(runs[spec.run_id], gt_by_id, manifest.ids)}
                  for spec in manifest.runs],
-        "h1": {"pairs": pair_payload, "per_case": next(iter(pair_payload.values()))["paired"]["rows"] if pair_payload else []},
-        "h2": {**h2_payload, "per_case": h2_payload.get("per_case", []), "by_error_class": h2_payload.get("by_error_class", []),
-               "overall": h2_payload.get("overall", {})},
-        "h3": {"pairs": h3_payload, "policies": next(iter(h3_payload.values()))["policies"] if h3_payload else {},
-               "per_case": next(iter(h3_payload.values()))["rows"] if h3_payload else []},
+        "h1": {"pairs": pair_payload,
+               "per_case": [{"provider": pair["provider"], **row}
+                            for pair in pair_payload.values() for row in pair["paired"]["rows"]]},
+        # Top-level fields retain compatibility for exploratory callers; final
+        # reports and CSVs consume every provider entry under pairs.
+        "h2": {"pairs": h2_payload,
+               "run_id": next(iter(h2_payload.values()))["run_id"] if h2_payload else None,
+               "per_case": [{"provider": pair["provider"], "run_id": pair["run_id"], **row}
+                            for pair in h2_payload.values() for row in pair["rows"]],
+               "by_error_class": next(iter(h2_payload.values()))["by_error_class"] if h2_payload else [],
+               "overall": next(iter(h2_payload.values()))["overall"] if h2_payload else {}},
+        "h3": {"pairs": h3_payload,
+               "policies": next(iter(h3_payload.values()))["policies"] if h3_payload else {},
+               "per_case": [{"provider": pair["provider"], **row}
+                            for pair in h3_payload.values() for row in pair["rows"]]},
         "cases": _cases(manifest, runs, gt_by_id),
         "domains": _domain_metrics(manifest.domain_annotations_path, manifest, runs, gt_by_id, repo_root),
         "limitations": LIMITATIONS,

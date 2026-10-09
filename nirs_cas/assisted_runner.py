@@ -35,7 +35,7 @@ def _input_files(inputs: list[Path]) -> list[Path]:
     return files
 
 
-def load_assisted_records(inputs: list[Path]) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
+def load_assisted_records(inputs: list[Path]) -> tuple[list[dict[str, Any]], list[dict[str, str]], list[dict[str, Any]]]:
     """Load saved successful artifacts; return malformed/failed artifacts as diagnostics.
 
     A runner persists one JSON object per request, while frozen reproducibility
@@ -44,6 +44,7 @@ def load_assisted_records(inputs: list[Path]) -> tuple[list[dict[str, Any]], lis
     """
     records: list[dict[str, Any]] = []
     sources: list[dict[str, str]] = []
+    failed: list[dict[str, Any]] = []
     seen: set[str] = set()
     for path in _input_files(inputs):
         raw = path.read_bytes()
@@ -59,20 +60,26 @@ def load_assisted_records(inputs: list[Path]) -> tuple[list[dict[str, Any]], lis
             if not isinstance(item, dict):
                 raise ValueError(f"{path}: artifact is not an object")
             contract = item.get("contract", item)
-            if not isinstance(contract, dict):
-                raise ValueError(f"{path}: contract is not an object")
-            identifier = contract.get("id", item.get("case_id"))
+            identifier = (contract.get("id") if isinstance(contract, dict) else None) or item.get("case_id")
             if not isinstance(identifier, str) or not identifier:
                 raise ValueError(f"{path}: artifact needs a nonempty id/case_id")
             if identifier in seen:
                 raise ValueError(f"Duplicate assisted artifact ID: {identifier}")
             seen.add(identifier)
             if item.get("status") == "error":
-                raise ValueError(f"{path}: {identifier} is a failed VLM artifact and has no assisted contract")
+                failed.append({"id": identifier, "status": "api_failed", "source": path.as_posix(),
+                               "error_type": item.get("error_type"), "error": item.get("error")})
+                continue
+            if not isinstance(contract, dict):
+                failed.append({"id": identifier, "status": "invalid_contract", "source": path.as_posix(),
+                               "error_type": "InvalidArtifact", "error": "contract is not an object"})
+                continue
             if not isinstance(contract.get("task"), dict) or not isinstance(contract.get("steps"), list):
-                raise ValueError(f"{path}: {identifier} is not an assisted-extraction contract")
+                failed.append({"id": identifier, "status": "invalid_contract", "source": path.as_posix(),
+                               "error_type": "InvalidAssistedContract", "error": "not an assisted-extraction contract"})
+                continue
             records.append(contract)
-    return records, sources
+    return records, sources, failed
 
 
 def _summary(predictions: list[dict[str, Any]]) -> dict[str, Any]:
@@ -96,7 +103,7 @@ def run_assisted_oracle(
 ) -> dict[str, Any]:
     if timeout is not None and timeout <= 0:
         raise ValueError("timeout must be positive")
-    records, sources = load_assisted_records(inputs)
+    records, sources, failed = load_assisted_records(inputs)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     predictions_dir = output / "predictions"
@@ -105,6 +112,7 @@ def run_assisted_oracle(
     for index, prediction in enumerate(predictions, 1):
         (predictions_dir / f"{index:04}.json").write_text(json.dumps(prediction, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (output / "predictions.json").write_text(json.dumps(predictions, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output / "failed_artifacts.json").write_text(json.dumps(failed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     summary = _summary(predictions)
     report = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -113,6 +121,8 @@ def run_assisted_oracle(
         "input_projection": "task + givens + goal + constraints + structured steps; no labels read",
         "timeout_seconds": timeout,
         "sources": sources,
+        "failed_input_artifacts": failed,
+        "input_failure_count": len(failed),
         "summary": summary,
         "results": [
             {

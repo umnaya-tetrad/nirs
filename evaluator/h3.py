@@ -6,17 +6,21 @@ from typing import Any
 from .h1 import DECIDABLE, system_label
 from .runs import RunData
 
-POLICIES = ("disagreement_routing", "e2e_only", "cas_only")
+POLICIES = ("disagreement_only", "disagreement_or_cas_indeterminate")
 
 
 def _route(e2e_label: str, cas_label: str, policy: str) -> tuple[str, str]:
-    if policy == "e2e_only":
-        return "e2e", e2e_label
-    if policy == "cas_only":
-        return "cas", cas_label
-    if cas_label == e2e_label and e2e_label in DECIDABLE:
-        return "agreement", cas_label
-    return "manual", "missing_or_failed"
+    both_determinate = e2e_label in DECIDABLE and cas_label in DECIDABLE
+    if policy == "disagreement_only":
+        # An abstention is not a neural-symbolic disagreement.  This policy
+        # keeps a determinate E2E decision automated unless both systems made
+        # incompatible determinate decisions.
+        if both_determinate and e2e_label != cas_label:
+            return "manual_disagreement", "missing_or_failed"
+        return ("e2e", e2e_label) if e2e_label in DECIDABLE else ("manual_api_or_e2e_abstention", "missing_or_failed")
+    if both_determinate and e2e_label == cas_label:
+        return "agreement", e2e_label
+    return "manual_disagreement_or_cas_indeterminate", "missing_or_failed"
 
 
 def analyze_h3(e2e_run: RunData, cas_run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str],
@@ -89,12 +93,12 @@ def _risk_coverage(rows: list[dict[str, Any]], ids: list[str]) -> dict[str, list
                 covered += 1
                 correct += 1 if row[f"{policy}_correct"] else 0
                 curve.append({"coverage": covered / len(ids), "risk": (covered - correct) / covered})
-        coverage_from_disagreement = _disagreement_curve(rows, ids)
-        result[policy] = curve if policy != "disagreement_routing" else coverage_from_disagreement
+        coverage_from_disagreement = _disagreement_curve(rows, ids, policy)
+        result[policy] = coverage_from_disagreement
     return result
 
 
-def _disagreement_curve(rows: list[dict[str, Any]], ids: list[str]) -> list[dict[str, float]]:
+def _disagreement_curve(rows: list[dict[str, Any]], ids: list[str], policy: str) -> list[dict[str, float]]:
     by_id = {row["id"]: row for row in rows}
     # Abstentions are never promoted as agreements in the risk/coverage plot.
     ordered = sorted(ids, key=lambda record_id: (by_id[record_id]["agree"] is not True, record_id))
@@ -102,8 +106,8 @@ def _disagreement_curve(rows: list[dict[str, Any]], ids: list[str]) -> list[dict
     curve: list[dict[str, float]] = [{"coverage": 0.0, "risk": 0.0}]
     for record_id in ordered:
         row = by_id[record_id]
-        if row["disagreement_routing_label"] in DECIDABLE:
+        if row[f"{policy}_label"] in DECIDABLE:
             covered += 1
-            correct += 1 if row["disagreement_routing_correct"] else 0
+            correct += 1 if row[f"{policy}_correct"] else 0
             curve.append({"coverage": covered / len(ids), "risk": (covered - correct) / covered})
     return curve

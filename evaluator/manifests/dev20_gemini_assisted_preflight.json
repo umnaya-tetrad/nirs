@@ -1,0 +1,28 @@
+{
+  "manifest_version": "1.0",
+  "experiment_id": "dev20_gemini_assisted_preflight",
+  "evaluation_note": "exploratory_preflight_incomplete_e2e_by_design",
+  "dataset": {
+    "split": "fermat-dev-20",
+    "dataset_manifest": "dataset/manifests/fermat_dev_20.json",
+    "gt_paths": ["dataset/test_gt.json"]
+  },
+  "runs": [
+    {
+      "run_id": "gemini_e2e", "system": "e2e", "provider": "gemini", "mode": "e2e",
+      "model": "google/gemini-3.7-flash", "prompt_version": "v1",
+      "prompt_sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad",
+      "simulated": false, "pricing": {"input_per_million": 88.23, "output_per_million": 441.16},
+      "source": {"kind": "runner_artifacts", "path": "outputs/preflight/gemini-e2e"}
+    },
+    {
+      "run_id": "gemini_assisted_cas", "system": "assisted_cas", "provider": "gemini", "mode": "assisted_extraction",
+      "model": "google/gemini-3.7-flash", "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5",
+      "simulated": false, "pricing": {"input_per_million": 88.23, "output_per_million": 441.16},
+      "source": {"kind": "solution_analysis_array", "path": "reports/dev20_assisted_v2/gemini-assisted-cas/predictions.json"},
+      "extraction_artifacts": {"kind": "runner_artifacts", "path": "outputs/dev20_assisted_v2/gemini-assisted"}
+    }
+  ],
+  "h1_pairs": [{"provider": "gemini", "e2e_run": "gemini_e2e", "cas_run": "gemini_assisted_cas"}]
+}

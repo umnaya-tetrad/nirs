@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0",
   "experiment_id": "final80_v2_e2e",
-  "evaluation_note": "final",
+  "evaluation_note": "deprecated_e2e_only_not_for_final_results",
   "dataset": {
     "split": "final-80-v2",
     "gt_paths": [
