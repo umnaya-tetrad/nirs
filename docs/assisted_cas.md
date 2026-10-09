@@ -91,6 +91,23 @@ Ordinary worker и assisted graph/context worker имеют отдельный �
 
 ## Воспроизведение
 
+Для сохранённых результатов `assisted_extraction` используйте именно
+`assisted-oracle`, а не `oracle`: обычный oracle намеренно передаёт в CAS
+только `steps[].latex`, тогда как финальный assisted pipeline передаёт
+`task`, givens, goal, ограничения и граф зависимостей.
+
+```sh
+python -m nirs_cas assisted-oracle outputs/<named-assisted-run> \
+  --output reports/<named-assisted-run>-cas --split-name <name> --timeout 10
+python -m evaluator cases --gt dataset/test_gt.json \
+  --predictions reports/<named-assisted-run>-cas/predictions.json \
+  --output-dir reports/<named-assisted-run>-evaluation
+```
+
+В evaluator `cas_coverage` для такого результата означает полное
+`verified_solution_covered`; рядом отдельно выдаётся `task_aware_coverage`.
+Step-only CAS в этом пути не запускается повторно.
+
 ```sh
 python -m pytest -q --basetemp ../.cas-work/pytest-check
 python -m nirs_cas assisted-compare \

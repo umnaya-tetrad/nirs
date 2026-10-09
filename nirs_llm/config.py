@@ -26,6 +26,7 @@ class Settings:
     polza_base_url: str = "https://polza.ai/api/v1"
     timeout_seconds: float = 75.0
     connect_timeout_seconds: float = 10.0
+    polza_max_completion_tokens: int = 4000
     gigachat_authorization_key: str = ""
     gigachat_scope: str = "GIGACHAT_API_PERS"
     gigachat_oauth_url: str = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
@@ -52,6 +53,7 @@ class Settings:
             polza_base_url=os.getenv("POLZA_BASE_URL", cls.polza_base_url),
             timeout_seconds=float(os.getenv("POLZA_TIMEOUT_SECONDS", "75")),
             connect_timeout_seconds=float(os.getenv("POLZA_CONNECT_TIMEOUT_SECONDS", "10")),
+            polza_max_completion_tokens=int(os.getenv("POLZA_MAX_COMPLETION_TOKENS", "4000")),
             gigachat_authorization_key=os.getenv("GIGACHAT_AUTHORIZATION_KEY", ""),
             gigachat_scope=os.getenv("GIGACHAT_SCOPE", "GIGACHAT_API_PERS"),
             gigachat_oauth_url=os.getenv("GIGACHAT_OAUTH_URL", cls.gigachat_oauth_url),

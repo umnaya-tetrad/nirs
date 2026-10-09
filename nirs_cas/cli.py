@@ -26,6 +26,11 @@ def main():
     oracle.add_argument("--workers", type=int, default=4)
     oracle.add_argument("--split-name", default="exploratory_gt")
     oracle.add_argument("--mode", choices=("ordinary", "exact"), default="ordinary")
+    assisted = commands.add_parser("assisted-oracle", help="Saved assisted extraction JSON → task-aware CAS")
+    assisted.add_argument("inputs", type=Path, nargs="+")
+    assisted.add_argument("--output", type=Path, required=True)
+    assisted.add_argument("--timeout", type=float, default=10)
+    assisted.add_argument("--split-name", default="assisted_extraction")
     compare = commands.add_parser("assisted-compare", help="Frozen Gemini dev-20: OCR CAS versus assisted TaskSpec CAS")
     compare.add_argument("--ordinary", type=Path, required=True)
     compare.add_argument("--assisted", type=Path, required=True)
@@ -54,6 +59,9 @@ def main():
         elif args.command == "oracle":
             from .oracle import run_oracle
             result = run_oracle(args.inputs, args.output, timeout=args.timeout, workers=args.workers, split_name=args.split_name, mode=args.mode)["summary"]
+        elif args.command == "assisted-oracle":
+            from .assisted_runner import run_assisted_oracle
+            result = run_assisted_oracle(args.inputs, args.output, Path(__file__).resolve().parents[1], timeout=args.timeout, split_name=args.split_name)["summary"]
         elif args.command == "assisted-compare":
             from .assisted_oracle import run_comparison
             result = run_comparison(args.ordinary, args.assisted, args.gt, args.output, Path(__file__).resolve().parents[1])["assisted"]["metrics"]

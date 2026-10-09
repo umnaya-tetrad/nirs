@@ -74,7 +74,7 @@ class GeminiPolzaClient:
             # Gemini 3.7 Flash was previously smoke-tested through Polza in json_object mode.
             "response_format": {"type": "json_object"},
             "temperature": 0,
-            "max_completion_tokens": 4000,
+            "max_completion_tokens": self.settings.polza_max_completion_tokens,
         }
         try:
             with httpx.Client(timeout=self.timeout, transport=self.transport, trust_env=False) as client:

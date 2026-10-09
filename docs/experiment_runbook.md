@@ -52,8 +52,8 @@ an `ids` field):
 python -m nirs_llm.run --provider gemini --mode assisted_extraction --manifest dataset/manifests/fermat_final_80.json --case-ids-file dataset/subsets/cas_supported_final_80.json --output-dir outputs/final80-cas-supported --run-name gemini-assisted-extraction --workers 1
 python -m nirs_llm.run --provider gigachat --mode assisted_extraction --manifest dataset/manifests/fermat_final_80.json --case-ids-file dataset/subsets/cas_supported_final_80.json --output-dir outputs/final80-cas-supported --run-name gigachat-assisted-extraction --workers 1
 
-python -m nirs_cas oracle outputs/final80-cas-supported/gemini-assisted-extraction --output reports/final80-cas-supported/gemini-assisted-cas --split-name final80_cas_supported_gemini --workers 4
-python -m nirs_cas oracle outputs/final80-cas-supported/gigachat-assisted-extraction --output reports/final80-cas-supported/gigachat-assisted-cas --split-name final80_cas_supported_gigachat --workers 4
+python -m nirs_cas assisted-oracle outputs/final80-cas-supported/gemini-assisted-extraction --output reports/final80-cas-supported/gemini-assisted-cas --split-name final80_cas_supported_gemini --timeout 10
+python -m nirs_cas assisted-oracle outputs/final80-cas-supported/gigachat-assisted-extraction --output reports/final80-cas-supported/gigachat-assisted-cas --split-name final80_cas_supported_gigachat --timeout 10
 python -m evaluator experiment --manifest evaluator/manifests/final80_cas_supported_template.json --output-dir reports/final80-cas-supported/evaluation
 ```
 
@@ -98,8 +98,8 @@ artifacts via `select_manifest_ids`:
 ```powershell
 python -m nirs_llm.run --provider gemini --mode assisted_extraction --manifest dataset/manifests/fermat_final_80_v2.json --case-ids-file dataset/subsets/cas_supported_final_80_v2.json --output-dir outputs/final80_v2-cas-supported --run-name gemini-assisted-extraction --workers 1
 python -m nirs_llm.run --provider gigachat --mode assisted_extraction --manifest dataset/manifests/fermat_final_80_v2.json --case-ids-file dataset/subsets/cas_supported_final_80_v2.json --output-dir outputs/final80_v2-cas-supported --run-name gigachat-assisted-extraction --workers 1
-python -m nirs_cas oracle outputs/final80_v2-cas-supported/gemini-assisted-extraction --output reports/final80_v2-cas-supported/gemini-assisted-cas --split-name final80_v2_cas_supported_gemini --workers 4
-python -m nirs_cas oracle outputs/final80_v2-cas-supported/gigachat-assisted-extraction --output reports/final80_v2-cas-supported/gigachat-assisted-cas --split-name final80_v2_cas_supported_gigachat --workers 4
+python -m nirs_cas assisted-oracle outputs/final80_v2-cas-supported/gemini-assisted-extraction --output reports/final80_v2-cas-supported/gemini-assisted-cas --split-name final80_v2_cas_supported_gemini --timeout 10
+python -m nirs_cas assisted-oracle outputs/final80_v2-cas-supported/gigachat-assisted-extraction --output reports/final80_v2-cas-supported/gigachat-assisted-cas --split-name final80_v2_cas_supported_gigachat --timeout 10
 python -m evaluator experiment --manifest evaluator/manifests/final80_v2_cas_supported_template.json --output-dir reports/final80_v2-cas-supported/evaluation
 ```
 
