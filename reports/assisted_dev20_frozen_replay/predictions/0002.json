@@ -1,0 +1,413 @@
+{
+  "schema_version": "1.0",
+  "id": "img_554_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "a(a-3)+2=a^2-3a+2",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{for } a=1 :",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "a^2-3a+2=(1)^2-3(1)+2=1-3+2=3-3=0",
+      "derives_from": [
+        "s1",
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "3b(2b-7)-3(b-4)-63=6b^2-21b-3b+12-63",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "=6b^2-24b-51",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\text{for } b=-2",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "6(-2)^2-24(-2)-51=6(4)+48-51=24+48",
+      "derives_from": [
+        "s5",
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "-51=72-51=21",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 719
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-b4758384-577f-4f83-b0a6-23f9d0b1b616",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1536,
+    "created_at": "2026-10-09T22:46:20.237379Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_554_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Simplify the expressions and evaluate them as directed : } (i)\\ x(x-3)+2\\text{ for } x=1,\\ (ii)\\ 3y(2x-7)-3(y-4)-63\\text{ for } y=-2.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "a(a-3)+2=a^2-3a+2",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{for } a=1 :",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "a^2-3a+2=(1)^2-3(1)+2=1-3+2=3-3=0",
+          "role": "substitution",
+          "derives_from": [
+            "s1",
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "3b(2b-7)-3(b-4)-63=6b^2-21b-3b+12-63",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "=6b^2-24b-51",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\text{for } b=-2",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "6(-2)^2-24(-2)-51=6(4)+48-51=24+48",
+          "role": "substitution",
+          "derives_from": [
+            "s5",
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "-51=72-51=21",
+          "role": "transformation",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: for; Unsupported input at character 2"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: for; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s8",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s3",
+        "s7",
+        "s8"
+      ],
+      "unsupported_steps": [
+        "s2",
+        "s5",
+        "s6"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

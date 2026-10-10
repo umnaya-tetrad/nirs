@@ -1,0 +1,374 @@
+{
+  "schema_version": "1.0",
+  "id": "img_480_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\frac{5-2x}{3} \\le \\frac{x}{6} - 5",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "2(5-2x) \\le 2\\left(\\frac{x}{6}-5\\right)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "10-4x \\le x-30",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "-5x \\le -40, \\text{ i.e. } x \\ge 8",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\text{Thus, all real numbers ' } x \\text{ ' which are greater than or equal to ' } 8 \\text{ ' are the solutions of the given inequality, i.e. } x \\in [8,\\infty)",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 831
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Exact node and dependency checks",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact node and dependency checks",
+        "actual_latex": "2(5-2x) \\le 2\\left(\\frac{x}{6}-5\\right)",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-236b65e6-27aa-4fb6-a207-d341d44480dd",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1890,
+    "created_at": "2026-10-09T22:46:38.110966Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_480_pert_2.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Solve } \\frac{5-2x}{3} \\le \\frac{x}{6} - 5.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\frac{5-2x}{3} \\le \\frac{x}{6} - 5",
+            "parse": {
+              "raw_latex": "\\frac{5-2x}{3} \\le \\frac{x}{6} - 5",
+              "status": "OK",
+              "set": "Interval(8, oo)",
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "x"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\frac{5-2x}{3} \\le \\frac{x}{6} - 5",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "2(5-2x) \\le 2\\left(\\frac{x}{6}-5\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "10-4x \\le x-30",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "-5x \\le -40, \\text{ i.e. } x \\ge 8",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\text{Thus, all real numbers ' } x \\text{ ' which are greater than or equal to ' } 8 \\text{ ' are the solutions of the given inequality, i.e. } x \\in [8,\\infty)",
+          "role": "answer",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "inequality",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact inequality solution-set comparison",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact inequality solution-set comparison",
+            "actual_latex": "2(5-2x) \\le 2\\left(\\frac{x}{6}-5\\right)",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s3",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact inequality solution-set comparison",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact inequality solution-set comparison",
+            "actual_latex": "10-4x \\le x-30",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Trusted initial expression"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Exact inequality solution-set comparison"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Unbalanced delimiters"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Prose is not a mathematical answer",
+      "step_id": "s5",
+      "rule": "inequality",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": "s2",
+      "localization_blocked": false,
+      "invalid_steps": [
+        "s2",
+        "s3"
+      ],
+      "unsupported_steps": [
+        "s4",
+        "s5"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose is not a mathematical answer"
+    ]
+  }
+}

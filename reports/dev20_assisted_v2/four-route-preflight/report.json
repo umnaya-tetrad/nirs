@@ -1,0 +1,3256 @@
+{
+  "generated_at_utc": "2026-10-09T23:20:22.115122+00:00",
+  "experiment": {
+    "manifest_path": "evaluator\\manifests\\dev20_gemini_assisted_preflight.json",
+    "manifest_sha256": "2e02fe59294b06184bd9f77f8a4d29d1ad50751f25f139cba610d9d6fc186d54",
+    "experiment_id": "dev20_gemini_assisted_preflight",
+    "evaluation_note": "exploratory_preflight_incomplete_e2e_by_design",
+    "split": "fermat-dev-20",
+    "ids_count": 20,
+    "ids_source": {
+      "path": "dataset\\manifests\\fermat_dev_20.json",
+      "sha256": "7db41f9bd4dc78bf92d60986bfb8cef75a3fc7d7f53d3548d09cf0f701166d72"
+    },
+    "gt_sources": [
+      {
+        "path": "C:\\Users\\User\\Desktop\\3_year\\NIRS\\Project\\nirs\\dataset\\test_gt.json",
+        "sha256": "0a6f7f3fc2393cdb968e5fb2cca2ec9c4570afa94b3b4c16a24f51f5c8dbbafb"
+      }
+    ],
+    "error_policy": {},
+    "has_simulated_runs": false,
+    "scientific_report_ready": false,
+    "complete": false,
+    "incomplete_runs": {
+      "gemini_e2e": [
+        "img_110_pert_1.3",
+        "img_128_pert_1.5",
+        "img_136_pert_2.2",
+        "img_151_pert_5.3",
+        "img_157_pert_3.2",
+        "img_203_pert_4.3",
+        "img_225_pert_2.4",
+        "img_373_pert_5.2",
+        "img_398_pert_4.4",
+        "img_452_pert_5.2",
+        "img_462_pert_5.1",
+        "img_471_pert_5.1",
+        "img_471_pert_5.2",
+        "img_480_pert_2.5",
+        "img_494_pert_5.2",
+        "img_509_pert_3.1",
+        "img_554_pert_5.1",
+        "img_96_pert_2.1"
+      ]
+    }
+  },
+  "runs": [
+    {
+      "run_id": "gemini_e2e",
+      "system": "e2e",
+      "provider": "gemini",
+      "mode": "e2e",
+      "simulated": false,
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v1",
+      "prompt_sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad",
+      "git_commit": null,
+      "provenance": {
+        "source": {
+          "kind": "runner_artifacts",
+          "path": "C:\\Users\\User\\Desktop\\3_year\\NIRS\\Project\\nirs\\outputs\\preflight\\gemini-e2e",
+          "key": null,
+          "files": [
+            {
+              "path": "img_221_pert_5.3.json",
+              "sha256": "0ca72f1e207ad9b1e4f4b898b5f5b3c3285e7e6a3cbb3142d990543a07020d18"
+            },
+            {
+              "path": "img_509_pert_5.1.json",
+              "sha256": "e7f811677ce15a4c248e789d95bcf958430366bbe83ac526fafad40bd24141d7"
+            }
+          ],
+          "sha256": "64cdcf72d90072f56015e60dd9deb657cc3d222d0c379231b49e787373fd3554",
+          "run_metadata": {
+            "path": "run_metadata.json",
+            "sha256": "b8ec53cd7fc70c2a23fe69bbca7d2cdd7da5e648013330161ed5ed6688ed4ce3",
+            "data": {
+              "artifact_version": "1.0",
+              "created_at_utc": "2026-10-09T21:00:11.270797+00:00",
+              "provider": "gemini",
+              "mode": "e2e",
+              "model": "google/gemini-3.7-flash",
+              "prompt": {
+                "provider": "gemini",
+                "mode": "e2e",
+                "version": "v1",
+                "schema_version": "e2e_gemini_v1",
+                "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+                "user": "Проанализируй приложенную фотографию по системной инструкции.",
+                "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+              },
+              "git_commit": "bf13db0885e76eb19c9b807131651ec66c655363",
+              "dataset_manifest": {
+                "path": "C:\\Users\\User\\Desktop\\3_year\\NIRS\\Project\\nirs\\dataset\\manifests\\fermat_dev_20.json",
+                "sha256": "7db41f9bd4dc78bf92d60986bfb8cef75a3fc7d7f53d3548d09cf0f701166d72",
+                "ids": [
+                  "img_509_pert_5.1",
+                  "img_221_pert_5.3"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "unmapped": [],
+      "metrics": {
+        "run_id": "gemini_e2e",
+        "system": "e2e",
+        "provider": "gemini",
+        "examples": 20,
+        "status_counts": {
+          "ok": 1,
+          "api_failed": 1,
+          "invalid_contract": 0,
+          "missing": 18
+        },
+        "confusion": {
+          "correct": {
+            "correct": 1,
+            "incorrect": 0,
+            "indeterminate": 0,
+            "missing_or_failed": 10
+          },
+          "incorrect": {
+            "correct": 0,
+            "incorrect": 0,
+            "indeterminate": 0,
+            "missing_or_failed": 9
+          }
+        },
+        "accuracy_all": 0.05,
+        "accuracy_all_ci95": {
+          "center": 0.12250632112376872,
+          "low": 0.008881448800795402,
+          "high": 0.23613119344674205
+        },
+        "accuracy_on_covered": 1.0,
+        "coverage": 0.05,
+        "coverage_ci95": {
+          "center": 0.12250632112376872,
+          "low": 0.008881448800795402,
+          "high": 0.23613119344674205
+        },
+        "indeterminate_share": 0.0,
+        "selective_risk": 0.0,
+        "first_error_accuracy_on_incorrect": 0.0,
+        "first_error_accuracy_aligned_on_incorrect": 0.0,
+        "incorrect_detection": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 9,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.5,
+          "policy": "abstention_as_not_detected"
+        },
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 11,
+          "fn": 9,
+          "positive_class": "incorrect",
+          "policy": "abstention_as_not_detected"
+        },
+        "always_incorrect_baseline": {
+          "accuracy_all": 0.45,
+          "accuracy_all_ci95": {
+            "center": 0.45805625790264104,
+            "low": 0.2581978582556243,
+            "high": 0.6579146575496577
+          },
+          "precision": 0.45,
+          "recall": 1.0,
+          "specificity": 0.0,
+          "balanced_accuracy": 0.5,
+          "examples": 20,
+          "correct_gt": 11,
+          "incorrect_gt": 9
+        },
+        "mean_vlm_latency_ms": 18702.0,
+        "mean_cas_latency_ms": null,
+        "mean_pipeline_latency_ms": 18702.0,
+        "tokens_in": 1453,
+        "tokens_out": 1543,
+        "cost_rub": {
+          "provider_reported": 0.81785894,
+          "provider_reported_cases": 1,
+          "provider_estimated": null,
+          "provider_estimated_cases": 0,
+          "token_rate_estimate": 0.8089080700000001,
+          "token_rate_estimate_note": "Estimate from manifest rates; image-token accounting depends on provider usage semantics."
+        },
+        "missing_ids": [
+          "img_554_pert_5.1",
+          "img_471_pert_5.1",
+          "img_462_pert_5.1",
+          "img_494_pert_5.2",
+          "img_452_pert_5.2",
+          "img_471_pert_5.2",
+          "img_373_pert_5.2",
+          "img_221_pert_5.3",
+          "img_151_pert_5.3",
+          "img_509_pert_3.1",
+          "img_157_pert_3.2",
+          "img_480_pert_2.5",
+          "img_110_pert_1.3",
+          "img_96_pert_2.1",
+          "img_136_pert_2.2",
+          "img_203_pert_4.3",
+          "img_398_pert_4.4",
+          "img_225_pert_2.4",
+          "img_128_pert_1.5"
+        ]
+      }
+    },
+    {
+      "run_id": "gemini_assisted_cas",
+      "system": "assisted_cas",
+      "provider": "gemini",
+      "mode": "assisted_extraction",
+      "simulated": false,
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "v2",
+      "prompt_sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5",
+      "git_commit": null,
+      "provenance": {
+        "source": {
+          "kind": "solution_analysis_array",
+          "path": "C:\\Users\\User\\Desktop\\3_year\\NIRS\\Project\\nirs\\reports\\dev20_assisted_v2\\gemini-assisted-cas\\predictions.json",
+          "key": null,
+          "sha256": "3377ac3703bf726520975ce1725c07dbe0ac063afa09f58381a83acb1cb63b7d"
+        },
+        "extraction_artifacts": {
+          "path": "C:\\Users\\User\\Desktop\\3_year\\NIRS\\Project\\nirs\\outputs\\dev20_assisted_v2\\gemini-assisted",
+          "files": [
+            {
+              "path": "img_110_pert_1.3.json",
+              "sha256": "d7de832dcafcbe771c74fed6302c17758f9bfe0a9506dbd48e6935fa3d0dbcf5"
+            },
+            {
+              "path": "img_128_pert_1.5.json",
+              "sha256": "767ea77edb79199ea8bfcd8855b7f294c8363f5e47bbd7664c45ab910436457f"
+            },
+            {
+              "path": "img_136_pert_2.2.json",
+              "sha256": "52e87f6340c04a7a2d6cf16660fe60fc8fe0a7106b85331b73508a4eaac41fab"
+            },
+            {
+              "path": "img_151_pert_5.3.json",
+              "sha256": "f7eba4b5b1eb0f9c92fc816ab2896e96241ed8c370a4d7d87f2e729145c55069"
+            },
+            {
+              "path": "img_157_pert_3.2.json",
+              "sha256": "758f88cb8de3ce9e0fb9b8f4f4b11101b8e21cd6814609e4f8fbaadd0ee80923"
+            },
+            {
+              "path": "img_203_pert_4.3.json",
+              "sha256": "f9cdeacad4b7fa318f8213f72b5fe1f4ca2b6653ebaf8392c791449e2259a987"
+            },
+            {
+              "path": "img_221_pert_5.3.json",
+              "sha256": "a71c5ee47b573ecd4a04d12604b629cf42981873c164083c0fd117960e991411"
+            },
+            {
+              "path": "img_225_pert_2.4.json",
+              "sha256": "b56b06fb942939c7df8ff7c39fa796626618515811c231b4338df14e0e42b18d"
+            },
+            {
+              "path": "img_373_pert_5.2.json",
+              "sha256": "c7c3396c84353b3958cacde7f9d5cb8df31d57e0fbf714f7ef326a86cdab001e"
+            },
+            {
+              "path": "img_398_pert_4.4.json",
+              "sha256": "199b6b40a077a705e3edb15f970b79057d58dbfd2c2e859459daa8479b077a18"
+            },
+            {
+              "path": "img_452_pert_5.2.json",
+              "sha256": "30a0cf95296a5fe9bd886c0bc26854a530210fef45f541871c13dcbb39fe1910"
+            },
+            {
+              "path": "img_462_pert_5.1.json",
+              "sha256": "52531304016d72fb6fdaceee1fdcef74b3462bbc0cc4b00e551482f93e103f3b"
+            },
+            {
+              "path": "img_471_pert_5.1.json",
+              "sha256": "89c86b1342aad624033d92d990e90301640d03f706f0108c70aec1abf134b921"
+            },
+            {
+              "path": "img_471_pert_5.2.json",
+              "sha256": "869403c3c42540a345f61542f101d20857fc81e92ed204a2da596f386bc6bd5d"
+            },
+            {
+              "path": "img_480_pert_2.5.json",
+              "sha256": "923cfcbd92f3fda89e227540d0d01a17a8b34c7153d598901ec02133b8f361aa"
+            },
+            {
+              "path": "img_494_pert_5.2.json",
+              "sha256": "a57d0cee89dc0eba33a3000d52b45d48776a254c0e6851f6f22ce13599d4fbc6"
+            },
+            {
+              "path": "img_509_pert_3.1.json",
+              "sha256": "e8596b7a844b41d4cefc3ecbf1ac8276e32d2bde455faae9afaccff59f42c3e2"
+            },
+            {
+              "path": "img_509_pert_5.1.json",
+              "sha256": "81fd65ff44edb0179c87cbce514d72aa2def4fc11fd14f807f891c673683916a"
+            },
+            {
+              "path": "img_554_pert_5.1.json",
+              "sha256": "74d6b7bf56a83a8733f93d5268f9488c8737ac6f1faf52bb172f87ef2fe83453"
+            },
+            {
+              "path": "img_96_pert_2.1.json",
+              "sha256": "bc1d2f6870c944facc4b29dc6cf61e609f896354c61a0bfa9e172e7c06d5787b"
+            }
+          ],
+          "failed_artifacts": [],
+          "sha256": "80ab3b1c995a4112387084b13ee285b6bb5d82c5285c967fc0767684d68ae75e"
+        }
+      },
+      "unmapped": [],
+      "metrics": {
+        "run_id": "gemini_assisted_cas",
+        "system": "assisted_cas",
+        "provider": "gemini",
+        "examples": 20,
+        "status_counts": {
+          "ok": 20,
+          "api_failed": 0,
+          "invalid_contract": 0,
+          "missing": 0
+        },
+        "confusion": {
+          "correct": {
+            "correct": 6,
+            "incorrect": 0,
+            "indeterminate": 5,
+            "missing_or_failed": 0
+          },
+          "incorrect": {
+            "correct": 0,
+            "incorrect": 5,
+            "indeterminate": 4,
+            "missing_or_failed": 0
+          }
+        },
+        "accuracy_all": 0.55,
+        "accuracy_all_ci95": {
+          "center": 0.5419437420973591,
+          "low": 0.34208534245034233,
+          "high": 0.7418021417443759
+        },
+        "accuracy_on_covered": 1.0,
+        "coverage": 0.55,
+        "coverage_ci95": {
+          "center": 0.5419437420973591,
+          "low": 0.34208534245034233,
+          "high": 0.7418021417443759
+        },
+        "indeterminate_share": 0.45,
+        "selective_risk": 0.0,
+        "first_error_accuracy_on_incorrect": 0.2222222222222222,
+        "first_error_accuracy_aligned_on_incorrect": 0.2222222222222222,
+        "incorrect_detection": {
+          "precision": 1.0,
+          "recall": 0.5555555555555556,
+          "f1": 0.7142857142857143,
+          "tp": 5,
+          "fp": 0,
+          "fn": 4,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.7777777777777778,
+          "policy": "abstention_as_not_detected"
+        },
+        "confusion_matrix": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 11,
+          "fn": 4,
+          "positive_class": "incorrect",
+          "policy": "abstention_as_not_detected"
+        },
+        "always_incorrect_baseline": {
+          "accuracy_all": 0.45,
+          "accuracy_all_ci95": {
+            "center": 0.45805625790264104,
+            "low": 0.2581978582556243,
+            "high": 0.6579146575496577
+          },
+          "precision": 0.45,
+          "recall": 1.0,
+          "specificity": 0.0,
+          "balanced_accuracy": 0.5,
+          "examples": 20,
+          "correct_gt": 11,
+          "incorrect_gt": 9
+        },
+        "mean_vlm_latency_ms": 17291.25,
+        "mean_cas_latency_ms": 1523.85,
+        "mean_pipeline_latency_ms": 18815.1,
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "cost_rub": {
+          "provider_reported": 16.744520020000003,
+          "provider_reported_cases": 20,
+          "provider_estimated": null,
+          "provider_estimated_cases": 0,
+          "token_rate_estimate": 0.0,
+          "token_rate_estimate_note": "Estimate from manifest rates; image-token accounting depends on provider usage semantics."
+        },
+        "missing_ids": []
+      }
+    }
+  ],
+  "h1": {
+    "pairs": {
+      "gemini:gemini_e2e__gemini_assisted_cas": {
+        "provider": "gemini",
+        "e2e_run": "gemini_e2e",
+        "cas_run": "gemini_assisted_cas",
+        "e2e": {
+          "run_id": "gemini_e2e",
+          "system": "e2e",
+          "provider": "gemini",
+          "examples": 20,
+          "status_counts": {
+            "ok": 1,
+            "api_failed": 1,
+            "invalid_contract": 0,
+            "missing": 18
+          },
+          "confusion": {
+            "correct": {
+              "correct": 1,
+              "incorrect": 0,
+              "indeterminate": 0,
+              "missing_or_failed": 10
+            },
+            "incorrect": {
+              "correct": 0,
+              "incorrect": 0,
+              "indeterminate": 0,
+              "missing_or_failed": 9
+            }
+          },
+          "accuracy_all": 0.05,
+          "accuracy_all_ci95": {
+            "center": 0.12250632112376872,
+            "low": 0.008881448800795402,
+            "high": 0.23613119344674205
+          },
+          "accuracy_on_covered": 1.0,
+          "coverage": 0.05,
+          "coverage_ci95": {
+            "center": 0.12250632112376872,
+            "low": 0.008881448800795402,
+            "high": 0.23613119344674205
+          },
+          "indeterminate_share": 0.0,
+          "selective_risk": 0.0,
+          "first_error_accuracy_on_incorrect": 0.0,
+          "first_error_accuracy_aligned_on_incorrect": 0.0,
+          "incorrect_detection": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 9,
+            "specificity": 1.0,
+            "balanced_accuracy": 0.5,
+            "policy": "abstention_as_not_detected"
+          },
+          "confusion_matrix": {
+            "tp": 0,
+            "fp": 0,
+            "tn": 11,
+            "fn": 9,
+            "positive_class": "incorrect",
+            "policy": "abstention_as_not_detected"
+          },
+          "always_incorrect_baseline": {
+            "accuracy_all": 0.45,
+            "accuracy_all_ci95": {
+              "center": 0.45805625790264104,
+              "low": 0.2581978582556243,
+              "high": 0.6579146575496577
+            },
+            "precision": 0.45,
+            "recall": 1.0,
+            "specificity": 0.0,
+            "balanced_accuracy": 0.5,
+            "examples": 20,
+            "correct_gt": 11,
+            "incorrect_gt": 9
+          },
+          "mean_vlm_latency_ms": 18702.0,
+          "mean_cas_latency_ms": null,
+          "mean_pipeline_latency_ms": 18702.0,
+          "tokens_in": 1453,
+          "tokens_out": 1543,
+          "cost_rub": {
+            "provider_reported": 0.81785894,
+            "provider_reported_cases": 1,
+            "provider_estimated": null,
+            "provider_estimated_cases": 0,
+            "token_rate_estimate": 0.8089080700000001,
+            "token_rate_estimate_note": "Estimate from manifest rates; image-token accounting depends on provider usage semantics."
+          },
+          "missing_ids": [
+            "img_554_pert_5.1",
+            "img_471_pert_5.1",
+            "img_462_pert_5.1",
+            "img_494_pert_5.2",
+            "img_452_pert_5.2",
+            "img_471_pert_5.2",
+            "img_373_pert_5.2",
+            "img_221_pert_5.3",
+            "img_151_pert_5.3",
+            "img_509_pert_3.1",
+            "img_157_pert_3.2",
+            "img_480_pert_2.5",
+            "img_110_pert_1.3",
+            "img_96_pert_2.1",
+            "img_136_pert_2.2",
+            "img_203_pert_4.3",
+            "img_398_pert_4.4",
+            "img_225_pert_2.4",
+            "img_128_pert_1.5"
+          ]
+        },
+        "cas": {
+          "run_id": "gemini_assisted_cas",
+          "system": "assisted_cas",
+          "provider": "gemini",
+          "examples": 20,
+          "status_counts": {
+            "ok": 20,
+            "api_failed": 0,
+            "invalid_contract": 0,
+            "missing": 0
+          },
+          "confusion": {
+            "correct": {
+              "correct": 6,
+              "incorrect": 0,
+              "indeterminate": 5,
+              "missing_or_failed": 0
+            },
+            "incorrect": {
+              "correct": 0,
+              "incorrect": 5,
+              "indeterminate": 4,
+              "missing_or_failed": 0
+            }
+          },
+          "accuracy_all": 0.55,
+          "accuracy_all_ci95": {
+            "center": 0.5419437420973591,
+            "low": 0.34208534245034233,
+            "high": 0.7418021417443759
+          },
+          "accuracy_on_covered": 1.0,
+          "coverage": 0.55,
+          "coverage_ci95": {
+            "center": 0.5419437420973591,
+            "low": 0.34208534245034233,
+            "high": 0.7418021417443759
+          },
+          "indeterminate_share": 0.45,
+          "selective_risk": 0.0,
+          "first_error_accuracy_on_incorrect": 0.2222222222222222,
+          "first_error_accuracy_aligned_on_incorrect": 0.2222222222222222,
+          "incorrect_detection": {
+            "precision": 1.0,
+            "recall": 0.5555555555555556,
+            "f1": 0.7142857142857143,
+            "tp": 5,
+            "fp": 0,
+            "fn": 4,
+            "specificity": 1.0,
+            "balanced_accuracy": 0.7777777777777778,
+            "policy": "abstention_as_not_detected"
+          },
+          "confusion_matrix": {
+            "tp": 5,
+            "fp": 0,
+            "tn": 11,
+            "fn": 4,
+            "positive_class": "incorrect",
+            "policy": "abstention_as_not_detected"
+          },
+          "always_incorrect_baseline": {
+            "accuracy_all": 0.45,
+            "accuracy_all_ci95": {
+              "center": 0.45805625790264104,
+              "low": 0.2581978582556243,
+              "high": 0.6579146575496577
+            },
+            "precision": 0.45,
+            "recall": 1.0,
+            "specificity": 0.0,
+            "balanced_accuracy": 0.5,
+            "examples": 20,
+            "correct_gt": 11,
+            "incorrect_gt": 9
+          },
+          "mean_vlm_latency_ms": 17291.25,
+          "mean_cas_latency_ms": 1523.85,
+          "mean_pipeline_latency_ms": 18815.1,
+          "tokens_in": 0,
+          "tokens_out": 0,
+          "cost_rub": {
+            "provider_reported": 16.744520020000003,
+            "provider_reported_cases": 20,
+            "provider_estimated": null,
+            "provider_estimated_cases": 0,
+            "token_rate_estimate": 0.0,
+            "token_rate_estimate_note": "Estimate from manifest rates; image-token accounting depends on provider usage semantics."
+          },
+          "missing_ids": []
+        },
+        "paired": {
+          "both_correct": 1,
+          "e2e_only_correct": 0,
+          "cas_only_correct": 10,
+          "both_wrong": 9,
+          "agreement": 0.5,
+          "mcnemar_exact_p": 0.001953125,
+          "bootstrap_accuracy_difference": {
+            "diff": -0.5,
+            "ci_low": -0.7,
+            "ci_high": -0.3
+          },
+          "accuracy_difference": -0.5,
+          "rows": [
+            {
+              "id": "img_509_pert_5.1",
+              "gt_verdict": "correct",
+              "e2e_label": "correct",
+              "cas_label": "correct",
+              "e2e_correct": true,
+              "cas_correct": true
+            },
+            {
+              "id": "img_554_pert_5.1",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_471_pert_5.1",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_462_pert_5.1",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_494_pert_5.2",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "correct",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_452_pert_5.2",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "correct",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_471_pert_5.2",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "correct",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_373_pert_5.2",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_221_pert_5.3",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_151_pert_5.3",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "correct",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_509_pert_3.1",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "correct",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_157_pert_3.2",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "incorrect",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_480_pert_2.5",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "incorrect",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_110_pert_1.3",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "incorrect",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_96_pert_2.1",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_136_pert_2.2",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "incorrect",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_203_pert_4.3",
+              "gt_verdict": "correct",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_398_pert_4.4",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            },
+            {
+              "id": "img_225_pert_2.4",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "incorrect",
+              "e2e_correct": false,
+              "cas_correct": true
+            },
+            {
+              "id": "img_128_pert_1.5",
+              "gt_verdict": "incorrect",
+              "e2e_label": "missing_or_failed",
+              "cas_label": "indeterminate",
+              "e2e_correct": false,
+              "cas_correct": false
+            }
+          ]
+        }
+      }
+    },
+    "per_case": [
+      {
+        "provider": "gemini",
+        "id": "img_509_pert_5.1",
+        "gt_verdict": "correct",
+        "e2e_label": "correct",
+        "cas_label": "correct",
+        "e2e_correct": true,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_554_pert_5.1",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_471_pert_5.1",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_462_pert_5.1",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_494_pert_5.2",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_452_pert_5.2",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_471_pert_5.2",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_373_pert_5.2",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_221_pert_5.3",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_151_pert_5.3",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_509_pert_3.1",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_157_pert_3.2",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_480_pert_2.5",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_110_pert_1.3",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_96_pert_2.1",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_136_pert_2.2",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_203_pert_4.3",
+        "gt_verdict": "correct",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_398_pert_4.4",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_225_pert_2.4",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "e2e_correct": false,
+        "cas_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_128_pert_1.5",
+        "gt_verdict": "incorrect",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "e2e_correct": false,
+        "cas_correct": false
+      }
+    ]
+  },
+  "h2": {
+    "pairs": {
+      "gemini:gemini_e2e__gemini_assisted_cas": {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "rows": [
+          {
+            "id": "img_509_pert_5.1",
+            "gt_verdict": "correct",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "correct",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_554_pert_5.1",
+            "gt_verdict": "correct",
+            "error_class": "extra_line",
+            "transcription_error_class": "extra_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 40,
+            "total_gt_tokens": 78,
+            "missed_steps": 0,
+            "extra_steps": 4,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "extra_line": 37,
+              "missed_line": 1,
+              "structure": 2,
+              "segmentation": 6
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Prose/conditions are not a fully parsed mathematical step",
+              "At least one node/edge proof is unresolved",
+              "Prose/conditions are not a fully parsed mathematical step",
+              "Task has no explicit mathematical target"
+            ]
+          },
+          {
+            "id": "img_471_pert_5.1",
+            "gt_verdict": "correct",
+            "error_class": "extra_line",
+            "transcription_error_class": "extra_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 7,
+            "total_gt_tokens": 31,
+            "missed_steps": 1,
+            "extra_steps": 1,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "missed_line": 1,
+              "extra_line": 9
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Expected token, got end of input"
+            ]
+          },
+          {
+            "id": "img_462_pert_5.1",
+            "gt_verdict": "correct",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 22,
+            "total_gt_tokens": 33,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "missed_line": 12,
+              "extra_line": 12
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Symbolic determinant template has no explicit entry bindings",
+              "Continuation requires one readable dependency"
+            ]
+          },
+          {
+            "id": "img_494_pert_5.2",
+            "gt_verdict": "correct",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "correct",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_452_pert_5.2",
+            "gt_verdict": "correct",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "correct",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_471_pert_5.2",
+            "gt_verdict": "correct",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "correct",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_373_pert_5.2",
+            "gt_verdict": "correct",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Prose/conditions are not a fully parsed mathematical step",
+              "Unsupported token '\\\\int'",
+              "Unsupported token '\\\\int'",
+              "Continuation requires one readable dependency"
+            ]
+          },
+          {
+            "id": "img_221_pert_5.3",
+            "gt_verdict": "incorrect",
+            "error_class": "extra_line",
+            "transcription_error_class": "extra_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 31,
+            "total_gt_tokens": 192,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "extra_line": 24,
+              "missed_line": 11
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Unsupported input at character 0",
+              "Prose/conditions are not a fully parsed mathematical step",
+              "Prose/conditions are not a fully parsed mathematical step",
+              "Task has no explicit mathematical target"
+            ]
+          },
+          {
+            "id": "img_151_pert_5.3",
+            "gt_verdict": "correct",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 25,
+            "total_gt_tokens": 17,
+            "missed_steps": 3,
+            "extra_steps": 0,
+            "cas_ext_verdict": "correct",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {
+              "missed_line": 29
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_509_pert_3.1",
+            "gt_verdict": "correct",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "correct",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_157_pert_3.2",
+            "gt_verdict": "incorrect",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 19,
+            "total_gt_tokens": 18,
+            "missed_steps": 1,
+            "extra_steps": 0,
+            "cas_ext_verdict": "incorrect",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {
+              "missed_line": 21
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": [
+              "Task has no explicit mathematical target"
+            ]
+          },
+          {
+            "id": "img_480_pert_2.5",
+            "gt_verdict": "incorrect",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 94,
+            "total_gt_tokens": 56,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "incorrect",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {
+              "ambiguous": 8,
+              "extra_line": 3,
+              "missed_line": 88
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": [
+              "Prose/conditions are not a fully parsed mathematical step",
+              "Prose/conditions are not a fully parsed mathematical step",
+              "Prose is not a mathematical answer"
+            ]
+          },
+          {
+            "id": "img_110_pert_1.3",
+            "gt_verdict": "incorrect",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 20,
+            "total_gt_tokens": 33,
+            "missed_steps": 2,
+            "extra_steps": 0,
+            "cas_ext_verdict": "incorrect",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {
+              "missed_line": 23,
+              "digit": 1
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_96_pert_2.1",
+            "gt_verdict": "incorrect",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 21,
+            "total_gt_tokens": 61,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "ambiguous": 2,
+              "missed_line": 11,
+              "extra_line": 11
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Unsupported token '\\\\dots'",
+              "Unsupported token '\\\\pm'",
+              "At least one node/edge proof is unresolved",
+              "Unsupported token '\\\\pm'",
+              "At least one node/edge proof is unresolved",
+              "At least one node/edge proof is unresolved",
+              "Angle sign is not proved by a structured quadrant interval"
+            ]
+          },
+          {
+            "id": "img_136_pert_2.2",
+            "gt_verdict": "incorrect",
+            "error_class": "exact",
+            "transcription_error_class": "exact",
+            "ocr_available": true,
+            "exact": true,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": "incorrect",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {},
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": [
+              "At least one node/edge proof is unresolved",
+              "At least one node/edge proof is unresolved",
+              "Unsupported token '\\\\pm'",
+              "Unsupported token '\\\\pm'",
+              "Unsupported token '\\\\pm'",
+              "Unsupported token '\\\\pm'",
+              "Unsupported token '\\\\pm'"
+            ]
+          },
+          {
+            "id": "img_203_pert_4.3",
+            "gt_verdict": "correct",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 18,
+            "total_gt_tokens": 37,
+            "missed_steps": 2,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "segmentation": 5,
+              "missed_line": 16,
+              "ambiguous": 1
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Prose/conditions are not a fully parsed mathematical step",
+              "At least one node/edge proof is unresolved"
+            ]
+          },
+          {
+            "id": "img_398_pert_4.4",
+            "gt_verdict": "incorrect",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 0,
+            "total_gt_tokens": 0,
+            "missed_steps": 1,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "missed_line": 1
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Differential notation needs a calculus verifier",
+              "Differential notation needs a calculus verifier",
+              "Differential notation needs a calculus verifier",
+              "Differential notation needs a calculus verifier",
+              "Differential notation needs a calculus verifier",
+              "Differential notation needs a calculus verifier",
+              "Requires one task equation"
+            ]
+          },
+          {
+            "id": "img_225_pert_2.4",
+            "gt_verdict": "incorrect",
+            "error_class": "missed_line",
+            "transcription_error_class": "missed_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 10,
+            "total_gt_tokens": 16,
+            "missed_steps": 2,
+            "extra_steps": 0,
+            "cas_ext_verdict": "incorrect",
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": true,
+            "final_wrong": false,
+            "counts": {
+              "missed_line": 13
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": false,
+            "cas_fallback_reasons": []
+          },
+          {
+            "id": "img_128_pert_1.5",
+            "gt_verdict": "incorrect",
+            "error_class": "extra_line",
+            "transcription_error_class": "extra_line",
+            "ocr_available": true,
+            "exact": false,
+            "step_edit_distance": 2,
+            "total_gt_tokens": 19,
+            "missed_steps": 0,
+            "extra_steps": 0,
+            "cas_ext_verdict": null,
+            "cas_gt_verdict": null,
+            "cas_flip": null,
+            "final_correct": false,
+            "final_wrong": true,
+            "counts": {
+              "extra_line": 3
+            },
+            "task_spec_available": true,
+            "task_spec_class": "reported_structured",
+            "task_visibility": "visible",
+            "cas_indeterminate": true,
+            "cas_fallback_reasons": [
+              "Unanchored mathematical statement"
+            ]
+          }
+        ],
+        "by_error_class": [
+          {
+            "error_class": "missed_line",
+            "cases": 9,
+            "share": 0.45,
+            "cas_flips": 0,
+            "cas_flip_rate": 0.0,
+            "final_wrong": 4,
+            "final_wrong_rate": 0.4444444444444444,
+            "failure_fraction": 0.4444444444444444
+          },
+          {
+            "error_class": "exact",
+            "cases": 7,
+            "share": 0.35,
+            "cas_flips": 0,
+            "cas_flip_rate": 0.0,
+            "final_wrong": 1,
+            "final_wrong_rate": 0.14285714285714285,
+            "failure_fraction": 0.1111111111111111
+          },
+          {
+            "error_class": "extra_line",
+            "cases": 4,
+            "share": 0.2,
+            "cas_flips": 0,
+            "cas_flip_rate": 0.0,
+            "final_wrong": 4,
+            "final_wrong_rate": 1.0,
+            "failure_fraction": 0.4444444444444444
+          }
+        ],
+        "overall": {
+          "examples": 20,
+          "exact_transcriptions": 7,
+          "exact_match_rate": 0.35,
+          "missed_steps": 12,
+          "extra_steps": 5,
+          "mean_step_edit_distance": 15.45,
+          "normalized_edit_distance": 0.5228426395939086,
+          "cas_flips": 0,
+          "cas_flip_rate": 0.0,
+          "extraction_cas_verdict_accuracy": 0.55,
+          "cas_on_gt_available": false,
+          "cas_on_gt_verdict_accuracy": null,
+          "verdict_accuracy_drop": null,
+          "assisted_indeterminate": 9,
+          "assisted_indeterminate_rate": 0.45,
+          "task_spec_classes": {
+            "reported_structured": 20
+          },
+          "cas_indeterminate_reasons": {
+            "Prose/conditions are not a fully parsed mathematical step": 8,
+            "At least one node/edge proof is unresolved": 7,
+            "Unsupported token '\\\\pm'": 7,
+            "Differential notation needs a calculus verifier": 6,
+            "Task has no explicit mathematical target": 3,
+            "Continuation requires one readable dependency": 2,
+            "Unsupported token '\\\\int'": 2,
+            "Angle sign is not proved by a structured quadrant interval": 1,
+            "Expected token, got end of input": 1,
+            "Prose is not a mathematical answer": 1,
+            "Requires one task equation": 1,
+            "Symbolic determinant template has no explicit entry bindings": 1,
+            "Unanchored mathematical statement": 1,
+            "Unsupported input at character 0": 1,
+            "Unsupported token '\\\\dots'": 1
+          }
+        }
+      }
+    },
+    "run_id": "gemini_assisted_cas",
+    "per_case": [
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_509_pert_5.1",
+        "gt_verdict": "correct",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "correct",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_554_pert_5.1",
+        "gt_verdict": "correct",
+        "error_class": "extra_line",
+        "transcription_error_class": "extra_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 40,
+        "total_gt_tokens": 78,
+        "missed_steps": 0,
+        "extra_steps": 4,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "extra_line": 37,
+          "missed_line": 1,
+          "structure": 2,
+          "segmentation": 6
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Prose/conditions are not a fully parsed mathematical step",
+          "At least one node/edge proof is unresolved",
+          "Prose/conditions are not a fully parsed mathematical step",
+          "Task has no explicit mathematical target"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_471_pert_5.1",
+        "gt_verdict": "correct",
+        "error_class": "extra_line",
+        "transcription_error_class": "extra_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 7,
+        "total_gt_tokens": 31,
+        "missed_steps": 1,
+        "extra_steps": 1,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "missed_line": 1,
+          "extra_line": 9
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Expected token, got end of input"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_462_pert_5.1",
+        "gt_verdict": "correct",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 22,
+        "total_gt_tokens": 33,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "missed_line": 12,
+          "extra_line": 12
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Symbolic determinant template has no explicit entry bindings",
+          "Continuation requires one readable dependency"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_494_pert_5.2",
+        "gt_verdict": "correct",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "correct",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_452_pert_5.2",
+        "gt_verdict": "correct",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "correct",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_471_pert_5.2",
+        "gt_verdict": "correct",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "correct",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_373_pert_5.2",
+        "gt_verdict": "correct",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Prose/conditions are not a fully parsed mathematical step",
+          "Unsupported token '\\\\int'",
+          "Unsupported token '\\\\int'",
+          "Continuation requires one readable dependency"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_221_pert_5.3",
+        "gt_verdict": "incorrect",
+        "error_class": "extra_line",
+        "transcription_error_class": "extra_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 31,
+        "total_gt_tokens": 192,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "extra_line": 24,
+          "missed_line": 11
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Unsupported input at character 0",
+          "Prose/conditions are not a fully parsed mathematical step",
+          "Prose/conditions are not a fully parsed mathematical step",
+          "Task has no explicit mathematical target"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_151_pert_5.3",
+        "gt_verdict": "correct",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 25,
+        "total_gt_tokens": 17,
+        "missed_steps": 3,
+        "extra_steps": 0,
+        "cas_ext_verdict": "correct",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {
+          "missed_line": 29
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_509_pert_3.1",
+        "gt_verdict": "correct",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "correct",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_157_pert_3.2",
+        "gt_verdict": "incorrect",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 19,
+        "total_gt_tokens": 18,
+        "missed_steps": 1,
+        "extra_steps": 0,
+        "cas_ext_verdict": "incorrect",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {
+          "missed_line": 21
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": [
+          "Task has no explicit mathematical target"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_480_pert_2.5",
+        "gt_verdict": "incorrect",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 94,
+        "total_gt_tokens": 56,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "incorrect",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {
+          "ambiguous": 8,
+          "extra_line": 3,
+          "missed_line": 88
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": [
+          "Prose/conditions are not a fully parsed mathematical step",
+          "Prose/conditions are not a fully parsed mathematical step",
+          "Prose is not a mathematical answer"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_110_pert_1.3",
+        "gt_verdict": "incorrect",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 20,
+        "total_gt_tokens": 33,
+        "missed_steps": 2,
+        "extra_steps": 0,
+        "cas_ext_verdict": "incorrect",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {
+          "missed_line": 23,
+          "digit": 1
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_96_pert_2.1",
+        "gt_verdict": "incorrect",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 21,
+        "total_gt_tokens": 61,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "ambiguous": 2,
+          "missed_line": 11,
+          "extra_line": 11
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Unsupported token '\\\\dots'",
+          "Unsupported token '\\\\pm'",
+          "At least one node/edge proof is unresolved",
+          "Unsupported token '\\\\pm'",
+          "At least one node/edge proof is unresolved",
+          "At least one node/edge proof is unresolved",
+          "Angle sign is not proved by a structured quadrant interval"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_136_pert_2.2",
+        "gt_verdict": "incorrect",
+        "error_class": "exact",
+        "transcription_error_class": "exact",
+        "ocr_available": true,
+        "exact": true,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": "incorrect",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {},
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": [
+          "At least one node/edge proof is unresolved",
+          "At least one node/edge proof is unresolved",
+          "Unsupported token '\\\\pm'",
+          "Unsupported token '\\\\pm'",
+          "Unsupported token '\\\\pm'",
+          "Unsupported token '\\\\pm'",
+          "Unsupported token '\\\\pm'"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_203_pert_4.3",
+        "gt_verdict": "correct",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 18,
+        "total_gt_tokens": 37,
+        "missed_steps": 2,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "segmentation": 5,
+          "missed_line": 16,
+          "ambiguous": 1
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Prose/conditions are not a fully parsed mathematical step",
+          "At least one node/edge proof is unresolved"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_398_pert_4.4",
+        "gt_verdict": "incorrect",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 0,
+        "total_gt_tokens": 0,
+        "missed_steps": 1,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "missed_line": 1
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Differential notation needs a calculus verifier",
+          "Differential notation needs a calculus verifier",
+          "Differential notation needs a calculus verifier",
+          "Differential notation needs a calculus verifier",
+          "Differential notation needs a calculus verifier",
+          "Differential notation needs a calculus verifier",
+          "Requires one task equation"
+        ]
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_225_pert_2.4",
+        "gt_verdict": "incorrect",
+        "error_class": "missed_line",
+        "transcription_error_class": "missed_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 10,
+        "total_gt_tokens": 16,
+        "missed_steps": 2,
+        "extra_steps": 0,
+        "cas_ext_verdict": "incorrect",
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": true,
+        "final_wrong": false,
+        "counts": {
+          "missed_line": 13
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": false,
+        "cas_fallback_reasons": []
+      },
+      {
+        "provider": "gemini",
+        "run_id": "gemini_assisted_cas",
+        "id": "img_128_pert_1.5",
+        "gt_verdict": "incorrect",
+        "error_class": "extra_line",
+        "transcription_error_class": "extra_line",
+        "ocr_available": true,
+        "exact": false,
+        "step_edit_distance": 2,
+        "total_gt_tokens": 19,
+        "missed_steps": 0,
+        "extra_steps": 0,
+        "cas_ext_verdict": null,
+        "cas_gt_verdict": null,
+        "cas_flip": null,
+        "final_correct": false,
+        "final_wrong": true,
+        "counts": {
+          "extra_line": 3
+        },
+        "task_spec_available": true,
+        "task_spec_class": "reported_structured",
+        "task_visibility": "visible",
+        "cas_indeterminate": true,
+        "cas_fallback_reasons": [
+          "Unanchored mathematical statement"
+        ]
+      }
+    ],
+    "by_error_class": [
+      {
+        "error_class": "missed_line",
+        "cases": 9,
+        "share": 0.45,
+        "cas_flips": 0,
+        "cas_flip_rate": 0.0,
+        "final_wrong": 4,
+        "final_wrong_rate": 0.4444444444444444,
+        "failure_fraction": 0.4444444444444444
+      },
+      {
+        "error_class": "exact",
+        "cases": 7,
+        "share": 0.35,
+        "cas_flips": 0,
+        "cas_flip_rate": 0.0,
+        "final_wrong": 1,
+        "final_wrong_rate": 0.14285714285714285,
+        "failure_fraction": 0.1111111111111111
+      },
+      {
+        "error_class": "extra_line",
+        "cases": 4,
+        "share": 0.2,
+        "cas_flips": 0,
+        "cas_flip_rate": 0.0,
+        "final_wrong": 4,
+        "final_wrong_rate": 1.0,
+        "failure_fraction": 0.4444444444444444
+      }
+    ],
+    "overall": {
+      "examples": 20,
+      "exact_transcriptions": 7,
+      "exact_match_rate": 0.35,
+      "missed_steps": 12,
+      "extra_steps": 5,
+      "mean_step_edit_distance": 15.45,
+      "normalized_edit_distance": 0.5228426395939086,
+      "cas_flips": 0,
+      "cas_flip_rate": 0.0,
+      "extraction_cas_verdict_accuracy": 0.55,
+      "cas_on_gt_available": false,
+      "cas_on_gt_verdict_accuracy": null,
+      "verdict_accuracy_drop": null,
+      "assisted_indeterminate": 9,
+      "assisted_indeterminate_rate": 0.45,
+      "task_spec_classes": {
+        "reported_structured": 20
+      },
+      "cas_indeterminate_reasons": {
+        "Prose/conditions are not a fully parsed mathematical step": 8,
+        "At least one node/edge proof is unresolved": 7,
+        "Unsupported token '\\\\pm'": 7,
+        "Differential notation needs a calculus verifier": 6,
+        "Task has no explicit mathematical target": 3,
+        "Continuation requires one readable dependency": 2,
+        "Unsupported token '\\\\int'": 2,
+        "Angle sign is not proved by a structured quadrant interval": 1,
+        "Expected token, got end of input": 1,
+        "Prose is not a mathematical answer": 1,
+        "Requires one task equation": 1,
+        "Symbolic determinant template has no explicit entry bindings": 1,
+        "Unanchored mathematical statement": 1,
+        "Unsupported input at character 0": 1,
+        "Unsupported token '\\\\dots'": 1
+      }
+    }
+  },
+  "h3": {
+    "pairs": {
+      "gemini:gemini_e2e__gemini_assisted_cas": {
+        "provider": "gemini",
+        "e2e_run": "gemini_e2e",
+        "cas_run": "gemini_assisted_cas",
+        "rows": [
+          {
+            "id": "img_509_pert_5.1",
+            "gt_verdict": "correct",
+            "ocr_error_class": "exact",
+            "e2e_label": "correct",
+            "cas_label": "correct",
+            "agree": true,
+            "comparison_status": "comparable",
+            "disagreement_only_source": "e2e",
+            "disagreement_only_label": "correct",
+            "disagreement_only_correct": true,
+            "disagreement_or_cas_indeterminate_source": "agreement",
+            "disagreement_or_cas_indeterminate_label": "correct",
+            "disagreement_or_cas_indeterminate_correct": true
+          },
+          {
+            "id": "img_554_pert_5.1",
+            "gt_verdict": "correct",
+            "ocr_error_class": "extra_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_471_pert_5.1",
+            "gt_verdict": "correct",
+            "ocr_error_class": "extra_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_462_pert_5.1",
+            "gt_verdict": "correct",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_494_pert_5.2",
+            "gt_verdict": "correct",
+            "ocr_error_class": "exact",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "correct",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_452_pert_5.2",
+            "gt_verdict": "correct",
+            "ocr_error_class": "exact",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "correct",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_471_pert_5.2",
+            "gt_verdict": "correct",
+            "ocr_error_class": "exact",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "correct",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_373_pert_5.2",
+            "gt_verdict": "correct",
+            "ocr_error_class": "exact",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_221_pert_5.3",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "extra_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_151_pert_5.3",
+            "gt_verdict": "correct",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "correct",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_509_pert_3.1",
+            "gt_verdict": "correct",
+            "ocr_error_class": "exact",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "correct",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_157_pert_3.2",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "incorrect",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_480_pert_2.5",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "incorrect",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_110_pert_1.3",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "incorrect",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_96_pert_2.1",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_136_pert_2.2",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "exact",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "incorrect",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_203_pert_4.3",
+            "gt_verdict": "correct",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_398_pert_4.4",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_225_pert_2.4",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "missed_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "incorrect",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          },
+          {
+            "id": "img_128_pert_1.5",
+            "gt_verdict": "incorrect",
+            "ocr_error_class": "extra_line",
+            "e2e_label": "missing_or_failed",
+            "cas_label": "indeterminate",
+            "agree": null,
+            "comparison_status": "cas_or_e2e_not_decidable",
+            "disagreement_only_source": "manual_api_or_e2e_abstention",
+            "disagreement_only_label": "missing_or_failed",
+            "disagreement_only_correct": false,
+            "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+            "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+            "disagreement_or_cas_indeterminate_correct": false
+          }
+        ],
+        "policies": {
+          "disagreement_only": {
+            "accuracy_all": 0.05,
+            "accuracy_on_automated": 1.0,
+            "automation_rate": 0.05,
+            "manual_rate": 0.95,
+            "manual_queue_e2e_error_rate": null,
+            "captured_e2e_error_recall": null
+          },
+          "disagreement_or_cas_indeterminate": {
+            "accuracy_all": 0.05,
+            "accuracy_on_automated": 1.0,
+            "automation_rate": 0.05,
+            "manual_rate": 0.95,
+            "manual_queue_e2e_error_rate": null,
+            "captured_e2e_error_recall": null
+          }
+        },
+        "risk_coverage": {
+          "disagreement_only": [
+            {
+              "coverage": 0.0,
+              "risk": 0.0
+            },
+            {
+              "coverage": 0.05,
+              "risk": 0.0
+            }
+          ],
+          "disagreement_or_cas_indeterminate": [
+            {
+              "coverage": 0.0,
+              "risk": 0.0
+            },
+            {
+              "coverage": 0.05,
+              "risk": 0.0
+            }
+          ]
+        },
+        "comparison": {
+          "total": 20,
+          "comparable_pairs": 1,
+          "agreement_count": 1,
+          "agreement_rate_on_comparable": 1.0,
+          "excluded_not_decidable": 19
+        }
+      }
+    },
+    "policies": {
+      "disagreement_only": {
+        "accuracy_all": 0.05,
+        "accuracy_on_automated": 1.0,
+        "automation_rate": 0.05,
+        "manual_rate": 0.95,
+        "manual_queue_e2e_error_rate": null,
+        "captured_e2e_error_recall": null
+      },
+      "disagreement_or_cas_indeterminate": {
+        "accuracy_all": 0.05,
+        "accuracy_on_automated": 1.0,
+        "automation_rate": 0.05,
+        "manual_rate": 0.95,
+        "manual_queue_e2e_error_rate": null,
+        "captured_e2e_error_recall": null
+      }
+    },
+    "per_case": [
+      {
+        "provider": "gemini",
+        "id": "img_509_pert_5.1",
+        "gt_verdict": "correct",
+        "ocr_error_class": "exact",
+        "e2e_label": "correct",
+        "cas_label": "correct",
+        "agree": true,
+        "comparison_status": "comparable",
+        "disagreement_only_source": "e2e",
+        "disagreement_only_label": "correct",
+        "disagreement_only_correct": true,
+        "disagreement_or_cas_indeterminate_source": "agreement",
+        "disagreement_or_cas_indeterminate_label": "correct",
+        "disagreement_or_cas_indeterminate_correct": true
+      },
+      {
+        "provider": "gemini",
+        "id": "img_554_pert_5.1",
+        "gt_verdict": "correct",
+        "ocr_error_class": "extra_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_471_pert_5.1",
+        "gt_verdict": "correct",
+        "ocr_error_class": "extra_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_462_pert_5.1",
+        "gt_verdict": "correct",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_494_pert_5.2",
+        "gt_verdict": "correct",
+        "ocr_error_class": "exact",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_452_pert_5.2",
+        "gt_verdict": "correct",
+        "ocr_error_class": "exact",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_471_pert_5.2",
+        "gt_verdict": "correct",
+        "ocr_error_class": "exact",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_373_pert_5.2",
+        "gt_verdict": "correct",
+        "ocr_error_class": "exact",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_221_pert_5.3",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "extra_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_151_pert_5.3",
+        "gt_verdict": "correct",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_509_pert_3.1",
+        "gt_verdict": "correct",
+        "ocr_error_class": "exact",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "correct",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_157_pert_3.2",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_480_pert_2.5",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_110_pert_1.3",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_96_pert_2.1",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_136_pert_2.2",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "exact",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_203_pert_4.3",
+        "gt_verdict": "correct",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_398_pert_4.4",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_225_pert_2.4",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "missed_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "incorrect",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      },
+      {
+        "provider": "gemini",
+        "id": "img_128_pert_1.5",
+        "gt_verdict": "incorrect",
+        "ocr_error_class": "extra_line",
+        "e2e_label": "missing_or_failed",
+        "cas_label": "indeterminate",
+        "agree": null,
+        "comparison_status": "cas_or_e2e_not_decidable",
+        "disagreement_only_source": "manual_api_or_e2e_abstention",
+        "disagreement_only_label": "missing_or_failed",
+        "disagreement_only_correct": false,
+        "disagreement_or_cas_indeterminate_source": "manual_disagreement_or_cas_indeterminate",
+        "disagreement_or_cas_indeterminate_label": "missing_or_failed",
+        "disagreement_or_cas_indeterminate_correct": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "img_509_pert_5.1",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "ok",
+      "gemini_e2e_verdict": "correct",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": true,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "correct",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_554_pert_5.1",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_471_pert_5.1",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_462_pert_5.1",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_494_pert_5.2",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "correct",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_452_pert_5.2",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "correct",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_471_pert_5.2",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "correct",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_373_pert_5.2",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_221_pert_5.3",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s3",
+      "gemini_e2e_status": "api_failed",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_151_pert_5.3",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "correct",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_509_pert_3.1",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "correct",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_157_pert_3.2",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s2",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "incorrect",
+      "gemini_assisted_cas_first_error_step": "s1",
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_480_pert_2.5",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s2",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "incorrect",
+      "gemini_assisted_cas_first_error_step": "s2",
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_110_pert_1.3",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s2",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "incorrect",
+      "gemini_assisted_cas_first_error_step": "s1",
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_96_pert_2.1",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s9",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_136_pert_2.2",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s2",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "incorrect",
+      "gemini_assisted_cas_first_error_step": "s2",
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_203_pert_4.3",
+      "gt_verdict": "correct",
+      "gt_first_error_step": null,
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_398_pert_4.4",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s7",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    },
+    {
+      "id": "img_225_pert_2.4",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s2",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "incorrect",
+      "gemini_assisted_cas_first_error_step": "s1",
+      "gemini_assisted_cas_correct": true
+    },
+    {
+      "id": "img_128_pert_1.5",
+      "gt_verdict": "incorrect",
+      "gt_first_error_step": "s2",
+      "gemini_e2e_status": "missing",
+      "gemini_e2e_verdict": "missing_or_failed",
+      "gemini_e2e_first_error_step": null,
+      "gemini_e2e_correct": false,
+      "gemini_assisted_cas_status": "ok",
+      "gemini_assisted_cas_verdict": "indeterminate",
+      "gemini_assisted_cas_first_error_step": null,
+      "gemini_assisted_cas_correct": false
+    }
+  ],
+  "domains": {
+    "available": false,
+    "reason": "No domain sidecar declared."
+  },
+  "limitations": [
+    "Frozen and simulated sources keep api_failed/invalid_contract/missing cases in every denominator.",
+    "CAS-on-GT uses reference steps; it bounds the pipeline but is not available at inference time.",
+    "Prompt/CAS tuning saw all 100 GT examples, so results on dev/final splits are exploratory, not independent holdout.",
+    "CDN/OS availability noise and OCR failures are reported as statuses and are not silently dropped."
+  ],
+  "unmapped_records": 0
+}

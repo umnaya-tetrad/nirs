@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "id": "img_509_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "(f + g)(t) = t^2 + 2t + 1",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "(f - g)(t) = t^2 - 2t - 1",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "(fg)(t) = t^2(2t + 1) = 2t^3 + t^2",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "(\\frac{f}{g})(t) = \\frac{t^2}{2t + 1}, t \\neq -\\frac{1}{2}",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 874
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Symbolic claim has no given/dependency anchor"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\neq'"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-667cb9ac-afa9-495c-b06f-36e034f5ed9b",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1797,
+    "created_at": "2026-10-09T23:20:39.409246Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_509_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question}: \\text{Let } f(x)=x^2 \\text{and } g(x)=2x+1 \\text{be two real function}. \\text{Find}\n(f+g)(t),(f-g)(t),(fg)(t),(\\frac{f}{g})(t).\n\n\\text{Answer}: \\text{We have}, \n(f+g)(t)=t^2+2t+1,\n(f-g)(t)=t^2-2t-1,\n(fg)(t)=t^2(2t+1)=2t^3+t^2,\\frac{(f/g)}{}(t)=\\frac{t^2}{2t+1}, t\\neq-\\frac{1}{2}.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "unknown",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "(f + g)(t) = t^2 + 2t + 1",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "(f - g)(t) = t^2 - 2t - 1",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "(fg)(t) = t^2(2t + 1) = 2t^3 + t^2",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "(\\frac{f}{g})(t) = \\frac{t^2}{2t + 1}, t \\neq -\\frac{1}{2}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "unsupported",
+        "task_class": "function_operation",
+        "reasons": [
+          "goal is unknown"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate solution-set equivalence not established"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context; Unsupported token '\\\\neq'"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "goal is unknown",
+      "step_id": null,
+      "rule": "task_spec",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic claim has no given/dependency anchor",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\neq'",
+          "role": "initial",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Symbolic claim has no given/dependency anchor",
+      "Unsupported token '\\\\neq'",
+      "goal is unknown"
+    ]
+  }
+}

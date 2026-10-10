@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0",
+  "id": "img_203_pert_4.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Answer: We have to evaluate } \\frac{5!}{2!(5-2)!} \\text{ (since } n=5, r=2\\text{)}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{we have } \\frac{5!}{2!(5-2)!} = \\frac{5\\times 4}{2} = \\frac{5!}{2!\\times 3!} = 10",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 744
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-7801d802-8477-44d4-92bb-94f01c73953f",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1463,
+    "created_at": "2026-10-09T22:46:45.515171Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_203_pert_4.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Evaluate } \\frac{n!}{r!(n-r)!}, \\text{ when } n=5, r=2.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "n=5",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "n=5",
+                "kind": "equation",
+                "sides": [
+                  "n",
+                  "5"
+                ],
+                "symbols": [
+                  "n"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "r=2",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "r=2",
+                "kind": "equation",
+                "sides": [
+                  "r",
+                  "2"
+                ],
+                "symbols": [
+                  "r"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\frac{n!}{r!(n-r)!}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Answer: We have to evaluate } \\frac{5!}{2!(5-2)!} \\text{ (since } n=5, r=2\\text{)}",
+          "role": "substitution",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{we have } \\frac{5!}{2!(5-2)!} = \\frac{5\\times 4}{2} = \\frac{5!}{2!\\times 3!} = 10",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Answer: We have to evaluate; Text/units/conditions are outside the symbolic grammar: (since; Text/units/conditions are outside the symbolic grammar: ); Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: we have; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Bare word is not an exact mathematical token",
+      "step_id": "s2",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Bare word is not an exact mathematical token"
+    ]
+  }
+}

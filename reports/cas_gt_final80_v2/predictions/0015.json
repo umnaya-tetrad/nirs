@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "id": "img_375_pert_5.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\int_{-1}^{2} |x^3 - x| \\, dx = \\int_{-1}^{0} (x^3 - x) \\, dx + \\int_{0}^{1} -(x^3 - x) \\, dx + \\int_{1}^{2} (x^3 - x) \\, dx",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "= \\int_{-1}^{0} (x^3 - x) \\, dx + \\int_{0}^{1} (x - x^3) \\, dx + \\int_{1}^{2} (x^3 - x) \\, dx",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "= \\left[ \\frac{x^4}{4} - \\frac{x^2}{2} \\right]_{-1}^{0} + \\left[ \\frac{x^2}{2} - \\frac{x^4}{4} \\right]_{0}^{1} + \\left[ \\frac{x^4}{4} - \\frac{x^2}{2} \\right]_{1}^{2}",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "step",
+      "latex": "= \\left( \\frac{0 - \\frac{1}{2}}{0} \\right) + \\left( \\frac{1}{2} - \\frac{1}{4} \\right) + \\left( \\frac{4 - 2}{4} - \\left( \\frac{1}{4} - \\frac{1}{2} \\right) \\right)",
+      "derives_from": [
+        "s3"
+      ]
+    },
+    {
+      "step_id": "s5",
+      "kind": "step",
+      "latex": "= \\left( 0 - \\left( \\frac{1}{4} + \\frac{1}{2} \\right) \\right) + \\left( \\frac{1}{2} - \\frac{1}{4} \\right) + \\left( \\frac{4 - 2}{4} - \\left( \\frac{1}{4} - \\frac{1}{2} \\right) \\right)",
+      "derives_from": [
+        "s4"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "kind": "step",
+      "latex": "= 0 + \\frac{1}{4} + \\left( \\frac{1}{2} - \\frac{1}{4} \\right)",
+      "derives_from": [
+        "s5"
+      ]
+    },
+    {
+      "step_id": "s7",
+      "kind": "step",
+      "latex": "= 0 + \\frac{1}{4} + \\frac{1}{4} = \\frac{3}{4}",
+      "derives_from": [
+        "s6"
+      ]
+    },
+    {
+      "step_id": "s8",
+      "kind": "answer",
+      "latex": "= \\frac{1}{4} + \\frac{1}{2} + \\frac{1}{4} = \\frac{3}{2} - \\frac{3}{4} + 2 = \\frac{11}{4}",
+      "derives_from": [
+        "s7"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 652
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'; Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'; Continuation has no readable predecessor"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unconsumed token '_'; one expression/equation per step; Continuation has no readable predecessor"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Undefined real expression: nonzero restriction fails; Continuation has no readable predecessor"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Continuation has no readable predecessor"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-4be4f923-f859-4717-a3f5-cfa5cb968bb1",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 652,
+    "created_at": "2026-10-09T22:26:23.831388Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

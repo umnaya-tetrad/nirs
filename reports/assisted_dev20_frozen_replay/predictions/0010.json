@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "id": "img_151_pert_5.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "8\\sqrt{15} \\div 2\\sqrt{3} = \\frac{8\\sqrt{3} \\times \\sqrt{5}}{2\\sqrt{3}} = \\frac{8 \\times \\sqrt{3} \\times \\sqrt{5}}{2 \\times \\sqrt{3}} = \\frac{8 \\times \\sqrt{15}}{2 \\times \\sqrt{3}} = 4\\sqrt{5}",
+      "derives_from": [],
+      "kind": "initial"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 823
+      }
+    ]
+  },
+  "verdict": "correct",
+  "is_correct": true,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-ced98e2f-4afe-4c69-8247-6b852b679624",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1708,
+    "created_at": "2026-10-09T22:46:32.730183Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_151_pert_5.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Divide } 8\\sqrt{15} \\text{ by } 2\\sqrt{3}.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "8\\sqrt{15} \\div 2\\sqrt{3} = \\frac{8\\sqrt{3} \\times \\sqrt{5}}{2\\sqrt{3}} = \\frac{8 \\times \\sqrt{3} \\times \\sqrt{5}}{2 \\times \\sqrt{3}} = \\frac{8 \\times \\sqrt{15}}{2 \\times \\sqrt{3}} = 4\\sqrt{5}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "correct",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s1",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": true,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": true,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

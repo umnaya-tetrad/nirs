@@ -1,0 +1,3 @@
+# Сценарии расширения CAS
+
+Это не измеренные результаты. По `cas_failures_classified.csv` можно рассматривать только условные верхние границы: если конкретные unsupported/parser diagnostics будут устранены, соответствующие indeterminate могут стать попытками проверки, но не предполагаются автоматически правильными. Cases с `task_formalization`, `dependencies_or_branching`, `recognition_or_latex` и `segmentation_or_structure` не являются простым резервом математических правил. Необходимы отдельные pre-registered эксперименты: ручная проверка первопричин, до/после на неизменном holdout, измерение coverage/accuracy/latency/cost и анализ новых ложных determinate verdicts.

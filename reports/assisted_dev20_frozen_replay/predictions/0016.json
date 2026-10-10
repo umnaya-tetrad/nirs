@@ -1,0 +1,625 @@
+{
+  "schema_version": "1.0",
+  "id": "img_136_pert_2.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "10x^2 - 18x^3 + 14x^4 = 10x^2 + (-18x^3) + 14x^4",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "10x^2 + (-18x^3) + 14x^4 = 0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "5x^2 - 9x^3 + 7x^4 = 0",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "x^2(5 - 9x + 7x^2) = 0",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "x^2 = 0 \\implies x = 0",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "5 - 9x + 7x^2 = 0",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "ax^2 + bx + c = 0",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "a = 7, b = -9, c = 5",
+      "derives_from": [
+        "s6",
+        "s7"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "x = \\frac{9 \\pm \\sqrt{81 - 140}}{14}",
+      "derives_from": [
+        "s8",
+        "s9"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s11",
+      "latex": "x = \\frac{9 \\pm \\sqrt{-59}}{14}",
+      "derives_from": [
+        "s10"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s12",
+      "latex": "x = \\frac{9 \\pm i\\sqrt{59}}{14}",
+      "derives_from": [
+        "s11"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 775
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s11",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s12",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-411b46b7-f52f-4275-91ea-10e20e289241",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1864,
+    "created_at": "2026-10-09T22:46:43.678539Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_136_pert_2.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Factorise } 10x^2 - 18x^3 + 14x^4",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "10x^2 - 18x^3 + 14x^4",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "10x^2 - 18x^3 + 14x^4",
+                "kind": "expression",
+                "sides": [
+                  "14*x**4 + (-18*x**3 + 10*x**2)"
+                ],
+                "symbols": [
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": "10x^2 - 18x^3 + 14x^4"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "10x^2 - 18x^3 + 14x^4 = 10x^2 + (-18x^3) + 14x^4",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "10x^2 + (-18x^3) + 14x^4 = 0",
+          "role": "definition",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "5x^2 - 9x^3 + 7x^4 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "x^2(5 - 9x + 7x^2) = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "x^2 = 0 \\implies x = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "5 - 9x + 7x^2 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "ax^2 + bx + c = 0",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "a = 7, b = -9, c = 5",
+          "role": "substitution",
+          "derives_from": [
+            "s6",
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s10",
+          "latex": "x = \\frac{9 \\pm \\sqrt{81 - 140}}{14}",
+          "role": "substitution",
+          "derives_from": [
+            "s8",
+            "s9"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s11",
+          "latex": "x = \\frac{9 \\pm \\sqrt{-59}}{14}",
+          "role": "transformation",
+          "derives_from": [
+            "s10"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s12",
+          "latex": "x = \\frac{9 \\pm i\\sqrt{59}}{14}",
+          "role": "answer",
+          "derives_from": [
+            "s11"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s9",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s10",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s11",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s12",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: a*x**2 + b*x contains an element of the set of generators."
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported token '\\\\pm'",
+      "step_id": "s12",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s6"
+      ],
+      "unsupported_steps": [
+        "s2",
+        "s5",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s6",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s8",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'"
+        },
+        {
+          "from": "s9",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'"
+        },
+        {
+          "from": "s10",
+          "to": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'"
+        },
+        {
+          "from": "s11",
+          "to": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "Unanchored mathematical statement",
+      "At least one node/edge proof is unresolved",
+      "Unsupported token '\\\\pm'",
+      "Unsupported token '\\\\pm'",
+      "Unsupported token '\\\\pm'",
+      "Unsupported token '\\\\pm'",
+      "Unsupported token '\\\\pm'"
+    ]
+  }
+}

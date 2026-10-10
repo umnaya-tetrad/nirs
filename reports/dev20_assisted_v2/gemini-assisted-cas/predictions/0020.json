@@ -1,0 +1,594 @@
+{
+  "schema_version": "1.0",
+  "id": "img_96_pert_2.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\sin(x+y) = \\sin x \\cos y + \\cos x \\sin y \\quad \\dots (1)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\cos x = \\pm \\frac{4}{5}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\cos x = -\\frac{4}{5}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\sin y = \\pm \\frac{5}{13}",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "\\sin y = \\frac{5}{13}",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "\\sin(x+y) = \\frac{3}{5}\\left(-\\frac{12}{13}\\right) + \\left(-\\frac{4}{5}\\right)\\left(\\frac{5}{13}\\right) = -\\frac{36}{65} + \\frac{4}{5} \\times \\frac{5}{13}",
+      "derives_from": [
+        "s1",
+        "s4",
+        "s7"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "= -\\frac{36}{65} + \\frac{20}{65} = -\\frac{16}{65}",
+      "derives_from": [
+        "s8"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 990
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\dots'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\pm'"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-84a9dfa7-d4e7-4ea9-9224-3caa8bcb31de",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 2232,
+    "created_at": "2026-10-09T23:22:49.769826Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_96_pert_2.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : If } \\sin x = \\frac{3}{5} \\text{, } \\cos y = -\\frac{12}{13} \\text{, where } x \\text{ and } y \\text{ both lie in the second quadrant, find the value of } \\sin(x+y).",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\sin x = \\frac{3}{5}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\sin x = \\frac{3}{5}",
+                "kind": "equation",
+                "sides": [
+                  "sin(x)",
+                  "3/5"
+                ],
+                "symbols": [
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "5"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "\\cos y = -\\frac{12}{13}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\cos y = -\\frac{12}{13}",
+                "kind": "equation",
+                "sides": [
+                  "cos(y)",
+                  "-12/13"
+                ],
+                "symbols": [
+                  "y"
+                ],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "13"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g3",
+            "raw_latex": "x \\in \\text{II quadrant}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Bare word is not an exact mathematical token"
+            }
+          },
+          {
+            "given_id": "g4",
+            "raw_latex": "y \\in \\text{II quadrant}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Bare word is not an exact mathematical token"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\sin(x+y)"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\sin(x+y) = \\sin x \\cos y + \\cos x \\sin y \\quad \\dots (1)",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\cos^2 x = 1 - \\sin^2 x = 1 - \\left(\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}",
+          "role": "substitution",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\cos x = \\pm \\frac{4}{5}",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\cos x = -\\frac{4}{5}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g3"
+          ]
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\sin^2 y = 1 - \\cos^2 y = 1 - \\left(-\\frac{12}{13}\\right)^2 = 1 - \\frac{144}{169} = \\frac{25}{169}",
+          "role": "substitution",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\sin y = \\pm \\frac{5}{13}",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "\\sin y = \\frac{5}{13}",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g4"
+          ]
+        },
+        {
+          "step_id": "s8",
+          "latex": "\\sin(x+y) = \\frac{3}{5}\\left(-\\frac{12}{13}\\right) + \\left(-\\frac{4}{5}\\right)\\left(\\frac{5}{13}\\right) = -\\frac{36}{65} + \\frac{4}{5} \\times \\frac{5}{13}",
+          "role": "substitution",
+          "derives_from": [
+            "s1",
+            "s4",
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s9",
+          "latex": "= -\\frac{36}{65} + \\frac{20}{65} = -\\frac{16}{65}",
+          "role": "answer",
+          "derives_from": [
+            "s8"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "trigonometric",
+        "reasons": [
+          "given g3 is not in the exact SymPy subset: Bare word is not an exact mathematical token",
+          "given g4 is not in the exact SymPy subset: Bare word is not an exact mathematical token"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\dots'"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain; Exact counterexample at {x: 0}: difference=9/25; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\pm'"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain; Exact counterexample at {y: 0}: difference=-25/169; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\pm'"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "correct",
+          "note": "Polynomial identity test; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Angle sign is not proved by a structured quadrant interval",
+      "step_id": "s9",
+      "rule": "trigonometric",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s8"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s3",
+        "s4",
+        "s6",
+        "s7",
+        "s9"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\dots'",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "g3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "g2",
+          "to": "s5",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\pm'"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "g4",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s8",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "g1",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "g2",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s8",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported token '\\\\dots'",
+      "Unsupported token '\\\\pm'",
+      "At least one node/edge proof is unresolved",
+      "Unsupported token '\\\\pm'",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "Angle sign is not proved by a structured quadrant interval"
+    ]
+  }
+}

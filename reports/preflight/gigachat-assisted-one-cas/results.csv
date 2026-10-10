@@ -1,0 +1,2 @@
+﻿id,verdict,first_error_step,verified_solution_covered,task_aware_covered,fallback_reasons
+img_509_pert_5.1,indeterminate,,False,False,Unanchored mathematical statement; Unanchored mathematical statement; Symbolic claim has no given/dependency anchor; Unsupported token '\\neq'; goal is unknown

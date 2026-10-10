@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0",
+  "id": "img_462_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c) = 2(2) - 4(-1)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= 4 + 4 = 8.",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 565
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-46e47357-9a56-4fd9-b143-4dbd7dbdb158",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1136,
+    "created_at": "2026-10-09T23:22:38.108956Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_462_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Evaluate } \\begin{vmatrix} 2 & 4 \\\\ -1 & 2 \\end{vmatrix}",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\begin{vmatrix} 2 & 4 \\\\ -1 & 2 \\end{vmatrix}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c) = 2(2) - 4(-1)",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= 4 + 4 = 8.",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "determinant",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Polynomial identity test",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Polynomial identity test",
+            "actual_latex": "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = a(d) - b(c) = 2(2) - 4(-1)",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Polynomial identity test; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "valid",
+      "reason": "exact determinant evaluation",
+      "step_id": "s2",
+      "rule": "determinant",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Symbolic determinant template has no explicit entry bindings",
+      "Continuation requires one readable dependency"
+    ]
+  }
+}

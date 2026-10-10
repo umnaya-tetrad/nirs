@@ -1,0 +1,5 @@
+﻿provider,scope,n,paired_latency_n,e2e_latency_mean_ms,e2e_latency_median_ms,assisted_vlm_latency_mean_ms,cas_latency_mean_ms,assisted_pipeline_mean_ms,assisted_pipeline_median_ms,paired_pipeline_minus_e2e_mean_ms,e2e_cost_mean_rub,assisted_api_cost_mean_rub,cost_kind,local_cas_cost_included
+gemini,all_final80,80,80,14739.875,14104.0,14733.3,2415.425,17148.725,15762.0,2408.85,0.8217706084999999,0.924743496125,provider_reported,False
+gemini,cas_determinate_subset,17,17,13017.823529411764,12634.0,13793.29411764706,1599.5882352941176,15392.882352941177,14586.0,2375.0588235294117,0.6634722582352941,0.80046891,provider_reported,False
+gigachat,all_final80,80,79,8312.3125,6863.0,10697.8625,2226.9367088607596,12834.113924050633,10593.0,4528.025316455696,1.194775,1.24649375,tariff_estimate,False
+gigachat,cas_determinate_subset,16,16,6525.1875,6248.0,7681.8125,1614.875,9296.6875,9219.5,2771.5,1.11659375,1.1225625,tariff_estimate,False

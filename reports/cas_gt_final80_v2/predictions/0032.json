@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "img_427_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "\\lim_{x \\to 1} \\frac{x^{15} - 1}{x^{10} - 1} = \\lim_{x \\to 1} \\frac{\\frac{x^{15} - 1}{x - 1}}{\\frac{x^{10} - 1}{x - 1}} = \\lim_{x \\to 1} \\left[ \\frac{x^{15} - 1}{x - 1} \\cdot \\frac{1}{\\frac{x^{10} - 1}{x - 1}} \\right]",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "= \\frac{14(1)^{14}}{9(1)^{9}} = \\frac{14}{9} = \\frac{14}{9}.",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "\\lim_{x \\to 0} \\frac{\\sqrt{1 + x} - 1}{x} = \\lim_{y \\to 1} \\frac{\\sqrt{y} - 1}{y - 1}",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "= \\lim_{y \\to 1} \\frac{\\frac{1}{2} y^{-\\frac{1}{2}}}{1} = \\frac{1}{2} (1)^{-1} = \\frac{1}{2}.",
+      "derives_from": [
+        "s3"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 734
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'; Unsupported token '\\\\lim'; Unsupported token '\\\\lim'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Continuation has no readable predecessor; Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'; Unsupported token '\\\\lim'"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'; Continuation has no readable predecessor; Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-6f64bdda-5662-421f-9f72-d81bddb15eea",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 734,
+    "created_at": "2026-10-09T22:26:27.577684Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

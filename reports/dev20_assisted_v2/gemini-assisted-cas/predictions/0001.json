@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "id": "img_110_pert_1.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ) = \\cos(-1710^\\circ + 1700^\\circ)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= \\cos(-1710^\\circ + 1800^\\circ) = \\cos 90^\\circ = 0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 770
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Exact node and dependency checks",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact node and dependency checks",
+        "actual_latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ) = \\cos(-1710^\\circ + 1700^\\circ)",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-9d383750-e420-4bd3-9831-d4602345d7ec",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1445,
+    "created_at": "2026-10-09T23:22:21.041704Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_110_pert_1.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find the value of }\\cos(-1710^\\circ)",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\cos(-1710^\\circ)"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ) = \\cos(-1710^\\circ + 1700^\\circ)",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= \\cos(-1710^\\circ + 1800^\\circ) = \\cos 90^\\circ = 0",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "\\cos(-1710^\\circ) = \\cos(-1710^\\circ + 5 \\times 360^\\circ) = \\cos(-1710^\\circ + 1700^\\circ)",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "= \\cos(-1710^\\circ + 1800^\\circ) = \\cos 90^\\circ = 0",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "valid",
+      "reason": "Exact value comparison",
+      "step_id": "s2",
+      "rule": "scalar_task",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": true,
+      "first_error_step": "s1",
+      "localization_blocked": false,
+      "invalid_steps": [
+        "s1",
+        "s2"
+      ],
+      "unsupported_steps": [],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": true,
+    "task_verified_solution_covered": true,
+    "fallback_reasons": []
+  }
+}

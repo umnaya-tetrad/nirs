@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "id": "img_374_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "I = \\int_0^{\\pi} \\frac{u \\sin u}{1 + \\cos^2 u} \\, du.",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "I = \\int_0^{\\pi} \\frac{(\\pi - u) \\sin(\\pi - u)}{1 + \\cos^2(\\pi - u)} \\, du",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "= \\int_0^{\\pi} \\frac{(\\pi - u) \\sin u}{1 + \\cos^2 u} \\, du = \\pi \\int_0^{\\pi} \\frac{\\sin u}{1 + \\cos^2 u} \\, du - I.",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "step",
+      "latex": "2I = \\pi \\int_0^{\\pi} \\frac{\\sin u}{1 + \\cos^2 u} \\, du",
+      "derives_from": [
+        "s3"
+      ]
+    },
+    {
+      "step_id": "s5",
+      "kind": "step",
+      "latex": "I = \\frac{\\pi}{2} \\int_0^{\\pi} \\frac{\\sin u}{1 + \\cos^2 u} \\, du.",
+      "derives_from": [
+        "s4"
+      ]
+    },
+    {
+      "step_id": "s6",
+      "kind": "answer",
+      "latex": "I = \\frac{\\pi}{2} \\int_{-1}^{1} \\frac{dt}{1 + t^2} = \\frac{\\pi}{2} \\cdot \\frac{\\pi}{2} = \\frac{\\pi^2}{4}.",
+      "derives_from": [
+        "s5"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 797
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'; Unsupported token '\\\\int'; Continuation has no readable predecessor"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'; Exact expression identity with preserved domain"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-8f414355-5f84-4287-98fa-f39604356e29",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 797,
+    "created_at": "2026-10-09T22:26:21.711622Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

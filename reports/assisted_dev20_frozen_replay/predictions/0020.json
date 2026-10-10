@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0",
+  "id": "img_128_pert_1.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Answer : Prime factorisation of } 8000 \\text{ is}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 5 \\times 5 \\times 5",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{So, } \\sqrt[3]{9000} = 2 \\times 2 \\times 5 = 20",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 793
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-7304dfa3-bd7f-4e8b-8087-0e9334a2fa9b",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1346,
+    "created_at": "2026-10-09T22:46:50.162641Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_128_pert_1.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find the cube root of } 8000.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\sqrt[3]{8000}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Answer : Prime factorisation of } 8000 \\text{ is}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 5 \\times 5 \\times 5",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{So, } \\sqrt[3]{9000} = 2 \\times 2 \\times 5 = 20",
+          "role": "answer",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Answer : Prime factorisation of; Text/units/conditions are outside the symbolic grammar: is"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: So,; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported input at character 8",
+      "step_id": "s3",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported input at character 8"
+    ]
+  }
+}

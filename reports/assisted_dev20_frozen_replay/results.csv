@@ -1,0 +1,21 @@
+﻿id,verdict,first_error_step,verified_solution_covered,task_aware_covered,fallback_reasons
+img_509_pert_5.1,correct,,True,True,
+img_554_pert_5.1,indeterminate,,False,False,Prose/conditions are not a fully parsed mathematical step; At least one node/edge proof is unresolved; Prose/conditions are not a fully parsed mathematical step; Task has no explicit mathematical target
+img_471_pert_5.1,correct,,True,True,
+img_462_pert_5.1,indeterminate,,False,True,Symbolic determinant template has no explicit entry bindings; Continuation requires one readable dependency
+img_494_pert_5.2,correct,,True,True,
+img_452_pert_5.2,correct,,True,True,
+img_471_pert_5.2,correct,,True,True,
+img_373_pert_5.2,indeterminate,,False,True,Prose/conditions are not a fully parsed mathematical step; Unsupported token '\\int'; Unsupported token '\\int'; Continuation requires one readable dependency
+img_221_pert_5.3,indeterminate,,False,False,Unsupported input at character 0; Prose/conditions are not a fully parsed mathematical step; Prose/conditions are not a fully parsed mathematical step; Task has no explicit mathematical target
+img_151_pert_5.3,correct,,True,False,Task has no explicit mathematical target
+img_509_pert_3.1,correct,,True,True,
+img_157_pert_3.2,incorrect,s1,False,True,
+img_480_pert_2.5,incorrect,s2,False,False,Prose/conditions are not a fully parsed mathematical step; Prose/conditions are not a fully parsed mathematical step; Prose is not a mathematical answer
+img_110_pert_1.3,incorrect,s1,True,True,
+img_96_pert_2.1,indeterminate,,False,False,Unsupported token '\\dots'; Unsupported token '\\pm'; At least one node/edge proof is unresolved; Unsupported token '\\pm'; At least one node/edge proof is unresolved; At least one node/edge proof is unresolved; Quadrant prose is not an explicit mathematical constraint
+img_136_pert_2.2,indeterminate,,False,False,At least one node/edge proof is unresolved; At least one node/edge proof is unresolved; Unanchored mathematical statement; At least one node/edge proof is unresolved; Unsupported token '\\pm'; Unsupported token '\\pm'; Unsupported token '\\pm'; Unsupported token '\\pm'; Unsupported token '\\pm'
+img_203_pert_4.3,indeterminate,,False,False,Prose/conditions are not a fully parsed mathematical step; Prose/conditions are not a fully parsed mathematical step; Bare word is not an exact mathematical token
+img_398_pert_4.4,indeterminate,,False,False,Differential notation needs a calculus verifier; Differential notation needs a calculus verifier; Differential notation needs a calculus verifier; Differential notation needs a calculus verifier; Differential notation needs a calculus verifier; Differential notation needs a calculus verifier; Requires one task equation
+img_225_pert_2.4,incorrect,s1,True,True,
+img_128_pert_1.5,indeterminate,,False,False,Prose/conditions are not a fully parsed mathematical step; At least one node/edge proof is unresolved; Prose/conditions are not a fully parsed mathematical step; Unsupported input at character 8

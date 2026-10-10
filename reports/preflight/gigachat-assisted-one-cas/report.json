@@ -1,0 +1,40 @@
+{
+  "generated_at_utc": "2026-10-09T23:20:40.415240+00:00",
+  "evaluation": "gigachat_assisted_preflight",
+  "pipeline": "llm_assisted_extraction_plus_math_core",
+  "input_projection": "task + givens + goal + constraints + structured steps; no labels read",
+  "timeout_seconds": 10.0,
+  "sources": [
+    {
+      "path": "outputs/preflight/gigachat-assisted-one/img_509_pert_5.1.json",
+      "sha256": "ba7d7f2414904a092d3579bc2b25c45793d5055c4682bf8ab86e191b59dabf87"
+    }
+  ],
+  "summary": {
+    "examples": 1,
+    "verified_solution_covered": 0,
+    "verified_solution_coverage": 0.0,
+    "task_aware_covered": 0,
+    "task_aware_coverage": 0.0,
+    "verdict_counts": {
+      "indeterminate": 1
+    },
+    "indeterminate": 1
+  },
+  "results": [
+    {
+      "id": "img_509_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Symbolic claim has no given/dependency anchor",
+        "Unsupported token '\\\\neq'",
+        "goal is unknown"
+      ]
+    }
+  ]
+}

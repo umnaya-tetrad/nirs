@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "img_35_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "r = \\sqrt{l^2 - h^2} = \\sqrt{28^2 - 21^2} \\, \\text{cm} = 7\\sqrt{7} \\, \\text{cm}",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "answer",
+      "latex": "V = \\frac{1}{3} \\pi r^2 h = \\frac{1}{3} \\times \\frac{22}{7} \\times (7\\sqrt{7})^2 \\times 21 \\, \\text{cm} = 7546 \\, \\text{cm}^3",
+      "derives_from": [
+        "s1"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 796
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact counterexample at {h: 0, l: 0}: difference=-7*sqrt(7); Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact counterexample at {h: 0, l: 0}: difference=-7*sqrt(7); Exact expression identity with preserved domain",
+        "actual_latex": "r = \\sqrt{l^2 - h^2} = \\sqrt{28^2 - 21^2} \\, \\text{cm} = 7\\sqrt{7} \\, \\text{cm}",
+        "engine": "sympy"
+      }
+    },
+    {
+      "finding_id": "f2",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Polynomial identity test; Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Polynomial identity test; Exact expression identity with preserved domain",
+        "actual_latex": "V = \\frac{1}{3} \\pi r^2 h = \\frac{1}{3} \\times \\frac{22}{7} \\times (7\\sqrt{7})^2 \\times 21 \\, \\text{cm} = 7546 \\, \\text{cm}^3",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f2"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-79340cd9-4774-4719-af01-7dbd44597c96",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 796,
+    "created_at": "2026-10-09T22:26:25.312497Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

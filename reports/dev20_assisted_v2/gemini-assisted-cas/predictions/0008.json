@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "id": "img_225_pert_2.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{3^3}{2^2} = \\frac{27}{4}",
+      "derives_from": [],
+      "kind": "initial"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 753
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Exact node and dependency checks",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact node and dependency checks",
+        "actual_latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{3^3}{2^2} = \\frac{27}{4}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-0465de60-7be5-4e59-9560-0b0887e17942",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1441,
+    "created_at": "2026-10-09T23:22:32.335300Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_225_pert_2.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find the value of }\\left(\\frac{2}{3}\\right)^{-2}",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\left(\\frac{2}{3}\\right)^{-2}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{3^3}{2^2} = \\frac{27}{4}",
+          "role": "answer",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\frac{2^{-2}}{3^{-2}} = \\frac{3^3}{2^2} = \\frac{27}{4}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "invalid",
+      "reason": "Exact value comparison",
+      "step_id": "s1",
+      "rule": "scalar_task",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": true,
+      "first_error_step": "s1",
+      "localization_blocked": false,
+      "invalid_steps": [
+        "s1"
+      ],
+      "unsupported_steps": [],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": true,
+    "task_verified_solution_covered": true,
+    "fallback_reasons": []
+  }
+}

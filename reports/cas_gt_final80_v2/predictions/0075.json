@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "img_77_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "R=\\frac{9.8}{2}=4.9",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "answer",
+      "latex": "\\pi R^2=\\frac{22}{7}(4.9)^2=\\frac{22}{7}\\times4.9\\times4.9=75.46",
+      "derives_from": [
+        "s1"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 882
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Символьная проверка обнаружила неверное равенство или переход.",
+      "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Exact real solution-set comparison",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Exact real solution-set comparison",
+        "actual_latex": "\\pi R^2=\\frac{22}{7}(4.9)^2=\\frac{22}{7}\\times4.9\\times4.9=75.46",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-a92ad343-4347-4853-b397-bf4d10480dab",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 882,
+    "created_at": "2026-10-09T22:26:45.626994Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

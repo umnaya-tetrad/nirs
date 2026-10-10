@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "img_476_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "-5 \\leq \\frac{5-3y}{2} \\leq 8",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "-10 \\leq 5-3y \\leq 16",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "5 \\geq y \\geq -\\frac{11}{3}",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "-\\frac{11}{3} \\leq y \\leq 5",
+      "derives_from": [
+        "s3"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 648
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Inequality sides could not be parsed"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Inequality sides could not be parsed"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Inequality sides could not be parsed"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Inequality sides could not be parsed"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-0fda0a68-31bb-4368-966c-7987710f4c40",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 648,
+    "created_at": "2026-10-09T22:26:40.525473Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "img_560_pert_1.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "kind": "initial",
+      "latex": "a + b = 3 + 2 = 5",
+      "derives_from": []
+    },
+    {
+      "step_id": "s2",
+      "kind": "step",
+      "latex": "7a - 4b = 7 \\times 3 - 4 \\times 2 = 21 - 8 = 13",
+      "derives_from": [
+        "s1"
+      ]
+    },
+    {
+      "step_id": "s3",
+      "kind": "step",
+      "latex": "a^2 + 2ab + b^2 = 3^2 + 2 \\times 3 \\times 2 + 2^2 = 9 + 21 + 4 = 34",
+      "derives_from": [
+        "s2"
+      ]
+    },
+    {
+      "step_id": "s4",
+      "kind": "answer",
+      "latex": "a^3 - b^3 = 3^3 - 2^3 = 27 - 8 = 19",
+      "derives_from": [
+        "s3"
+      ]
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_ocr_plus_math_core",
+    "stages": [
+      {
+        "name": "transcribe",
+        "backend": "ground-truth",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1021
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Multivariate solution-set equivalence not established"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-1ada084f-6987-4743-b018-197e5869510b",
+    "approach": "llm_ocr_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1021,
+    "created_at": "2026-10-09T22:26:35.701621Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  }
+}
