@@ -49,6 +49,20 @@ def _ocr_classes(h2: dict[str, Any]) -> dict[str, str]:
     return {row["id"]: row["error_class"] for row in h2["rows"]}
 
 
+def _summaries_by_provider(payload: dict[str, Any], fields: tuple[str, ...]) -> dict[str, dict[str, dict[str, Any]]]:
+    """Expose every pair summary without selecting an arbitrary provider.
+
+    A provider can have more than one paired run in an exploratory manifest,
+    so the pair key remains part of the public report structure.  This avoids
+    silently overwriting one provider (or one pair) in a top-level shortcut.
+    """
+    result: dict[str, dict[str, dict[str, Any]]] = {}
+    for key, pair in payload.items():
+        provider = pair["provider"]
+        result.setdefault(provider, {})[key] = {field: pair[field] for field in fields}
+    return result
+
+
 def _domain_metrics(path: Path | None, manifest: ExperimentManifest, runs: dict[str, RunData], gt_by_id: dict[str, dict[str, Any]], repo_root: Path) -> dict[str, Any]:
     if path is None:
         return {"available": False, "reason": "No domain sidecar declared."}
@@ -153,16 +167,17 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
         "h1": {"pairs": pair_payload,
                "per_case": [{"provider": pair["provider"], **row}
                             for pair in pair_payload.values() for row in pair["paired"]["rows"]]},
-        # Top-level fields retain compatibility for exploratory callers; final
-        # reports and CSVs consume every provider entry under pairs.
+        # Provider summaries deliberately retain the pair key: do not collapse
+        # a multi-provider report to ``next(iter(...))`` and silently publish
+        # only the first provider's H2/H3 result.
         "h2": {"pairs": h2_payload,
-               "run_id": next(iter(h2_payload.values()))["run_id"] if h2_payload else None,
+               "summaries_by_provider": _summaries_by_provider(
+                   h2_payload, ("run_id", "overall", "by_error_class")),
                "per_case": [{"provider": pair["provider"], "run_id": pair["run_id"], **row}
-                            for pair in h2_payload.values() for row in pair["rows"]],
-               "by_error_class": next(iter(h2_payload.values()))["by_error_class"] if h2_payload else [],
-               "overall": next(iter(h2_payload.values()))["overall"] if h2_payload else {}},
+                            for pair in h2_payload.values() for row in pair["rows"]]},
         "h3": {"pairs": h3_payload,
-               "policies": next(iter(h3_payload.values()))["policies"] if h3_payload else {},
+               "summaries_by_provider": _summaries_by_provider(
+                   h3_payload, ("e2e_run", "cas_run", "policies", "comparison", "risk_coverage")),
                "per_case": [{"provider": pair["provider"], **row}
                             for pair in h3_payload.values() for row in pair["rows"]]},
         "cases": _cases(manifest, runs, gt_by_id),

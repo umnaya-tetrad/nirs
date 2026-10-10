@@ -325,8 +325,10 @@ def test_run_experiment_writes_all_outputs(tmp_path):
     key = next(iter(payload["h1"]["pairs"]))
     assert payload["h1"]["pairs"][key]["e2e"]["accuracy_all"] == 1.0
     assert payload["h1"]["pairs"][key]["cas"]["accuracy_all"] == 0.5
-    assert payload["h2"]["overall"]["exact_match_rate"] == 1.0
-    assert set(payload["h3"]["policies"]) == {"disagreement_only", "disagreement_or_cas_indeterminate"}
+    summaries = payload["h2"]["summaries_by_provider"]["gemini"]
+    assert summaries[key]["overall"]["exact_match_rate"] == 1.0
+    h3_summaries = payload["h3"]["summaries_by_provider"]["gemini"]
+    assert set(h3_summaries[key]["policies"]) == {"disagreement_only", "disagreement_or_cas_indeterminate"}
     assert payload["experiment"]["ids_count"] == 2
 
 
@@ -351,12 +353,16 @@ def test_run_experiment_without_optional_ocr_inputs(tmp_path, omit):
     payload = experiment.run_experiment(manifest_path, output, repo_root=tmp_path)
 
     if omit == "baseline":
-        assert payload["h2"]["overall"]["cas_on_gt_available"] is False
+        key = next(iter(payload["h2"]["pairs"]))
+        summary = payload["h2"]["summaries_by_provider"]["gemini"][key]
+        assert summary["overall"]["cas_on_gt_available"] is False
         assert len(payload["h2"]["per_case"]) == 2
     else:
-        assert payload["h2"]["overall"] == {}
+        assert payload["h2"]["summaries_by_provider"] == {}
         assert payload["h2"]["per_case"] == []
-    assert payload["h3"]["policies"]["disagreement_or_cas_indeterminate"]["automation_rate"] == 0.5
+    key = next(iter(payload["h3"]["pairs"]))
+    summary = payload["h3"]["summaries_by_provider"]["gemini"][key]
+    assert summary["policies"]["disagreement_or_cas_indeterminate"]["automation_rate"] == 0.5
     assert len(payload["h1"]["per_case"]) == 2
     markdown = (output / "report.md").read_text(encoding="utf-8")
     if omit == "baseline":
@@ -407,3 +413,27 @@ def test_h3_uses_ocr_classes_from_each_paired_run(tmp_path):
     assisted = {row["id"]: row for row in pairs["gemini:e2e__assisted"]["rows"]}
     assert ordinary["bad"]["ocr_error_class"] == "exact"
     assert assisted["bad"]["ocr_error_class"] == "digit"
+
+
+def test_h2_h3_provider_summaries_keep_both_providers(tmp_path):
+    manifest_path = _integration_workspace(tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    gigachat_e2e = {**manifest["runs"][0], "run_id": "gigachat_e2e", "provider": "gigachat"}
+    gigachat_cas = {**manifest["runs"][1], "run_id": "gigachat_cas", "provider": "gigachat"}
+    manifest["runs"].extend([gigachat_e2e, gigachat_cas])
+    manifest["h1_pairs"].append(
+        {"provider": "gigachat", "e2e_run": "gigachat_e2e", "cas_run": "gigachat_cas"})
+    _write(manifest_path, manifest)
+
+    payload = experiment.run_experiment(manifest_path, tmp_path / "out", repo_root=tmp_path)
+    gemini_key = "gemini:e2e__cas"
+    gigachat_key = "gigachat:gigachat_e2e__gigachat_cas"
+
+    assert set(payload["h2"]["summaries_by_provider"]) == {"gemini", "gigachat"}
+    assert payload["h2"]["summaries_by_provider"]["gemini"][gemini_key]["run_id"] == "cas"
+    assert payload["h2"]["summaries_by_provider"]["gigachat"][gigachat_key]["run_id"] == "gigachat_cas"
+    assert set(payload["h3"]["summaries_by_provider"]) == {"gemini", "gigachat"}
+    assert set(payload["h3"]["summaries_by_provider"]["gemini"][gemini_key]["policies"]) == {
+        "disagreement_only", "disagreement_or_cas_indeterminate"}
+    assert set(payload["h3"]["summaries_by_provider"]["gigachat"][gigachat_key]["policies"]) == {
+        "disagreement_only", "disagreement_or_cas_indeterminate"}

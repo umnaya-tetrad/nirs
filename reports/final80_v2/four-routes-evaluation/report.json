@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-10T16:50:29.377811+00:00",
+  "generated_at_utc": "2026-10-10T20:19:25.895361+00:00",
   "experiment": {
     "manifest_path": "evaluator\\manifests\\final80_v2_four_routes_template.json",
     "manifest_sha256": "999ac0a4d13cd9b88b992c3ef16c9958a8ab46db7354812059c3a52a2d061946",
@@ -12401,7 +12401,328 @@
         }
       }
     },
-    "run_id": "gemini_assisted_cas",
+    "summaries_by_provider": {
+      "gemini": {
+        "gemini:gemini_e2e__gemini_assisted_cas": {
+          "run_id": "gemini_assisted_cas",
+          "overall": {
+            "examples": 80,
+            "exact_transcriptions": 10,
+            "exact_match_rate": 0.125,
+            "missed_steps": 0,
+            "extra_steps": 103,
+            "mean_step_edit_distance": 19.7375,
+            "normalized_edit_distance": 0.4874961407841927,
+            "cas_flips": 0,
+            "cas_flip_rate": 0.0,
+            "extraction_cas_verdict_accuracy": 0.125,
+            "cas_on_gt_available": false,
+            "cas_on_gt_verdict_accuracy": null,
+            "verdict_accuracy_drop": null,
+            "assisted_indeterminate": 63,
+            "assisted_indeterminate_rate": 0.7875,
+            "task_spec_classes": {
+              "missing_goal": 2,
+              "reported_structured": 78
+            },
+            "cas_indeterminate_reasons": {
+              "Prose/conditions are not a fully parsed mathematical step": 121,
+              "At least one node/edge proof is unresolved": 56,
+              "Continuation requires one readable dependency": 20,
+              "Task has no explicit mathematical target": 20,
+              "TIMEOUT_OR_WORKER_EXIT": 19,
+              "Unsupported token '\\\\int'": 13,
+              "Unanchored mathematical statement": 10,
+              "Symbolic determinant template has no explicit entry bindings": 9,
+              "Unsupported input at character 1": 9,
+              "Differential notation needs a calculus verifier": 8,
+              "Requires one explicit inequality": 8,
+              "requires two explicit X/Y matrix equations": 7,
+              "Requires one task equation": 6,
+              "Unconsumed token '|'; one expression/equation per step": 6,
+              "Bare word is not an exact mathematical token": 5,
+              "Unsupported token '\\\\circ'": 5,
+              "Unsupported token '\\\\text'": 5,
+              "A written answer equality is required": 4,
+              "Undefined real expression: nonzero restriction fails": 4,
+              "definite integral with explicit bounds was not found": 4,
+              "Unsupported input at character 4": 3,
+              "Unsupported token '\\\\lim'": 3,
+              "goal is unknown": 3,
+              "unsupported operand type(s) for +: 'Pow' and 'ImmutableDenseMatrix'": 3,
+              "Exponent exceeds rational bounds": 2,
+              "Matrix size mismatch: (2, 3) + (3, 3).": 2,
+              "Multivariate simplification domain is unsupported": 2,
+              "Requires explicit X+Y and X-Y matrix givens": 2,
+              "Task target has unresolved variables": 2,
+              "Unconsumed token '_'; one expression/equation per step": 2,
+              "Unsupported token '\\\\vec'": 2,
+              "unsupported operand type(s) for +: 'Symbol' and 'ImmutableDenseMatrix'": 2,
+              "": 1,
+              "Expected a nonempty LaTeX string": 1,
+              "Expected token, got end of input": 1,
+              "OCR exactness is not exact": 1,
+              "Prose is not a mathematical answer": 1,
+              "Symbolic exponent requires a constant positive base": 1,
+              "Unconsumed token '='; one expression/equation per step": 1,
+              "Unsupported input at character 10": 1,
+              "Unsupported input at character 11": 1,
+              "Unsupported input at character 12": 1,
+              "Unsupported input at character 17": 1,
+              "Unsupported input at character 2": 1,
+              "Unsupported input at character 3": 1,
+              "Unsupported input at character 34": 1,
+              "Unsupported input at character 7": 1,
+              "Unsupported token '\\\\neq'": 1,
+              "Unsupported token '\\\\pm'": 1,
+              "determinant or a final numeric equality is not exactly parseable": 1,
+              "given g1 is not in the exact SymPy subset: Unsupported input at character 12; goal is unknown": 1,
+              "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'": 1,
+              "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol'": 1
+            }
+          },
+          "by_error_class": [
+            {
+              "error_class": "extra_line",
+              "cases": 30,
+              "share": 0.375,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 26,
+              "final_wrong_rate": 0.8666666666666667,
+              "failure_fraction": 0.37142857142857144
+            },
+            {
+              "error_class": "segmentation",
+              "cases": 17,
+              "share": 0.2125,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 15,
+              "final_wrong_rate": 0.8823529411764706,
+              "failure_fraction": 0.21428571428571427
+            },
+            {
+              "error_class": "missed_line",
+              "cases": 12,
+              "share": 0.15,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 12,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.17142857142857143
+            },
+            {
+              "error_class": "exact",
+              "cases": 10,
+              "share": 0.125,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 7,
+              "final_wrong_rate": 0.7,
+              "failure_fraction": 0.1
+            },
+            {
+              "error_class": "ambiguous",
+              "cases": 5,
+              "share": 0.0625,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 5,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.07142857142857142
+            },
+            {
+              "error_class": "variable",
+              "cases": 3,
+              "share": 0.0375,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 3,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.04285714285714286
+            },
+            {
+              "error_class": "operator",
+              "cases": 2,
+              "share": 0.025,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 1,
+              "final_wrong_rate": 0.5,
+              "failure_fraction": 0.014285714285714285
+            },
+            {
+              "error_class": "digit",
+              "cases": 1,
+              "share": 0.0125,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 1,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.014285714285714285
+            }
+          ]
+        }
+      },
+      "gigachat": {
+        "gigachat:gigachat_e2e__gigachat_assisted_cas": {
+          "run_id": "gigachat_assisted_cas",
+          "overall": {
+            "examples": 80,
+            "exact_transcriptions": 2,
+            "exact_match_rate": 0.025,
+            "missed_steps": 38,
+            "extra_steps": 136,
+            "mean_step_edit_distance": 42.575,
+            "normalized_edit_distance": 0.6345007451564829,
+            "cas_flips": 0,
+            "cas_flip_rate": 0.0,
+            "extraction_cas_verdict_accuracy": 0.1375,
+            "cas_on_gt_available": false,
+            "cas_on_gt_verdict_accuracy": null,
+            "verdict_accuracy_drop": null,
+            "assisted_indeterminate": 64,
+            "assisted_indeterminate_rate": 0.8,
+            "task_spec_classes": {
+              "missing_extraction": 1,
+              "missing_goal": 8,
+              "reported_structured": 70,
+              "task_not_visible": 1
+            },
+            "cas_indeterminate_reasons": {
+              "At least one node/edge proof is unresolved": 62,
+              "Unanchored mathematical statement": 57,
+              "Bare word is not an exact mathematical token": 31,
+              "Prose/conditions are not a fully parsed mathematical step": 31,
+              "Task has no explicit mathematical target": 30,
+              "TIMEOUT_OR_WORKER_EXIT": 18,
+              "Continuation requires one readable dependency": 17,
+              "Requires one explicit inequality": 14,
+              "goal is unknown": 12,
+              "Unsupported input at character 0": 11,
+              "Symbolic claim has no given/dependency anchor": 8,
+              "requires two explicit X/Y matrix equations": 8,
+              "Differential notation needs a calculus verifier": 7,
+              "OCR exactness is not exact": 7,
+              "Unsupported token '\\\\int'": 5,
+              "Unsupported token '\\\\lim'": 5,
+              "Adjacent numeric literals require an explicit operator": 4,
+              "Functions are outside the selected algebra subset": 4,
+              "Unsupported input at character 1": 3,
+              "Unsupported input at character 15": 3,
+              "Unsupported input at character 2": 3,
+              "Unsupported input at character 5": 3,
+              "Unsupported token '\\\\vec'": 3,
+              "definite integral with explicit bounds was not found": 3,
+              "A written answer equality is required": 2,
+              "Exponent exceeds rational bounds": 2,
+              "Task target has unresolved variables": 2,
+              "Unbalanced delimiters": 2,
+              "Undefined real expression: nonzero restriction fails": 2,
+              "Unsupported input at character 6": 2,
+              "Unsupported input at character 73": 2,
+              "Unsupported token '\\\\text'": 2,
+              "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'": 2,
+              "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'": 2,
+              "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol'": 2,
+              "Unconsumed token '|'; one expression/equation per step": 1,
+              "Unsupported input at character 13": 1,
+              "Unsupported input at character 14": 1,
+              "Unsupported input at character 16": 1,
+              "Unsupported input at character 17": 1,
+              "Unsupported input at character 33": 1,
+              "Unsupported input at character 8": 1,
+              "Unsupported token '\\\\circ'": 1,
+              "Unsupported token '\\\\lor'": 1,
+              "task is not visible in the image; goal is unknown": 1
+            }
+          },
+          "by_error_class": [
+            {
+              "error_class": "extra_line",
+              "cases": 35,
+              "share": 0.4375,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 30,
+              "final_wrong_rate": 0.8571428571428571,
+              "failure_fraction": 0.43478260869565216
+            },
+            {
+              "error_class": "segmentation",
+              "cases": 28,
+              "share": 0.35,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 25,
+              "final_wrong_rate": 0.8928571428571429,
+              "failure_fraction": 0.36231884057971014
+            },
+            {
+              "error_class": "missed_line",
+              "cases": 8,
+              "share": 0.1,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 7,
+              "final_wrong_rate": 0.875,
+              "failure_fraction": 0.10144927536231885
+            },
+            {
+              "error_class": "ambiguous",
+              "cases": 3,
+              "share": 0.0375,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 3,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.043478260869565216
+            },
+            {
+              "error_class": "exact",
+              "cases": 2,
+              "share": 0.025,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 1,
+              "final_wrong_rate": 0.5,
+              "failure_fraction": 0.014492753623188406
+            },
+            {
+              "error_class": "variable",
+              "cases": 2,
+              "share": 0.025,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 2,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.028985507246376812
+            },
+            {
+              "error_class": "operator",
+              "cases": 1,
+              "share": 0.0125,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 0,
+              "final_wrong_rate": 0.0,
+              "failure_fraction": 0.0
+            },
+            {
+              "error_class": "transcription_error",
+              "cases": 1,
+              "share": 0.0125,
+              "cas_flips": 0,
+              "cas_flip_rate": 0.0,
+              "final_wrong": 1,
+              "final_wrong_rate": 1.0,
+              "failure_fraction": 0.014492753623188406
+            }
+          ]
+        }
+      }
+    },
     "per_case": [
       {
         "provider": "gemini",
@@ -17976,165 +18297,7 @@
         "cas_indeterminate": true,
         "cas_fallback_reasons": []
       }
-    ],
-    "by_error_class": [
-      {
-        "error_class": "extra_line",
-        "cases": 30,
-        "share": 0.375,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 26,
-        "final_wrong_rate": 0.8666666666666667,
-        "failure_fraction": 0.37142857142857144
-      },
-      {
-        "error_class": "segmentation",
-        "cases": 17,
-        "share": 0.2125,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 15,
-        "final_wrong_rate": 0.8823529411764706,
-        "failure_fraction": 0.21428571428571427
-      },
-      {
-        "error_class": "missed_line",
-        "cases": 12,
-        "share": 0.15,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 12,
-        "final_wrong_rate": 1.0,
-        "failure_fraction": 0.17142857142857143
-      },
-      {
-        "error_class": "exact",
-        "cases": 10,
-        "share": 0.125,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 7,
-        "final_wrong_rate": 0.7,
-        "failure_fraction": 0.1
-      },
-      {
-        "error_class": "ambiguous",
-        "cases": 5,
-        "share": 0.0625,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 5,
-        "final_wrong_rate": 1.0,
-        "failure_fraction": 0.07142857142857142
-      },
-      {
-        "error_class": "variable",
-        "cases": 3,
-        "share": 0.0375,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 3,
-        "final_wrong_rate": 1.0,
-        "failure_fraction": 0.04285714285714286
-      },
-      {
-        "error_class": "operator",
-        "cases": 2,
-        "share": 0.025,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 1,
-        "final_wrong_rate": 0.5,
-        "failure_fraction": 0.014285714285714285
-      },
-      {
-        "error_class": "digit",
-        "cases": 1,
-        "share": 0.0125,
-        "cas_flips": 0,
-        "cas_flip_rate": 0.0,
-        "final_wrong": 1,
-        "final_wrong_rate": 1.0,
-        "failure_fraction": 0.014285714285714285
-      }
-    ],
-    "overall": {
-      "examples": 80,
-      "exact_transcriptions": 10,
-      "exact_match_rate": 0.125,
-      "missed_steps": 0,
-      "extra_steps": 103,
-      "mean_step_edit_distance": 19.7375,
-      "normalized_edit_distance": 0.4874961407841927,
-      "cas_flips": 0,
-      "cas_flip_rate": 0.0,
-      "extraction_cas_verdict_accuracy": 0.125,
-      "cas_on_gt_available": false,
-      "cas_on_gt_verdict_accuracy": null,
-      "verdict_accuracy_drop": null,
-      "assisted_indeterminate": 63,
-      "assisted_indeterminate_rate": 0.7875,
-      "task_spec_classes": {
-        "missing_goal": 2,
-        "reported_structured": 78
-      },
-      "cas_indeterminate_reasons": {
-        "Prose/conditions are not a fully parsed mathematical step": 121,
-        "At least one node/edge proof is unresolved": 56,
-        "Continuation requires one readable dependency": 20,
-        "Task has no explicit mathematical target": 20,
-        "TIMEOUT_OR_WORKER_EXIT": 19,
-        "Unsupported token '\\\\int'": 13,
-        "Unanchored mathematical statement": 10,
-        "Symbolic determinant template has no explicit entry bindings": 9,
-        "Unsupported input at character 1": 9,
-        "Differential notation needs a calculus verifier": 8,
-        "Requires one explicit inequality": 8,
-        "requires two explicit X/Y matrix equations": 7,
-        "Requires one task equation": 6,
-        "Unconsumed token '|'; one expression/equation per step": 6,
-        "Bare word is not an exact mathematical token": 5,
-        "Unsupported token '\\\\circ'": 5,
-        "Unsupported token '\\\\text'": 5,
-        "A written answer equality is required": 4,
-        "Undefined real expression: nonzero restriction fails": 4,
-        "definite integral with explicit bounds was not found": 4,
-        "Unsupported input at character 4": 3,
-        "Unsupported token '\\\\lim'": 3,
-        "goal is unknown": 3,
-        "unsupported operand type(s) for +: 'Pow' and 'ImmutableDenseMatrix'": 3,
-        "Exponent exceeds rational bounds": 2,
-        "Matrix size mismatch: (2, 3) + (3, 3).": 2,
-        "Multivariate simplification domain is unsupported": 2,
-        "Requires explicit X+Y and X-Y matrix givens": 2,
-        "Task target has unresolved variables": 2,
-        "Unconsumed token '_'; one expression/equation per step": 2,
-        "Unsupported token '\\\\vec'": 2,
-        "unsupported operand type(s) for +: 'Symbol' and 'ImmutableDenseMatrix'": 2,
-        "": 1,
-        "Expected a nonempty LaTeX string": 1,
-        "Expected token, got end of input": 1,
-        "OCR exactness is not exact": 1,
-        "Prose is not a mathematical answer": 1,
-        "Symbolic exponent requires a constant positive base": 1,
-        "Unconsumed token '='; one expression/equation per step": 1,
-        "Unsupported input at character 10": 1,
-        "Unsupported input at character 11": 1,
-        "Unsupported input at character 12": 1,
-        "Unsupported input at character 17": 1,
-        "Unsupported input at character 2": 1,
-        "Unsupported input at character 3": 1,
-        "Unsupported input at character 34": 1,
-        "Unsupported input at character 7": 1,
-        "Unsupported token '\\\\neq'": 1,
-        "Unsupported token '\\\\pm'": 1,
-        "determinant or a final numeric equality is not exactly parseable": 1,
-        "given g1 is not in the exact SymPy subset: Unsupported input at character 12; goal is unknown": 1,
-        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'": 1,
-        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol'": 1
-      }
-    }
+    ]
   },
   "h3": {
     "pairs": {
@@ -21675,202 +21838,1140 @@
         }
       }
     },
-    "policies": {
-      "disagreement_only": {
-        "accuracy_all": 0.7,
-        "accuracy_on_automated": 0.7466666666666667,
-        "automation_rate": 0.9375,
-        "manual_rate": 0.0625,
-        "manual_queue_e2e_error_rate": 0.4,
-        "manual_queue_e2e_error_precision": 0.4,
-        "captured_e2e_error_recall": 0.09523809523809523,
-        "e2e_errors_total": 21,
-        "e2e_errors_automated": 19,
-        "e2e_errors_manual": 2,
-        "automated_count": 75,
-        "manual_count": 5,
-        "automated_ids": [
-          "img_400_pert_5.1",
-          "img_374_pert_5.1",
-          "img_19_pert_5.1",
-          "img_559_pert_5.1",
-          "img_464_pert_5.1",
-          "img_387_pert_5.1",
-          "img_22_pert_5.1",
-          "img_568_pert_5.2",
-          "img_482_pert_5.2",
-          "img_559_pert_5.2",
-          "img_448_pert_5.2",
-          "img_173_pert_5.3",
-          "img_165_pert_5.3",
-          "img_193_pert_5.3",
-          "img_375_pert_5.3",
-          "img_233_pert_3.2",
-          "img_190_pert_3.2",
-          "img_172_pert_3.2",
-          "img_586_pert_3.2",
-          "img_448_pert_3.2",
-          "img_173_pert_2.5",
-          "img_375_pert_2.5",
-          "img_574_pert_2.5",
-          "img_395_pert_2.5",
-          "img_68_pert_2.5",
-          "img_111_pert_1.3",
-          "img_463_pert_1.3",
-          "img_465_pert_1.3",
-          "img_108_pert_1.4",
-          "img_427_pert_1.4",
-          "img_472_pert_1.4",
-          "img_503_pert_1.4",
-          "img_466_pert_1.4",
-          "img_111_pert_2.1",
-          "img_98_pert_2.1",
-          "img_372_pert_2.1",
-          "img_109_pert_2.1",
-          "img_223_pert_2.2",
-          "img_465_pert_2.2",
-          "img_529_pert_2.2",
-          "img_573_pert_2.2",
-          "img_226_pert_2.2",
-          "img_176_pert_4.3",
-          "img_92_pert_4.3",
-          "img_91_pert_2.3",
-          "img_112_pert_4.4",
-          "img_115_pert_4.4",
-          "img_160_pert_2.4",
-          "img_560_pert_1.5",
-          "img_465_pert_1.5",
-          "img_540_pert_1.5",
-          "img_153_pert_1.5",
-          "img_194_pert_1.5",
-          "img_220_pert_1.5",
-          "img_220_pert_4.6",
-          "img_476_pert_5.1",
-          "img_579_pert_5.1",
-          "img_578_pert_5.1",
-          "img_489_pert_5.1",
-          "img_490_pert_5.1",
-          "img_483_pert_5.1",
-          "img_592_pert_5.1",
-          "img_456_pert_5.1",
-          "img_458_pert_5.1",
-          "img_566_pert_5.1",
-          "img_572_pert_5.1",
-          "img_65_pert_5.1",
-          "img_27_pert_5.1",
-          "img_14_pert_5.1",
-          "img_49_pert_5.1",
-          "img_78_pert_5.1",
-          "img_37_pert_5.1",
-          "img_20_pert_5.1",
-          "img_492_pert_5.1",
-          "img_488_pert_5.1"
-        ],
-        "manual_ids": [
-          "img_559_pert_3.2",
-          "img_35_pert_2.5",
-          "img_529_pert_4.5",
-          "img_455_pert_5.1",
-          "img_77_pert_5.1"
-        ]
+    "summaries_by_provider": {
+      "gemini": {
+        "gemini:gemini_e2e__gemini_assisted_cas": {
+          "e2e_run": "gemini_e2e",
+          "cas_run": "gemini_assisted_cas",
+          "policies": {
+            "disagreement_only": {
+              "accuracy_all": 0.7,
+              "accuracy_on_automated": 0.7466666666666667,
+              "automation_rate": 0.9375,
+              "manual_rate": 0.0625,
+              "manual_queue_e2e_error_rate": 0.4,
+              "manual_queue_e2e_error_precision": 0.4,
+              "captured_e2e_error_recall": 0.09523809523809523,
+              "e2e_errors_total": 21,
+              "e2e_errors_automated": 19,
+              "e2e_errors_manual": 2,
+              "automated_count": 75,
+              "manual_count": 5,
+              "automated_ids": [
+                "img_400_pert_5.1",
+                "img_374_pert_5.1",
+                "img_19_pert_5.1",
+                "img_559_pert_5.1",
+                "img_464_pert_5.1",
+                "img_387_pert_5.1",
+                "img_22_pert_5.1",
+                "img_568_pert_5.2",
+                "img_482_pert_5.2",
+                "img_559_pert_5.2",
+                "img_448_pert_5.2",
+                "img_173_pert_5.3",
+                "img_165_pert_5.3",
+                "img_193_pert_5.3",
+                "img_375_pert_5.3",
+                "img_233_pert_3.2",
+                "img_190_pert_3.2",
+                "img_172_pert_3.2",
+                "img_586_pert_3.2",
+                "img_448_pert_3.2",
+                "img_173_pert_2.5",
+                "img_375_pert_2.5",
+                "img_574_pert_2.5",
+                "img_395_pert_2.5",
+                "img_68_pert_2.5",
+                "img_111_pert_1.3",
+                "img_463_pert_1.3",
+                "img_465_pert_1.3",
+                "img_108_pert_1.4",
+                "img_427_pert_1.4",
+                "img_472_pert_1.4",
+                "img_503_pert_1.4",
+                "img_466_pert_1.4",
+                "img_111_pert_2.1",
+                "img_98_pert_2.1",
+                "img_372_pert_2.1",
+                "img_109_pert_2.1",
+                "img_223_pert_2.2",
+                "img_465_pert_2.2",
+                "img_529_pert_2.2",
+                "img_573_pert_2.2",
+                "img_226_pert_2.2",
+                "img_176_pert_4.3",
+                "img_92_pert_4.3",
+                "img_91_pert_2.3",
+                "img_112_pert_4.4",
+                "img_115_pert_4.4",
+                "img_160_pert_2.4",
+                "img_560_pert_1.5",
+                "img_465_pert_1.5",
+                "img_540_pert_1.5",
+                "img_153_pert_1.5",
+                "img_194_pert_1.5",
+                "img_220_pert_1.5",
+                "img_220_pert_4.6",
+                "img_476_pert_5.1",
+                "img_579_pert_5.1",
+                "img_578_pert_5.1",
+                "img_489_pert_5.1",
+                "img_490_pert_5.1",
+                "img_483_pert_5.1",
+                "img_592_pert_5.1",
+                "img_456_pert_5.1",
+                "img_458_pert_5.1",
+                "img_566_pert_5.1",
+                "img_572_pert_5.1",
+                "img_65_pert_5.1",
+                "img_27_pert_5.1",
+                "img_14_pert_5.1",
+                "img_49_pert_5.1",
+                "img_78_pert_5.1",
+                "img_37_pert_5.1",
+                "img_20_pert_5.1",
+                "img_492_pert_5.1",
+                "img_488_pert_5.1"
+              ],
+              "manual_ids": [
+                "img_559_pert_3.2",
+                "img_35_pert_2.5",
+                "img_529_pert_4.5",
+                "img_455_pert_5.1",
+                "img_77_pert_5.1"
+              ]
+            },
+            "disagreement_or_cas_indeterminate": {
+              "accuracy_all": 0.1,
+              "accuracy_on_automated": 0.6666666666666666,
+              "automation_rate": 0.15,
+              "manual_rate": 0.85,
+              "manual_queue_e2e_error_rate": 0.25,
+              "manual_queue_e2e_error_precision": 0.25,
+              "captured_e2e_error_recall": 0.8095238095238095,
+              "e2e_errors_total": 21,
+              "e2e_errors_automated": 4,
+              "e2e_errors_manual": 17,
+              "automated_count": 12,
+              "manual_count": 68,
+              "automated_ids": [
+                "img_568_pert_5.2",
+                "img_586_pert_3.2",
+                "img_395_pert_2.5",
+                "img_463_pert_1.3",
+                "img_108_pert_1.4",
+                "img_223_pert_2.2",
+                "img_573_pert_2.2",
+                "img_160_pert_2.4",
+                "img_153_pert_1.5",
+                "img_194_pert_1.5",
+                "img_592_pert_5.1",
+                "img_78_pert_5.1"
+              ],
+              "manual_ids": [
+                "img_400_pert_5.1",
+                "img_374_pert_5.1",
+                "img_19_pert_5.1",
+                "img_559_pert_5.1",
+                "img_464_pert_5.1",
+                "img_387_pert_5.1",
+                "img_22_pert_5.1",
+                "img_482_pert_5.2",
+                "img_559_pert_5.2",
+                "img_448_pert_5.2",
+                "img_173_pert_5.3",
+                "img_165_pert_5.3",
+                "img_193_pert_5.3",
+                "img_375_pert_5.3",
+                "img_233_pert_3.2",
+                "img_190_pert_3.2",
+                "img_559_pert_3.2",
+                "img_172_pert_3.2",
+                "img_448_pert_3.2",
+                "img_173_pert_2.5",
+                "img_35_pert_2.5",
+                "img_375_pert_2.5",
+                "img_574_pert_2.5",
+                "img_68_pert_2.5",
+                "img_111_pert_1.3",
+                "img_465_pert_1.3",
+                "img_427_pert_1.4",
+                "img_472_pert_1.4",
+                "img_503_pert_1.4",
+                "img_466_pert_1.4",
+                "img_111_pert_2.1",
+                "img_98_pert_2.1",
+                "img_372_pert_2.1",
+                "img_109_pert_2.1",
+                "img_465_pert_2.2",
+                "img_529_pert_2.2",
+                "img_226_pert_2.2",
+                "img_176_pert_4.3",
+                "img_92_pert_4.3",
+                "img_91_pert_2.3",
+                "img_112_pert_4.4",
+                "img_115_pert_4.4",
+                "img_529_pert_4.5",
+                "img_560_pert_1.5",
+                "img_465_pert_1.5",
+                "img_540_pert_1.5",
+                "img_220_pert_1.5",
+                "img_220_pert_4.6",
+                "img_476_pert_5.1",
+                "img_579_pert_5.1",
+                "img_578_pert_5.1",
+                "img_489_pert_5.1",
+                "img_490_pert_5.1",
+                "img_483_pert_5.1",
+                "img_456_pert_5.1",
+                "img_455_pert_5.1",
+                "img_458_pert_5.1",
+                "img_566_pert_5.1",
+                "img_572_pert_5.1",
+                "img_65_pert_5.1",
+                "img_27_pert_5.1",
+                "img_14_pert_5.1",
+                "img_49_pert_5.1",
+                "img_77_pert_5.1",
+                "img_37_pert_5.1",
+                "img_20_pert_5.1",
+                "img_492_pert_5.1",
+                "img_488_pert_5.1"
+              ]
+            }
+          },
+          "comparison": {
+            "total": 80,
+            "comparable_pairs": 17,
+            "agreement_count": 12,
+            "agreement_rate_on_comparable": 0.7058823529411765,
+            "excluded_not_decidable": 63
+          },
+          "risk_coverage": {
+            "disagreement_only": [
+              {
+                "coverage": 0.0,
+                "risk": 0.0
+              },
+              {
+                "coverage": 0.0125,
+                "risk": 1.0
+              },
+              {
+                "coverage": 0.025,
+                "risk": 0.5
+              },
+              {
+                "coverage": 0.0375,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.05,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.0625,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.075,
+                "risk": 0.16666666666666666
+              },
+              {
+                "coverage": 0.0875,
+                "risk": 0.14285714285714285
+              },
+              {
+                "coverage": 0.1,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.1125,
+                "risk": 0.2222222222222222
+              },
+              {
+                "coverage": 0.125,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.1375,
+                "risk": 0.2727272727272727
+              },
+              {
+                "coverage": 0.15,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.1625,
+                "risk": 0.3076923076923077
+              },
+              {
+                "coverage": 0.175,
+                "risk": 0.2857142857142857
+              },
+              {
+                "coverage": 0.1875,
+                "risk": 0.26666666666666666
+              },
+              {
+                "coverage": 0.2,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.2125,
+                "risk": 0.23529411764705882
+              },
+              {
+                "coverage": 0.225,
+                "risk": 0.2222222222222222
+              },
+              {
+                "coverage": 0.2375,
+                "risk": 0.21052631578947367
+              },
+              {
+                "coverage": 0.25,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.2625,
+                "risk": 0.19047619047619047
+              },
+              {
+                "coverage": 0.275,
+                "risk": 0.22727272727272727
+              },
+              {
+                "coverage": 0.2875,
+                "risk": 0.21739130434782608
+              },
+              {
+                "coverage": 0.3,
+                "risk": 0.20833333333333334
+              },
+              {
+                "coverage": 0.3125,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.325,
+                "risk": 0.19230769230769232
+              },
+              {
+                "coverage": 0.3375,
+                "risk": 0.18518518518518517
+              },
+              {
+                "coverage": 0.35,
+                "risk": 0.17857142857142858
+              },
+              {
+                "coverage": 0.3625,
+                "risk": 0.20689655172413793
+              },
+              {
+                "coverage": 0.375,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.3875,
+                "risk": 0.1935483870967742
+              },
+              {
+                "coverage": 0.4,
+                "risk": 0.1875
+              },
+              {
+                "coverage": 0.4125,
+                "risk": 0.18181818181818182
+              },
+              {
+                "coverage": 0.425,
+                "risk": 0.17647058823529413
+              },
+              {
+                "coverage": 0.4375,
+                "risk": 0.17142857142857143
+              },
+              {
+                "coverage": 0.45,
+                "risk": 0.16666666666666666
+              },
+              {
+                "coverage": 0.4625,
+                "risk": 0.1891891891891892
+              },
+              {
+                "coverage": 0.475,
+                "risk": 0.21052631578947367
+              },
+              {
+                "coverage": 0.4875,
+                "risk": 0.23076923076923078
+              },
+              {
+                "coverage": 0.5,
+                "risk": 0.225
+              },
+              {
+                "coverage": 0.5125,
+                "risk": 0.21951219512195122
+              },
+              {
+                "coverage": 0.525,
+                "risk": 0.21428571428571427
+              },
+              {
+                "coverage": 0.5375,
+                "risk": 0.23255813953488372
+              },
+              {
+                "coverage": 0.55,
+                "risk": 0.22727272727272727
+              },
+              {
+                "coverage": 0.5625,
+                "risk": 0.2222222222222222
+              },
+              {
+                "coverage": 0.575,
+                "risk": 0.2391304347826087
+              },
+              {
+                "coverage": 0.5875,
+                "risk": 0.2553191489361702
+              },
+              {
+                "coverage": 0.6,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.6125,
+                "risk": 0.24489795918367346
+              },
+              {
+                "coverage": 0.625,
+                "risk": 0.24
+              },
+              {
+                "coverage": 0.6375,
+                "risk": 0.2549019607843137
+              },
+              {
+                "coverage": 0.65,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.6625,
+                "risk": 0.2641509433962264
+              },
+              {
+                "coverage": 0.675,
+                "risk": 0.25925925925925924
+              },
+              {
+                "coverage": 0.6875,
+                "risk": 0.2545454545454545
+              },
+              {
+                "coverage": 0.7,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.7125,
+                "risk": 0.24561403508771928
+              },
+              {
+                "coverage": 0.725,
+                "risk": 0.25862068965517243
+              },
+              {
+                "coverage": 0.7375,
+                "risk": 0.2542372881355932
+              },
+              {
+                "coverage": 0.75,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.7625,
+                "risk": 0.2459016393442623
+              },
+              {
+                "coverage": 0.775,
+                "risk": 0.24193548387096775
+              },
+              {
+                "coverage": 0.7875,
+                "risk": 0.23809523809523808
+              },
+              {
+                "coverage": 0.8,
+                "risk": 0.234375
+              },
+              {
+                "coverage": 0.8125,
+                "risk": 0.23076923076923078
+              },
+              {
+                "coverage": 0.825,
+                "risk": 0.24242424242424243
+              },
+              {
+                "coverage": 0.8375,
+                "risk": 0.2537313432835821
+              },
+              {
+                "coverage": 0.85,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.8625,
+                "risk": 0.2463768115942029
+              },
+              {
+                "coverage": 0.875,
+                "risk": 0.2571428571428571
+              },
+              {
+                "coverage": 0.8875,
+                "risk": 0.2535211267605634
+              },
+              {
+                "coverage": 0.9,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.9125,
+                "risk": 0.2602739726027397
+              },
+              {
+                "coverage": 0.925,
+                "risk": 0.25675675675675674
+              },
+              {
+                "coverage": 0.9375,
+                "risk": 0.25333333333333335
+              }
+            ],
+            "disagreement_or_cas_indeterminate": [
+              {
+                "coverage": 0.0,
+                "risk": 0.0
+              },
+              {
+                "coverage": 0.0125,
+                "risk": 1.0
+              },
+              {
+                "coverage": 0.025,
+                "risk": 0.5
+              },
+              {
+                "coverage": 0.0375,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.05,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.0625,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.075,
+                "risk": 0.16666666666666666
+              },
+              {
+                "coverage": 0.0875,
+                "risk": 0.14285714285714285
+              },
+              {
+                "coverage": 0.1,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.1125,
+                "risk": 0.2222222222222222
+              },
+              {
+                "coverage": 0.125,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.1375,
+                "risk": 0.2727272727272727
+              },
+              {
+                "coverage": 0.15,
+                "risk": 0.3333333333333333
+              }
+            ]
+          }
+        }
       },
-      "disagreement_or_cas_indeterminate": {
-        "accuracy_all": 0.1,
-        "accuracy_on_automated": 0.6666666666666666,
-        "automation_rate": 0.15,
-        "manual_rate": 0.85,
-        "manual_queue_e2e_error_rate": 0.25,
-        "manual_queue_e2e_error_precision": 0.25,
-        "captured_e2e_error_recall": 0.8095238095238095,
-        "e2e_errors_total": 21,
-        "e2e_errors_automated": 4,
-        "e2e_errors_manual": 17,
-        "automated_count": 12,
-        "manual_count": 68,
-        "automated_ids": [
-          "img_568_pert_5.2",
-          "img_586_pert_3.2",
-          "img_395_pert_2.5",
-          "img_463_pert_1.3",
-          "img_108_pert_1.4",
-          "img_223_pert_2.2",
-          "img_573_pert_2.2",
-          "img_160_pert_2.4",
-          "img_153_pert_1.5",
-          "img_194_pert_1.5",
-          "img_592_pert_5.1",
-          "img_78_pert_5.1"
-        ],
-        "manual_ids": [
-          "img_400_pert_5.1",
-          "img_374_pert_5.1",
-          "img_19_pert_5.1",
-          "img_559_pert_5.1",
-          "img_464_pert_5.1",
-          "img_387_pert_5.1",
-          "img_22_pert_5.1",
-          "img_482_pert_5.2",
-          "img_559_pert_5.2",
-          "img_448_pert_5.2",
-          "img_173_pert_5.3",
-          "img_165_pert_5.3",
-          "img_193_pert_5.3",
-          "img_375_pert_5.3",
-          "img_233_pert_3.2",
-          "img_190_pert_3.2",
-          "img_559_pert_3.2",
-          "img_172_pert_3.2",
-          "img_448_pert_3.2",
-          "img_173_pert_2.5",
-          "img_35_pert_2.5",
-          "img_375_pert_2.5",
-          "img_574_pert_2.5",
-          "img_68_pert_2.5",
-          "img_111_pert_1.3",
-          "img_465_pert_1.3",
-          "img_427_pert_1.4",
-          "img_472_pert_1.4",
-          "img_503_pert_1.4",
-          "img_466_pert_1.4",
-          "img_111_pert_2.1",
-          "img_98_pert_2.1",
-          "img_372_pert_2.1",
-          "img_109_pert_2.1",
-          "img_465_pert_2.2",
-          "img_529_pert_2.2",
-          "img_226_pert_2.2",
-          "img_176_pert_4.3",
-          "img_92_pert_4.3",
-          "img_91_pert_2.3",
-          "img_112_pert_4.4",
-          "img_115_pert_4.4",
-          "img_529_pert_4.5",
-          "img_560_pert_1.5",
-          "img_465_pert_1.5",
-          "img_540_pert_1.5",
-          "img_220_pert_1.5",
-          "img_220_pert_4.6",
-          "img_476_pert_5.1",
-          "img_579_pert_5.1",
-          "img_578_pert_5.1",
-          "img_489_pert_5.1",
-          "img_490_pert_5.1",
-          "img_483_pert_5.1",
-          "img_456_pert_5.1",
-          "img_455_pert_5.1",
-          "img_458_pert_5.1",
-          "img_566_pert_5.1",
-          "img_572_pert_5.1",
-          "img_65_pert_5.1",
-          "img_27_pert_5.1",
-          "img_14_pert_5.1",
-          "img_49_pert_5.1",
-          "img_77_pert_5.1",
-          "img_37_pert_5.1",
-          "img_20_pert_5.1",
-          "img_492_pert_5.1",
-          "img_488_pert_5.1"
-        ]
+      "gigachat": {
+        "gigachat:gigachat_e2e__gigachat_assisted_cas": {
+          "e2e_run": "gigachat_e2e",
+          "cas_run": "gigachat_assisted_cas",
+          "policies": {
+            "disagreement_only": {
+              "accuracy_all": 0.5,
+              "accuracy_on_automated": 0.5405405405405406,
+              "automation_rate": 0.925,
+              "manual_rate": 0.075,
+              "manual_queue_e2e_error_rate": 0.3333333333333333,
+              "manual_queue_e2e_error_precision": 0.3333333333333333,
+              "captured_e2e_error_recall": 0.05555555555555555,
+              "e2e_errors_total": 36,
+              "e2e_errors_automated": 34,
+              "e2e_errors_manual": 2,
+              "automated_count": 74,
+              "manual_count": 6,
+              "automated_ids": [
+                "img_400_pert_5.1",
+                "img_374_pert_5.1",
+                "img_19_pert_5.1",
+                "img_559_pert_5.1",
+                "img_387_pert_5.1",
+                "img_22_pert_5.1",
+                "img_568_pert_5.2",
+                "img_482_pert_5.2",
+                "img_448_pert_5.2",
+                "img_173_pert_5.3",
+                "img_165_pert_5.3",
+                "img_375_pert_5.3",
+                "img_233_pert_3.2",
+                "img_559_pert_3.2",
+                "img_172_pert_3.2",
+                "img_586_pert_3.2",
+                "img_448_pert_3.2",
+                "img_173_pert_2.5",
+                "img_35_pert_2.5",
+                "img_375_pert_2.5",
+                "img_574_pert_2.5",
+                "img_395_pert_2.5",
+                "img_68_pert_2.5",
+                "img_111_pert_1.3",
+                "img_463_pert_1.3",
+                "img_465_pert_1.3",
+                "img_108_pert_1.4",
+                "img_427_pert_1.4",
+                "img_472_pert_1.4",
+                "img_503_pert_1.4",
+                "img_466_pert_1.4",
+                "img_111_pert_2.1",
+                "img_98_pert_2.1",
+                "img_372_pert_2.1",
+                "img_109_pert_2.1",
+                "img_223_pert_2.2",
+                "img_465_pert_2.2",
+                "img_529_pert_2.2",
+                "img_573_pert_2.2",
+                "img_226_pert_2.2",
+                "img_176_pert_4.3",
+                "img_92_pert_4.3",
+                "img_91_pert_2.3",
+                "img_112_pert_4.4",
+                "img_115_pert_4.4",
+                "img_529_pert_4.5",
+                "img_160_pert_2.4",
+                "img_560_pert_1.5",
+                "img_465_pert_1.5",
+                "img_540_pert_1.5",
+                "img_153_pert_1.5",
+                "img_220_pert_1.5",
+                "img_220_pert_4.6",
+                "img_476_pert_5.1",
+                "img_579_pert_5.1",
+                "img_578_pert_5.1",
+                "img_489_pert_5.1",
+                "img_490_pert_5.1",
+                "img_483_pert_5.1",
+                "img_456_pert_5.1",
+                "img_455_pert_5.1",
+                "img_458_pert_5.1",
+                "img_566_pert_5.1",
+                "img_572_pert_5.1",
+                "img_65_pert_5.1",
+                "img_27_pert_5.1",
+                "img_14_pert_5.1",
+                "img_49_pert_5.1",
+                "img_77_pert_5.1",
+                "img_78_pert_5.1",
+                "img_37_pert_5.1",
+                "img_20_pert_5.1",
+                "img_492_pert_5.1",
+                "img_488_pert_5.1"
+              ],
+              "manual_ids": [
+                "img_464_pert_5.1",
+                "img_559_pert_5.2",
+                "img_193_pert_5.3",
+                "img_190_pert_3.2",
+                "img_194_pert_1.5",
+                "img_592_pert_5.1"
+              ]
+            },
+            "disagreement_or_cas_indeterminate": {
+              "accuracy_all": 0.1125,
+              "accuracy_on_automated": 0.9,
+              "automation_rate": 0.125,
+              "manual_rate": 0.875,
+              "manual_queue_e2e_error_rate": 0.5,
+              "manual_queue_e2e_error_precision": 0.5,
+              "captured_e2e_error_recall": 0.9722222222222222,
+              "e2e_errors_total": 36,
+              "e2e_errors_automated": 1,
+              "e2e_errors_manual": 35,
+              "automated_count": 10,
+              "manual_count": 70,
+              "automated_ids": [
+                "img_559_pert_5.1",
+                "img_395_pert_2.5",
+                "img_108_pert_1.4",
+                "img_573_pert_2.2",
+                "img_160_pert_2.4",
+                "img_153_pert_1.5",
+                "img_220_pert_1.5",
+                "img_489_pert_5.1",
+                "img_490_pert_5.1",
+                "img_483_pert_5.1"
+              ],
+              "manual_ids": [
+                "img_400_pert_5.1",
+                "img_374_pert_5.1",
+                "img_19_pert_5.1",
+                "img_464_pert_5.1",
+                "img_387_pert_5.1",
+                "img_22_pert_5.1",
+                "img_568_pert_5.2",
+                "img_482_pert_5.2",
+                "img_559_pert_5.2",
+                "img_448_pert_5.2",
+                "img_173_pert_5.3",
+                "img_165_pert_5.3",
+                "img_193_pert_5.3",
+                "img_375_pert_5.3",
+                "img_233_pert_3.2",
+                "img_190_pert_3.2",
+                "img_559_pert_3.2",
+                "img_172_pert_3.2",
+                "img_586_pert_3.2",
+                "img_448_pert_3.2",
+                "img_173_pert_2.5",
+                "img_35_pert_2.5",
+                "img_375_pert_2.5",
+                "img_574_pert_2.5",
+                "img_68_pert_2.5",
+                "img_111_pert_1.3",
+                "img_463_pert_1.3",
+                "img_465_pert_1.3",
+                "img_427_pert_1.4",
+                "img_472_pert_1.4",
+                "img_503_pert_1.4",
+                "img_466_pert_1.4",
+                "img_111_pert_2.1",
+                "img_98_pert_2.1",
+                "img_372_pert_2.1",
+                "img_109_pert_2.1",
+                "img_223_pert_2.2",
+                "img_465_pert_2.2",
+                "img_529_pert_2.2",
+                "img_226_pert_2.2",
+                "img_176_pert_4.3",
+                "img_92_pert_4.3",
+                "img_91_pert_2.3",
+                "img_112_pert_4.4",
+                "img_115_pert_4.4",
+                "img_529_pert_4.5",
+                "img_560_pert_1.5",
+                "img_465_pert_1.5",
+                "img_540_pert_1.5",
+                "img_194_pert_1.5",
+                "img_220_pert_4.6",
+                "img_476_pert_5.1",
+                "img_579_pert_5.1",
+                "img_578_pert_5.1",
+                "img_592_pert_5.1",
+                "img_456_pert_5.1",
+                "img_455_pert_5.1",
+                "img_458_pert_5.1",
+                "img_566_pert_5.1",
+                "img_572_pert_5.1",
+                "img_65_pert_5.1",
+                "img_27_pert_5.1",
+                "img_14_pert_5.1",
+                "img_49_pert_5.1",
+                "img_77_pert_5.1",
+                "img_78_pert_5.1",
+                "img_37_pert_5.1",
+                "img_20_pert_5.1",
+                "img_492_pert_5.1",
+                "img_488_pert_5.1"
+              ]
+            }
+          },
+          "comparison": {
+            "total": 80,
+            "comparable_pairs": 16,
+            "agreement_count": 10,
+            "agreement_rate_on_comparable": 0.625,
+            "excluded_not_decidable": 64
+          },
+          "risk_coverage": {
+            "disagreement_only": [
+              {
+                "coverage": 0.0,
+                "risk": 0.0
+              },
+              {
+                "coverage": 0.0125,
+                "risk": 1.0
+              },
+              {
+                "coverage": 0.025,
+                "risk": 0.5
+              },
+              {
+                "coverage": 0.0375,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.05,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.0625,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.075,
+                "risk": 0.16666666666666666
+              },
+              {
+                "coverage": 0.0875,
+                "risk": 0.14285714285714285
+              },
+              {
+                "coverage": 0.1,
+                "risk": 0.125
+              },
+              {
+                "coverage": 0.1125,
+                "risk": 0.1111111111111111
+              },
+              {
+                "coverage": 0.125,
+                "risk": 0.1
+              },
+              {
+                "coverage": 0.1375,
+                "risk": 0.18181818181818182
+              },
+              {
+                "coverage": 0.15,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.1625,
+                "risk": 0.3076923076923077
+              },
+              {
+                "coverage": 0.175,
+                "risk": 0.35714285714285715
+              },
+              {
+                "coverage": 0.1875,
+                "risk": 0.4
+              },
+              {
+                "coverage": 0.2,
+                "risk": 0.375
+              },
+              {
+                "coverage": 0.2125,
+                "risk": 0.35294117647058826
+              },
+              {
+                "coverage": 0.225,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.2375,
+                "risk": 0.3684210526315789
+              },
+              {
+                "coverage": 0.25,
+                "risk": 0.35
+              },
+              {
+                "coverage": 0.2625,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.275,
+                "risk": 0.3181818181818182
+              },
+              {
+                "coverage": 0.2875,
+                "risk": 0.30434782608695654
+              },
+              {
+                "coverage": 0.3,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.3125,
+                "risk": 0.32
+              },
+              {
+                "coverage": 0.325,
+                "risk": 0.34615384615384615
+              },
+              {
+                "coverage": 0.3375,
+                "risk": 0.37037037037037035
+              },
+              {
+                "coverage": 0.35,
+                "risk": 0.39285714285714285
+              },
+              {
+                "coverage": 0.3625,
+                "risk": 0.3793103448275862
+              },
+              {
+                "coverage": 0.375,
+                "risk": 0.4
+              },
+              {
+                "coverage": 0.3875,
+                "risk": 0.41935483870967744
+              },
+              {
+                "coverage": 0.4,
+                "risk": 0.40625
+              },
+              {
+                "coverage": 0.4125,
+                "risk": 0.3939393939393939
+              },
+              {
+                "coverage": 0.425,
+                "risk": 0.4117647058823529
+              },
+              {
+                "coverage": 0.4375,
+                "risk": 0.4
+              },
+              {
+                "coverage": 0.45,
+                "risk": 0.4166666666666667
+              },
+              {
+                "coverage": 0.4625,
+                "risk": 0.40540540540540543
+              },
+              {
+                "coverage": 0.475,
+                "risk": 0.42105263157894735
+              },
+              {
+                "coverage": 0.4875,
+                "risk": 0.41025641025641024
+              },
+              {
+                "coverage": 0.5,
+                "risk": 0.425
+              },
+              {
+                "coverage": 0.5125,
+                "risk": 0.43902439024390244
+              },
+              {
+                "coverage": 0.525,
+                "risk": 0.4523809523809524
+              },
+              {
+                "coverage": 0.5375,
+                "risk": 0.4418604651162791
+              },
+              {
+                "coverage": 0.55,
+                "risk": 0.4318181818181818
+              },
+              {
+                "coverage": 0.5625,
+                "risk": 0.4444444444444444
+              },
+              {
+                "coverage": 0.575,
+                "risk": 0.45652173913043476
+              },
+              {
+                "coverage": 0.5875,
+                "risk": 0.44680851063829785
+              },
+              {
+                "coverage": 0.6,
+                "risk": 0.4583333333333333
+              },
+              {
+                "coverage": 0.6125,
+                "risk": 0.46938775510204084
+              },
+              {
+                "coverage": 0.625,
+                "risk": 0.48
+              },
+              {
+                "coverage": 0.6375,
+                "risk": 0.47058823529411764
+              },
+              {
+                "coverage": 0.65,
+                "risk": 0.46153846153846156
+              },
+              {
+                "coverage": 0.6625,
+                "risk": 0.4716981132075472
+              },
+              {
+                "coverage": 0.675,
+                "risk": 0.46296296296296297
+              },
+              {
+                "coverage": 0.6875,
+                "risk": 0.4727272727272727
+              },
+              {
+                "coverage": 0.7,
+                "risk": 0.4642857142857143
+              },
+              {
+                "coverage": 0.7125,
+                "risk": 0.45614035087719296
+              },
+              {
+                "coverage": 0.725,
+                "risk": 0.46551724137931033
+              },
+              {
+                "coverage": 0.7375,
+                "risk": 0.4745762711864407
+              },
+              {
+                "coverage": 0.75,
+                "risk": 0.4666666666666667
+              },
+              {
+                "coverage": 0.7625,
+                "risk": 0.47540983606557374
+              },
+              {
+                "coverage": 0.775,
+                "risk": 0.46774193548387094
+              },
+              {
+                "coverage": 0.7875,
+                "risk": 0.47619047619047616
+              },
+              {
+                "coverage": 0.8,
+                "risk": 0.484375
+              },
+              {
+                "coverage": 0.8125,
+                "risk": 0.47692307692307695
+              },
+              {
+                "coverage": 0.825,
+                "risk": 0.4696969696969697
+              },
+              {
+                "coverage": 0.8375,
+                "risk": 0.4626865671641791
+              },
+              {
+                "coverage": 0.85,
+                "risk": 0.45588235294117646
+              },
+              {
+                "coverage": 0.8625,
+                "risk": 0.463768115942029
+              },
+              {
+                "coverage": 0.875,
+                "risk": 0.45714285714285713
+              },
+              {
+                "coverage": 0.8875,
+                "risk": 0.4647887323943662
+              },
+              {
+                "coverage": 0.9,
+                "risk": 0.4722222222222222
+              },
+              {
+                "coverage": 0.9125,
+                "risk": 0.4657534246575342
+              },
+              {
+                "coverage": 0.925,
+                "risk": 0.4594594594594595
+              }
+            ],
+            "disagreement_or_cas_indeterminate": [
+              {
+                "coverage": 0.0,
+                "risk": 0.0
+              },
+              {
+                "coverage": 0.0125,
+                "risk": 1.0
+              },
+              {
+                "coverage": 0.025,
+                "risk": 0.5
+              },
+              {
+                "coverage": 0.0375,
+                "risk": 0.3333333333333333
+              },
+              {
+                "coverage": 0.05,
+                "risk": 0.25
+              },
+              {
+                "coverage": 0.0625,
+                "risk": 0.2
+              },
+              {
+                "coverage": 0.075,
+                "risk": 0.16666666666666666
+              },
+              {
+                "coverage": 0.0875,
+                "risk": 0.14285714285714285
+              },
+              {
+                "coverage": 0.1,
+                "risk": 0.125
+              },
+              {
+                "coverage": 0.1125,
+                "risk": 0.1111111111111111
+              },
+              {
+                "coverage": 0.125,
+                "risk": 0.1
+              }
+            ]
+          }
+        }
       }
     },
     "per_case": [

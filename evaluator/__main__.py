@@ -20,11 +20,11 @@ def _experiment(argv: list[str]) -> dict[str, Any]:
         paired = pair["paired"]
         print(f"h1[{key}] accuracy e2e={pair['e2e']['accuracy_all']:.2%} cas={pair['cas']['accuracy_all']:.2%} "
               f"mcnemar_p={paired['mcnemar_exact_p']:.4f}")
-    if payload["h2"]["overall"]:
-        h2 = payload["h2"]["overall"]
+    for key, pair in payload["h2"]["pairs"].items():
+        h2 = pair["overall"]
         suffix = (f" cas_accuracy_drop={h2['verdict_accuracy_drop']:+.3f}"
                   if h2.get("verdict_accuracy_drop") is not None else " cas_on_gt=not_used")
-        print(f"h2 exact_match={h2['exact_match_rate']:.2%}{suffix}")
+        print(f"h2[{key}] exact_match={h2['exact_match_rate']:.2%}{suffix}")
     for key, pair in payload["h3"]["pairs"].items():
         for name, stats in pair["policies"].items():
             print(f"h3[{key}:{name}] accuracy={stats['accuracy_all']:.2%} automation={stats['automation_rate']:.2%}")
