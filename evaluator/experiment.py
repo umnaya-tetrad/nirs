@@ -113,7 +113,10 @@ def run_experiment(manifest_path: Path, output_dir: Path, repo_root: Path | None
     for pair in manifest.h1_pairs:
         e2e_run, cas_run = runs[pair["e2e_run"]], runs[pair["cas_run"]]
         ocr_by_id = {}
-        if cas_run.extraction is not None and cas_run.id_set == expected_ids:
+        # H2 is diagnostic and remains useful for a partial run: a missing
+        # extraction is represented explicitly as a transcription/contract
+        # failure instead of silently removing the provider from H2.
+        if cas_run.extraction is not None:
             h2_analysis = analyze_h2(cas_run, gt_by_id, cas_on_gt, manifest.ids)
             key = _key(pair)
             h2_payload[key] = {"provider": pair["provider"], "run_id": pair["cas_run"], **h2_analysis}
