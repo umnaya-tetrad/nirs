@@ -1,0 +1,105 @@
+{
+  "status": "ok",
+  "case_id": "img_68_pert_2.5",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gemini_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gemini_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1795,
+    "completion_tokens": 1195,
+    "total_tokens": 2990,
+    "cost": 0.69420677,
+    "cost_rub": 0.69420677
+  },
+  "latency_ms": 10187,
+  "attempts": 1,
+  "raw_response": "{\"schema_version\":\"assisted_extraction_gemini_v2\",\"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Question: Find the angle between the pair of lines }\\\\frac{x+3}{3} = \\\\frac{y-1}{5} = \\\\frac{z+3}{4} \\\\text{ and } \\\\frac{x+1}{1} = \\\\frac{y-4}{1} = \\\\frac{z-5}{2}\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"\\\\frac{x+3}{3} = \\\\frac{y-1}{5} = \\\\frac{z+3}{4}\"},{\"given_id\":\"g2\",\"latex\":\"\\\\frac{x+1}{1} = \\\\frac{y-4}{1} = \\\\frac{z-5}{2}\"}],\"goal\":{\"type\":\"evaluate\",\"target_latex\":\"\\\\theta\"}},\"steps\":[{\"step_id\":\"s1\",\"latex\":\"\\\\text{Answer: The direction ratios of the first line are } 3,5,4 \\\\text{ and the direction ratios of the second line are } 1, 1, 2\\\\text{ . If } \\\\theta \\\\text{ is the angle between them, then}\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\",\"g2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s2\",\"latex\":\"\\\\cos\\\\theta = \\\\left|\\\\frac{3\\\\cdot 1 + 5\\\\cdot 1 + 4\\\\cdot 2}{\\\\sqrt{3^2 + 5^2 + 4^2}\\\\sqrt{1^2 + 1^2 + 2^2}}\\\\right| = \\\\frac{16}{\\\\sqrt{50}\\\\sqrt{6}}\",\"role\":\"substitution\",\"derives_from\":[\"s1\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s3\",\"latex\":\"= \\\\frac{16}{\\\\sqrt{50}\\\\times\\\\sqrt{6}} = \\\\frac{16}{5\\\\sqrt{6}} = \\\\frac{8\\\\sqrt{3}}{15}.\",\"role\":\"transformation\",\"derives_from\":[\"s2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s4\",\"latex\":\"\\\\text{Hence, the required angle is } \\\\cos^{-1}\\\\left(\\\\frac{8\\\\sqrt{3}}{15}\\\\right).\",\"role\":\"answer\",\"derives_from\":[\"s3\"],\"branch\":\"main\",\"exactness\":\"exact\"}]}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_68_pert_2.5",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Question: Find the angle between the pair of lines }\\frac{x+3}{3} = \\frac{y-1}{5} = \\frac{z+3}{4} \\text{ and } \\frac{x+1}{1} = \\frac{y-4}{1} = \\frac{z-5}{2}",
+      "givens": [
+        {
+          "given_id": "g1",
+          "latex": "\\frac{x+3}{3} = \\frac{y-1}{5} = \\frac{z+3}{4}"
+        },
+        {
+          "given_id": "g2",
+          "latex": "\\frac{x+1}{1} = \\frac{y-4}{1} = \\frac{z-5}{2}"
+        }
+      ],
+      "goal": {
+        "type": "evaluate",
+        "target_latex": "\\theta"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "\\text{Answer: The direction ratios of the first line are } 3,5,4 \\text{ and the direction ratios of the second line are } 1, 1, 2\\text{ . If } \\theta \\text{ is the angle between them, then}",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "latex": "\\cos\\theta = \\left|\\frac{3\\cdot 1 + 5\\cdot 1 + 4\\cdot 2}{\\sqrt{3^2 + 5^2 + 4^2}\\sqrt{1^2 + 1^2 + 2^2}}\\right| = \\frac{16}{\\sqrt{50}\\sqrt{6}}",
+        "role": "substitution",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s3",
+        "latex": "= \\frac{16}{\\sqrt{50}\\times\\sqrt{6}} = \\frac{16}{5\\sqrt{6}} = \\frac{8\\sqrt{3}}{15}.",
+        "role": "transformation",
+        "derives_from": [
+          "s2"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s4",
+        "latex": "\\text{Hence, the required angle is } \\cos^{-1}\\left(\\frac{8\\sqrt{3}}{15}\\right).",
+        "role": "answer",
+        "derives_from": [
+          "s3"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-5b067f97-db22-4ad0-97e6-68630c266802",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "assisted_extraction_gemini_v2",
+      "temperature": 0,
+      "duration_ms": 10187,
+      "created_at": "2026-10-10T15:13:35Z",
+      "tokens_in": 1795,
+      "tokens_out": 1195
+    }
+  }
+}

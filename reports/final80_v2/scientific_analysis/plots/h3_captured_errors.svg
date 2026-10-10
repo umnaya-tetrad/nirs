@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="265" viewBox="0 0 820 265">
+<title>H3: captured E2E error recall</title>
+<text x="310" y="24" font-family="sans-serif" font-size="18">H3: captured E2E error recall</text>
+<text x="302" y="61" text-anchor="end" font-family="sans-serif" font-size="13">gemini disagreement_only</text>
+<rect x="310" y="45" width="41.9" height="23" fill="#357edd"/>
+<text x="358.9" y="61" font-family="sans-serif" font-size="13">9.5%</text>
+<text x="302" y="107" text-anchor="end" font-family="sans-serif" font-size="13">gemini disagreement_or_cas_indeterminate</text>
+<rect x="310" y="91" width="356.2" height="23" fill="#357edd"/>
+<text x="673.2" y="107" font-family="sans-serif" font-size="13">81.0%</text>
+<text x="302" y="153" text-anchor="end" font-family="sans-serif" font-size="13">gigachat disagreement_only</text>
+<rect x="310" y="137" width="24.4" height="23" fill="#357edd"/>
+<text x="341.4" y="153" font-family="sans-serif" font-size="13">5.6%</text>
+<text x="302" y="199" text-anchor="end" font-family="sans-serif" font-size="13">gigachat disagreement_or_cas_indeterminate</text>
+<rect x="310" y="183" width="427.8" height="23" fill="#357edd"/>
+<text x="744.8" y="199" font-family="sans-serif" font-size="13">97.2%</text>
+</svg>

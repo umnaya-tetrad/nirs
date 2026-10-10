@@ -1,0 +1,85 @@
+{
+  "status": "ok",
+  "case_id": "img_395_pert_2.5",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gemini_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gemini_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1802,
+    "completion_tokens": 1376,
+    "total_tokens": 3178,
+    "cost": 0.77568895,
+    "cost_rub": 0.77568895
+  },
+  "latency_ms": 12848,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"assisted_extraction_gemini_v2\",\n  \"task\": {\n    \"visibility\": \"visible\",\n    \"raw_latex\": \"\\\\text{Question : Find } \\\\frac{dy}{dx} \\\\text{, if } x = a(\\\\theta + \\\\sin\\\\theta), y = a(1 - \\\\cos\\\\theta).\",\n    \"givens\": [\n      {\n        \"given_id\": \"g1\",\n        \"latex\": \"x = a(\\\\theta + \\\\sin\\\\theta)\"\n      },\n      {\n        \"given_id\": \"g2\",\n        \"latex\": \"y = a(1 - \\\\cos\\\\theta)\"\n      }\n    ],\n    \"goal\": {\n      \"type\": \"compute_function\",\n      \"target_latex\": \"\\\\frac{dy}{dx}\"\n    }\n  },\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\frac{dx}{d\\\\theta} = a(1 + \\\\cos\\\\theta), \\\\quad \\\\frac{dy}{d\\\\theta} = a(\\\\sin\\\\theta)\",\n      \"role\": \"transformation\",\n      \"derives_from\": [],\n      \"uses_givens\": [\n        \"g1\",\n        \"g2\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"\\\\frac{dy}{dx} = \\\\frac{\\\\frac{dy}{d\\\\theta}}{\\\\frac{dx}{d\\\\theta}} = \\\\frac{a\\\\sin\\\\theta}{a(1+\\\\cos\\\\theta)} = \\\\frac{\\\\sin\\\\theta}{1+\\\\cos\\\\theta} = \\\\frac{\\\\theta}{2}\",\n      \"role\": \"answer\",\n      \"derives_from\": [\n        \"s1\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    }\n  ]\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_395_pert_2.5",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Question : Find } \\frac{dy}{dx} \\text{, if } x = a(\\theta + \\sin\\theta), y = a(1 - \\cos\\theta).",
+      "givens": [
+        {
+          "given_id": "g1",
+          "latex": "x = a(\\theta + \\sin\\theta)"
+        },
+        {
+          "given_id": "g2",
+          "latex": "y = a(1 - \\cos\\theta)"
+        }
+      ],
+      "goal": {
+        "type": "compute_function",
+        "target_latex": "\\frac{dy}{dx}"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "\\frac{dx}{d\\theta} = a(1 + \\cos\\theta), \\quad \\frac{dy}{d\\theta} = a(\\sin\\theta)",
+        "role": "transformation",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "latex": "\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}} = \\frac{a\\sin\\theta}{a(1+\\cos\\theta)} = \\frac{\\sin\\theta}{1+\\cos\\theta} = \\frac{\\theta}{2}",
+        "role": "answer",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-650f2570-6c02-42ea-a229-66b3d9641a41",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "assisted_extraction_gemini_v2",
+      "temperature": 0,
+      "duration_ms": 12848,
+      "created_at": "2026-10-10T15:13:25Z",
+      "tokens_in": 1802,
+      "tokens_out": 1376
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "id": "img_108_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\sin\\frac{31\\pi}{3} = \\sin\\left(10\\pi + \\frac{\\pi}{3}\\right) = \\sin\\left(\\pi - \\frac{\\pi}{3}\\right)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= \\sin\\left(\\frac{2\\pi}{3}\\right) = \\frac{\\sqrt{3}}{2}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1000
+      }
+    ]
+  },
+  "verdict": "correct",
+  "is_correct": true,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-8a512fb6-e839-4ab3-b41a-fa0fb3e9a53a",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1849,
+    "created_at": "2026-10-10T15:49:36.344940Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_108_pert_1.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find the value of }\\sin\\frac{31\\pi}{3}.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\sin\\frac{31\\pi}{3}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\sin\\frac{31\\pi}{3} = \\sin\\left(10\\pi + \\frac{\\pi}{3}\\right) = \\sin\\left(\\pi - \\frac{\\pi}{3}\\right)",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= \\sin\\left(\\frac{2\\pi}{3}\\right) = \\frac{\\sqrt{3}}{2}",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "correct",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "valid",
+      "reason": "Exact value comparison",
+      "step_id": "s2",
+      "rule": "scalar_task",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": true,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": true,
+    "task_verified_solution_covered": true,
+    "fallback_reasons": []
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "schema_version": "1.0",
+  "id": "img_448_pert_3.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "(A+B)= \\begin{bmatrix}0 & 7 & 8 \\\\ 8 & -6 & 0\\end{bmatrix}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "(A+B)C = \\begin{bmatrix}10 \\\\ 28\\end{bmatrix}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "AC = \\begin{bmatrix}9 \\\\ 30\\end{bmatrix}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "BC = \\begin{bmatrix}1 \\\\ -2\\end{bmatrix}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "AC+BC = \\begin{bmatrix}10 \\\\ 28\\end{bmatrix}",
+      "derives_from": [
+        "s3",
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "(A+B)C = AC+BC",
+      "derives_from": [
+        "s2",
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 576
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-1df3f3b2-df0d-4b44-a437-df14b9235d64",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1360,
+    "created_at": "2026-10-10T15:50:49.683579Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_448_pert_3.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Given}\\\\nA = \\begin{bmatrix}-6 & 0 & 8 \\\\ 7 & -8 & 0\\end{bmatrix}, B = \\begin{bmatrix}0 & 1 & 1\\\\ 1 & 0 & 2\\end{bmatrix}, C = \\begin{bmatrix}2 \\\\ -2 \\\\ 3\\end{bmatrix}.\\\\\nCalculate AC, BC and (A+B)C. Also verify that (A+B)C = AC + BC.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "A = \\begin{bmatrix}-6 & 0 & 8 \\\\ 7 & -8 & 0\\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "A = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "A",
+                  "Matrix([\n[-1*6,    0, 8],\n[   7, -1*8, 0]])"
+                ],
+                "symbols": [
+                  "A"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "B = \\begin{bmatrix}0 & 1 & 1\\\\ 1 & 0 & 2\\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "B = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "B",
+                  "Matrix([\n[0, 1, 1],\n[1, 0, 2]])"
+                ],
+                "symbols": [
+                  "B"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g3",
+            "raw_latex": "C = \\begin{bmatrix}2 \\\\ -2 \\\\ 3\\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "C = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "C",
+                  "Matrix([\n[   2],\n[-1*2],\n[   3]])"
+                ],
+                "symbols": [
+                  "C"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "(A+B)= \\begin{bmatrix}0 & 7 & 8 \\\\ 8 & -6 & 0\\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "(A+B)C = \\begin{bmatrix}10 \\\\ 28\\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "AC = \\begin{bmatrix}9 \\\\ 30\\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "BC = \\begin{bmatrix}1 \\\\ -2\\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "AC+BC = \\begin{bmatrix}10 \\\\ 28\\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s3",
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "(A+B)C = AC+BC",
+          "role": "answer",
+          "derives_from": [
+            "s2",
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "matrix_system",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Polynomial identity test; unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Add'"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "requires two explicit X/Y matrix equations",
+      "step_id": null,
+      "rule": "matrix_system",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "At least one node/edge proof is unresolved",
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "At least one node/edge proof is unresolved",
+      "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'",
+      "requires two explicit X/Y matrix equations"
+    ]
+  }
+}

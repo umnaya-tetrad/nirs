@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "id": "img_27_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "y - 3 = -4(x + 2)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "-4x + y + 5 = 0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 663
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-81bbd07e-3106-4468-a22f-216d96aa1ce9",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1471,
+    "created_at": "2026-10-10T15:50:34.534509Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_27_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question}: \\text{Find the equation of the line through } (-2, 3) \\text{ with slope } -4.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "y - 3 = -4(x + 2)",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "-4x + y + 5 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "First symbolic step is a trusted premise; no check against the problem statement"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Multivariate solution-set equivalence not established"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s2",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "At least one node/edge proof is unresolved",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

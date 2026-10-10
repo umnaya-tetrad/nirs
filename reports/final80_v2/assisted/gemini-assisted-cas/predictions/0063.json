@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "img_559_pert_5.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "2x^2-4xy+12y^2+5x-9y+3",
+      "derives_from": [],
+      "kind": "initial"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 575
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-d4e97f78-ed3d-451a-888b-dd63b73da7ea",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1325,
+    "created_at": "2026-10-10T15:51:41.167755Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_559_pert_5.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Subtract } 5x^2-4y^2+6y-3 \\text{ from } 7x^2-4xy+8y^2+5x-3y.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "2x^2-4xy+12y^2+5x-9y+3",
+          "role": "answer",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Only an unverified symbolic premise"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s1",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

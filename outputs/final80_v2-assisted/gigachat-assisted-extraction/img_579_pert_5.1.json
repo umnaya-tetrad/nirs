@@ -1,0 +1,157 @@
+{
+  "status": "ok",
+  "case_id": "img_579_pert_5.1",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gigachat_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gigachat_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "f35da71fe3c123ee868179debc8bcc6fdffe52adcd51b05beb0652617bc286c6"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 1999,
+    "completion_tokens": 822,
+    "total_tokens": 2821,
+    "estimated_cost_rub": 1.4105,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 14209,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"assisted_extraction_gigachat_v2\",\n    \"task\": {\n        \"visibility\": \"visible\",\n        \"raw_latex\": \"\\\\text{Find roots of the equation } 2y^2 - 5y + 3 = 0 \\\\text{by factorization}\",\n        \"goal\": {\n            \"type\": \"solve\",\n            \"target_latex\": \"y\"\n        }\n    },\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"2y^2 - 5y + 3 = 0\",\n            \"role\": \"initial\",\n            \"derives_from\": [],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"-5y = -2y - 3y\",\n            \"role\": \"transformation\",\n            \"derives_from\": [],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"(-2y) (-3y) = 6y^2 = (2y) × 3\",\n            \"role\": \"transformation\",\n            \"derives_from\": [],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"2y^2 - 5y + 3 = 2y^2 - 2y - 3y + 3 = 2y(y - 1) - 3(y - 1)\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s1\",\n                \"s2\",\n                \"s3\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"(y - 1) = (2y - 3)(y - 1)\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s4\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"2y^2 - 5y + 3 = 0\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s1\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"2y^2 - 5y + 3 = 0\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s6\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s8\",\n            \"latex\": \"(2y - 3)(y - 1) = 0\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s7\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s9\",\n            \"latex\": \"2y - 3 = 0 ∨ y - 1 = 0\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s8\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s10\",\n            \"latex\": \"y = \\\\frac{3}{2}, y = 1\",\n            \"role\": \"answer\",\n            \"derives_from\": [\n                \"s9\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        }\n    ]\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_579_pert_5.1",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Find roots of the equation } 2y^2 - 5y + 3 = 0 \\text{by factorization}",
+      "goal": {
+        "type": "solve",
+        "target_latex": "y"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "2y^2 - 5y + 3 = 0",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s2",
+        "latex": "-5y = -2y - 3y",
+        "role": "transformation",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s3",
+        "latex": "(-2y) (-3y) = 6y^2 = (2y) × 3",
+        "role": "transformation",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s4",
+        "latex": "2y^2 - 5y + 3 = 2y^2 - 2y - 3y + 3 = 2y(y - 1) - 3(y - 1)",
+        "role": "transformation",
+        "derives_from": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s5",
+        "latex": "(y - 1) = (2y - 3)(y - 1)",
+        "role": "transformation",
+        "derives_from": [
+          "s4"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s6",
+        "latex": "2y^2 - 5y + 3 = 0",
+        "role": "transformation",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s7",
+        "latex": "2y^2 - 5y + 3 = 0",
+        "role": "transformation",
+        "derives_from": [
+          "s6"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s8",
+        "latex": "(2y - 3)(y - 1) = 0",
+        "role": "transformation",
+        "derives_from": [
+          "s7"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s9",
+        "latex": "2y - 3 = 0 ∨ y - 1 = 0",
+        "role": "transformation",
+        "derives_from": [
+          "s8"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s10",
+        "latex": "y = \\frac{3}{2}, y = 1",
+        "role": "answer",
+        "derives_from": [
+          "s9"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-d0115f7f-8fd1-4090-bb33-5467e98b4018",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "assisted_extraction_gigachat_v2",
+      "temperature": 0,
+      "duration_ms": 14209,
+      "created_at": "2026-10-10T15:35:16Z",
+      "tokens_in": 1999,
+      "tokens_out": 822
+    }
+  },
+  "prior_failures": [
+    {
+      "error_type": "ContractError",
+      "error": "steps[2].derives_from must name earlier steps only.",
+      "attempts": 1,
+      "retry_errors": []
+    }
+  ]
+}

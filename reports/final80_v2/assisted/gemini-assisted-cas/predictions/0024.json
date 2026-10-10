@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0",
+  "id": "img_22_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{mid-point of } AC = \\text{coordinates of the mid-point of } BD",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{i.e., } \\left(\\frac{6+9}{2}, \\frac{1+4}{2}\\right) = \\left(\\frac{8+p}{2}, \\frac{2+3}{2}\\right)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{i.e., } \\left(\\frac{15}{2}, \\frac{5}{2}\\right) = \\left(\\frac{8+p}{2}, \\frac{5}{2}\\right)",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\text{So, } \\frac{15}{2} = \\frac{8+p}{2}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\text{Thus, } 15 = 8+p",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\text{Therefore, } p = 7",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 726
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-5bcacb1e-d6a2-4036-b775-3e206f437e5e",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1280,
+    "created_at": "2026-10-10T15:50:43.831006Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_22_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: If the points } A(6,1), B(8,2), C(9,4) \\text{ and } D(p,3) \\text{ are the vertices of a parallelogram, taken in order, find the value of } p.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "A(6,1)",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported input at character 3"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "B(8,2)",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported input at character 3"
+            }
+          },
+          {
+            "given_id": "g3",
+            "raw_latex": "C(9,4)",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported input at character 3"
+            }
+          },
+          {
+            "given_id": "g4",
+            "raw_latex": "D(p,3)",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported input at character 3"
+            }
+          },
+          {
+            "given_id": "g5",
+            "raw_latex": "ABCD \\text{ is a parallelogram}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Bare word is not an exact mathematical token"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "p"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{mid-point of } AC = \\text{coordinates of the mid-point of } BD",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g5"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{i.e., } \\left(\\frac{6+9}{2}, \\frac{1+4}{2}\\right) = \\left(\\frac{8+p}{2}, \\frac{2+3}{2}\\right)",
+          "role": "substitution",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2",
+            "g3",
+            "g4"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{i.e., } \\left(\\frac{15}{2}, \\frac{5}{2}\\right) = \\left(\\frac{8+p}{2}, \\frac{5}{2}\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\text{So, } \\frac{15}{2} = \\frac{8+p}{2}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\text{Thus, } 15 = 8+p",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\text{Therefore, } p = 7",
+          "role": "answer",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unsupported input at character 3",
+          "given g2 is not in the exact SymPy subset: Unsupported input at character 3",
+          "given g3 is not in the exact SymPy subset: Unsupported input at character 3",
+          "given g4 is not in the exact SymPy subset: Unsupported input at character 3",
+          "given g5 is not in the exact SymPy subset: Bare word is not an exact mathematical token"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: mid-point of; Text/units/conditions are outside the symbolic grammar: coordinates of the mid-point of; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 14; Unsupported input at character 14"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 13; Unsupported input at character 14"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: So,; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: Thus,; Exact expression identity with preserved domain; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Therefore,; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Bare word is not an exact mathematical token",
+      "step_id": "s6",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g5",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g2",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g3",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g4",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Bare word is not an exact mathematical token"
+    ]
+  }
+}

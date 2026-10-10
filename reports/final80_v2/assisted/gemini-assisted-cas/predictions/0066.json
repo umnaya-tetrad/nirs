@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "id": "img_568_pert_5.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "(-5i)\\left(\\frac{1}{8}i\\right)=\\frac{-5}{8}i^2=\\frac{5}{8}+i0",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "(-i)(2i)\\left(-\\frac{1}{8}i\\right)^3=2\\times\\frac{1}{256}\\times i^5=\\frac{1}{256}i",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 789
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Exact node and dependency checks",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact node and dependency checks",
+        "actual_latex": "(-i)(2i)\\left(-\\frac{1}{8}i\\right)^3=2\\times\\frac{1}{256}\\times i^5=\\frac{1}{256}i",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-cdfa7b40-5bcb-4fd3-a223-25f8aac29070",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1601,
+    "created_at": "2026-10-10T15:51:45.949344Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_568_pert_5.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Express the following in the form of } a+bi:\\\\ 1.\\ (-5i)\\left(\\frac{1}{8}i\\right)\\\\ 2.\\ (-i)(2i)\\left(-\\frac{1}{8}i\\right)^3",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "(-5i)\\left(\\frac{1}{8}i\\right)",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(-5i)(\\frac{1}{8}i)",
+                "kind": "expression",
+                "sides": [
+                  "(-5*I)*((1/8)*I)"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "8"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "(-i)(2i)\\left(-\\frac{1}{8}i\\right)^3",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(-i)(2i)(-\\frac{1}{8}i)^3",
+                "kind": "expression",
+                "sides": [
+                  "((-1/8)*I)**3*((-I)*(2*I))"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "8"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": "a+bi"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "(-5i)\\left(\\frac{1}{8}i\\right)=\\frac{-5}{8}i^2=\\frac{5}{8}+i0",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "(-i)(2i)\\left(-\\frac{1}{8}i\\right)^3=2\\times\\frac{1}{256}\\times i^5=\\frac{1}{256}i",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "(-i)(2i)\\left(-\\frac{1}{8}i\\right)^3=2\\times\\frac{1}{256}\\times i^5=\\frac{1}{256}i",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Multivariate simplification domain is unsupported",
+      "step_id": "s2",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": "s2",
+      "localization_blocked": false,
+      "invalid_steps": [
+        "s2"
+      ],
+      "unsupported_steps": [],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "g2",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Multivariate simplification domain is unsupported"
+    ]
+  }
+}

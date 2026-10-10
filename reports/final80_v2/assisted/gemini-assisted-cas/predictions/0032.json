@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0",
+  "id": "img_37_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Required Volume} = \\frac{4}{3} \\pi a^3",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= \\frac{4}{3} \\times \\frac{22}{7} \\times b \\times b \\times b\\text{ cm}^3 = 5887.32\\text{ cm}^3",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 703
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "OCR exactness is not exact"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-270c8283-5231-46ad-b65c-7bbece7a8666",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1256,
+    "created_at": "2026-10-10T15:50:54.421738Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_37_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find the Volume of a sphere of radius } 11.2\\text{ cm}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\text{radius} = 11.2\\text{ cm}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Bare word is not an exact mathematical token"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\text{Volume}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Required Volume} = \\frac{4}{3} \\pi a^3",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= \\frac{4}{3} \\times \\frac{22}{7} \\times b \\times b \\times b\\text{ cm}^3 = 5887.32\\text{ cm}^3",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "approximate",
+          "uses_givens": [
+            "g1"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Bare word is not an exact mathematical token"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Required Volume"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: cm; Polynomial identity test; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported token '\\\\text'",
+      "step_id": "s2",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        },
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "OCR exactness is not exact",
+      "Unsupported token '\\\\text'"
+    ]
+  }
+}

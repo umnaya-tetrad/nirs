@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0",
+  "id": "img_559_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "7z^2 - 4zw + 8w^2 + 5z - 3w",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "-(5z^2 - 4w^2 + 6w - 3)",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "2z^2 - 4zw + 12w^2 + 5z - 9w + 3",
+      "derives_from": [
+        "s1",
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 694
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-c17d7e35-88a8-4e47-a500-ce0e2cf13be8",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1496,
+    "created_at": "2026-10-10T15:51:39.788498Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_559_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: subtract } 5x^2-4y^2+6y-3 \\text{ from } 7x^2-4xy+8y^2+5x-3y.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "7z^2 - 4zw + 8w^2 + 5z - 3w",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "-(5z^2 - 4w^2 + 6w - 3)",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "2z^2 - 4zw + 12w^2 + 5z - 9w + 3",
+          "role": "answer",
+          "derives_from": [
+            "s1",
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Polynomial identity test",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Polynomial identity test",
+            "actual_latex": "-(5z^2 - 4w^2 + 6w - 3)",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s3",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Polynomial identity test",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Polynomial identity test",
+            "actual_latex": "2z^2 - 4zw + 12w^2 + 5z - 9w + 3",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "First symbolic step is a trusted premise; no check against the problem statement"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s3",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s3"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

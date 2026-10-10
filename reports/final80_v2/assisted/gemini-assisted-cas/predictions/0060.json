@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.0",
+  "id": "img_540_pert_1.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\vec{a}\\cdot\\vec{b} = (\\hat{i} + \\hat{j} - \\hat{k})\\cdot(\\hat{i} - \\hat{j} + \\hat{k}) = 1 - 1 - 1 = -1",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\cos\\theta = -\\frac{1}{2}",
+      "derives_from": [
+        "s1",
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\theta = \\cos^{-1}\\left(-\\frac{1}{2}\\right)",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 905
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\vec'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\vec'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-8c5f9dd2-6ee2-4c76-af0d-f9f8b00d3aeb",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1915,
+    "created_at": "2026-10-10T15:51:36.691486Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_540_pert_1.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find angle }\\theta\\text{ between the vectors }\\vec{a} = \\hat{i} + \\hat{j} - \\hat{k}\\text{ and }\\vec{b} = \\hat{i} - \\hat{j} + \\hat{k}.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\vec{a} = \\hat{i} + \\hat{j} - \\hat{k}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported token '\\\\vec'"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "\\vec{b} = \\hat{i} - \\hat{j} + \\hat{k}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported token '\\\\vec'"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\theta"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\vec{a}\\cdot\\vec{b} = (\\hat{i} + \\hat{j} - \\hat{k})\\cdot(\\hat{i} - \\hat{j} + \\hat{k}) = 1 - 1 - 1 = -1",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\cos\\theta = -\\frac{1}{2}",
+          "role": "substitution",
+          "derives_from": [
+            "s1",
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\theta = \\cos^{-1}\\left(-\\frac{1}{2}\\right)",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unsupported token '\\\\vec'",
+          "given g2 is not in the exact SymPy subset: Unsupported token '\\\\vec'"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\vec'"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\vec'; Unsupported token '\\\\hat'; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Symbolic result is inconclusive"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task target has unresolved variables",
+      "step_id": "s4",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\vec'",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\vec'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\vec'"
+        },
+        {
+          "from": "g2",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\vec'"
+        },
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported token '\\\\vec'",
+      "Unsupported token '\\\\vec'",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "Task target has unresolved variables"
+    ]
+  }
+}

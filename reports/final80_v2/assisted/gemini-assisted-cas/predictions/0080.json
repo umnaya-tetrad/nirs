@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "id": "img_98_pert_2.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\cos^2 A + \\sin^2 A = 1",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\cos^2 A = 1 - \\sin^2 A, \\text{ i.e., } \\cos A = \\pm(1 - \\sin^2 A)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\cos A = 1 - \\sin^2 A",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\tan A = \\frac{\\sin A}{\\cos A} = \\frac{\\sin A}{1 - \\sin^2 A}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\sec A = \\frac{1}{\\cos A} = \\frac{1}{1 - \\sin^2 A}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 10018
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-9a17d0eb-9872-47a7-b2de-295f001338ab",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 20045,
+    "created_at": "2026-10-10T15:52:38.855204Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_98_pert_2.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question :- Express the ratios } \\cos A, \\tan A, \\text{ and } \\sec A \\text{ in terms of } \\sin A.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": "\\cos A, \\tan A, \\sec A"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\cos^2 A + \\sin^2 A = 1",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\cos^2 A = 1 - \\sin^2 A, \\text{ i.e., } \\cos A = \\pm(1 - \\sin^2 A)",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\cos A = 1 - \\sin^2 A",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\tan A = \\frac{\\sin A}{\\cos A} = \\frac{\\sin A}{1 - \\sin^2 A}",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\sec A = \\frac{1}{\\cos A} = \\frac{1}{1 - \\sin^2 A}",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "TIMEOUT_OR_WORKER_EXIT",
+      "step_id": null,
+      "rule": "assisted_worker",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT"
+    ]
+  }
+}

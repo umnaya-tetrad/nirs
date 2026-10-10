@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0",
+  "id": "img_78_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "A = 4 \\pi r^2",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "r = 7\\text{ cm}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "A = 4 \\times \\frac{22}{7} \\times 7 \\times 7\\text{ cm}^2 = 616\\text{ cm}^2",
+      "derives_from": [
+        "s1",
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 778
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "OCR exactness is not exact"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-7792b947-d25c-4cff-9897-f07e4de25397",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1538,
+    "created_at": "2026-10-10T15:51:49.340348Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_78_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "Find the surface area of a sphere of radius 7 cm.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": "\\text{surface area}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "A = 4 \\pi r^2",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "r = 7\\text{ cm}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "A = 4 \\times \\frac{22}{7} \\times 7 \\times 7\\text{ cm}^2 = 616\\text{ cm}^2",
+          "role": "transformation",
+          "derives_from": [
+            "s1",
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "approximate"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: cm; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported token '\\\\text'",
+      "step_id": "s3",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "OCR exactness is not exact",
+      "Unsupported token '\\\\text'"
+    ]
+  }
+}

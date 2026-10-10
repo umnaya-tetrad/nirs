@@ -1,0 +1,125 @@
+{
+  "status": "ok",
+  "case_id": "img_489_pert_5.1",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gigachat_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gigachat_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 2056,
+    "completion_tokens": 481,
+    "total_tokens": 2537,
+    "estimated_cost_rub": 1.2685,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 9283,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"e2e_gigachat_v1\",\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\text{Question : The sum of three times a number and } 11 \\\\text{ is } 32 . \\\\text{ Find the number}\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"\\\\text{Answers: If the unknown number is taken to be } y , \\\\text{ then thrice the number is } 3y \\\\text{ and the sum of } 3y \\\\text{ and } 11 \\\\text{ is } 32 .\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"\\\\text{That is, } 3y + 11 = 32\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"\\\\text{To solve this equation, we transpose } 11 \\\\text{ to the right-hand side (RHS). So that}\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"3y = 32 - 11 \\\\\\\\ 3y = 21\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"\\\\text{Now, divide both by } 3:\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"y = \\\\frac{21}{3} = 7\"\n        },\n        {\n            \"step_id\": \"s8\",\n            \"latex\": \"\\\\text{The acquired number is } 7.\"\n        }\n    ],\n    \"has_error\": false,\n    \"first_error_step\": null\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_489_pert_5.1",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "GigaChat-2-Pro:2.0.30.01",
+          "status": "ok",
+          "duration_ms": 9283,
+          "tokens_in": 2056,
+          "tokens_out": 481
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\text{Question : The sum of three times a number and } 11 \\text{ is } 32 . \\text{ Find the number}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\text{Answers: If the unknown number is taken to be } y , \\text{ then thrice the number is } 3y \\text{ and the sum of } 3y \\text{ and } 11 \\text{ is } 32 .",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\text{That is, } 3y + 11 = 32",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\text{To solve this equation, we transpose } 11 \\text{ to the right-hand side (RHS). So that}",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "3y = 32 - 11 \\\\ 3y = 21",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\text{Now, divide both by } 3:",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "y = \\frac{21}{3} = 7",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "\\text{The acquired number is } 7.",
+        "derives_from": [
+          "s7"
+        ]
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
+    "meta": {
+      "run_id": "run-6edea8d2-f5d2-4814-b17f-b51de4d75654",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "e2e_gigachat_v1",
+      "temperature": 0,
+      "duration_ms": 9283,
+      "created_at": "2026-10-10T15:13:24Z",
+      "tokens_in": 2056,
+      "tokens_out": 481
+    }
+  }
+}

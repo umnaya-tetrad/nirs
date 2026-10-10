@@ -1,0 +1,71 @@
+{
+  "status": "ok",
+  "case_id": "img_160_pert_2.4",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gigachat_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gigachat_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "f35da71fe3c123ee868179debc8bcc6fdffe52adcd51b05beb0652617bc286c6"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 1233,
+    "completion_tokens": 255,
+    "total_tokens": 1488,
+    "estimated_cost_rub": 0.744,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 6958,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"assisted_extraction_gigachat_v2\",\n    \"task\": {\n        \"visibility\": \"visible\",\n        \"raw_latex\": \"Find the square root of 6400.\",\n        \"goal\": {\n            \"type\": \"compute_function\",\n            \"target_latex\": \"\\\\sqrt{6400}\"\n        }\n    },\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"6400 = 2 \\\\times 2 \\\\times 2 \\\\times 2 \\\\times 2 \\\\times 2 \\\\times 5 \\\\times 5\",\n            \"role\": \"initial\",\n            \"derives_from\": [],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"\\\\sqrt{6400} = 3 \\\\cdot 2 \\\\cdot 2 \\\\cdot 5 = 60\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s1\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        }\n    ]\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_160_pert_2.4",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "Find the square root of 6400.",
+      "goal": {
+        "type": "compute_function",
+        "target_latex": "\\sqrt{6400}"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "6400 = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 5 \\times 5",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s2",
+        "latex": "\\sqrt{6400} = 3 \\cdot 2 \\cdot 2 \\cdot 5 = 60",
+        "role": "transformation",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-399e3384-ab68-422d-a5a0-da01c15558ad",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "assisted_extraction_gigachat_v2",
+      "temperature": 0,
+      "duration_ms": 6958,
+      "created_at": "2026-10-10T15:27:11Z",
+      "tokens_in": 1233,
+      "tokens_out": 255
+    }
+  }
+}

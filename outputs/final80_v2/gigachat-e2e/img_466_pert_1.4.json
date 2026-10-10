@@ -1,0 +1,157 @@
+{
+  "status": "ok",
+  "case_id": "img_466_pert_1.4",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gigachat_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gigachat_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 2050,
+    "completion_tokens": 1103,
+    "total_tokens": 3153,
+    "estimated_cost_rub": 1.5765,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 20792,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"e2e_gigachat_v1\",\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\begin{pmatrix} 2 & -3 & 5 \\\\\\\\ 6 & 0 & 4 \\\\\\\\ 1 & 5 & -7 \\\\end{pmatrix}\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"M_{11} = \\\\begin{pmatrix} 0 & 4 \\\\\\\\ 5 & -7 \\\\end{pmatrix} = (0)(-7)- (4)(5)= 0-20=-20; A_{11}= (-1)^{1+1}(-20)=-20\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"M_{12} = \\\\begin{pmatrix} 6 & 4 \\\\\\\\ 1 & -7 \\\\end{pmatrix} = (6)(-7)-(4)(1)= -42-4= -46; A_{12} = (-1)^{1+2}(-46)=46\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"M_{13} = \\\\begin{pmatrix} 6 & 0 \\\\\\\\ 1 & 5 \\\\end{pmatrix} = (6)(5)-(0)(1)= 30-0=30; A_{13} = (-1)^{1+3}(30)=30\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"M_{21} = \\\\begin{pmatrix} -3 & 5 \\\\\\\\ 5 & -7 \\\\end{pmatrix} = (-3)(-7)- (5)(0)= 21-0=21; A_{21} = (-1)^{2+1}(21)=-21\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"M_{22} = \\\\begin{pmatrix} 2 & 5 \\\\\\\\ 1 & -7 \\\\end{pmatrix} = (2)(-7)- (5)(1)= -14-5=-19; A_{22} = (-1)^{2+2}(-19)=-19\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"M_{23} = \\\\begin{pmatrix} 2 & -3 \\\\\\\\ 1 & 5 \\\\end{pmatrix} = (2)(5)- (-3)(1)= 10+3=13; A_{23} = (-1)^{2+3}(13)=-13\"\n        },\n        {\n            \"step_id\": \"s8\",\n            \"latex\": \"M_{31} = \\\\begin{pmatrix} -3 & 5 \\\\\\\\ 0 & 4 \\\\end{pmatrix} = (-3)(4)- (5)(0)= -12-0=-12; A_{31} = (-1)^{3+1}(-12)=-12\"\n        },\n        {\n            \"step_id\": \"s9\",\n            \"latex\": \"M_{32} = \\\\begin{pmatrix} 2 & 5 \\\\\\\\ 6 & 4 \\\\end{pmatrix} = (2)(4)- (5)(6)= 8-30=-22; A_{32} = (-1)^{3+2}(-22)=22\"\n        },\n        {\n            \"step_id\": \"s10\",\n            \"latex\": \"M_{33} = \\\\begin{pmatrix} 2 & -3 \\\\\\\\ 6 & 0 \\\\end{pmatrix} = (2)(0)- (-3)(6)= 0+18=18; A_{33} = (-1)^{3+3}(18)=18\"\n        },\n        {\n            \"step_id\": \"s11\",\n            \"latex\": \"Now, a_{11}=2, a_{12}=-3, a_{13}=5; A_{11}=-12, A_{22}=22, A_{33}=18.\"\n        },\n        {\n            \"step_id\": \"s12\",\n            \"latex\": \"$a_1A_{11}+a_{12}A_{22}+a_{13}A_{33}=2(-12)+(-3)(22)+5(18)=-24-66+90=0.$\"\n        }\n    ],\n    \"has_error\": false,\n    \"first_error_step\": null\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_466_pert_1.4",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "GigaChat-2-Pro:2.0.30.01",
+          "status": "ok",
+          "duration_ms": 20792,
+          "tokens_in": 2050,
+          "tokens_out": 1103
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\begin{pmatrix} 2 & -3 & 5 \\\\ 6 & 0 & 4 \\\\ 1 & 5 & -7 \\end{pmatrix}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "M_{11} = \\begin{pmatrix} 0 & 4 \\\\ 5 & -7 \\end{pmatrix} = (0)(-7)- (4)(5)= 0-20=-20; A_{11}= (-1)^{1+1}(-20)=-20",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "M_{12} = \\begin{pmatrix} 6 & 4 \\\\ 1 & -7 \\end{pmatrix} = (6)(-7)-(4)(1)= -42-4= -46; A_{12} = (-1)^{1+2}(-46)=46",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "M_{13} = \\begin{pmatrix} 6 & 0 \\\\ 1 & 5 \\end{pmatrix} = (6)(5)-(0)(1)= 30-0=30; A_{13} = (-1)^{1+3}(30)=30",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "M_{21} = \\begin{pmatrix} -3 & 5 \\\\ 5 & -7 \\end{pmatrix} = (-3)(-7)- (5)(0)= 21-0=21; A_{21} = (-1)^{2+1}(21)=-21",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "M_{22} = \\begin{pmatrix} 2 & 5 \\\\ 1 & -7 \\end{pmatrix} = (2)(-7)- (5)(1)= -14-5=-19; A_{22} = (-1)^{2+2}(-19)=-19",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "M_{23} = \\begin{pmatrix} 2 & -3 \\\\ 1 & 5 \\end{pmatrix} = (2)(5)- (-3)(1)= 10+3=13; A_{23} = (-1)^{2+3}(13)=-13",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "M_{31} = \\begin{pmatrix} -3 & 5 \\\\ 0 & 4 \\end{pmatrix} = (-3)(4)- (5)(0)= -12-0=-12; A_{31} = (-1)^{3+1}(-12)=-12",
+        "derives_from": [
+          "s7"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "M_{32} = \\begin{pmatrix} 2 & 5 \\\\ 6 & 4 \\end{pmatrix} = (2)(4)- (5)(6)= 8-30=-22; A_{32} = (-1)^{3+2}(-22)=22",
+        "derives_from": [
+          "s8"
+        ]
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "M_{33} = \\begin{pmatrix} 2 & -3 \\\\ 6 & 0 \\end{pmatrix} = (2)(0)- (-3)(6)= 0+18=18; A_{33} = (-1)^{3+3}(18)=18",
+        "derives_from": [
+          "s9"
+        ]
+      },
+      {
+        "step_id": "s11",
+        "kind": "step",
+        "latex": "Now, a_{11}=2, a_{12}=-3, a_{13}=5; A_{11}=-12, A_{22}=22, A_{33}=18.",
+        "derives_from": [
+          "s10"
+        ]
+      },
+      {
+        "step_id": "s12",
+        "kind": "step",
+        "latex": "$a_1A_{11}+a_{12}A_{22}+a_{13}A_{33}=2(-12)+(-3)(22)+5(18)=-24-66+90=0.$",
+        "derives_from": [
+          "s11"
+        ]
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
+    "meta": {
+      "run_id": "run-4987f001-780e-4b08-af92-62892f369774",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "e2e_gigachat_v1",
+      "temperature": 0,
+      "duration_ms": 20792,
+      "created_at": "2026-10-10T15:09:41Z",
+      "tokens_in": 2050,
+      "tokens_out": 1103
+    }
+  }
+}

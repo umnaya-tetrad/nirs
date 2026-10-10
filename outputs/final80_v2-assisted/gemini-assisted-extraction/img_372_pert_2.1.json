@@ -1,0 +1,112 @@
+{
+  "status": "ok",
+  "case_id": "img_372_pert_2.1",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gemini_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gemini_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1812,
+    "completion_tokens": 1451,
+    "total_tokens": 3263,
+    "cost": 0.81008658,
+    "cost_rub": 0.81008658
+  },
+  "latency_ms": 16084,
+  "attempts": 1,
+  "raw_response": "{\"schema_version\":\"assisted_extraction_gemini_v2\",\"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Evaluate } \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{dx}{1+\\\\sqrt{\\\\tan x}}\",\"goal\":{\"type\":\"evaluate\",\"target_latex\":\"\\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{dx}{1+\\\\sqrt{\\\\tan x}}\"}},\"steps\":[{\"step_id\":\"s1\",\"latex\":\"\\\\text{Let } I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{dx}{1+\\\\sqrt{\\\\tan x}}\",\"role\":\"definition\",\"derives_from\":[],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s2\",\"latex\":\"I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{\\\\sqrt{\\\\cos x}\\\\,dx}{\\\\sqrt{\\\\cos x} + \\\\sqrt{\\\\sin x}} \\\\quad \\\\dots (1)\",\"role\":\"transformation\",\"derives_from\":[\"s1\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s3\",\"latex\":\"I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{\\\\cos\\\\left(\\\\frac{\\\\pi}{3} + \\\\frac{\\\\pi}{6} - x\\\\right)}{\\\\sqrt{\\\\cos\\\\left(\\\\frac{\\\\pi}{3} + \\\\frac{\\\\pi}{6} - x\\\\right)} + \\\\sqrt{\\\\sin\\\\left(\\\\frac{\\\\pi}{3} + \\\\frac{\\\\pi}{6} - x\\\\right)}} \\\\, dx\",\"role\":\"substitution\",\"derives_from\":[\"s2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s4\",\"latex\":\"= \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{\\\\sqrt{\\\\sin x}}{\\\\sqrt{\\\\sin x} + \\\\sqrt{\\\\cos x}} \\\\, dx \\\\quad \\\\dots (2)\",\"role\":\"transformation\",\"derives_from\":[\"s3\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s5\",\"latex\":\"2I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} dx = [x]_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} = \\\\frac{\\\\pi}{3} - \\\\frac{\\\\pi}{6} = \\\\frac{\\\\pi}{6}\",\"role\":\"transformation\",\"derives_from\":[\"s2\",\"s4\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s6\",\"latex\":\"I = \\\\frac{\\\\pi}{12}\",\"role\":\"answer\",\"derives_from\":[\"s5\"],\"branch\":\"main\",\"exactness\":\"exact\"}]}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_372_pert_2.1",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Evaluate } \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{dx}{1+\\sqrt{\\tan x}}",
+      "goal": {
+        "type": "evaluate",
+        "target_latex": "\\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{dx}{1+\\sqrt{\\tan x}}"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "\\text{Let } I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{dx}{1+\\sqrt{\\tan x}}",
+        "role": "definition",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s2",
+        "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\sqrt{\\cos x}\\,dx}{\\sqrt{\\cos x} + \\sqrt{\\sin x}} \\quad \\dots (1)",
+        "role": "transformation",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s3",
+        "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\cos\\left(\\frac{\\pi}{3} + \\frac{\\pi}{6} - x\\right)}{\\sqrt{\\cos\\left(\\frac{\\pi}{3} + \\frac{\\pi}{6} - x\\right)} + \\sqrt{\\sin\\left(\\frac{\\pi}{3} + \\frac{\\pi}{6} - x\\right)}} \\, dx",
+        "role": "substitution",
+        "derives_from": [
+          "s2"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s4",
+        "latex": "= \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\sqrt{\\sin x}}{\\sqrt{\\sin x} + \\sqrt{\\cos x}} \\, dx \\quad \\dots (2)",
+        "role": "transformation",
+        "derives_from": [
+          "s3"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s5",
+        "latex": "2I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} dx = [x]_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} = \\frac{\\pi}{3} - \\frac{\\pi}{6} = \\frac{\\pi}{6}",
+        "role": "transformation",
+        "derives_from": [
+          "s2",
+          "s4"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s6",
+        "latex": "I = \\frac{\\pi}{12}",
+        "role": "answer",
+        "derives_from": [
+          "s5"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-5164d53b-aae8-4b3f-a96b-a70ea97d815e",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "assisted_extraction_gemini_v2",
+      "temperature": 0,
+      "duration_ms": 16084,
+      "created_at": "2026-10-10T15:16:40Z",
+      "tokens_in": 1812,
+      "tokens_out": 1451
+    }
+  }
+}

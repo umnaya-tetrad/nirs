@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0",
+  "id": "img_173_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{1. The HCF of 36 and 24 is 12. Thus, its standard form would be obtained by dividing by } -12.",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\frac{36}{-24} = \\frac{36 \\div (-12)}{-24 \\div (-12)} = \\frac{-3}{-2}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{2. The HCF of 3 and 15 is 3. Thus,}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\frac{-3}{-15} = \\frac{-3 \\div (-5)}{-15 \\div (-3)} = \\frac{1}{5}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 613
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-fd8e4535-988a-4933-bb71-1cd272f65bff",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1485,
+    "created_at": "2026-10-10T15:50:24.855885Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_173_pert_2.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Reduce to standard form: } 1.\\ \\frac{36}{-24} \\quad 2.\\ \\frac{-3}{-15}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\frac{36}{-24}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\frac{36}{-24}",
+                "kind": "expression",
+                "sides": [
+                  "36/(-24)"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "-24"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "\\frac{-3}{-15}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\frac{-3}{-15}",
+                "kind": "expression",
+                "sides": [
+                  "-3/(-15)"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "-15"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{1. The HCF of 36 and 24 is 12. Thus, its standard form would be obtained by dividing by } -12.",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\frac{36}{-24} = \\frac{36 \\div (-12)}{-24 \\div (-12)} = \\frac{-3}{-2}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{2. The HCF of 3 and 15 is 3. Thus,}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\frac{-3}{-15} = \\frac{-3 \\div (-5)}{-15 \\div (-3)} = \\frac{1}{5}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: 1. The HCF of 36 and 24 is 12. Thus, its standard form would be obtained by dividing by"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: 2. The HCF of 3 and 15 is 3. Thus,; No mathematical expression in the step"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s4",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s2",
+        "s4"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "g2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "g2",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

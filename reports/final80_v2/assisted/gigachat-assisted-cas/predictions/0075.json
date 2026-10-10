@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "id": "img_77_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "D = 9.8 \\text{ m}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "R = \\frac{D}{2} = \\frac{9.8}{2} = 4.9 \\text{ m}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{Area} = \\pi R^2 = \\frac{22}{7} \\times (4.9)^2 \\text{ m}^2 = \\frac{22}{7} \\times 4.9 \\times 4.9 \\text{ m}^2",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\approx 75.46 \\text{ m}^2",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 767
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "OCR exactness is not exact"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-42c157ed-69c4-4eef-9992-55258074d1bf",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1381,
+    "created_at": "2026-10-10T15:51:47.946202Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_77_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "Diameter of a circular garden is 9.8 m. Find its area.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": "\\text{Area}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "D = 9.8 \\text{ m}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "R = \\frac{D}{2} = \\frac{9.8}{2} = 4.9 \\text{ m}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{Area} = \\pi R^2 = \\frac{22}{7} \\times (4.9)^2 \\text{ m}^2 = \\frac{22}{7} \\times 4.9 \\times 4.9 \\text{ m}^2",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\approx 75.46 \\text{ m}^2",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "approximate"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: m; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: m; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: Area; Text/units/conditions are outside the symbolic grammar: m; Repeated superscript; use explicit grouping; Polynomial identity test"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: m; Unsupported token '\\\\approx'"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "A written answer equality is required",
+      "step_id": "s4",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "OCR exactness is not exact",
+      "A written answer equality is required"
+    ]
+  }
+}

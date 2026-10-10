@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0",
+  "id": "img_14_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Let } Q(a,b) \\text{ be equidistant from the points } C(7,1) \\text{ and } D(3,5).",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{We are given that } CQ = DQ\\text{. So, } CQ^2 = DQ^2\\text{, i.e.,}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "(a-7)^2 + (b-1)^2 = (a-3)^2 + (b-5)^2",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\text{i.e., } a^2 - 14a + 49 + b^2 - 2b + 1 = a^2 - 6a + 9 + b^2 - 10b + 25",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\text{i.e., } -14a + 49 - 2b + 1 = -6a + 9 - 10b + 25",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\text{i.e., } -8a + 8b + 16 = 0",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "\\text{which simplifies to } a - b = 2",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "\\text{which is the required relation.}",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1102
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-28084cc8-25d8-4e75-b153-1e91f5c9b165",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1924,
+    "created_at": "2026-10-10T15:50:17.534388Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_14_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find a relation between } x \\text{ and } y \\text{ such that the point } (x,y) \\text{ is equidistant from the points } (7,1) \\text{ and } (3,5).",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Let } Q(a,b) \\text{ be equidistant from the points } C(7,1) \\text{ and } D(3,5).",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{We are given that } CQ = DQ\\text{. So, } CQ^2 = DQ^2\\text{, i.e.,}",
+          "role": "initial",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "(a-7)^2 + (b-1)^2 = (a-3)^2 + (b-5)^2",
+          "role": "substitution",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\text{i.e., } a^2 - 14a + 49 + b^2 - 2b + 1 = a^2 - 6a + 9 + b^2 - 10b + 25",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\text{i.e., } -14a + 49 - 2b + 1 = -6a + 9 - 10b + 25",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\text{i.e., } -8a + 8b + 16 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "\\text{which simplifies to } a - b = 2",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "\\text{which is the required relation.}",
+          "role": "answer",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Let; Text/units/conditions are outside the symbolic grammar: be equidistant from the points; Unsupported input at character 3"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: We are given that; Text/units/conditions are outside the symbolic grammar: . So,; Text/units/conditions are outside the symbolic grammar: , i.e.,; Symbolic equation is a premise; checked against previous equation when applicable; Polynomial identity test; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identical polynomial equations"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identical polynomial equations"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identical polynomial equations"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: which simplifies to; Symbolic equation is a premise; checked against previous equation when applicable; Equations differ by a nonzero constant factor"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: which is the required relation.; No mathematical expression in the step"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s8",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

@@ -1,0 +1,449 @@
+{
+  "schema_version": "1.0",
+  "id": "img_574_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "Comparing the given polynomial with ax^3+bx^2+cx+d,\\text{we get a}=3,b=-5,c=-11,d=-3.",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "Further,\np(3)=3⋅3^3-(5⋅3^2)-(11⋅3)-3=81-45-33-3=0,",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "p(-1)=3⋅(-1)^3-5⋅(-1)^2-11⋅(-1)-3=-3-5+11-3=0,",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "p(-\\frac{1}{3})=3⋅(-\\frac{1}{3})^3-5⋅(-\\frac{1}{3})^2-11⋅(-\\frac{1}{3})-3=\n=3⋅(-\\frac{1}{27})-5⋅(\\frac{1}{9})+\\frac{11}{3}-3=-\\frac{1}{9}-\\frac{5}{9}+\\frac{11}{3}-3=0.",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "Therefore, 3,-1,-\\frac{1}{3} \\text{are the zeros of } 3x^3-5x^2-11x-3.\nSo we take α=3 β=-1 and r=-\\frac{1}{3}.",
+      "derives_from": [
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "α+β+r=3+(-1)+(-\\frac{1}{3})=\\frac{2}{3}=-\\frac{a}{b},",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "αβ+βr+ra=3⋅(-1)+(-1)⋅(-\\frac{1}{3})+(-1)⋅3=-3+\\frac{1}{3}-1=-\\frac{11}{3}=\\frac{c}{a},",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "αβr=3⋅(-1)⋅(-\\frac{1}{3})=1=-\\frac{d}{a}.",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 781
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 0"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 0"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 0"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-34e88a8b-aa6e-4dde-9b25-4aa7140eee64",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1460,
+    "created_at": "2026-10-10T15:51:36.551487Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_574_pert_2.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Verify that } 3,-1,-\\frac{1}{3} \\text{ are the zeros of the cubic polynomial}\nP(x)=3x^3-5x^2-11x-3,\\text{and then verify the relationship between the zeros and coefficients.}",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "prove",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "Comparing the given polynomial with ax^3+bx^2+cx+d,\\text{we get a}=3,b=-5,c=-11,d=-3.",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "Further,\np(3)=3⋅3^3-(5⋅3^2)-(11⋅3)-3=81-45-33-3=0,",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "p(-1)=3⋅(-1)^3-5⋅(-1)^2-11⋅(-1)-3=-3-5+11-3=0,",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "p(-\\frac{1}{3})=3⋅(-\\frac{1}{3})^3-5⋅(-\\frac{1}{3})^2-11⋅(-\\frac{1}{3})-3=\n=3⋅(-\\frac{1}{27})-5⋅(\\frac{1}{9})+\\frac{11}{3}-3=-\\frac{1}{9}-\\frac{5}{9}+\\frac{11}{3}-3=0.",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "Therefore, 3,-1,-\\frac{1}{3} \\text{are the zeros of } 3x^3-5x^2-11x-3.\nSo we take α=3 β=-1 and r=-\\frac{1}{3}.",
+          "role": "transformation",
+          "derives_from": [
+            "s2",
+            "s3",
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "α+β+r=3+(-1)+(-\\frac{1}{3})=\\frac{2}{3}=-\\frac{a}{b},",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "αβ+βr+ra=3⋅(-1)+(-1)⋅(-\\frac{1}{3})+(-1)⋅3=-3+\\frac{1}{3}-1=-\\frac{11}{3}=\\frac{c}{a},",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "αβr=3⋅(-1)⋅(-\\frac{1}{3})=1=-\\frac{d}{a}.",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: we get a; More than 8 variables; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Expected a nonempty LaTeX string; Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: are the zeros of; Unsupported input at character 29; Unsupported input at character 2; Polynomial identity test"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Unsupported input at character 0; Exact expression identity with preserved domain; Exact counterexample at {a: 1, b: 1}: difference=5/3"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Unsupported input at character 0; Unsupported input at character 1; Exact expression identity with preserved domain; Exact counterexample at {a: 1, c: 1}: difference=-14/3"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Unsupported input at character 0; Unsupported input at character 1; Exact counterexample at {a: 1, d: 1}: difference=2"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Bare word is not an exact mathematical token",
+      "step_id": "s8",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token"
+        },
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "s1",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "s2",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s3",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0"
+        },
+        {
+          "from": "s5",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0"
+        },
+        {
+          "from": "s5",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Bare word is not an exact mathematical token",
+      "Unsupported input at character 1",
+      "Unsupported input at character 1",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported input at character 0",
+      "Unsupported input at character 0",
+      "Unsupported input at character 0",
+      "Bare word is not an exact mathematical token"
+    ]
+  }
+}

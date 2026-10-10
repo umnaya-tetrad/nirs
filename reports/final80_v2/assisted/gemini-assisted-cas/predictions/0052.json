@@ -1,0 +1,545 @@
+{
+  "schema_version": "1.0",
+  "id": "img_488_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "x + 2y = 3",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "x = 3 - 2y \\quad (3)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "7(3 - 2y) - 15y = 2",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "21 - 14y - 15y = 2",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "21 - 29y = 2",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "-29y = -19",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "y = \\frac{19}{29}",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "x = 3 - 2\\left(\\frac{19}{29}\\right) = \\frac{49}{29}",
+      "derives_from": [
+        "s2",
+        "s7"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "x = \\frac{49}{29}, \\quad y = \\frac{19}{29}",
+      "derives_from": [
+        "s7",
+        "s8"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 791
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-bf3f1d58-6ce6-4303-85b9-3d5b1d77e1d9",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1616,
+    "created_at": "2026-10-10T15:51:23.870709Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_488_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Solve the following pair of equations by substitution method: } 7x - 15y = 2 \\quad (1), \\quad x + 2y = 3 \\quad (2)",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "7x - 15y = 2",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "7x - 15y = 2",
+                "kind": "equation",
+                "sides": [
+                  "7*x - 15*y",
+                  "2"
+                ],
+                "symbols": [
+                  "x",
+                  "y"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "x + 2y = 3",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "x + 2y = 3",
+                "kind": "equation",
+                "sides": [
+                  "x + 2*y",
+                  "3"
+                ],
+                "symbols": [
+                  "x",
+                  "y"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "x, y"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "x + 2y = 3",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "x = 3 - 2y \\quad (3)",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "7(3 - 2y) - 15y = 2",
+          "role": "substitution",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "latex": "21 - 14y - 15y = 2",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "21 - 29y = 2",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "-29y = -19",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "y = \\frac{19}{29}",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "x = 3 - 2\\left(\\frac{19}{29}\\right) = \\frac{49}{29}",
+          "role": "substitution",
+          "derives_from": [
+            "s2",
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "x = \\frac{49}{29}, \\quad y = \\frac{19}{29}",
+          "role": "answer",
+          "derives_from": [
+            "s7",
+            "s8"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate solution-set equivalence not established"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Requires one task equation",
+      "step_id": "s9",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s8"
+      ],
+      "unsupported_steps": [
+        "s2",
+        "s3",
+        "s9"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "g1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s8",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s8",
+          "to": "s9",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "Requires one task equation"
+    ]
+  }
+}

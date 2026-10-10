@@ -1,0 +1,172 @@
+{
+  "status": "ok",
+  "case_id": "img_560_pert_1.5",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gemini_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gemini_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1799,
+    "completion_tokens": 1257,
+    "total_tokens": 3056,
+    "cost": 0.72226094,
+    "cost_rub": 0.72226094
+  },
+  "latency_ms": 11319,
+  "attempts": 1,
+  "raw_response": "{\"schema_version\":\"assisted_extraction_gemini_v2\",\"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Question: Find the value of the following expressions for } a=3,\\\\ b=2.\\\\\\n1.\\\\ a+b\\\\\\n2.\\\\ 7a-4b\\\\\\n3.\\\\ a^2+2ab+b^2\\\\\\n4.\\\\ a^3-b^3\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"a=3\"},{\"given_id\":\"g2\",\"latex\":\"b=2\"}],\"goal\":{\"type\":\"evaluate\"}},\"steps\":[{\"step_id\":\"s1\",\"latex\":\"\\\\text{Answer: Substituting } a=3 \\\\text{ and } b=2 \\\\text{ in,}\",\"role\":\"definition\",\"derives_from\":[],\"uses_givens\":[\"g1\",\"g2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s2\",\"latex\":\"\\\\text{1. For } a+b,\",\"role\":\"initial\",\"derives_from\":[],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s3\",\"latex\":\"a+b = 3+2 = 5\",\"role\":\"substitution\",\"derives_from\":[\"s2\"],\"uses_givens\":[\"g1\",\"g2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s4\",\"latex\":\"\\\\text{2. For } 7a-4b,\",\"role\":\"initial\",\"derives_from\":[],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s5\",\"latex\":\"7a-4b = 7 \\\\times 3 - 4 \\\\times 2 = 21-8 = 13\",\"role\":\"substitution\",\"derives_from\":[\"s4\"],\"uses_givens\":[\"g1\",\"g2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s6\",\"latex\":\"\\\\text{3. For } a^2+2ab+b^2,\",\"role\":\"initial\",\"derives_from\":[],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s7\",\"latex\":\"a^2+2ab+b^2 = 3^2+2 \\\\times 3 \\\\times 2+2^2 = 9+21+4\",\"role\":\"substitution\",\"derives_from\":[\"s6\"],\"uses_givens\":[\"g1\",\"g2\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s8\",\"latex\":\"= 34\",\"role\":\"transformation\",\"derives_from\":[\"s7\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s9\",\"latex\":\"\\\\text{4. For } a^3-b^3,\",\"role\":\"initial\",\"derives_from\":[],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s10\",\"latex\":\"a^3-b^3 = 3^3-2^3 = 27-8 = 19\",\"role\":\"substitution\",\"derives_from\":[\"s9\"],\"uses_givens\":[\"g1\",\"g2\"],\"branch\":\"main\",\"exactness\":\"exact\"}]}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_560_pert_1.5",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Question: Find the value of the following expressions for } a=3,\\ b=2.\\\n1.\\ a+b\\\n2.\\ 7a-4b\\\n3.\\ a^2+2ab+b^2\\\n4.\\ a^3-b^3",
+      "givens": [
+        {
+          "given_id": "g1",
+          "latex": "a=3"
+        },
+        {
+          "given_id": "g2",
+          "latex": "b=2"
+        }
+      ],
+      "goal": {
+        "type": "evaluate"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "\\text{Answer: Substituting } a=3 \\text{ and } b=2 \\text{ in,}",
+        "role": "definition",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "latex": "\\text{1. For } a+b,",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s3",
+        "latex": "a+b = 3+2 = 5",
+        "role": "substitution",
+        "derives_from": [
+          "s2"
+        ],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "latex": "\\text{2. For } 7a-4b,",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s5",
+        "latex": "7a-4b = 7 \\times 3 - 4 \\times 2 = 21-8 = 13",
+        "role": "substitution",
+        "derives_from": [
+          "s4"
+        ],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "latex": "\\text{3. For } a^2+2ab+b^2,",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s7",
+        "latex": "a^2+2ab+b^2 = 3^2+2 \\times 3 \\times 2+2^2 = 9+21+4",
+        "role": "substitution",
+        "derives_from": [
+          "s6"
+        ],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "latex": "= 34",
+        "role": "transformation",
+        "derives_from": [
+          "s7"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s9",
+        "latex": "\\text{4. For } a^3-b^3,",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s10",
+        "latex": "a^3-b^3 = 3^3-2^3 = 27-8 = 19",
+        "role": "substitution",
+        "derives_from": [
+          "s9"
+        ],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1",
+          "g2"
+        ]
+      }
+    ],
+    "meta": {
+      "run_id": "run-2c40bc8d-6658-4c94-9c2a-4b87dd801626",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "assisted_extraction_gemini_v2",
+      "temperature": 0,
+      "duration_ms": 11319,
+      "created_at": "2026-10-10T15:19:51Z",
+      "tokens_in": 1799,
+      "tokens_out": 1257
+    }
+  }
+}

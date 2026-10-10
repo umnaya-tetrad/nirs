@@ -1,0 +1,461 @@
+{
+  "schema_version": "1.0",
+  "id": "img_372_pert_2.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{d x}{\\sqrt{1+\\tan x}}.",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "Let I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{d x}{\\sqrt{1 + \\tan x}}.",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "Then, by P₃:",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{cos x dx}{\\sqrt{cos x}+\\sqrt{sin x}}. ---(①)",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "We have :",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{cos(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x)}{\\sqrt{cos(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x)+\\sqrt{sin(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x)}}dx.",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "= \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{\\sqrt{sin x}}{\\sqrt{sin x}+\\sqrt{cos x}}dx. ---(②)",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "(①)(②) We get :",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "Adding (①) and (②);",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "2I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}dx=[x]_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}=\\frac{\\pi}{3}-\\frac{\\pi}{6}=\\frac{\\pi}{6}.",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s11",
+      "latex": "Hence , I = \\frac{\\pi}{12}.",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 708
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Functions are outside the selected algebra subset"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unbalanced delimiters"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Functions are outside the selected algebra subset"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s11",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-399953f7-024f-4c32-baeb-68ee3bf31be9",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1272,
+    "created_at": "2026-10-10T15:50:37.630389Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_372_pert_2.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Evaluate}\\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{d x}{\\sqrt{1+\\tan x}}.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{d x}{\\sqrt{1+\\tan x}}.",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "Let I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{d x}{\\sqrt{1 + \\tan x}}.",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "Then, by P₃:",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{cos x dx}{\\sqrt{cos x}+\\sqrt{sin x}}. ---(①)",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "We have :",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{cos(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x)}{\\sqrt{cos(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x)+\\sqrt{sin(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x)}}dx.",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "= \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}\\frac{\\sqrt{sin x}}{\\sqrt{sin x}+\\sqrt{cos x}}dx. ---(②)",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "(①)(②) We get :",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "Adding (①) and (②);",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s10",
+          "latex": "2I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}dx=[x]_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}}=\\frac{\\pi}{3}-\\frac{\\pi}{6}=\\frac{\\pi}{6}.",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s11",
+          "latex": "Hence , I = \\frac{\\pi}{12}.",
+          "role": "answer",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "definite_integral",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\int'"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\int'"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 4"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Functions are outside the selected algebra subset"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 8"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Unbalanced delimiters"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Functions are outside the selected algebra subset; Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 8"
+        },
+        {
+          "step_id": "s10",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\int'; Unconsumed token '_'; one expression/equation per step; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s11",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "definite integral with explicit bounds was not found",
+      "step_id": null,
+      "rule": "definite_integral",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\int'",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\int'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Functions are outside the selected algebra subset",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unbalanced delimiters",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Functions are outside the selected algebra subset",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\int'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported token '\\\\int'",
+      "Unsupported token '\\\\int'",
+      "Bare word is not an exact mathematical token",
+      "Functions are outside the selected algebra subset",
+      "Bare word is not an exact mathematical token",
+      "Unbalanced delimiters",
+      "Functions are outside the selected algebra subset",
+      "Unsupported input at character 1",
+      "Bare word is not an exact mathematical token",
+      "Unsupported token '\\\\int'",
+      "Bare word is not an exact mathematical token",
+      "definite integral with explicit bounds was not found"
+    ]
+  }
+}

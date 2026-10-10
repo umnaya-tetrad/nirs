@@ -1,0 +1,125 @@
+{
+  "status": "ok",
+  "case_id": "img_91_pert_2.3",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gigachat_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gigachat_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 1536,
+    "completion_tokens": 394,
+    "total_tokens": 1930,
+    "estimated_cost_rub": 0.965,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 9235,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"e2e_gigachat_v1\",\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\cot x = \\\\frac{-5}{12}\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"\\\\tan x = \\\\frac{-12}{5}\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"\\\\sec^2 x = 1 + \\\\tan^2 x = 1 + (-\\\\frac{12}{5})^2 = 1 + \\\\frac{144}{25} = \\\\frac{169}{25}\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"\\\\sec x = \\\\pm \\\\frac{13}{5}\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"\\\\sec x = -\\\\frac{13}{5}\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"\\\\cos x = -\\\\frac{5}{13}\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"\\\\sin x = \\\\sqrt{1 - \\\\cos^2 x} = \\\\sqrt{1 - (-\\\\frac{5}{13})^2} = \\\\sqrt{1 - \\\\frac{25}{169}} = \\\\sqrt{\\\\frac{144}{169}} = \\\\frac{12}{13}\"\n        },\n        {\n            \"step_id\": \"s8\",\n            \"latex\": \"\\\\csc x = \\\\frac{1}{\\\\sin x} = \\\\frac{13}{12}\"\n        }\n    ],\n    \"has_error\": false,\n    \"first_error_step\": null\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_91_pert_2.3",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "GigaChat-2-Pro:2.0.30.01",
+          "status": "ok",
+          "duration_ms": 9235,
+          "tokens_in": 1536,
+          "tokens_out": 394
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\cot x = \\frac{-5}{12}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\tan x = \\frac{-12}{5}",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\sec^2 x = 1 + \\tan^2 x = 1 + (-\\frac{12}{5})^2 = 1 + \\frac{144}{25} = \\frac{169}{25}",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\sec x = \\pm \\frac{13}{5}",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "\\sec x = -\\frac{13}{5}",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\cos x = -\\frac{5}{13}",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "\\sin x = \\sqrt{1 - \\cos^2 x} = \\sqrt{1 - (-\\frac{5}{13})^2} = \\sqrt{1 - \\frac{25}{169}} = \\sqrt{\\frac{144}{169}} = \\frac{12}{13}",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "\\csc x = \\frac{1}{\\sin x} = \\frac{13}{12}",
+        "derives_from": [
+          "s7"
+        ]
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
+    "meta": {
+      "run_id": "run-e1582e8c-45bf-4b89-8ae1-ff5b6399eb10",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "e2e_gigachat_v1",
+      "temperature": 0,
+      "duration_ms": 9235,
+      "created_at": "2026-10-10T15:11:23Z",
+      "tokens_in": 1536,
+      "tokens_out": 394
+    }
+  }
+}

@@ -1,0 +1,444 @@
+{
+  "schema_version": "1.0",
+  "id": "img_226_pert_2.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "( 2 − 5 ÷ 2 8 × 2 − 5 ) = ( 2 − 5 ) ÷ ( 2 8 × 2 − 5 )",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= ( 2 − 5 ) ÷ ( 2 8 × 2 − 5 ) = ( 2 − 5 ) ÷ ( 2 8 × 2 − 5 )",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= 2 − 5 − 5 = 2 − 20",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "( − 4 ) − 3 × ( 5 ) − 3 × ( − 5 ) − 3 = [ ( − 4 ) × 5 × ( − 5 ) ] − 3",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "= [ 100 ] − 3",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "⅛ × ( 3 ) − 3 = ⅛ × 3 − 3",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "= 2 − 3 × 3 − 3 = ( 2 × 3 ) − 3 = 6 − 3",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "( − 3 ) 9 × ( 5 / 3 ) 4 = ( − 1 ) 9 × 3 9 × 5 4 / 3 4",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "= ( − 1 ) 9 × 5 4",
+      "derives_from": [
+        "s8"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 820
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Adjacent numeric literals require an explicit operator"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Adjacent numeric literals require an explicit operator"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 0"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Adjacent numeric literals require an explicit operator"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Adjacent numeric literals require an explicit operator"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-d6f87b74-b07a-4081-a65a-77ec2306aa2a",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1545,
+    "created_at": "2026-10-10T15:50:29.858055Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_226_pert_2.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Simplify and write the answer in the exponential form.} \n\n$1. \\left( 2^{-5} + 2^{8} \\times 2^{-5} \\right)$\n$2. (-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3}$\n$3. \\frac{1}{8} \\times (3)^{-3}$\n$4. (-3)^{9} \\times \\left( \\frac{5}{3} \\right)^4$",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "( 2 − 5 ÷ 2 8 × 2 − 5 ) = ( 2 − 5 ) ÷ ( 2 8 × 2 − 5 )",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= ( 2 − 5 ) ÷ ( 2 8 × 2 − 5 ) = ( 2 − 5 ) ÷ ( 2 8 × 2 − 5 )",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= 2 − 5 − 5 = 2 − 20",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "( − 4 ) − 3 × ( 5 ) − 3 × ( − 5 ) − 3 = [ ( − 4 ) × 5 × ( − 5 ) ] − 3",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "= [ 100 ] − 3",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "⅛ × ( 3 ) − 3 = ⅛ × 3 − 3",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "= 2 − 3 × 3 − 3 = ( 2 × 3 ) − 3 = 6 − 3",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "( − 3 ) 9 × ( 5 / 3 ) 4 = ( − 1 ) 9 × 3 9 × 5 4 / 3 4",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "= ( − 1 ) 9 × 5 4",
+          "role": "transformation",
+          "derives_from": [
+            "s8"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Adjacent numeric literals require an explicit operator; Adjacent numeric literals require an explicit operator"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Adjacent numeric literals require an explicit operator; Adjacent numeric literals require an explicit operator; Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Continuation has no readable predecessor; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 0; Unsupported input at character 0"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Continuation has no readable predecessor; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Adjacent numeric literals require an explicit operator"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "indeterminate",
+          "note": "Adjacent numeric literals require an explicit operator; Continuation has no readable predecessor"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s9",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s4"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Adjacent numeric literals require an explicit operator",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Adjacent numeric literals require an explicit operator",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 0",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Adjacent numeric literals require an explicit operator",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Adjacent numeric literals require an explicit operator",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Adjacent numeric literals require an explicit operator"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s8",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Adjacent numeric literals require an explicit operator"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Adjacent numeric literals require an explicit operator",
+      "Adjacent numeric literals require an explicit operator",
+      "Continuation requires one readable dependency",
+      "Unsupported input at character 0",
+      "Continuation requires one readable dependency",
+      "Adjacent numeric literals require an explicit operator",
+      "Adjacent numeric literals require an explicit operator",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

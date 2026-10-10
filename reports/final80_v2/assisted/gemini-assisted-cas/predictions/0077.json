@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "id": "img_78_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "4\\pi a^2 = 4 \\times \\frac{22}{7} \\times a \\times a\\text{ cm}^2 = 616\\text{ cm}^2",
+      "derives_from": [],
+      "kind": "initial"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 800
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+        "actual_latex": "4\\pi a^2 = 4 \\times \\frac{22}{7} \\times a \\times a\\text{ cm}^2 = 616\\text{ cm}^2",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-ae33570b-8601-4b56-8523-ca28a8a4c6b6",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1393,
+    "created_at": "2026-10-10T15:52:06.937004Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_78_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find the surface area of a sphere of radius } 7\\text{ cm.}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "r = 7\\text{ cm}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported token '\\\\text'"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\text{surface area of a sphere}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "4\\pi a^2 = 4 \\times \\frac{22}{7} \\times a \\times a\\text{ cm}^2 = 616\\text{ cm}^2",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unsupported token '\\\\text'"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "4\\pi a^2 = 4 \\times \\frac{22}{7} \\times a \\times a\\text{ cm}^2 = 616\\text{ cm}^2",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported token '\\\\text'",
+      "step_id": "s1",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported token '\\\\text'"
+    ]
+  }
+}

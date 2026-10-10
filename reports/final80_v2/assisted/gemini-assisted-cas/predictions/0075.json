@@ -1,0 +1,299 @@
+{
+  "schema_version": "1.0",
+  "id": "img_68_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Answer: The direction ratios of the first line are } 3,5,4 \\text{ and the direction ratios of the second line are } 1, 1, 2\\text{ . If } \\theta \\text{ is the angle between them, then}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\cos\\theta = \\left|\\frac{3\\cdot 1 + 5\\cdot 1 + 4\\cdot 2}{\\sqrt{3^2 + 5^2 + 4^2}\\sqrt{1^2 + 1^2 + 2^2}}\\right| = \\frac{16}{\\sqrt{50}\\sqrt{6}}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= \\frac{16}{\\sqrt{50}\\times\\sqrt{6}} = \\frac{16}{5\\sqrt{6}} = \\frac{8\\sqrt{3}}{15}.",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\text{Hence, the required angle is } \\cos^{-1}\\left(\\frac{8\\sqrt{3}}{15}\\right).",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1167
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-6c84f290-13ad-4880-bac5-07cba04ba8c1",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 2077,
+    "created_at": "2026-10-10T15:52:03.912263Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_68_pert_2.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find the angle between the pair of lines }\\frac{x+3}{3} = \\frac{y-1}{5} = \\frac{z+3}{4} \\text{ and } \\frac{x+1}{1} = \\frac{y-4}{1} = \\frac{z-5}{2}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\frac{x+3}{3} = \\frac{y-1}{5} = \\frac{z+3}{4}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unconsumed token '='; one expression/equation per step"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "\\frac{x+1}{1} = \\frac{y-4}{1} = \\frac{z-5}{2}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unconsumed token '='; one expression/equation per step"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\theta"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Answer: The direction ratios of the first line are } 3,5,4 \\text{ and the direction ratios of the second line are } 1, 1, 2\\text{ . If } \\theta \\text{ is the angle between them, then}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\cos\\theta = \\left|\\frac{3\\cdot 1 + 5\\cdot 1 + 4\\cdot 2}{\\sqrt{3^2 + 5^2 + 4^2}\\sqrt{1^2 + 1^2 + 2^2}}\\right| = \\frac{16}{\\sqrt{50}\\sqrt{6}}",
+          "role": "substitution",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= \\frac{16}{\\sqrt{50}\\times\\sqrt{6}} = \\frac{16}{5\\sqrt{6}} = \\frac{8\\sqrt{3}}{15}.",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\text{Hence, the required angle is } \\cos^{-1}\\left(\\frac{8\\sqrt{3}}{15}\\right).",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unconsumed token '='; one expression/equation per step",
+          "given g2 is not in the exact SymPy subset: Unconsumed token '='; one expression/equation per step"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Answer: The direction ratios of the first line are; Text/units/conditions are outside the symbolic grammar: and the direction ratios of the second line are; Text/units/conditions are outside the symbolic grammar: . If; Text/units/conditions are outside the symbolic grammar: is the angle between them, then; Adjacent numeric literals require an explicit operator"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: Hence, the required angle is; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "A written answer equality is required",
+      "step_id": "s4",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s3"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "A written answer equality is required"
+    ]
+  }
+}

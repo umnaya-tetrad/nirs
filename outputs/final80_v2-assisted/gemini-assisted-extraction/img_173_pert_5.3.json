@@ -1,0 +1,110 @@
+{
+  "status": "ok",
+  "case_id": "img_173_pert_5.3",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gemini_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gemini_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1802,
+    "completion_tokens": 1291,
+    "total_tokens": 3093,
+    "cost": 0.73771754,
+    "cost_rub": 0.73771754
+  },
+  "latency_ms": 16540,
+  "attempts": 1,
+  "raw_response": "{\"schema_version\":\"assisted_extraction_gemini_v2\",\"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Question: Reduce to standard form:}\\\\newline 1.\\\\ \\\\frac{36}{-24}\\\\newline 2.\\\\ \\\\frac{-3}{-15}\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"\\\\frac{36}{-24}\"},{\"given_id\":\"g2\",\"latex\":\"\\\\frac{-3}{-15}\"}],\"goal\":{\"type\":\"simplify\"}},\"steps\":[{\"step_id\":\"s1\",\"latex\":\"\\\\text{The HCF of 36 and 24 is 12. Thus, its standard form would be obtained by dividing by } -12. \\\\text{ To confirm, we can also check that 36 is } 6 \\\\times 6 \\\\text{ and } -24 \\\\text{ is } -6 \\\\times 4\\\\text{, so the simplification holds.}\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s2\",\"latex\":\"\\\\frac{36}{-24} = \\\\frac{36 \\\\div (-12)}{-24 \\\\div (-12)} = \\\\frac{-3}{2}\",\"role\":\"answer\",\"derives_from\":[\"s1\"],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"},{\"step_id\":\"s3\",\"latex\":\"\\\\text{The HCF of 3 and 15 is 3. Thus, since } -3 \\\\text{ is a prime number,}\",\"role\":\"independent\",\"derives_from\":[],\"uses_givens\":[\"g2\"],\"branch\":\"independent\",\"exactness\":\"exact\"},{\"step_id\":\"s4\",\"latex\":\"\\\\frac{-3}{-15} = \\\\frac{-3 \\\\div (-3)}{-15 \\\\div (-3)} = \\\\frac{1}{5}\",\"role\":\"answer\",\"derives_from\":[\"s3\"],\"uses_givens\":[\"g2\"],\"branch\":\"independent\",\"exactness\":\"exact\"}]}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_173_pert_5.3",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Question: Reduce to standard form:}\\newline 1.\\ \\frac{36}{-24}\\newline 2.\\ \\frac{-3}{-15}",
+      "givens": [
+        {
+          "given_id": "g1",
+          "latex": "\\frac{36}{-24}"
+        },
+        {
+          "given_id": "g2",
+          "latex": "\\frac{-3}{-15}"
+        }
+      ],
+      "goal": {
+        "type": "simplify"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "\\text{The HCF of 36 and 24 is 12. Thus, its standard form would be obtained by dividing by } -12. \\text{ To confirm, we can also check that 36 is } 6 \\times 6 \\text{ and } -24 \\text{ is } -6 \\times 4\\text{, so the simplification holds.}",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "latex": "\\frac{36}{-24} = \\frac{36 \\div (-12)}{-24 \\div (-12)} = \\frac{-3}{2}",
+        "role": "answer",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "latex": "\\text{The HCF of 3 and 15 is 3. Thus, since } -3 \\text{ is a prime number,}",
+        "role": "independent",
+        "derives_from": [],
+        "branch": "independent",
+        "exactness": "exact",
+        "uses_givens": [
+          "g2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "latex": "\\frac{-3}{-15} = \\frac{-3 \\div (-3)}{-15 \\div (-3)} = \\frac{1}{5}",
+        "role": "answer",
+        "derives_from": [
+          "s3"
+        ],
+        "branch": "independent",
+        "exactness": "exact",
+        "uses_givens": [
+          "g2"
+        ]
+      }
+    ],
+    "meta": {
+      "run_id": "run-25b998ac-0d28-4a98-afc2-0932afbfa5ec",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "assisted_extraction_gemini_v2",
+      "temperature": 0,
+      "duration_ms": 16540,
+      "created_at": "2026-10-10T15:09:19Z",
+      "tokens_in": 1802,
+      "tokens_out": 1291
+    }
+  }
+}

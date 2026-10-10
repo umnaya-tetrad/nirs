@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0",
+  "id": "img_233_pert_3.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\left(\\frac{3}{5}\\right)^4 = \\frac{3^4}{5^4}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\frac{3^4}{5^4} = \\frac{3 + 3 + 3 + 3}{5 + 5 + 5 + 5}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\left(-\\frac{4}{7}\\right)^5 = \\frac{(-4)^5}{7^5}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\frac{(-4)^5}{7^5} = \\frac{(-4) + (-4) + (-4) + (-4) + (-4)}{7 + 7 + 7 + 7 + 7}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 830
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "OCR exactness is not exact"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "OCR exactness is not exact"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-f3718a5e-6613-44d0-8a29-a4b1cfaa778d",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1645,
+    "created_at": "2026-10-10T15:50:33.052638Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_233_pert_3.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Expand}: \\\\\\ 1. \\left(\\frac{3}{5}\\right)^4 \\\\\\ 2. \\left(-\\frac{4}{7}\\right)^5",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\left(\\frac{3}{5}\\right)^4 = \\frac{3^4}{5^4}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\frac{3^4}{5^4} = \\frac{3 + 3 + 3 + 3}{5 + 5 + 5 + 5}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "unknown"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\left(-\\frac{4}{7}\\right)^5 = \\frac{(-4)^5}{7^5}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\frac{(-4)^5}{7^5} = \\frac{(-4) + (-4) + (-4) + (-4) + (-4)}{7 + 7 + 7 + 7 + 7}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "unknown"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "\\frac{3^4}{5^4} = \\frac{3 + 3 + 3 + 3}{5 + 5 + 5 + 5}",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s4",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "\\frac{(-4)^5}{7^5} = \\frac{(-4) + (-4) + (-4) + (-4) + (-4)}{7 + 7 + 7 + 7 + 7}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s4",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s2",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "OCR exactness is not exact"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "OCR exactness is not exact",
+      "OCR exactness is not exact",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="679" viewBox="0 0 1060 679">
+<title>Direct E2E versus Assisted CAS: correct determinate / domain n</title>
+<text x="240" y="28" font-family="sans-serif" font-size="19">Direct E2E versus Assisted CAS: correct determinate / domain n</text>
+<rect x="240" y="43" width="14" height="14" fill="#357edd"/>
+<text x="260" y="55" font-family="sans-serif" font-size="13">Gemini Assisted CAS</text>
+<rect x="430" y="43" width="14" height="14" fill="#1b9e77"/>
+<text x="450" y="55" font-family="sans-serif" font-size="13">Gemini E2E</text>
+<rect x="620" y="43" width="14" height="14" fill="#d95f02"/>
+<text x="640" y="55" font-family="sans-serif" font-size="13">GigaChat Assisted CAS</text>
+<rect x="810" y="43" width="14" height="14" fill="#7570b3"/>
+<text x="830" y="55" font-family="sans-serif" font-size="13">GigaChat E2E</text>
+<text x="231" y="104" text-anchor="end" font-family="sans-serif" font-size="12">algebraic_expression</text>
+<rect x="240.0" y="82" width="45.6" height="22" fill="#357edd"/>
+<text x="289.6" y="98" font-family="sans-serif" font-size="11">33%</text>
+<rect x="418.8" y="82" width="91.2" height="22" fill="#1b9e77"/>
+<text x="513.9" y="98" font-family="sans-serif" font-size="11">67%</text>
+<rect x="597.5" y="82" width="34.2" height="22" fill="#d95f02"/>
+<text x="635.7" y="98" font-family="sans-serif" font-size="11">25%</text>
+<rect x="776.2" y="82" width="91.2" height="22" fill="#7570b3"/>
+<text x="871.4" y="98" font-family="sans-serif" font-size="11">67%</text>
+<text x="231" y="162" text-anchor="end" font-family="sans-serif" font-size="12">arithmetic</text>
+<rect x="240.0" y="140" width="41.0" height="22" fill="#357edd"/>
+<text x="285.0" y="156" font-family="sans-serif" font-size="11">30%</text>
+<rect x="418.8" y="140" width="123.1" height="22" fill="#1b9e77"/>
+<text x="545.8" y="156" font-family="sans-serif" font-size="11">90%</text>
+<rect x="597.5" y="140" width="41.0" height="22" fill="#d95f02"/>
+<text x="642.5" y="156" font-family="sans-serif" font-size="11">30%</text>
+<rect x="776.2" y="140" width="95.7" height="22" fill="#7570b3"/>
+<text x="876.0" y="156" font-family="sans-serif" font-size="11">70%</text>
+<text x="231" y="220" text-anchor="end" font-family="sans-serif" font-size="12">calculus</text>
+<rect x="240.0" y="198" width="17.1" height="22" fill="#357edd"/>
+<text x="261.1" y="214" font-family="sans-serif" font-size="11">12%</text>
+<rect x="418.8" y="198" width="102.6" height="22" fill="#1b9e77"/>
+<text x="525.3" y="214" font-family="sans-serif" font-size="11">75%</text>
+<rect x="597.5" y="198" width="17.1" height="22" fill="#d95f02"/>
+<text x="618.6" y="214" font-family="sans-serif" font-size="11">12%</text>
+<rect x="776.2" y="198" width="68.4" height="22" fill="#7570b3"/>
+<text x="848.6" y="214" font-family="sans-serif" font-size="11">50%</text>
+<text x="231" y="278" text-anchor="end" font-family="sans-serif" font-size="12">equation</text>
+<rect x="240.0" y="256" width="0.0" height="22" fill="#357edd"/>
+<text x="244.0" y="272" font-family="sans-serif" font-size="11">0%</text>
+<rect x="418.8" y="256" width="94.7" height="22" fill="#1b9e77"/>
+<text x="517.4" y="272" font-family="sans-serif" font-size="11">69%</text>
+<rect x="597.5" y="256" width="31.6" height="22" fill="#d95f02"/>
+<text x="633.1" y="272" font-family="sans-serif" font-size="11">23%</text>
+<rect x="776.2" y="256" width="115.7" height="22" fill="#7570b3"/>
+<text x="896.0" y="272" font-family="sans-serif" font-size="11">85%</text>
+<text x="231" y="336" text-anchor="end" font-family="sans-serif" font-size="12">function</text>
+<rect x="240.0" y="314" width="0.0" height="22" fill="#357edd"/>
+<text x="244.0" y="330" font-family="sans-serif" font-size="11">0%</text>
+<rect x="418.8" y="314" width="136.8" height="22" fill="#1b9e77"/>
+<text x="559.5" y="330" font-family="sans-serif" font-size="11">100%</text>
+<rect x="597.5" y="314" width="0.0" height="22" fill="#d95f02"/>
+<text x="601.5" y="330" font-family="sans-serif" font-size="11">0%</text>
+<rect x="776.2" y="314" width="0.0" height="22" fill="#7570b3"/>
+<text x="780.2" y="330" font-family="sans-serif" font-size="11">0%</text>
+<text x="231" y="394" text-anchor="end" font-family="sans-serif" font-size="12">geometry</text>
+<rect x="240.0" y="372" width="9.1" height="22" fill="#357edd"/>
+<text x="253.1" y="388" font-family="sans-serif" font-size="11">7%</text>
+<rect x="418.8" y="372" width="100.3" height="22" fill="#1b9e77"/>
+<text x="523.0" y="388" font-family="sans-serif" font-size="11">73%</text>
+<rect x="597.5" y="372" width="0.0" height="22" fill="#d95f02"/>
+<text x="601.5" y="388" font-family="sans-serif" font-size="11">0%</text>
+<rect x="776.2" y="372" width="82.0" height="22" fill="#7570b3"/>
+<text x="862.3" y="388" font-family="sans-serif" font-size="11">60%</text>
+<text x="231" y="452" text-anchor="end" font-family="sans-serif" font-size="12">inequality</text>
+<rect x="240.0" y="430" width="0.0" height="22" fill="#357edd"/>
+<text x="244.0" y="446" font-family="sans-serif" font-size="11">0%</text>
+<rect x="418.8" y="430" width="136.8" height="22" fill="#1b9e77"/>
+<text x="559.5" y="446" font-family="sans-serif" font-size="11">100%</text>
+<rect x="597.5" y="430" width="0.0" height="22" fill="#d95f02"/>
+<text x="601.5" y="446" font-family="sans-serif" font-size="11">0%</text>
+<rect x="776.2" y="430" width="0.0" height="22" fill="#7570b3"/>
+<text x="780.2" y="446" font-family="sans-serif" font-size="11">0%</text>
+<text x="231" y="510" text-anchor="end" font-family="sans-serif" font-size="12">linear_algebra</text>
+<rect x="240.0" y="488" width="11.4" height="22" fill="#357edd"/>
+<text x="255.4" y="504" font-family="sans-serif" font-size="11">8%</text>
+<rect x="418.8" y="488" width="91.2" height="22" fill="#1b9e77"/>
+<text x="513.9" y="504" font-family="sans-serif" font-size="11">67%</text>
+<rect x="597.5" y="488" width="11.4" height="22" fill="#d95f02"/>
+<text x="612.9" y="504" font-family="sans-serif" font-size="11">8%</text>
+<rect x="776.2" y="488" width="45.6" height="22" fill="#7570b3"/>
+<text x="825.8" y="504" font-family="sans-serif" font-size="11">33%</text>
+<text x="231" y="568" text-anchor="end" font-family="sans-serif" font-size="12">trigonometry</text>
+<rect x="240.0" y="546" width="0.0" height="22" fill="#357edd"/>
+<text x="244.0" y="562" font-family="sans-serif" font-size="11">0%</text>
+<rect x="418.8" y="546" width="102.6" height="22" fill="#1b9e77"/>
+<text x="525.3" y="562" font-family="sans-serif" font-size="11">75%</text>
+<rect x="597.5" y="546" width="0.0" height="22" fill="#d95f02"/>
+<text x="601.5" y="562" font-family="sans-serif" font-size="11">0%</text>
+<rect x="776.2" y="546" width="17.1" height="22" fill="#7570b3"/>
+<text x="797.3" y="562" font-family="sans-serif" font-size="11">12%</text>
+</svg>

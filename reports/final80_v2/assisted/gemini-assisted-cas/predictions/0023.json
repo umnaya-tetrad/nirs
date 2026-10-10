@@ -1,0 +1,505 @@
+{
+  "schema_version": "1.0",
+  "id": "img_226_pert_2.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "1.\\ (2^5 \\div 2^8 \\times 2^{-5}) = (2^5 \\div 2^8) \\times 2^{-5} = (2^{-3}) \\times 2^{-5}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= 2^{-3-5} = 2^{-8} = 2^{-8}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "2.\\ (-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3} = [(-4) \\times 5 \\times (-5)]^{-3} = [100]^{-3}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "= 100^{-3}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "3.\\ \\frac{1}{8} \\times (3)^{-3} = \\frac{1}{2^3} \\times 3^{-3} = 2^{-3} \\times 3^{-3} = (2 \\times 3)^{-3} = 6^{-3} = 6^{-3}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "4.\\ (-3)^4 \\times \\left(\\frac{5}{3}\\right)^4 = (-1)^4 \\times 3^4 \\times \\frac{5^4}{3^4} = (-1)^4 \\times 5^4",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "= (-1)^4 \\times 5^4",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 732
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-560ea5e3-9897-43ff-9603-8467febf0e06",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1419,
+    "created_at": "2026-10-10T15:50:42.416921Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_226_pert_2.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Simplify and write the answer in the exponential form.}\\n1.\\ (2^5 \\div 2^8 \\times 2^{-5})\\n2.\\ (-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3}\\n3.\\ \\frac{1}{8} \\times (3)^{-3}\\n4.\\ (-3)^4 \\times \\left(\\frac{5}{3}\\right)^4",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "(2^5 \\div 2^8 \\times 2^{-5})",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(2^5 \\divide 2^8 * 2^{-5})",
+                "kind": "expression",
+                "sides": [
+                  "(2**5/(2**8))/2**5"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "2**8"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "2"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "(-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(-4)^{-3} * (5)^{-3} * (-5)^{-3}",
+                "kind": "expression",
+                "sides": [
+                  "(1/((-4)**3*5**3))/(-5)**3"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "-4"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "5"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "-5"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g3",
+            "raw_latex": "\\frac{1}{8} \\times (3)^{-3}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\frac{1}{8} * (3)^{-3}",
+                "kind": "expression",
+                "sides": [
+                  "(1/8)/3**3"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "8"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "3"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g4",
+            "raw_latex": "(-3)^4 \\times \\left(\\frac{5}{3}\\right)^4",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(-3)^4 * (\\frac{5}{3})^4",
+                "kind": "expression",
+                "sides": [
+                  "(-3)**4*(5/3)**4"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "3"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "1.\\ (2^5 \\div 2^8 \\times 2^{-5}) = (2^5 \\div 2^8) \\times 2^{-5} = (2^{-3}) \\times 2^{-5}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "= 2^{-3-5} = 2^{-8} = 2^{-8}",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "2.\\ (-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3} = [(-4) \\times 5 \\times (-5)]^{-3} = [100]^{-3}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "latex": "= 100^{-3}",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "3.\\ \\frac{1}{8} \\times (3)^{-3} = \\frac{1}{2^3} \\times 3^{-3} = 2^{-3} \\times 3^{-3} = (2 \\times 3)^{-3} = 6^{-3} = 6^{-3}",
+          "role": "answer",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g3"
+          ]
+        },
+        {
+          "step_id": "s6",
+          "latex": "4.\\ (-3)^4 \\times \\left(\\frac{5}{3}\\right)^4 = (-1)^4 \\times 3^4 \\times \\frac{5^4}{3^4} = (-1)^4 \\times 5^4",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g4"
+          ]
+        },
+        {
+          "step_id": "s7",
+          "latex": "= (-1)^4 \\times 5^4",
+          "role": "answer",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Continuation has no readable predecessor; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 1; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Continuation has no readable predecessor"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s7",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "answer",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "g2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "g3",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "g4",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported input at character 1",
+      "Continuation requires one readable dependency",
+      "Unsupported input at character 1",
+      "Continuation requires one readable dependency",
+      "Unsupported input at character 1",
+      "Unsupported input at character 1",
+      "Continuation requires one readable dependency",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

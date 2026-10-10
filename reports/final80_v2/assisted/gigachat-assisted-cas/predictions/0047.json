@@ -1,0 +1,672 @@
+{
+  "schema_version": "1.0",
+  "id": "img_466_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\begin{bmatrix}\n2 & -3 & 5 \\\\\n6 & 0 & 4 \\\\\n1 & 5 & -7\n\\end{bmatrix}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "M_{11}=\\begin{vmatrix}\n0 & 4 \\\\\n5 & -7\n\\end{vmatrix}=(0)(-7)-(4)(5)=0-20=-20; A_{11}=(-1)^{1+1}(-20)=-20",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "M_{12}=\\begin{vmatrix}\n6 & 4 \\\\\n1 & -7\n\\end{vmatrix}=(6)(-7)-(4)(1)=-42-4=-46; A_{12}=(-1)^{1+2}(-46)=46",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "M_{13}=\\begin{vmatrix}\n6 & 0 \\\\\n1 & 5\n\\end{vmatrix}=(6)(5)-(0)(1)=30-0=30; A_{13}=(-1)^{1+3}(30)=30",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "M_{21}=\\begin{vmatrix}\n-3 & 5 \\\\\n5 & -7\n\\end{vmatrix}=(-3)(-7)-(-5)(0)=21-0=21; A_{21}=(-1)^{2+1}(21)=-21",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "M_{22}=\\begin{vmatrix}\n2 & 5 \\\\\n1 & -7\n\\end{vmatrix}=(2)(-7)-(-5)(1)=-14-5=-19; A_{22}=(-1)^{2+2}(-19)=-19",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "M_{23}=\\begin{vmatrix}\n2 & -3 \\\\\n1 & 5\n\\end{vmatrix}=(2)(5)-(-3)(1)=10+3=13; A_{23}=(-1)^{2+3}(13)=-13",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "M_{31}=\\begin{vmatrix}\n-3 & 5 \\\\\n0 & 4\n\\end{vmatrix}=(-3)(4)-(-5)(0)=-12-0=-12; A_{31}=(-1)^{3+1}(-12)=-12",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "M_{32}=\\begin{vmatrix}\n2 & 5 \\\\\n6 & 4\n\\end{vmatrix}=(2)(4)-(-5)(6)=8-30=-22; A_{32}=(-1)^{3+2}(-22)=22",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "M_{33}=\\begin{vmatrix}\n2 & -3 \\\\\n6 & 0\n\\end{vmatrix}=(2)(0)-(-3)(6)=0+18=18; A_{33}=(-1)^{3+3}(18)=18",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s11",
+      "latex": "Now, a_{11}=2, a_{12}=-3, a_{13}=5; A_{11}=-12, A_{12}=22, A_{13}=18.",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s12",
+      "latex": "a_{11}A_{11}+a_{12}A_{12}+a_{13}A_{13}=2(-12)+(-3)(22)+5(18)=-24-66+90=0.",
+      "derives_from": [
+        "s11"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 870
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s11",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s12",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-90503a66-7226-4d16-b8ea-d036afcf3363",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1718,
+    "created_at": "2026-10-10T15:51:05.090941Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_466_pert_1.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find minors and cofactors of the elements of the determinant}\n\\begin{bmatrix}\n2 & -3 & 5 \\\\\n6 & 0 & 4 \\\\\n1 & 5 & -7\n\\end{bmatrix}\n\\text{and verify that } a_{11}A_{11}+a_{12}A_{12}+a_{13}A_{13}=0.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\begin{bmatrix}\n2 & -3 & 5 \\\\\n6 & 0 & 4 \\\\\n1 & 5 & -7\n\\end{bmatrix}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "M_{11}=\\begin{vmatrix}\n0 & 4 \\\\\n5 & -7\n\\end{vmatrix}=(0)(-7)-(4)(5)=0-20=-20; A_{11}=(-1)^{1+1}(-20)=-20",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "M_{12}=\\begin{vmatrix}\n6 & 4 \\\\\n1 & -7\n\\end{vmatrix}=(6)(-7)-(4)(1)=-42-4=-46; A_{12}=(-1)^{1+2}(-46)=46",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "M_{13}=\\begin{vmatrix}\n6 & 0 \\\\\n1 & 5\n\\end{vmatrix}=(6)(5)-(0)(1)=30-0=30; A_{13}=(-1)^{1+3}(30)=30",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "M_{21}=\\begin{vmatrix}\n-3 & 5 \\\\\n5 & -7\n\\end{vmatrix}=(-3)(-7)-(-5)(0)=21-0=21; A_{21}=(-1)^{2+1}(21)=-21",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "M_{22}=\\begin{vmatrix}\n2 & 5 \\\\\n1 & -7\n\\end{vmatrix}=(2)(-7)-(-5)(1)=-14-5=-19; A_{22}=(-1)^{2+2}(-19)=-19",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "M_{23}=\\begin{vmatrix}\n2 & -3 \\\\\n1 & 5\n\\end{vmatrix}=(2)(5)-(-3)(1)=10+3=13; A_{23}=(-1)^{2+3}(13)=-13",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "M_{31}=\\begin{vmatrix}\n-3 & 5 \\\\\n0 & 4\n\\end{vmatrix}=(-3)(4)-(-5)(0)=-12-0=-12; A_{31}=(-1)^{3+1}(-12)=-12",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "M_{32}=\\begin{vmatrix}\n2 & 5 \\\\\n6 & 4\n\\end{vmatrix}=(2)(4)-(-5)(6)=8-30=-22; A_{32}=(-1)^{3+2}(-22)=22",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s10",
+          "latex": "M_{33}=\\begin{vmatrix}\n2 & -3 \\\\\n6 & 0\n\\end{vmatrix}=(2)(0)-(-3)(6)=0+18=18; A_{33}=(-1)^{3+3}(18)=18",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s11",
+          "latex": "Now, a_{11}=2, a_{12}=-3, a_{13}=5; A_{11}=-12, A_{12}=22, A_{13}=18.",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s12",
+          "latex": "a_{11}A_{11}+a_{12}A_{12}+a_{13}A_{13}=2(-12)+(-3)(22)+5(18)=-24-66+90=0.",
+          "role": "transformation",
+          "derives_from": [
+            "s11"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "matrix_system",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s5",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s5",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "M_{21}=\\begin{vmatrix}\n-3 & 5 \\\\\n5 & -7\n\\end{vmatrix}=(-3)(-7)-(-5)(0)=21-0=21; A_{21}=(-1)^{2+1}(21)=-21",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s6",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "M_{22}=\\begin{vmatrix}\n2 & 5 \\\\\n1 & -7\n\\end{vmatrix}=(2)(-7)-(-5)(1)=-14-5=-19; A_{22}=(-1)^{2+2}(-19)=-19",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f3",
+          "step_id": "s9",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "M_{32}=\\begin{vmatrix}\n2 & 5 \\\\\n6 & 4\n\\end{vmatrix}=(2)(4)-(-5)(6)=8-30=-22; A_{32}=(-1)^{3+2}(-22)=22",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f4",
+          "step_id": "s11",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "Now, a_{11}=2, a_{12}=-3, a_{13}=5; A_{11}=-12, A_{12}=22, A_{13}=18.",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Trusted initial expression"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s6",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        },
+        {
+          "step_id": "s7",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "error",
+          "finding_ids": [
+            "f3"
+          ]
+        },
+        {
+          "step_id": "s10",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s11",
+          "verdict": "error",
+          "finding_ids": [
+            "f4"
+          ]
+        },
+        {
+          "step_id": "s12",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "requires two explicit X/Y matrix equations",
+      "step_id": null,
+      "rule": "matrix_system",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s5",
+        "s6",
+        "s9"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s7",
+        "s8",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s11",
+          "to": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "requires two explicit X/Y matrix equations"
+    ]
+  }
+}

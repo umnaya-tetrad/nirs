@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "id": "img_233_pert_3.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "1.\\quad \\left(\\frac{3}{5}\\right)^4 = \\frac{3^4}{5^4} = \\frac{3+3+3+3}{5+5+5+5}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "2.\\quad \\left(-\\frac{4}{7}\\right)^5 = \\frac{(-4)^5}{7^5} = \\frac{(-4)+(-4)+(-4)+(-4)+(-4)}{7+7+7+7+7}",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 715
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 1"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-7e805a14-a3b2-4e70-9428-f71aa29168d6",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1277,
+    "created_at": "2026-10-10T15:50:45.103094Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_233_pert_3.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Expand:}\\quad 1.\\; \\left(\\frac{3}{5}\\right)^4 \\quad 2.\\; \\left(-\\frac{4}{7}\\right)^5",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\left(\\frac{3}{5}\\right)^4",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(\\frac{3}{5})^4",
+                "kind": "expression",
+                "sides": [
+                  "(3/5)**4"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "5"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "\\left(-\\frac{4}{7}\\right)^5",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "(-\\frac{4}{7})^5",
+                "kind": "expression",
+                "sides": [
+                  "(-4/7)**5"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "7"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "simplify",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "1.\\quad \\left(\\frac{3}{5}\\right)^4 = \\frac{3^4}{5^4} = \\frac{3+3+3+3}{5+5+5+5}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "2.\\quad \\left(-\\frac{4}{7}\\right)^5 = \\frac{(-4)^5}{7^5} = \\frac{(-4)+(-4)+(-4)+(-4)+(-4)}{7+7+7+7+7}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Unsupported input at character 1; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Unsupported input at character 1; Exact expression identity with preserved domain",
+            "actual_latex": "1.\\quad \\left(\\frac{3}{5}\\right)^4 = \\frac{3^4}{5^4} = \\frac{3+3+3+3}{5+5+5+5}",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Unsupported input at character 1; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Unsupported input at character 1; Exact expression identity with preserved domain",
+            "actual_latex": "2.\\quad \\left(-\\frac{4}{7}\\right)^5 = \\frac{(-4)^5}{7^5} = \\frac{(-4)+(-4)+(-4)+(-4)+(-4)}{7+7+7+7+7}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task has no explicit mathematical target",
+      "step_id": "s2",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        },
+        {
+          "from": "g2",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 1"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported input at character 1",
+      "Unsupported input at character 1",
+      "Task has no explicit mathematical target"
+    ]
+  }
+}

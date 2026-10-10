@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.0",
+  "id": "img_456_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "P = \\begin{bmatrix} 0 & -1 \\\\ 0 & 2 \\end{bmatrix} \\text{ and } Q = \\begin{bmatrix} 3 & 5 \\\\ 0 & 0 \\end{bmatrix}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "PQ = \\begin{bmatrix} 0 & -1 \\\\ 0 & 2 \\end{bmatrix} \\begin{bmatrix} 3 & 5 \\\\ 0 & 0 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{thus, if the product of two matrices is a zero matrix, it is not necessary that one of the matrices is a zero matrix.}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 548
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Requires explicit X+Y and X-Y matrix givens"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-1c3943e3-aac7-4066-a539-beafb822ae81",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1247,
+    "created_at": "2026-10-10T15:51:05.924431Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_456_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find } AB \\text{ if } A = \\begin{bmatrix} 0 & -1 \\\\ 0 & 2 \\end{bmatrix} \\text{ and } B = \\begin{bmatrix} 3 & 5 \\\\ 0 & 0 \\end{bmatrix}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "A = \\begin{bmatrix} 0 & -1 \\\\ 0 & 2 \\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "A = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "A",
+                  "Matrix([\n[0, -1*1],\n[0,    2]])"
+                ],
+                "symbols": [
+                  "A"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "B = \\begin{bmatrix} 3 & 5 \\\\ 0 & 0 \\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "B = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "B",
+                  "Matrix([\n[3, 5],\n[0, 0]])"
+                ],
+                "symbols": [
+                  "B"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "AB"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "P = \\begin{bmatrix} 0 & -1 \\\\ 0 & 2 \\end{bmatrix} \\text{ and } Q = \\begin{bmatrix} 3 & 5 \\\\ 0 & 0 \\end{bmatrix}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "PQ = \\begin{bmatrix} 0 & -1 \\\\ 0 & 2 \\end{bmatrix} \\begin{bmatrix} 3 & 5 \\\\ 0 & 0 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{thus, if the product of two matrices is a zero matrix, it is not necessary that one of the matrices is a zero matrix.}",
+          "role": "answer",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "matrix_system",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact matrix entry comparison; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: thus, if the product of two matrices is a zero matrix, it is not necessary that one of the matrices is a zero matrix.; No mathematical expression in the step"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "requires two explicit X/Y matrix equations",
+      "step_id": null,
+      "rule": "matrix_system",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Requires explicit X+Y and X-Y matrix givens",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Requires explicit X+Y and X-Y matrix givens"
+        },
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Requires explicit X+Y and X-Y matrix givens"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Requires explicit X+Y and X-Y matrix givens",
+      "At least one node/edge proof is unresolved",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "requires two explicit X/Y matrix equations"
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "status": "ok",
+  "case_id": "img_374_pert_5.1",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gigachat_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gigachat_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 2046,
+    "completion_tokens": 646,
+    "total_tokens": 2692,
+    "estimated_cost_rub": 1.346,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 12638,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"e2e_gigachat_v1\",\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\int_{0}^{\\\\pi} \\\\frac{x \\\\sin x}{1 + \\\\cos^2 x} dx\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"Let $u = x$, then by P.U., we have\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"\\\\int_{0}^{\\\\pi} \\\\frac{(\\\\pi-u) \\\\sin(\\\\pi-u)}{1+\\\\cos^2(\\\\pi-u)} du\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"= \\\\int_{0}^{\\\\pi} \\\\frac{(\\\\pi-u) \\\\sin u}{1+\\\\cos^2 u} du = \\\\pi \\\\int_{0}^{\\\\pi} \\\\frac{\\\\sin u}{1+\\\\cos^2 u} du-I.\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"Thus,\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"2I= \\\\pi \\\\int_{0}^{\\\\pi} \\\\frac{\\\\sin u}{1+\\\\cos^2 u} du\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"or\"\n        },\n        {\n            \"step_id\": \"s8\",\n            \"latex\": \"I= \\\\frac{\\\\pi}{2} \\\\int_{0}^{\\\\pi} \\\\frac{\\\\sin u}{1+\\\\cos^2 u} du.\"\n        },\n        {\n            \"step_id\": \"s9\",\n            \"latex\": \"Put $\\\\cos u=t$ so that $-\\\\sin udu=dt$. When $u=0,t=1$ and when $u=\\\\pi,t=-1$. Therefore, we get\"\n        },\n        {\n            \"step_id\": \"s10\",\n            \"latex\": \"I= \\\\frac{\\\\pi}{2} \\\\int_{-1}^1 \\\\frac{dt}{1+t^2}= \\\\frac{\\\\pi}{2}\\\\cdot\\\\frac{\\\\pi}{2}= \\\\frac{\\\\pi^2}{4}\"\n        }\n    ],\n    \"has_error\": false,\n    \"first_error_step\": null\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_374_pert_5.1",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "GigaChat-2-Pro:2.0.30.01",
+          "status": "ok",
+          "duration_ms": 12638,
+          "tokens_in": 2046,
+          "tokens_out": 646
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\int_{0}^{\\pi} \\frac{x \\sin x}{1 + \\cos^2 x} dx",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "Let $u = x$, then by P.U., we have",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\int_{0}^{\\pi} \\frac{(\\pi-u) \\sin(\\pi-u)}{1+\\cos^2(\\pi-u)} du",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "= \\int_{0}^{\\pi} \\frac{(\\pi-u) \\sin u}{1+\\cos^2 u} du = \\pi \\int_{0}^{\\pi} \\frac{\\sin u}{1+\\cos^2 u} du-I.",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "Thus,",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "2I= \\pi \\int_{0}^{\\pi} \\frac{\\sin u}{1+\\cos^2 u} du",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "or",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "I= \\frac{\\pi}{2} \\int_{0}^{\\pi} \\frac{\\sin u}{1+\\cos^2 u} du.",
+        "derives_from": [
+          "s7"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "Put $\\cos u=t$ so that $-\\sin udu=dt$. When $u=0,t=1$ and when $u=\\pi,t=-1$. Therefore, we get",
+        "derives_from": [
+          "s8"
+        ]
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "I= \\frac{\\pi}{2} \\int_{-1}^1 \\frac{dt}{1+t^2}= \\frac{\\pi}{2}\\cdot\\frac{\\pi}{2}= \\frac{\\pi^2}{4}",
+        "derives_from": [
+          "s9"
+        ]
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
+    "meta": {
+      "run_id": "run-d6854aa8-121e-4585-b74e-c595bacf6759",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "e2e_gigachat_v1",
+      "temperature": 0,
+      "duration_ms": 12638,
+      "created_at": "2026-10-10T15:04:49Z",
+      "tokens_in": 2046,
+      "tokens_out": 646
+    }
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0",
+  "id": "img_115_pert_4.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Answer: Let }\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)=y\\text{ . Then, }\\sin y=\\frac{1}{\\sqrt{2}}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{We know that the range of the principal value branch of }\\cos^{-1}\\text{ is }\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\text{ and}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\sin\\left(\\frac{\\pi}{4}\\right)=\\frac{1}{\\sqrt{2}}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\text{Therefore, the principal value of }\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)\\text{ is }\\frac{\\pi}{4}.",
+      "derives_from": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 998
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-5df9b45c-aa60-4832-80a8-bb93d95a4b25",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1989,
+    "created_at": "2026-10-10T15:50:15.438966Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_115_pert_4.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find the principal value of }\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right).",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Answer: Let }\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)=y\\text{ . Then, }\\sin y=\\frac{1}{\\sqrt{2}}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{We know that the range of the principal value branch of }\\cos^{-1}\\text{ is }\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\text{ and}",
+          "role": "independent",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\sin\\left(\\frac{\\pi}{4}\\right)=\\frac{1}{\\sqrt{2}}",
+          "role": "independent",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\text{Therefore, the principal value of }\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)\\text{ is }\\frac{\\pi}{4}.",
+          "role": "answer",
+          "derives_from": [
+            "s1",
+            "s2",
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Text/units/conditions are outside the symbolic grammar: Answer: Let; Text/units/conditions are outside the symbolic grammar: . Then,; Exact counterexample at {y: 0}: difference=pi/4; Exact counterexample at {y: 0}: difference=-sqrt(2)/2",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Text/units/conditions are outside the symbolic grammar: Answer: Let; Text/units/conditions are outside the symbolic grammar: . Then,; Exact counterexample at {y: 0}: difference=pi/4; Exact counterexample at {y: 0}: difference=-sqrt(2)/2",
+            "actual_latex": "\\text{Answer: Let }\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)=y\\text{ . Then, }\\sin y=\\frac{1}{\\sqrt{2}}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: We know that the range of the principal value branch of; Text/units/conditions are outside the symbolic grammar: is; Unsupported input at character 24"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Therefore, the principal value of; Text/units/conditions are outside the symbolic grammar: is"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "A written answer equality is required",
+      "step_id": "s4",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "independent",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "independent",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "A written answer equality is required"
+    ]
+  }
+}

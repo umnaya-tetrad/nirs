@@ -1,0 +1,457 @@
+{
+  "schema_version": "1.0",
+  "id": "img_172_pert_3.2",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "-\\dfrac{1}{3}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "-\\dfrac{2}{6}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "-\\dfrac{3}{9}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "-\\dfrac{4}{12}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "-\\dfrac{-1×1}{3×1}=-\\dfrac{1}{3}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "-\\dfrac{-1×2}{3×2}=-\\dfrac{2}{6}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "-\\dfrac{-1×3}{3×3}=-\\dfrac{3}{9}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "-\\dfrac{-1×4}{3×4}=-\\dfrac{4}{12}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "-\\dfrac{-1×5}{3×5}=-\\dfrac{5}{15}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "-\\dfrac{-1×6}{3×6}=-\\dfrac{6}{18}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s11",
+      "latex": "-\\dfrac{-1×7}{3×7}=-\\dfrac{7}{21}",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 810
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s11",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-cfaab55a-f3a1-4ae2-b844-c112ee66318f",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1663,
+    "created_at": "2026-10-10T15:50:08.916622Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_172_pert_3.2",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Write four more numbers in the following pattern: } \n-\\frac{1}{3}, -\frac{2}{6}, -\frac{3}{9}, -\frac{4}{12}, \\dots",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "unknown",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "-\\dfrac{1}{3}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "-\\dfrac{2}{6}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "-\\dfrac{3}{9}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "-\\dfrac{4}{12}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "-\\dfrac{-1×1}{3×1}=-\\dfrac{1}{3}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "-\\dfrac{-1×2}{3×2}=-\\dfrac{2}{6}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "-\\dfrac{-1×3}{3×3}=-\\dfrac{3}{9}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "-\\dfrac{-1×4}{3×4}=-\\dfrac{4}{12}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "-\\dfrac{-1×5}{3×5}=-\\dfrac{5}{15}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s10",
+          "latex": "-\\dfrac{-1×6}{3×6}=-\\dfrac{6}{18}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s11",
+          "latex": "-\\dfrac{-1×7}{3×7}=-\\dfrac{7}{21}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "unsupported",
+        "task_class": "expression",
+        "reasons": [
+          "goal is unknown"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s5",
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "First symbolic step is a trusted premise; no check against the problem statement"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Expression/equation conversion needs task context"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "correct",
+          "note": "Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "correct",
+          "note": "Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "correct",
+          "note": "Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "correct",
+          "note": "Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s10",
+          "verdict": "correct",
+          "note": "Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s11",
+          "verdict": "correct",
+          "note": "Exact real solution-set comparison"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "goal is unknown",
+      "step_id": null,
+      "rule": "task_spec",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s11",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "goal is unknown"
+    ]
+  }
+}

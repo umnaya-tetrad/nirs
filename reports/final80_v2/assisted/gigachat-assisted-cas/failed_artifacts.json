@@ -1,0 +1,9 @@
+[
+  {
+    "id": "img_488_pert_5.1",
+    "status": "api_failed",
+    "source": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_488_pert_5.1.json",
+    "error_type": "ContractError",
+    "error": "llm_assisted_extraction schema validation failed: '' should be non-empty"
+  }
+]

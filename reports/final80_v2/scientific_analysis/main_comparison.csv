@@ -1,0 +1,5 @@
+﻿route,valid,all_effectiveness,coverage,selective_accuracy
+Gemini E2E,80/80,0.7375,1.0,0.7375
+Gemini Assisted → Task-aware CAS,80/80,0.125,0.2125,0.5882352941176471
+GigaChat E2E,80/80,0.55,1.0,0.55
+GigaChat Assisted → Task-aware CAS,79/80,0.1375,0.2,0.6875

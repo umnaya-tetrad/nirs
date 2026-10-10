@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0",
+  "id": "img_464_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\left| \\frac{y}{y-1} \\quad \\frac{y}{y+1} \\right| = y(y) - (y+1)(y-1) = y^2 - (y^2 - 1) =",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "y^2 - y^2 + 1 = 1",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 721
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Expected a nonempty LaTeX string"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-6650b547-498d-49d6-aa04-4325f2cc37ce",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1490,
+    "created_at": "2026-10-10T15:51:10.336917Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_464_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Evaluate } \\left| \\frac{x}{x-1} \\quad \\frac{x}{x+1} \\right|",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\left| \\frac{x}{x-1} \\quad \\frac{x}{x+1} \\right|",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "| \\frac{x}{x-1}   \\frac{x}{x+1} |",
+                "kind": "expression",
+                "sides": [
+                  "x**2*Abs(1/((x - 1)*(x + 1)))"
+                ],
+                "symbols": [
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "x - 1*1"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "x + 1"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\left| \\frac{x}{x-1} \\quad \\frac{x}{x+1} \\right|"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\left| \\frac{y}{y-1} \\quad \\frac{y}{y+1} \\right| = y(y) - (y+1)(y-1) = y^2 - (y^2 - 1) =",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "y^2 - y^2 + 1 = 1",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Expected a nonempty LaTeX string; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Task target has unresolved variables",
+      "step_id": "s2",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Expected a nonempty LaTeX string",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Expected a nonempty LaTeX string"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Expected a nonempty LaTeX string",
+      "At least one node/edge proof is unresolved",
+      "Task target has unresolved variables"
+    ]
+  }
+}

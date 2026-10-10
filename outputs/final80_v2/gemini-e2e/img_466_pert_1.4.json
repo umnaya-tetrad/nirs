@@ -1,0 +1,165 @@
+{
+  "status": "ok",
+  "case_id": "img_466_pert_1.4",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gemini_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1481,
+    "completion_tokens": 2314,
+    "total_tokens": 3795,
+    "cost": 1.16603507,
+    "cost_rub": 1.16603507
+  },
+  "latency_ms": 16610,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\begin{vmatrix} 2 & -3 & 5 \\\\\\\\ 6 & 0 & 4 \\\\\\\\ 1 & 5 & -7 \\\\end{vmatrix}\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"a_{11} A_{31} + a_{12} A_{32} + a_{13} A_{33} = 0\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"M_{11} = \\\\begin{vmatrix} 0 & 4 \\\\\\\\ 5 & -7 \\\\end{vmatrix} = (0)(-7) - (4)(5) = 0 - 20 = -20;\\\\ A_{11} = (-1)^{1+1} (-20) = -20\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"M_{12} = \\\\begin{vmatrix} 6 & 4 \\\\\\\\ 1 & -7 \\\\end{vmatrix} = (6)(-7) - (4)(1) = -42 - 4 = -46;\\\\ A_{12} = (-1)^{1+2} (-46) = 46\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"M_{13} = \\\\begin{vmatrix} 6 & 0 \\\\\\\\ 1 & 5 \\\\end{vmatrix} = (6)(5) - (0)(1) = 30 - 0 = 30;\\\\ A_{13} = (-1)^{1+3} (30) = 30\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"M_{21} = \\\\begin{vmatrix} -3 & 5 \\\\\\\\ 5 & -7 \\\\end{vmatrix} = (-3)(-7) - (5)(0) = 21 - 0 = 21;\\\\ A_{21} = (-1)^{2+1} (21) = -21\"\n    },\n    {\n      \"step_id\": \"s7\",\n      \"latex\": \"M_{22} = \\\\begin{vmatrix} 2 & 5 \\\\\\\\ 1 & -7 \\\\end{vmatrix} = (2)(-7) - (5)(1) = -14 - 5 = -19;\\\\ A_{22} = (-1)^{2+2} (-19) = -19\"\n    },\n    {\n      \"step_id\": \"s8\",\n      \"latex\": \"M_{23} = \\\\begin{vmatrix} 2 & -3 \\\\\\\\ 1 & 5 \\\\end{vmatrix} = (2)(5) - (-3)(1) = 10 + 3 = 13;\\\\ A_{23} = (-1)^{2+3} (13) = -13\"\n    },\n    {\n      \"step_id\": \"s9\",\n      \"latex\": \"M_{31} = \\\\begin{vmatrix} -3 & 5 \\\\\\\\ 0 & 4 \\\\end{vmatrix} = (-3)(4) - (5)(0) = -12 - 0 = -12;\\\\ A_{31} = (-1)^{3+1} (-12) = -12\"\n    },\n    {\n      \"step_id\": \"s10\",\n      \"latex\": \"M_{32} = \\\\begin{vmatrix} 2 & 5 \\\\\\\\ 6 & 4 \\\\end{vmatrix} = (2)(4) - (5)(6) = 8 - 30 = -22;\\\\ A_{32} = (-1)^{3+2} (-22) = 22\"\n    },\n    {\n      \"step_id\": \"s11\",\n      \"latex\": \"M_{33} = \\\\begin{vmatrix} 2 & -3 \\\\\\\\ 6 & 0 \\\\end{vmatrix} = (2)(0) - (-3)(6) = 0 + 18 = 18;\\\\ A_{33} = (-1)^{3+3} (18) = 18\"\n    },\n    {\n      \"step_id\": \"s12\",\n      \"latex\": \"\\\\text{Now, } a_{11} = 2, a_{12} = -3, a_{13} = 5;\\\\ A_{31} = -12, A_{32} = 22, A_{33} = 18.\"\n    },\n    {\n      \"step_id\": \"s13\",\n      \"latex\": \"a_{11} A_{31} + a_{12} A_{32} + a_{13} A_{33} = 2(-12) + (-3)(22) + 5(18) = -24 - 66 + 90 = 0.\"\n    }\n  ],\n  \"has_error\": true,\n  \"first_error_step\": \"s6\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_466_pert_1.4",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "google/gemini-3.7-flash",
+          "status": "ok",
+          "duration_ms": 16610,
+          "tokens_in": 1481,
+          "tokens_out": 2314
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\begin{vmatrix} 2 & -3 & 5 \\\\ 6 & 0 & 4 \\\\ 1 & 5 & -7 \\end{vmatrix}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "a_{11} A_{31} + a_{12} A_{32} + a_{13} A_{33} = 0",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "M_{11} = \\begin{vmatrix} 0 & 4 \\\\ 5 & -7 \\end{vmatrix} = (0)(-7) - (4)(5) = 0 - 20 = -20;\\ A_{11} = (-1)^{1+1} (-20) = -20",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "M_{12} = \\begin{vmatrix} 6 & 4 \\\\ 1 & -7 \\end{vmatrix} = (6)(-7) - (4)(1) = -42 - 4 = -46;\\ A_{12} = (-1)^{1+2} (-46) = 46",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "M_{13} = \\begin{vmatrix} 6 & 0 \\\\ 1 & 5 \\end{vmatrix} = (6)(5) - (0)(1) = 30 - 0 = 30;\\ A_{13} = (-1)^{1+3} (30) = 30",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "M_{21} = \\begin{vmatrix} -3 & 5 \\\\ 5 & -7 \\end{vmatrix} = (-3)(-7) - (5)(0) = 21 - 0 = 21;\\ A_{21} = (-1)^{2+1} (21) = -21",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "M_{22} = \\begin{vmatrix} 2 & 5 \\\\ 1 & -7 \\end{vmatrix} = (2)(-7) - (5)(1) = -14 - 5 = -19;\\ A_{22} = (-1)^{2+2} (-19) = -19",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "M_{23} = \\begin{vmatrix} 2 & -3 \\\\ 1 & 5 \\end{vmatrix} = (2)(5) - (-3)(1) = 10 + 3 = 13;\\ A_{23} = (-1)^{2+3} (13) = -13",
+        "derives_from": [
+          "s7"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "M_{31} = \\begin{vmatrix} -3 & 5 \\\\ 0 & 4 \\end{vmatrix} = (-3)(4) - (5)(0) = -12 - 0 = -12;\\ A_{31} = (-1)^{3+1} (-12) = -12",
+        "derives_from": [
+          "s8"
+        ]
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "M_{32} = \\begin{vmatrix} 2 & 5 \\\\ 6 & 4 \\end{vmatrix} = (2)(4) - (5)(6) = 8 - 30 = -22;\\ A_{32} = (-1)^{3+2} (-22) = 22",
+        "derives_from": [
+          "s9"
+        ]
+      },
+      {
+        "step_id": "s11",
+        "kind": "step",
+        "latex": "M_{33} = \\begin{vmatrix} 2 & -3 \\\\ 6 & 0 \\end{vmatrix} = (2)(0) - (-3)(6) = 0 + 18 = 18;\\ A_{33} = (-1)^{3+3} (18) = 18",
+        "derives_from": [
+          "s10"
+        ]
+      },
+      {
+        "step_id": "s12",
+        "kind": "step",
+        "latex": "\\text{Now, } a_{11} = 2, a_{12} = -3, a_{13} = 5;\\ A_{31} = -12, A_{32} = 22, A_{33} = 18.",
+        "derives_from": [
+          "s11"
+        ]
+      },
+      {
+        "step_id": "s13",
+        "kind": "step",
+        "latex": "a_{11} A_{31} + a_{12} A_{32} + a_{13} A_{33} = 2(-12) + (-3)(22) + 5(18) = -24 - 66 + 90 = 0.",
+        "derives_from": [
+          "s12"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s6",
+    "last_correct_step": "s5",
+    "findings": [],
+    "meta": {
+      "run_id": "run-82cc233c-43ed-42fc-ba81-030de080daca",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "e2e_gemini_v1",
+      "temperature": 0,
+      "duration_ms": 16610,
+      "created_at": "2026-10-10T15:13:28Z",
+      "tokens_in": 1481,
+      "tokens_out": 2314
+    }
+  }
+}

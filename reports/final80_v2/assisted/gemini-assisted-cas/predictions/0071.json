@@ -1,0 +1,840 @@
+{
+  "schema_version": "1.0",
+  "id": "img_579_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Answer: Let us first split the middle}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{term } -5y \\text{ as } -2y-3y \\text{ [because } (-2y) \\times (-3y)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= 6y^2 = (2y) \\times 3] . \\text{ so}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "2y^2-5y+3 = 2y^2-2y-3y+3 = 2y(y-1)-3",
+      "derives_from": [
+        "s2",
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "(y-1) = (2y-3)(y-1)",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\text{Now, } 2y^2-5y+3=0 \\text{ can be rewritten}",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "\\text{as } (2y-3)(y-1)=0. \\text{ So, the values of}",
+      "derives_from": [
+        "s5",
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "y \\text{ for which } 2y^2-5y+3=0 \\text{ are the same}",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "\\text{for which } (2y-3)(y-1)=0 \\text{ i.e. either}",
+      "derives_from": [
+        "s8"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "2y-3=0 \\text{ or } y-1=0.",
+      "derives_from": [
+        "s9"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s11",
+      "latex": "\\text{Now, } 2y-3=0 \\text{ gives } y=\\frac{3}{2} \\text{ and } y-1=0",
+      "derives_from": [
+        "s10"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s12",
+      "latex": "\\text{gives } y=1 .",
+      "derives_from": [
+        "s11"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s13",
+      "latex": "\\text{So, } y=\\frac{3}{2} \\text{ and } y=1 \\text{ are the solutions}",
+      "derives_from": [
+        "s11",
+        "s12"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s14",
+      "latex": "\\text{of the equation.}",
+      "derives_from": [
+        "s13"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s15",
+      "latex": "\\text{In other words, } 1 \\text{ and } \\frac{3}{2} \\text{ are the}",
+      "derives_from": [
+        "s13"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s16",
+      "latex": "\\text{roots of the equation } 2x^2-5x+3=0",
+      "derives_from": [
+        "s15"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1032
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s11",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s12",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s13",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s14",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s15",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s16",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-630bf40e-ee60-4273-a9ad-6df5776c6cf6",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1909,
+    "created_at": "2026-10-10T15:51:54.428638Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_579_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find roots of the equation } 2x^2-5x+3=0 \\text{ by factorisation.}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "2x^2-5x+3=0",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "2x^2-5x+3=0",
+                "kind": "equation",
+                "sides": [
+                  "(2*x**2 - 5*x) + 3",
+                  "0"
+                ],
+                "symbols": [
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "x"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Answer: Let us first split the middle}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{term } -5y \\text{ as } -2y-3y \\text{ [because } (-2y) \\times (-3y)",
+          "role": "definition",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= 6y^2 = (2y) \\times 3] . \\text{ so}",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "2y^2-5y+3 = 2y^2-2y-3y+3 = 2y(y-1)-3",
+          "role": "transformation",
+          "derives_from": [
+            "s2",
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "(y-1) = (2y-3)(y-1)",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\text{Now, } 2y^2-5y+3=0 \\text{ can be rewritten}",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "\\text{as } (2y-3)(y-1)=0. \\text{ So, the values of}",
+          "role": "transformation",
+          "derives_from": [
+            "s5",
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "y \\text{ for which } 2y^2-5y+3=0 \\text{ are the same}",
+          "role": "transformation",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "\\text{for which } (2y-3)(y-1)=0 \\text{ i.e. either}",
+          "role": "transformation",
+          "derives_from": [
+            "s8"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s10",
+          "latex": "2y-3=0 \\text{ or } y-1=0.",
+          "role": "transformation",
+          "derives_from": [
+            "s9"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s11",
+          "latex": "\\text{Now, } 2y-3=0 \\text{ gives } y=\\frac{3}{2} \\text{ and } y-1=0",
+          "role": "transformation",
+          "derives_from": [
+            "s10"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s12",
+          "latex": "\\text{gives } y=1 .",
+          "role": "transformation",
+          "derives_from": [
+            "s11"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s13",
+          "latex": "\\text{So, } y=\\frac{3}{2} \\text{ and } y=1 \\text{ are the solutions}",
+          "role": "transformation",
+          "derives_from": [
+            "s11",
+            "s12"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s14",
+          "latex": "\\text{of the equation.}",
+          "role": "transformation",
+          "derives_from": [
+            "s13"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s15",
+          "latex": "\\text{In other words, } 1 \\text{ and } \\frac{3}{2} \\text{ are the}",
+          "role": "answer",
+          "derives_from": [
+            "s13"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s16",
+          "latex": "\\text{roots of the equation } 2x^2-5x+3=0",
+          "role": "answer",
+          "derives_from": [
+            "s15"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Answer: Let us first split the middle; No mathematical expression in the step"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: term; Text/units/conditions are outside the symbolic grammar: as; Text/units/conditions are outside the symbolic grammar: [because"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unbalanced delimiters"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: Now,; Text/units/conditions are outside the symbolic grammar: can be rewritten; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: as; Text/units/conditions are outside the symbolic grammar: So, the values of; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: for which; Text/units/conditions are outside the symbolic grammar: are the same; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: for which; Text/units/conditions are outside the symbolic grammar: i.e. either; Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s10",
+          "verdict": "indeterminate",
+          "note": "Disjunction needs a branch context; Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s11",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: Now,; Text/units/conditions are outside the symbolic grammar: gives; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s12",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: gives; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s13",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: So,; Text/units/conditions are outside the symbolic grammar: are the solutions; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s14",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: of the equation.; No mathematical expression in the step"
+        },
+        {
+          "step_id": "s15",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: In other words,; Text/units/conditions are outside the symbolic grammar: are the"
+        },
+        {
+          "step_id": "s16",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: roots of the equation; Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Prose is not a mathematical answer",
+      "step_id": "s16",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s4",
+        "s5"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13",
+        "s14",
+        "s15",
+        "s16"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s13",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s14",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s15",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        },
+        {
+          "step_id": "s16",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s5",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s8",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s9",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s10",
+          "to": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s11",
+          "to": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s11",
+          "to": "s13",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s12",
+          "to": "s13",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s13",
+          "to": "s14",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s13",
+          "to": "s15",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s15",
+          "to": "s16",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g1",
+          "to": "s16",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose is not a mathematical answer"
+    ]
+  }
+}

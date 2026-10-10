@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "id": "img_476_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "-5 \\leq \\frac{5 - 3y}{2} \\leq 8",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "-5 \\leq \\frac{5 - 3y}{2} \\leq 8",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "-10 \\leq 5 - 3y \\leq 16",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "5 \\geq y \\geq -\\frac{11}{3}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "-\\frac{11}{3} \\leq y \\leq 5",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 565
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-10b390d9-b723-49df-ade7-f7500c3b903b",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1409,
+    "created_at": "2026-10-10T15:51:07.911354Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_476_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Solve }-5 \\leq \\frac{5 - 3y}{2} \\leq 8.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "y"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "-5 \\leq \\frac{5 - 3y}{2} \\leq 8",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "-5 \\leq \\frac{5 - 3y}{2} \\leq 8",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "-10 \\leq 5 - 3y \\leq 16",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "5 \\geq y \\geq -\\frac{11}{3}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "-\\frac{11}{3} \\leq y \\leq 5",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "inequality",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Inequality sides could not be parsed"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Inequality sides could not be parsed"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Inequality sides could not be parsed"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Inequality sides could not be parsed"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Inequality sides could not be parsed"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Requires one explicit inequality",
+      "step_id": "s5",
+      "rule": "inequality",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Requires one explicit inequality",
+      "Requires one explicit inequality",
+      "Requires one explicit inequality",
+      "Requires one explicit inequality",
+      "Requires one explicit inequality",
+      "Requires one explicit inequality"
+    ]
+  }
+}

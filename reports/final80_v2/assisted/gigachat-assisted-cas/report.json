@@ -1,0 +1,1445 @@
+{
+  "generated_at_utc": "2026-10-10T15:52:31.733137+00:00",
+  "evaluation": "final80_v2_gigachat_assisted",
+  "pipeline": "llm_assisted_extraction_plus_math_core",
+  "input_projection": "task + givens + goal + constraints + structured steps; no labels read",
+  "timeout_seconds": 10.0,
+  "sources": [
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_108_pert_1.4.json",
+      "sha256": "7e15dc8c4284831086d303b72eb1a6add9d5cc1e90aeeef3ae961513af477ef4"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_109_pert_2.1.json",
+      "sha256": "5a40afe2f75a032d37318289a6698b67c49e5b476840a2c5e714c7e90e703ebb"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_111_pert_1.3.json",
+      "sha256": "da87ff440729808a1801fc5375b4ea01c153e3cab5c9a65bfa63af007ef6a559"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_111_pert_2.1.json",
+      "sha256": "89402428d863427ad91c975b7752b1b883987496a7ffc869549db31966817079"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_112_pert_4.4.json",
+      "sha256": "29e4205fe9248a95d7d312ac10a7c02d9375e1538dbec67930e359f8279a3a9e"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_115_pert_4.4.json",
+      "sha256": "faef54397d918dc0328398226e80e4c18cb86e892368cb1592a7f7d28611b441"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_14_pert_5.1.json",
+      "sha256": "4b3b7610db19ca461485f442cdb992e348e5b7248d0e248ac6c1ead1bec82a9e"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_153_pert_1.5.json",
+      "sha256": "09acf51ac0ccb53b99c3769477a1bd8fc54de5ce7c9c82d9ab4679c18a4a9072"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_160_pert_2.4.json",
+      "sha256": "a3cb8c33452e98a42553b1ee8e4d5a4109cd7b320cda3a9f8151a3b0977e3667"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_165_pert_5.3.json",
+      "sha256": "13c879beeb87a1ee4fdae3a121f1ee4f1fe903c34e832a4771e81e5968a72326"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_172_pert_3.2.json",
+      "sha256": "d674b987b635c17ad5024f9e06ee0da39d2477b91595b037df092d8ea9dc6a16"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_173_pert_2.5.json",
+      "sha256": "b963a9ff0734b3f13e06ebe2ab0344e43e24c96fb3310ceb470b1e10ca0d4a91"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_173_pert_5.3.json",
+      "sha256": "1430574cc15725e04c2345eadfd96c7c265ae45c906237064a12b057b7dd20c5"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_176_pert_4.3.json",
+      "sha256": "f32bb509f25594ead476a96f243f2cfc720f0b6cf12ec7924162dc17eb5cabec"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_190_pert_3.2.json",
+      "sha256": "489041a3e8e0f2ffdd300664ad10c8223dae32449d983fd22c6de44d26185b50"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_193_pert_5.3.json",
+      "sha256": "0c58e388855c441d1e3e3da6d9b5b6872498807760fab3f1e26156806f992b30"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_194_pert_1.5.json",
+      "sha256": "216cd38b0e8c28d356530ae353a264599b69cd7c272c7b15a02a54a60e757900"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_19_pert_5.1.json",
+      "sha256": "837e87e0c88148f60c0082f07d45654f7bdc7aa030fca934a2b840588fff348c"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_20_pert_5.1.json",
+      "sha256": "754cee85bba15401684dc9399647e8eb024fc08ff6756643782b658ca1ab80cb"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_220_pert_1.5.json",
+      "sha256": "0fd2a78ada5ddacfce2af0d451ef9302df7ea2b6747c3ed09f210090c558d94c"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_220_pert_4.6.json",
+      "sha256": "98f083a9784ab1b5ed9607a782fad554d2e6637d8139abd778cd83c5c58bd45f"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_223_pert_2.2.json",
+      "sha256": "ec7916469c96dff6bda1cd7bbf9ef9a64c65d7490b9f8732d1caa96c66bb4495"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_226_pert_2.2.json",
+      "sha256": "feac3fd8b945662a22bfe78b76a3a5a8423b6079fa7efb054b21eec159b613fa"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_22_pert_5.1.json",
+      "sha256": "25d597d873f444e7c27dbf8f420a0e9fbc2d1dd3d02aa7a844d0056f97c2a2e6"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_233_pert_3.2.json",
+      "sha256": "64fe1553def8d80fe625c4d30f07a668bd4d8808653207ee082e24fffb8a882b"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_27_pert_5.1.json",
+      "sha256": "871396127bb287bea0b0df2b998ec0b3c6dd5b0d028822712591877706eabff5"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_35_pert_2.5.json",
+      "sha256": "987a25353f9bacc878aac166dbbcd8bc1b6e332fa61252b49cc06b4ae87a68c3"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_372_pert_2.1.json",
+      "sha256": "e81e2d6a7d40edde72c9d988eaf82eaf369f307907caa8854d1ff59048e5a863"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_374_pert_5.1.json",
+      "sha256": "05f23aa7b912679e5f39661123019cda73ad4d7b8d89280e53c899de75439a6c"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_375_pert_2.5.json",
+      "sha256": "ca798eac1b10bbcfe442d69ec281f46b7f3a71780f79bc5b0a8dab16f0734327"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_375_pert_5.3.json",
+      "sha256": "cac8c0b8a00be6306932c447c75b9e1e0306e48e1ba71a019bf0a4b26dd7dc21"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_37_pert_5.1.json",
+      "sha256": "2c4ebde52554936b1a3aa6b175ab495126f55e6c9b989af9ce7b835fa6a7c2d1"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_387_pert_5.1.json",
+      "sha256": "a4054ca5bb7af818c51e9f7933af43136b089072b3a52e1c83499656430b9547"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_395_pert_2.5.json",
+      "sha256": "d08ba092337cf3b846590ab4959aee9d80c35cf39e69adaa4bd28454e489f500"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_400_pert_5.1.json",
+      "sha256": "899cbcde39d6a0a640a7dd4a662211ac281c5c10e74e79792db395a9b135c841"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_427_pert_1.4.json",
+      "sha256": "345e1faae6ef6730ad30576fe2bbfbdbba53df672401c3a603232e836d694e0e"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_448_pert_3.2.json",
+      "sha256": "4c1c7e3e539936cd20698b30ffe9237b6f76f1bd9213b41376ea60616bf8c383"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_448_pert_5.2.json",
+      "sha256": "df408602517afff24324040b82f70787b896495a57601bff45ab1a030fa4144a"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_455_pert_5.1.json",
+      "sha256": "fcae65adaa7c3a114cd3d0bc6b31c10ba48560e3eb25a849776d126eadad120b"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_456_pert_5.1.json",
+      "sha256": "7e974351d010e80efa99bab7eaef0622deef2d6566cac888d44582bc8a5e3ebb"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_458_pert_5.1.json",
+      "sha256": "edf5b3e0fb32eeb411c5a443ac83d9a34f5105b6b392e812bffd22357b40e74c"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_463_pert_1.3.json",
+      "sha256": "6c143b4b40719af5fd15d631d083ac2d4ee2c33f37fdcad839850c26775a0d37"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_464_pert_5.1.json",
+      "sha256": "2c3b743a7849b8bca94b237b40a6014d1778b58f2316703aa30f63dfb1a01b8a"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_465_pert_1.3.json",
+      "sha256": "d25cbff8b25beae262376f6413f7d335ace4b64ff04627cb2328d8d5ea21e9dc"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_465_pert_1.5.json",
+      "sha256": "94ebbf97aaa08afa6bf08f3df3f0b7c61ff3849f155bf94bc6fe9ae436181824"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_465_pert_2.2.json",
+      "sha256": "0ca7d4f5e5b8b5a29e740a1556dd625af684f8787ca089e5e6d6d27c56003ec4"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_466_pert_1.4.json",
+      "sha256": "0d9378eb8633f68bf217a535f2b0c01542b5ff98a74f506a7b1b45746ff73575"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_472_pert_1.4.json",
+      "sha256": "e2fdc3564a44d9afe478fda475e9198a4967ecd307087b354ea94b3ba0f66e33"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_476_pert_5.1.json",
+      "sha256": "611074cb9dcbe0a5a87777d296ccd25b18a75edb3c982c6d7b966a343215f93c"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_482_pert_5.2.json",
+      "sha256": "4979a82f41468036a77717a82afe1cf34dcec3fc4f2086fc9a39d96b1c5b17ec"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_483_pert_5.1.json",
+      "sha256": "603d59f82a0bea6a5eab6cb3aa7f948f4362ec5596a29e17b04c2d66b3953d05"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_488_pert_5.1.json",
+      "sha256": "462c2eb93c5f543192b3acb976c78cb725dc532e07141375944872c88f6b9862"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_489_pert_5.1.json",
+      "sha256": "339b7b12273c8fd6ee81b74d8489a546d276ed8ecc4262a740945baf8d1b5ac3"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_490_pert_5.1.json",
+      "sha256": "8fe325fd8f29feb104afd91360b288b539af5bfccd3565b0bf0232a338fc7aa1"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_492_pert_5.1.json",
+      "sha256": "c087fe631ea0e5d9cb622c7ea220a2a8407d8a921a71561180bb5190e60f5446"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_49_pert_5.1.json",
+      "sha256": "26ffabe809029e390685e4870eee60e485f27a8c31f4e959ea0d3eb213a9690e"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_503_pert_1.4.json",
+      "sha256": "36f53c689f6d46786083e09dac227aad5f7cb5835228fc6960ea26fe8763fe0f"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_529_pert_2.2.json",
+      "sha256": "38d855f9c6fe465267435f518043421251fdfaa95ac5763a1b60d570bebdeca4"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_529_pert_4.5.json",
+      "sha256": "25ddb46ca4a532222b1e02130ad6c7640ff74f3b98777670953d6d2bf035ceac"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_540_pert_1.5.json",
+      "sha256": "e09649c05926561887fd34730ab1e93a5f48b0736ba2a9ef80b3d327f5d01feb"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_559_pert_3.2.json",
+      "sha256": "28ec17b02f2e34a13f6f468d6284de47d1e5ccd6b5a5588d330ef88432a2bae4"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_559_pert_5.1.json",
+      "sha256": "fd4dd04f94d89df58b5be014eb3e7cb700802f11d61264469d891bac4a6923fb"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_559_pert_5.2.json",
+      "sha256": "922cae55c843dd64c5ca499fa2cec0fca7781f83af4c809adf7007d6817fee42"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_560_pert_1.5.json",
+      "sha256": "3a7df5fea9e1cd599012376d16b577fdd30e106aaec647829519bc48142fddae"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_566_pert_5.1.json",
+      "sha256": "4f2dcac83d57f16feffe4610c31035f00c9f6c16143103fc8bd439dc96cda460"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_568_pert_5.2.json",
+      "sha256": "12a82cd2500c56239a9a19e16c5228f1efbc104c3a02d6556ff358e8a6d39b6f"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_572_pert_5.1.json",
+      "sha256": "af9b9271114d5723195006ae0df492bad2f414e4606f1a03d98f277f5b205ccc"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_573_pert_2.2.json",
+      "sha256": "dd358a81d7cbd308ada87875aa76570fb1753ea4be604c50a7bd6e29fb5c25e1"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_574_pert_2.5.json",
+      "sha256": "9022fe29ddc47f306c3f115e180f105fd951012c825d4b078ccb942328366ab5"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_578_pert_5.1.json",
+      "sha256": "ed9922950dce2c50e067a9be263d2e24dca35eae962d495a5bece06a102612ed"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_579_pert_5.1.json",
+      "sha256": "154e3fccc365e771709009d108b258a29334edfd7098890650acc6969b01b3be"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_586_pert_3.2.json",
+      "sha256": "b0181578253266dc6c0efabf112fb7d2e02f080b87bcfa24ac65a180547515c4"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_592_pert_5.1.json",
+      "sha256": "7964103076dc81e92493cd1687eb99459b786ad879f08ee59e33694a9de69e9f"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_65_pert_5.1.json",
+      "sha256": "accb213bee77a6e00a789b3443064e19f151a093103863a93b626604afc679b2"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_68_pert_2.5.json",
+      "sha256": "483e80e3ca2680c9c74a6a40f47b458f38d2a29ee73269de549318d8b4a33254"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_77_pert_5.1.json",
+      "sha256": "b07d3fcce1bead5ed3be30b80e55564f616b7ae9289a0e10f1a35819e9d788b6"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_78_pert_5.1.json",
+      "sha256": "11a43e7f79533aac17225725d8ee5123582df16c90398cbe408e84fff564c410"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_91_pert_2.3.json",
+      "sha256": "8d2a43bc14356bcb1dc1a940187bdc65bb8de8ffe9fe87f908c0544afbbdd724"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_92_pert_4.3.json",
+      "sha256": "0ed1afb85b83003100605e29cdd532299359ae6254f1b81982ecc7dfb3915936"
+    },
+    {
+      "path": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_98_pert_2.1.json",
+      "sha256": "940fdc4893b53fa66808bc2e940f49de139c9f85966ac0d53871c5581e11a334"
+    }
+  ],
+  "failed_input_artifacts": [
+    {
+      "id": "img_488_pert_5.1",
+      "status": "api_failed",
+      "source": "outputs/final80_v2-assisted/gigachat-assisted-extraction/img_488_pert_5.1.json",
+      "error_type": "ContractError",
+      "error": "llm_assisted_extraction schema validation failed: '' should be non-empty"
+    }
+  ],
+  "input_failure_count": 1,
+  "summary": {
+    "examples": 79,
+    "verified_solution_covered": 2,
+    "verified_solution_coverage": 0.02531645569620253,
+    "task_aware_covered": 1,
+    "task_aware_coverage": 0.012658227848101266,
+    "verdict_counts": {
+      "correct": 7,
+      "incorrect": 9,
+      "indeterminate": 63
+    },
+    "indeterminate": 63
+  },
+  "results": [
+    {
+      "id": "img_108_pert_1.4",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_109_pert_2.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\circ'",
+        "Unsupported input at character 15",
+        "Unsupported input at character 15",
+        "Unsupported input at character 15",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_111_pert_1.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "Requires one explicit inequality"
+      ]
+    },
+    {
+      "id": "img_111_pert_2.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Bare word is not an exact mathematical token",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Requires one explicit inequality"
+      ]
+    },
+    {
+      "id": "img_112_pert_4.4",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported input at character 33",
+        "Unsupported input at character 73",
+        "Unsupported input at character 73",
+        "Unbalanced delimiters",
+        "Continuation requires one readable dependency",
+        "Requires one explicit inequality"
+      ]
+    },
+    {
+      "id": "img_115_pert_4.4",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Symbolic claim has no given/dependency anchor",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_14_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_153_pert_1.5",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_160_pert_2.4",
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "verified_solution_covered": false,
+      "task_aware_covered": true,
+      "fallback_reasons": []
+    },
+    {
+      "id": "img_165_pert_5.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_172_pert_3.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_173_pert_2.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_173_pert_5.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_176_pert_4.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Bare word is not an exact mathematical token",
+        "Continuation requires one readable dependency",
+        "Continuation requires one readable dependency",
+        "Unanchored mathematical statement",
+        "Bare word is not an exact mathematical token",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Continuation requires one readable dependency",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_190_pert_3.2",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "A written answer equality is required"
+      ]
+    },
+    {
+      "id": "img_193_pert_5.3",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_194_pert_1.5",
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Symbolic claim has no given/dependency anchor",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_19_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported input at character 5",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Unsupported input at character 5",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_20_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unsupported input at character 2",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_220_pert_1.5",
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "verified_solution_covered": true,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_220_pert_4.6",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_223_pert_2.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_226_pert_2.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Adjacent numeric literals require an explicit operator",
+        "Adjacent numeric literals require an explicit operator",
+        "Continuation requires one readable dependency",
+        "Unsupported input at character 0",
+        "Continuation requires one readable dependency",
+        "Adjacent numeric literals require an explicit operator",
+        "Adjacent numeric literals require an explicit operator",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_22_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported input at character 14",
+        "Unsupported input at character 13",
+        "At least one node/edge proof is unresolved",
+        "Task target has unresolved variables"
+      ]
+    },
+    {
+      "id": "img_233_pert_3.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "OCR exactness is not exact",
+        "OCR exactness is not exact",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_27_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_35_pert_2.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "OCR exactness is not exact",
+        "Unsupported token '\\\\text'"
+      ]
+    },
+    {
+      "id": "img_372_pert_2.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\int'",
+        "Unsupported token '\\\\int'",
+        "Bare word is not an exact mathematical token",
+        "Functions are outside the selected algebra subset",
+        "Bare word is not an exact mathematical token",
+        "Unbalanced delimiters",
+        "Functions are outside the selected algebra subset",
+        "Unsupported input at character 1",
+        "Bare word is not an exact mathematical token",
+        "Unsupported token '\\\\int'",
+        "Bare word is not an exact mathematical token",
+        "definite integral with explicit bounds was not found"
+      ]
+    },
+    {
+      "id": "img_374_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Functions are outside the selected algebra subset",
+        "Functions are outside the selected algebra subset",
+        "Bare word is not an exact mathematical token",
+        "Bare word is not an exact mathematical token",
+        "Bare word is not an exact mathematical token",
+        "Bare word is not an exact mathematical token",
+        "Unsupported input at character 6",
+        "definite integral with explicit bounds was not found"
+      ]
+    },
+    {
+      "id": "img_375_pert_2.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\int'",
+        "Bare word is not an exact mathematical token",
+        "Continuation requires one readable dependency",
+        "Continuation requires one readable dependency",
+        "Continuation requires one readable dependency",
+        "Continuation requires one readable dependency",
+        "definite integral with explicit bounds was not found"
+      ]
+    },
+    {
+      "id": "img_375_pert_5.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\int'",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_37_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "OCR exactness is not exact",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_387_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Differential notation needs a calculus verifier",
+        "Differential notation needs a calculus verifier",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_395_pert_2.5",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Differential notation needs a calculus verifier",
+        "Differential notation needs a calculus verifier",
+        "Differential notation needs a calculus verifier"
+      ]
+    },
+    {
+      "id": "img_400_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Differential notation needs a calculus verifier",
+        "Differential notation needs a calculus verifier",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_427_pert_1.4",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\lim'",
+        "Unsupported token '\\\\lim'",
+        "Continuation requires one readable dependency",
+        "Unsupported token '\\\\lim'",
+        "Bare word is not an exact mathematical token",
+        "Unsupported token '\\\\lim'",
+        "Unsupported token '\\\\lim'",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_448_pert_3.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_448_pert_5.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Symbolic claim has no given/dependency anchor",
+        "Symbolic claim has no given/dependency anchor",
+        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul'",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_455_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_456_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_458_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unconsumed token '|'; one expression/equation per step",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol'",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_463_pert_1.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Symbolic claim has no given/dependency anchor",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_464_pert_5.1",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Symbolic claim has no given/dependency anchor",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_465_pert_1.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_465_pert_1.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol'",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_465_pert_2.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_466_pert_1.4",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "requires two explicit X/Y matrix equations"
+      ]
+    },
+    {
+      "id": "img_472_pert_1.4",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Unsupported input at character 0",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_476_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Requires one explicit inequality",
+        "Requires one explicit inequality"
+      ]
+    },
+    {
+      "id": "img_482_pert_5.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_483_pert_5.1",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_489_pert_5.1",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_490_pert_5.1",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task target has unresolved variables"
+      ]
+    },
+    {
+      "id": "img_492_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_49_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_503_pert_1.4",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported input at character 16",
+        "task is not visible in the image; goal is unknown"
+      ]
+    },
+    {
+      "id": "img_529_pert_2.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported input at character 6",
+        "Unsupported input at character 2",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_529_pert_4.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported input at character 8",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_540_pert_1.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\vec'",
+        "Unsupported token '\\\\vec'",
+        "At least one node/edge proof is unresolved",
+        "At least one node/edge proof is unresolved",
+        "Unsupported token '\\\\vec'"
+      ]
+    },
+    {
+      "id": "img_559_pert_3.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unsupported input at character 17",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_559_pert_5.1",
+      "verdict": "correct",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_559_pert_5.2",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_560_pert_1.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_566_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Undefined real expression: nonzero restriction fails",
+        "Undefined real expression: nonzero restriction fails",
+        "Continuation requires one readable dependency",
+        "Exponent exceeds rational bounds",
+        "Exponent exceeds rational bounds",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_568_pert_5.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_572_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Bare word is not an exact mathematical token",
+        "Bare word is not an exact mathematical token",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_573_pert_2.2",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": true,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_574_pert_2.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Bare word is not an exact mathematical token",
+        "Unsupported input at character 1",
+        "Unsupported input at character 1",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "Unsupported input at character 0",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_578_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Unanchored mathematical statement",
+        "Bare word is not an exact mathematical token",
+        "Requires one explicit inequality",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_579_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "Unsupported input at character 2",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_586_pert_3.2",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Bare word is not an exact mathematical token",
+        "Continuation requires one readable dependency",
+        "Continuation requires one readable dependency",
+        "Bare word is not an exact mathematical token",
+        "Continuation requires one readable dependency",
+        "Continuation requires one readable dependency",
+        "Task has no explicit mathematical target"
+      ]
+    },
+    {
+      "id": "img_592_pert_5.1",
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unsupported token '\\\\lor'",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_65_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Unanchored mathematical statement",
+        "At least one node/edge proof is unresolved",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_68_pert_2.5",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Symbolic claim has no given/dependency anchor",
+        "Symbolic claim has no given/dependency anchor",
+        "Unsupported input at character 5",
+        "Continuation requires one readable dependency",
+        "At least one node/edge proof is unresolved",
+        "Bare word is not an exact mathematical token"
+      ]
+    },
+    {
+      "id": "img_77_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "Prose/conditions are not a fully parsed mathematical step",
+        "OCR exactness is not exact",
+        "A written answer equality is required"
+      ]
+    },
+    {
+      "id": "img_78_pert_5.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "OCR exactness is not exact",
+        "Unsupported token '\\\\text'"
+      ]
+    },
+    {
+      "id": "img_91_pert_2.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT"
+      ]
+    },
+    {
+      "id": "img_92_pert_4.3",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "Prose/conditions are not a fully parsed mathematical step",
+        "OCR exactness is not exact",
+        "goal is unknown"
+      ]
+    },
+    {
+      "id": "img_98_pert_2.1",
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "verified_solution_covered": false,
+      "task_aware_covered": false,
+      "fallback_reasons": [
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT",
+        "TIMEOUT_OR_WORKER_EXIT"
+      ]
+    }
+  ]
+}

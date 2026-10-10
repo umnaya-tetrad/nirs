@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0",
+  "id": "img_578_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "p x ^ 2 + q x + r = 0",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "p = 2",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "q = - 4",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "r = 3",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\Delta = b ^ 2 - 4 a c",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\Delta = \\left(- 4\right)^2 - \\left(4 \\times 2 \\times 3\\right)",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "\\Delta = 16 - 24 = - 8 < 0",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 563
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-2fa761ef-0b33-47e7-929f-41c1dc85ff47",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1325,
+    "created_at": "2026-10-10T15:51:37.796729Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_578_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "Find the discriminant of the quadratic equation 2 x ^ 2 = 4 x + 3 = 0 , hence find the nature of its roots.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": "\\Delta"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "p x ^ 2 + q x + r = 0",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "p = 2",
+          "role": "substitution",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "q = - 4",
+          "role": "substitution",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "r = 3",
+          "role": "substitution",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\Delta = b ^ 2 - 4 a c",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\Delta = \\left(- 4\right)^2 - \\left(4 \\times 2 \\times 3\\right)",
+          "role": "substitution",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "\\Delta = 16 - 24 = - 8 < 0",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Bare word is not an exact mathematical token",
+      "step_id": "s7",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Bare word is not an exact mathematical token",
+      "Requires one explicit inequality",
+      "Bare word is not an exact mathematical token"
+    ]
+  }
+}

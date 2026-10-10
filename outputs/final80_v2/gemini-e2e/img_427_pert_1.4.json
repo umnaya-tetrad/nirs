@@ -1,0 +1,141 @@
+{
+  "status": "ok",
+  "case_id": "img_427_pert_1.4",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gemini_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1469,
+    "completion_tokens": 1458,
+    "total_tokens": 2927,
+    "cost": 0.78256848,
+    "cost_rub": 0.78256848
+  },
+  "latency_ms": 12241,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\text{Question: Evaluate:}\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"1.\\\\; \\\\lim_{x \\\\to 1} \\\\frac{x^{15}-1}{x^{10}-1}\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"2.\\\\; \\\\lim_{x \\\\to 0} \\\\frac{\\\\sqrt{1+x}-1}{x}\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"\\\\text{Answer:}\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"1.\\\\; \\\\text{We have}\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"\\\\lim_{x \\\\to 1} \\\\frac{x^{15}-1}{x^{10}-1} = \\\\lim_{x \\\\to 1} \\\\frac{\\\\frac{x^{15}-1}{x-1}}{\\\\frac{x^{10}-1}{x-1}} = \\\\lim_{x \\\\to 1} \\\\left[ \\\\frac{x^{15}-1}{x-1} \\\\cdot \\\\frac{1}{\\\\frac{x^{10}-1}{x-1}} \\\\right]\"\n    },\n    {\n      \"step_id\": \"s7\",\n      \"latex\": \"= \\\\frac{14(1)^{14}}{9(1)^9} = \\\\frac{14}{9} = \\\\frac{14}{9}.\"\n    },\n    {\n      \"step_id\": \"s8\",\n      \"latex\": \"2.\\\\; \\\\text{Put } y = 1+x, \\\\text{ so that } y \\\\to 1 \\\\text{ as } x \\\\to 0. \\\\text{ Then}\"\n    },\n    {\n      \"step_id\": \"s9\",\n      \"latex\": \"\\\\lim_{x \\\\to 0} \\\\frac{\\\\sqrt{1+x}-1}{x} = \\\\lim_{y \\\\to 1} \\\\frac{\\\\sqrt{y}-1}{y-1}\"\n    },\n    {\n      \"step_id\": \"s10\",\n      \"latex\": \"= \\\\lim_{y \\\\to 1} \\\\frac{\\\\frac{1}{2}y^{-\\\\frac{1}{2}}}{1} = \\\\frac{1}{2}(1)^{-1} = \\\\frac{1}{2}.\"\n    }\n  ],\n  \"has_error\": true,\n  \"first_error_step\": \"s7\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_427_pert_1.4",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "google/gemini-3.7-flash",
+          "status": "ok",
+          "duration_ms": 12241,
+          "tokens_in": 1469,
+          "tokens_out": 1458
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\text{Question: Evaluate:}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "1.\\; \\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1}",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "2.\\; \\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x}",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\text{Answer:}",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "1.\\; \\text{We have}",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1} = \\lim_{x \\to 1} \\frac{\\frac{x^{15}-1}{x-1}}{\\frac{x^{10}-1}{x-1}} = \\lim_{x \\to 1} \\left[ \\frac{x^{15}-1}{x-1} \\cdot \\frac{1}{\\frac{x^{10}-1}{x-1}} \\right]",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "= \\frac{14(1)^{14}}{9(1)^9} = \\frac{14}{9} = \\frac{14}{9}.",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "2.\\; \\text{Put } y = 1+x, \\text{ so that } y \\to 1 \\text{ as } x \\to 0. \\text{ Then}",
+        "derives_from": [
+          "s7"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "\\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x} = \\lim_{y \\to 1} \\frac{\\sqrt{y}-1}{y-1}",
+        "derives_from": [
+          "s8"
+        ]
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "= \\lim_{y \\to 1} \\frac{\\frac{1}{2}y^{-\\frac{1}{2}}}{1} = \\frac{1}{2}(1)^{-1} = \\frac{1}{2}.",
+        "derives_from": [
+          "s9"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s7",
+    "last_correct_step": "s6",
+    "findings": [],
+    "meta": {
+      "run_id": "run-2ceddba8-af2f-41da-bd29-8f1bce52722a",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "e2e_gemini_v1",
+      "temperature": 0,
+      "duration_ms": 12241,
+      "created_at": "2026-10-10T15:12:36Z",
+      "tokens_in": 1469,
+      "tokens_out": 1458
+    }
+  }
+}

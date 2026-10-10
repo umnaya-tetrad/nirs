@@ -1,0 +1,374 @@
+{
+  "schema_version": "1.0",
+  "id": "img_91_pert_2.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\cot x = -\\frac{5}{12}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\tan x = -\\frac{12}{5}.",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\sec^2 x = 1 + \\tan^2 x = 1 + (-\\frac{12}{5})^2 = 1 + \\frac{144}{25} = \\frac{169}{25}.",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\sec x = \\pm \\frac{13}{5}.",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\sec x = -\\frac{13}{5}.",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\cos x = -\\frac{5}{13}.",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "\\sin x = \\sqrt{1 - \\cos^2 x} = \\sqrt{1 - (-\\frac{5}{13})^2} = \\sqrt{1 - \\frac{25}{169}} = \\sqrt{\\frac{144}{169}} = \\frac{12}{13}.",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "\\csc x = \\frac{1}{\\sin x} = \\frac{13}{12}.",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 10049
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "TIMEOUT_OR_WORKER_EXIT"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-474d2c4b-1c78-4059-a08b-15f668780167",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 20185,
+    "created_at": "2026-10-10T15:52:00.151330Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_91_pert_2.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : If } \\cot x = -\\frac{5}{12}, \\text{ where } x \\text{ lies in the second quadrant, find the values of the other five trigonometric functions.}",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\cot x = -\\frac{5}{12}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\tan x = -\\frac{12}{5}.",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\sec^2 x = 1 + \\tan^2 x = 1 + (-\\frac{12}{5})^2 = 1 + \\frac{144}{25} = \\frac{169}{25}.",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\sec x = \\pm \\frac{13}{5}.",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\sec x = -\\frac{13}{5}.",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\cos x = -\\frac{5}{13}.",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "\\sin x = \\sqrt{1 - \\cos^2 x} = \\sqrt{1 - (-\\frac{5}{13})^2} = \\sqrt{1 - \\frac{25}{169}} = \\sqrt{\\frac{144}{169}} = \\frac{12}{13}.",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "\\csc x = \\frac{1}{\\sin x} = \\frac{13}{12}.",
+          "role": "transformation",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "TIMEOUT_OR_WORKER_EXIT"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "TIMEOUT_OR_WORKER_EXIT",
+      "step_id": null,
+      "rule": "assisted_worker",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "TIMEOUT_OR_WORKER_EXIT"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT",
+      "TIMEOUT_OR_WORKER_EXIT"
+    ]
+  }
+}

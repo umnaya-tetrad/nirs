@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "id": "img_578_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "px^2 + qx + r = 0, \\text{ where } p = 2,\\; q = -4 \\text{ and } r = 3",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "q^2 - 4pr = (-4)^2 - (4 \\times 2 \\times 3) = 16 - 24 = -8 < 0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{So, the given equation has no real roots.}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 606
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Requires one explicit inequality"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-0f9b88a9-5d54-467d-a1e8-58b474182532",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1210,
+    "created_at": "2026-10-10T15:51:52.790691Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_578_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find the discriminant of the quadratic equation } 2x^2 - 4x + 3 = 0\\text{, hence find the nature of its roots.}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "2x^2 - 4x + 3 = 0",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "2x^2 - 4x + 3 = 0",
+                "kind": "equation",
+                "sides": [
+                  "(2*x**2 - 4*x) + 3",
+                  "0"
+                ],
+                "symbols": [
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\text{discriminant and nature of roots}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "px^2 + qx + r = 0, \\text{ where } p = 2,\\; q = -4 \\text{ and } r = 3",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "q^2 - 4pr = (-4)^2 - (4 \\times 2 \\times 3) = 16 - 24 = -8 < 0",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{So, the given equation has no real roots.}",
+          "role": "answer",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "WORKER_ERROR: PolynomialError: p*x**2 + q*x contains an element of the set of generators."
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "A written answer equality is required",
+      "step_id": "s3",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Requires one explicit inequality"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Requires one explicit inequality",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "A written answer equality is required"
+    ]
+  }
+}

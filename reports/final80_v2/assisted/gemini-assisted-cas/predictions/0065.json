@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "id": "img_566_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{We have, } \\frac{5+\\sqrt{2}i}{1-\\sqrt{2}i} = \\frac{5+\\sqrt{2}i}{1-\\sqrt{2}i} \\times \\frac{1+\\sqrt{2}i}{1+\\sqrt{2}i}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= \\frac{3+6\\sqrt{2}i}{1+2} = \\frac{3(1+2\\sqrt{2}i)}{3} = 1+2\\sqrt{2}i",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "i^{-35} = \\frac{1}{i^{35}} = \\frac{1}{(i^2)^{17}i} = \\frac{1 \\times i}{-i} = \\frac{i}{-(-1)} = i",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 855
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Exponent exceeds rational bounds"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-b7ba259b-86b7-47ec-8397-a0e099457a31",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1650,
+    "created_at": "2026-10-10T15:51:44.380522Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_566_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Evaluate the following in the form } a+ib \\\\\n\\text{(i) } \\frac{5+\\sqrt{2}i}{1-\\sqrt{2}i} \\quad \\text{(ii) } i^{-35}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\frac{5+\\sqrt{2}i}{1-\\sqrt{2}i}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Undefined real expression: nonzero restriction fails"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "i^{-35}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Exponent exceeds rational bounds"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "a+ib"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{We have, } \\frac{5+\\sqrt{2}i}{1-\\sqrt{2}i} = \\frac{5+\\sqrt{2}i}{1-\\sqrt{2}i} \\times \\frac{1+\\sqrt{2}i}{1+\\sqrt{2}i}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "= \\frac{3+6\\sqrt{2}i}{1+2} = \\frac{3(1+2\\sqrt{2}i)}{3} = 1+2\\sqrt{2}i",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "i^{-35} = \\frac{1}{i^{35}} = \\frac{1}{(i^2)^{17}i} = \\frac{1 \\times i}{-i} = \\frac{i}{-(-1)} = i",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Undefined real expression: nonzero restriction fails",
+          "given g2 is not in the exact SymPy subset: Exponent exceeds rational bounds"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: We have,; Undefined real expression: nonzero restriction fails; Undefined real expression: nonzero restriction fails"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Continuation has no readable predecessor; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Exponent outside configured rational bounds; Exponent outside configured rational bounds; Undefined real expression: nonzero restriction fails; Undefined real expression: nonzero restriction fails; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Exponent exceeds rational bounds",
+      "step_id": "s3",
+      "rule": "expression",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exponent exceeds rational bounds",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "g2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exponent exceeds rational bounds"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Continuation requires one readable dependency",
+      "Exponent exceeds rational bounds",
+      "Exponent exceeds rational bounds"
+    ]
+  }
+}

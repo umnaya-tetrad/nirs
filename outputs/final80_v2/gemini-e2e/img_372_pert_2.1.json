@@ -1,0 +1,117 @@
+{
+  "status": "ok",
+  "case_id": "img_372_pert_2.1",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gemini_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1491,
+    "completion_tokens": 1663,
+    "total_tokens": 3154,
+    "cost": 0.87611217,
+    "cost_rub": 0.87611217
+  },
+  "latency_ms": 18322,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\text{Question: Evaluate } \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{dx}{1+\\\\sqrt{\\\\tan x}}.\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"\\\\text{Answer: Let } I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{dx}{1+\\\\sqrt{\\\\tan x}}.\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"\\\\text{Then, by } P_3: I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{\\\\sqrt{\\\\cos x}\\\\,dx}{\\\\sqrt{\\\\cos x} + \\\\sqrt{\\\\sin x}} \\\\dots (1)\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"\\\\text{We have: } I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{\\\\cos\\\\left(\\\\frac{\\\\pi}{3}+\\\\frac{\\\\pi}{6}-x\\\\right)}{\\\\sqrt{\\\\cos\\\\left(\\\\frac{\\\\pi}{3}+\\\\frac{\\\\pi}{6}-x\\\\right)} + \\\\sqrt{\\\\sin\\\\left(\\\\frac{\\\\pi}{3}+\\\\frac{\\\\pi}{6}-x\\\\right)}}\\\\,dx.\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"= \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} \\\\frac{\\\\sqrt{\\\\sin x}}{\\\\sqrt{\\\\sin x} + \\\\sqrt{\\\\cos x}}\\\\,dx \\\\dots (2)\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"\\\\text{Adding (1) and (2), we get: } 2I = \\\\int_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} dx = [x]_{\\\\frac{\\\\pi}{6}}^{\\\\frac{\\\\pi}{3}} = \\\\frac{\\\\pi}{3} - \\\\frac{\\\\pi}{6} = \\\\frac{\\\\pi}{6}.\"\n    },\n    {\n      \"step_id\": \"s7\",\n      \"latex\": \"\\\\text{Hence, } I = \\\\frac{\\\\pi}{12}.\"\n    }\n  ],\n  \"has_error\": true,\n  \"first_error_step\": \"s4\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_372_pert_2.1",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "google/gemini-3.7-flash",
+          "status": "ok",
+          "duration_ms": 18322,
+          "tokens_in": 1491,
+          "tokens_out": 1663
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\text{Question: Evaluate } \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{dx}{1+\\sqrt{\\tan x}}.",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\text{Answer: Let } I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{dx}{1+\\sqrt{\\tan x}}.",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\text{Then, by } P_3: I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\sqrt{\\cos x}\\,dx}{\\sqrt{\\cos x} + \\sqrt{\\sin x}} \\dots (1)",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\text{We have: } I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\cos\\left(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x\\right)}{\\sqrt{\\cos\\left(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x\\right)} + \\sqrt{\\sin\\left(\\frac{\\pi}{3}+\\frac{\\pi}{6}-x\\right)}}\\,dx.",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "= \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\frac{\\sqrt{\\sin x}}{\\sqrt{\\sin x} + \\sqrt{\\cos x}}\\,dx \\dots (2)",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\text{Adding (1) and (2), we get: } 2I = \\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} dx = [x]_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} = \\frac{\\pi}{3} - \\frac{\\pi}{6} = \\frac{\\pi}{6}.",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "\\text{Hence, } I = \\frac{\\pi}{12}.",
+        "derives_from": [
+          "s6"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s4",
+    "last_correct_step": "s3",
+    "findings": [],
+    "meta": {
+      "run_id": "run-fc7d39bb-6d93-4d49-859b-44467f784f1b",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "e2e_gemini_v1",
+      "temperature": 0,
+      "duration_ms": 18322,
+      "created_at": "2026-10-10T15:14:10Z",
+      "tokens_in": 1491,
+      "tokens_out": 1663
+    }
+  }
+}

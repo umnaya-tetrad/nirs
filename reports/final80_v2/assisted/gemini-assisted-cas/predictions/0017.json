@@ -1,0 +1,314 @@
+{
+  "schema_version": "1.0",
+  "id": "img_194_pert_1.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\frac{1}{8!} + \\frac{1}{9 \\times 8!} = \\frac{x}{10 \\times 9 \\times 8!}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "1 + \\frac{1}{9} = \\frac{x}{10 \\times 8} \\text{ or } \\frac{10}{9} = \\frac{x}{10 \\times 8}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "x = 90",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 887
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Exact node and dependency checks",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Exact node and dependency checks",
+        "actual_latex": "\\frac{1}{8!} + \\frac{1}{9 \\times 8!} = \\frac{x}{10 \\times 9 \\times 8!}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-87deadc7-e580-4f06-80fa-b99e02690e6c",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1728,
+    "created_at": "2026-10-10T15:50:33.184638Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_194_pert_1.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : If } \\frac{1}{8!} + \\frac{1}{9!} = \\frac{x}{10!}\\text{, find } x.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\frac{1}{8!} + \\frac{1}{9!} = \\frac{x}{10!}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\frac{1}{8!} + \\frac{1}{9!} = \\frac{x}{10!}",
+                "kind": "equation",
+                "sides": [
+                  "1/362880 + 1/40320",
+                  "x/3628800"
+                ],
+                "symbols": [
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": [
+                  {
+                    "kind": "nonzero",
+                    "expression": "40320"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "362880"
+                  },
+                  {
+                    "kind": "nonzero",
+                    "expression": "3628800"
+                  }
+                ]
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "x"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\frac{1}{8!} + \\frac{1}{9 \\times 8!} = \\frac{x}{10 \\times 9 \\times 8!}",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "1 + \\frac{1}{9} = \\frac{x}{10 \\times 8} \\text{ or } \\frac{10}{9} = \\frac{x}{10 \\times 8}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "x = 90",
+          "role": "answer",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "\\frac{1}{8!} + \\frac{1}{9 \\times 8!} = \\frac{x}{10 \\times 9 \\times 8!}",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Disjunction needs a branch context; Exact expression identity with preserved domain; Separate equation/substitution requires task context",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Disjunction needs a branch context; Exact expression identity with preserved domain; Separate equation/substitution requires task context",
+            "actual_latex": "1 + \\frac{1}{9} = \\frac{x}{10 \\times 8} \\text{ or } \\frac{10}{9} = \\frac{x}{10 \\times 8}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "invalid",
+      "reason": "Exact complete equation root-set comparison",
+      "step_id": "s3",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": "s1",
+      "localization_blocked": false,
+      "invalid_steps": [
+        "s1"
+      ],
+      "unsupported_steps": [
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "VALID",
+          "reason": "Exact given statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved"
+    ]
+  }
+}

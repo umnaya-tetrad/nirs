@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0",
+  "id": "img_375_pert_5.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\int_{-1}^2 |x^3-x|dx = \\int_{-1}^0 (x^3-x)dx + \\int_0^1 -(x^3-x)dx + \\int_1^2 (x^3-x)dx",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= \\int_{-1}^0 (x^3-x)dx + \\int_0^1 (x-x^3)dx + \\int_1^2 (x^3-x)dx",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= \\left[\\frac{x^4}{4}-\\frac{x^2}{2}\\right]_{-1}^0 + \\left[\\frac{x^2}{2}-\\frac{x^4}{4}\\right]_0^1 + \\left[\\frac{x^4}{4}-\\frac{x^2}{2}\\right]_1^2",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "= \\left(\\frac{0-\\frac{1}{2}}{0}\\right) + \\left(\\frac{1}{2}-\\frac{1}{4}\\right) + \\left(\\frac{4-2}{4}-\\left(\\frac{1}{4}-\\frac{1}{2}\\right)\\right)",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "= \\left(0-\\left(\\frac{1}{4}+\\frac{1}{2}\\right)\\right) + \\left(\\frac{1}{2}-\\frac{1}{4}\\right) + \\left(\\frac{4-2}{4}-\\left(\\frac{1}{4}-\\frac{1}{2}\\right)\\right)",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "= 0 + \\frac{1}{4} + \\left(\\frac{1}{2}-\\frac{1}{4}\\right)",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "= 0 + \\frac{1}{4} + \\frac{1}{4} = \\frac{3}{4}",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "= \\frac{1}{4} + \\frac{1}{2} + \\frac{1}{4} = \\frac{3}{2} - \\frac{3}{4} + 2 = \\frac{11}{4}",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 604
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\int'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unconsumed token '_'; one expression/equation per step"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Undefined real expression: nonzero restriction fails"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-898ead00-8311-4cb0-bfa0-766fa85d21ea",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1168,
+    "created_at": "2026-10-10T15:50:53.151543Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_375_pert_5.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Evaluate }\\int_{-1}^2 |x^3-x|dx.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\int_{-1}^2 |x^3-x|dx"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\int_{-1}^2 |x^3-x|dx = \\int_{-1}^0 (x^3-x)dx + \\int_0^1 -(x^3-x)dx + \\int_1^2 (x^3-x)dx",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= \\int_{-1}^0 (x^3-x)dx + \\int_0^1 (x-x^3)dx + \\int_1^2 (x^3-x)dx",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= \\left[\\frac{x^4}{4}-\\frac{x^2}{2}\\right]_{-1}^0 + \\left[\\frac{x^2}{2}-\\frac{x^4}{4}\\right]_0^1 + \\left[\\frac{x^4}{4}-\\frac{x^2}{2}\\right]_1^2",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "= \\left(\\frac{0-\\frac{1}{2}}{0}\\right) + \\left(\\frac{1}{2}-\\frac{1}{4}\\right) + \\left(\\frac{4-2}{4}-\\left(\\frac{1}{4}-\\frac{1}{2}\\right)\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "= \\left(0-\\left(\\frac{1}{4}+\\frac{1}{2}\\right)\\right) + \\left(\\frac{1}{2}-\\frac{1}{4}\\right) + \\left(\\frac{4-2}{4}-\\left(\\frac{1}{4}-\\frac{1}{2}\\right)\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "= 0 + \\frac{1}{4} + \\left(\\frac{1}{2}-\\frac{1}{4}\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "= 0 + \\frac{1}{4} + \\frac{1}{4} = \\frac{3}{4}",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "= \\frac{1}{4} + \\frac{1}{2} + \\frac{1}{4} = \\frac{3}{2} - \\frac{3}{4} + 2 = \\frac{11}{4}",
+          "role": "answer",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "definite_integral",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\int'; Unsupported token '\\\\int'"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\int'; Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Unconsumed token '_'; one expression/equation per step; Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Undefined real expression: nonzero restriction fails; Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Continuation has no readable predecessor"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "definite integral with explicit bounds was not found",
+      "step_id": null,
+      "rule": "definite_integral",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\int'",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\int'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unconsumed token '_'; one expression/equation per step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Undefined real expression: nonzero restriction fails",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\int'"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unconsumed token '_'; one expression/equation per step"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Undefined real expression: nonzero restriction fails"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s5",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported token '\\\\int'",
+      "Unsupported token '\\\\int'",
+      "Unconsumed token '_'; one expression/equation per step",
+      "Undefined real expression: nonzero restriction fails",
+      "Continuation requires one readable dependency",
+      "Continuation requires one readable dependency",
+      "Continuation requires one readable dependency",
+      "Continuation requires one readable dependency",
+      "definite integral with explicit bounds was not found"
+    ]
+  }
+}

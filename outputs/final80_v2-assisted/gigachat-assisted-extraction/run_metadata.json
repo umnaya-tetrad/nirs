@@ -1,0 +1,592 @@
+{
+  "artifact_version": "1.0",
+  "created_at_utc": "2026-10-10T15:06:12.843939+00:00",
+  "provider": "gigachat",
+  "mode": "assisted_extraction",
+  "model": "GigaChat-2-Pro",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gigachat_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gigachat_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "f35da71fe3c123ee868179debc8bcc6fdffe52adcd51b05beb0652617bc286c6"
+  },
+  "git_commit": "e12fb6ffb751a2127fdbfaea817d9c1406f5f7ed",
+  "dataset_manifest": {
+    "path": "C:\\Users\\User\\Desktop\\3_year\\NIRS\\Project\\nirs\\dataset\\manifests\\fermat_final_80_v2.json",
+    "sha256": "51a34b2060a479cd410c1f2b0943de2f3a966e213ce961c6be1a14247d0a6060",
+    "ids": [
+      "img_400_pert_5.1",
+      "img_374_pert_5.1",
+      "img_19_pert_5.1",
+      "img_559_pert_5.1",
+      "img_464_pert_5.1",
+      "img_387_pert_5.1",
+      "img_22_pert_5.1",
+      "img_568_pert_5.2",
+      "img_482_pert_5.2",
+      "img_559_pert_5.2",
+      "img_448_pert_5.2",
+      "img_173_pert_5.3",
+      "img_165_pert_5.3",
+      "img_193_pert_5.3",
+      "img_375_pert_5.3",
+      "img_233_pert_3.2",
+      "img_190_pert_3.2",
+      "img_559_pert_3.2",
+      "img_172_pert_3.2",
+      "img_586_pert_3.2",
+      "img_448_pert_3.2",
+      "img_173_pert_2.5",
+      "img_35_pert_2.5",
+      "img_375_pert_2.5",
+      "img_574_pert_2.5",
+      "img_395_pert_2.5",
+      "img_68_pert_2.5",
+      "img_111_pert_1.3",
+      "img_463_pert_1.3",
+      "img_465_pert_1.3",
+      "img_108_pert_1.4",
+      "img_427_pert_1.4",
+      "img_472_pert_1.4",
+      "img_503_pert_1.4",
+      "img_466_pert_1.4",
+      "img_111_pert_2.1",
+      "img_98_pert_2.1",
+      "img_372_pert_2.1",
+      "img_109_pert_2.1",
+      "img_223_pert_2.2",
+      "img_465_pert_2.2",
+      "img_529_pert_2.2",
+      "img_573_pert_2.2",
+      "img_226_pert_2.2",
+      "img_176_pert_4.3",
+      "img_92_pert_4.3",
+      "img_91_pert_2.3",
+      "img_112_pert_4.4",
+      "img_115_pert_4.4",
+      "img_529_pert_4.5",
+      "img_160_pert_2.4",
+      "img_560_pert_1.5",
+      "img_465_pert_1.5",
+      "img_540_pert_1.5",
+      "img_153_pert_1.5",
+      "img_194_pert_1.5",
+      "img_220_pert_1.5",
+      "img_220_pert_4.6",
+      "img_476_pert_5.1",
+      "img_579_pert_5.1",
+      "img_578_pert_5.1",
+      "img_489_pert_5.1",
+      "img_490_pert_5.1",
+      "img_483_pert_5.1",
+      "img_592_pert_5.1",
+      "img_456_pert_5.1",
+      "img_455_pert_5.1",
+      "img_458_pert_5.1",
+      "img_566_pert_5.1",
+      "img_572_pert_5.1",
+      "img_65_pert_5.1",
+      "img_27_pert_5.1",
+      "img_14_pert_5.1",
+      "img_49_pert_5.1",
+      "img_77_pert_5.1",
+      "img_78_pert_5.1",
+      "img_37_pert_5.1",
+      "img_20_pert_5.1",
+      "img_492_pert_5.1",
+      "img_488_pert_5.1"
+    ]
+  },
+  "last_updated_utc": "2026-10-10T16:09:45.998001+00:00",
+  "completion": {
+    "expected": 80,
+    "successful": 79,
+    "failed": 1,
+    "not_attempted": 0,
+    "artifacts": [
+      {
+        "case_id": "img_400_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_374_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_19_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_559_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_464_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_387_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_22_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_568_pert_5.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_482_pert_5.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_559_pert_5.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_448_pert_5.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_173_pert_5.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_165_pert_5.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_193_pert_5.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_375_pert_5.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_233_pert_3.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_190_pert_3.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_559_pert_3.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_172_pert_3.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_586_pert_3.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_448_pert_3.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_173_pert_2.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_35_pert_2.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_375_pert_2.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_574_pert_2.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_395_pert_2.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_68_pert_2.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_111_pert_1.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_463_pert_1.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_465_pert_1.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_108_pert_1.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_427_pert_1.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_472_pert_1.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_503_pert_1.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_466_pert_1.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_111_pert_2.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_98_pert_2.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_372_pert_2.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_109_pert_2.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_223_pert_2.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_465_pert_2.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_529_pert_2.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_573_pert_2.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_226_pert_2.2",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_176_pert_4.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_92_pert_4.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_91_pert_2.3",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_112_pert_4.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_115_pert_4.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_529_pert_4.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_160_pert_2.4",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_560_pert_1.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_465_pert_1.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_540_pert_1.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_153_pert_1.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_194_pert_1.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_220_pert_1.5",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_220_pert_4.6",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_476_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_579_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_578_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_489_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_490_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_483_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_592_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_456_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_455_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_458_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_566_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_572_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_65_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_27_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_14_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_49_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_77_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_78_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_37_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_20_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_492_pert_5.1",
+        "status": "ok",
+        "error_type": null,
+        "error": null
+      },
+      {
+        "case_id": "img_488_pert_5.1",
+        "status": "error",
+        "error_type": "ContractError",
+        "error": "llm_assisted_extraction schema validation failed: '' should be non-empty"
+      }
+    ]
+  }
+}

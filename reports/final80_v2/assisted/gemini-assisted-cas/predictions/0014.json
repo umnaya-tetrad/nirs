@@ -1,0 +1,414 @@
+{
+  "schema_version": "1.0",
+  "id": "img_176_pert_4.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "-\\frac{4}{5} \\times \\frac{3}{7} \\times \\frac{15}{16} \\times \\left(-\\frac{14}{9}\\right)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= \\left(-\\frac{4 \\times 3}{5 \\times 7}\\right) \\times \\left(\\frac{15 \\times (-14)}{16 \\times 9}\\right)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= \\frac{-12}{35} \\times \\frac{-210}{144}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "= \\frac{-12 \\times -35}{35 \\times 24} = \\frac{1}{2}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "-\\frac{4}{5} \\times \\frac{3}{7} \\times \\frac{15}{16} \\times \\left(-\\frac{14}{9}\\right)",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "= \\left(-\\frac{4}{5} \\times \\frac{15}{16}\\right) \\times \\left(\\frac{3}{7} \\times \\left(-\\frac{14}{9}\\right)\\right)",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "= -\\frac{3}{4} \\times \\left(-\\frac{2}{3}\\right) = \\frac{-12}{35} \\times \\frac{-210}{144} \\text{ (using Commutativity and associativity)}",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "= \\frac{1}{2}",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 857
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-7a668ff9-1c24-4659-aa05-d9e2d60bca9d",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1866,
+    "created_at": "2026-10-10T15:50:28.419647Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_176_pert_4.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find } -\\frac{4}{5} \\times \\frac{3}{7} \\times \\frac{15}{16} \\times \\left(-\\frac{14}{9}\\right)",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "-\\frac{4}{5} \\times \\frac{3}{7} \\times \\frac{15}{16} \\times \\left(-\\frac{14}{9}\\right)"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "-\\frac{4}{5} \\times \\frac{3}{7} \\times \\frac{15}{16} \\times \\left(-\\frac{14}{9}\\right)",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= \\left(-\\frac{4 \\times 3}{5 \\times 7}\\right) \\times \\left(\\frac{15 \\times (-14)}{16 \\times 9}\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= \\frac{-12}{35} \\times \\frac{-210}{144}",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "= \\frac{-12 \\times -35}{35 \\times 24} = \\frac{1}{2}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "-\\frac{4}{5} \\times \\frac{3}{7} \\times \\frac{15}{16} \\times \\left(-\\frac{14}{9}\\right)",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "independent",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "= \\left(-\\frac{4}{5} \\times \\frac{15}{16}\\right) \\times \\left(\\frac{3}{7} \\times \\left(-\\frac{14}{9}\\right)\\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "independent",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "= -\\frac{3}{4} \\times \\left(-\\frac{2}{3}\\right) = \\frac{-12}{35} \\times \\frac{-210}{144} \\text{ (using Commutativity and associativity)}",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "independent",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "= \\frac{1}{2}",
+          "role": "answer",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "independent",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "expression",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Trusted initial expression"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: (using Commutativity and associativity); Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "correct",
+          "note": "Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "valid",
+      "reason": "Exact value comparison",
+      "step_id": "s8",
+      "rule": "scalar_task",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s5",
+        "s7",
+        "s8"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "independent"
+        },
+        {
+          "step_id": "s6",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "independent"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "independent"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "independent"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Unanchored mathematical statement",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Continuation requires one readable dependency"
+    ]
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.0",
+  "id": "img_49_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Let the length of one diagonal } d_3 = 16\\text{ cm and the length of the other diagonal } d_4.",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{The area of the rhombus is given by the formula : } \\text{Area} = \\frac{1}{2} d_3 \\cdot d_4 = 240",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\text{Substituting for } d_3 \\text{ : } \\frac{1}{2} \\cdot 16 \\cdot d_4 = 240",
+      "derives_from": [
+        "s1",
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\text{Solving for } d_4 \\text{ : } 8 \\cdot d_4 = 240",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "d_4 = \\frac{240}{8} = 30\\text{ cm}",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\text{Hence, the length of the second diagonal is } 30\\text{ cm.}",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 873
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-be734338-e17d-417e-b4e3-d66257590e0d",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1466,
+    "created_at": "2026-10-10T15:51:30.402471Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_49_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : The area of a rhombus is } 240\\text{ cm}^2 \\text{ and one of the diagonals is } 16\\text{ cm. Find the other diagonal.}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\text{Area} = 240\\text{ cm}^2",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Bare word is not an exact mathematical token"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "d_1 = 16\\text{ cm}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported token '\\\\text'"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "d_2"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Let the length of one diagonal } d_3 = 16\\text{ cm and the length of the other diagonal } d_4.",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{The area of the rhombus is given by the formula : } \\text{Area} = \\frac{1}{2} d_3 \\cdot d_4 = 240",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\text{Substituting for } d_3 \\text{ : } \\frac{1}{2} \\cdot 16 \\cdot d_4 = 240",
+          "role": "substitution",
+          "derives_from": [
+            "s1",
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\text{Solving for } d_4 \\text{ : } 8 \\cdot d_4 = 240",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "d_4 = \\frac{240}{8} = 30\\text{ cm}",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\text{Hence, the length of the second diagonal is } 30\\text{ cm.}",
+          "role": "answer",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Bare word is not an exact mathematical token",
+          "given g2 is not in the exact SymPy subset: Unsupported token '\\\\text'"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Let the length of one diagonal; Text/units/conditions are outside the symbolic grammar: cm and the length of the other diagonal; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Text/units/conditions are outside the symbolic grammar: The area of the rhombus is given by the formula :; Text/units/conditions are outside the symbolic grammar: Area; Polynomial identity test"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Substituting for; Text/units/conditions are outside the symbolic grammar: :; Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Solving for; Text/units/conditions are outside the symbolic grammar: :; Adjacent numeric literals require an explicit operator"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: cm; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Hence, the length of the second diagonal is; Text/units/conditions are outside the symbolic grammar: cm."
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Bare word is not an exact mathematical token",
+      "step_id": "s6",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Bare word is not an exact mathematical token"
+    ]
+  }
+}

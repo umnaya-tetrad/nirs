@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "id": "img_395_pert_2.5",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\frac{dx}{d\\theta} = a(1 + \\cos\\theta), \\quad \\frac{dy}{d\\theta} = a(\\sin\\theta)",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}} = \\frac{a\\sin\\theta}{a(1+\\cos\\theta)} = \\frac{\\sin\\theta}{1+\\cos\\theta} = \\frac{\\theta}{2}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1148
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s2",
+  "last_correct_step": "s1",
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s2",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions; Exact counterexample at {theta: 1}: difference=(-1 - cos(1) + 2*sin(1))/(2*(cos(1) + 1)); Separate equation/substitution requires task context",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions; Exact counterexample at {theta: 1}: difference=(-1 - cos(1) + 2*sin(1))/(2*(cos(1) + 1)); Separate equation/substitution requires task context",
+        "actual_latex": "\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}} = \\frac{a\\sin\\theta}{a(1+\\cos\\theta)} = \\frac{\\sin\\theta}{1+\\cos\\theta} = \\frac{\\theta}{2}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Differential notation needs a calculus verifier"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    }
+  ],
+  "meta": {
+    "run_id": "cas-81ca535d-7516-471c-ac2f-e9f5d99e7cac",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1821,
+    "created_at": "2026-10-10T15:50:57.770444Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_395_pert_2.5",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Find } \\frac{dy}{dx} \\text{, if } x = a(\\theta + \\sin\\theta), y = a(1 - \\cos\\theta).",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "x = a(\\theta + \\sin\\theta)",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "x = a(\\theta + \\sin\\theta)",
+                "kind": "equation",
+                "sides": [
+                  "x",
+                  "a*(theta + sin(theta))"
+                ],
+                "symbols": [
+                  "a",
+                  "theta",
+                  "x"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "y = a(1 - \\cos\\theta)",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "y = a(1 - \\cos\\theta)",
+                "kind": "equation",
+                "sides": [
+                  "y",
+                  "a*(1 - cos(theta))"
+                ],
+                "symbols": [
+                  "a",
+                  "theta",
+                  "y"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": "\\frac{dy}{dx}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\frac{dx}{d\\theta} = a(1 + \\cos\\theta), \\quad \\frac{dy}{d\\theta} = a(\\sin\\theta)",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}} = \\frac{a\\sin\\theta}{a(1+\\cos\\theta)} = \\frac{\\sin\\theta}{1+\\cos\\theta} = \\frac{\\theta}{2}",
+          "role": "answer",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "trigonometric",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions; Exact counterexample at {theta: 1}: difference=(-1 - cos(1) + 2*sin(1))/(2*(cos(1) + 1)); Separate equation/substitution requires task context",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions; Exact counterexample at {theta: 1}: difference=(-1 - cos(1) + 2*sin(1))/(2*(cos(1) + 1)); Separate equation/substitution requires task context",
+            "actual_latex": "\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}} = \\frac{a\\sin\\theta}{a(1+\\cos\\theta)} = \\frac{\\sin\\theta}{1+\\cos\\theta} = \\frac{\\theta}{2}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Requires one task equation",
+      "step_id": "s2",
+      "rule": "trigonometric",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier"
+        },
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Differential notation needs a calculus verifier",
+      "Differential notation needs a calculus verifier",
+      "Requires one task equation"
+    ]
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.0",
+  "id": "img_111_pert_1.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "1.\\ \\text{Let } x = \\sin\\theta,\\ \\text{Then } \\sin^{-1}x = \\theta.\\ \\text{We have}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\sin^{-1}(2x\\sqrt{1-x^2}) = \\sin^{-1}(2\\sin\\theta\\sqrt{1-\\sin^2\\theta})",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= \\sin^{-1}(2\\sin\\theta\\cos\\theta) = \\sin^{-1}(\\sin 3\\theta) = \\sin^{-1}(\\sin 2\\theta)",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "= 2\\theta = 2\\sin^{-1}x",
+      "derives_from": [
+        "s1",
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "2.\\ \\text{Take } x = \\cos\\theta,\\ \\text{then proceeding as above, we get}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\sin^{-1}(2x\\sqrt{1-x^2}) = 2\\cos^{-1}x",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 4319
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-c18fd3eb-f2cb-4144-aa8b-88b6539ff51f",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 8586,
+    "created_at": "2026-10-10T15:49:43.018321Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_111_pert_1.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Show that}\n1.\\ \\sin^{-1}(2x\\sqrt{1-x^2}) = 2\\sin^{-1}x,\\ -\\frac{1}{2} \\le x \\le \\frac{1}{\\sqrt{2}}\n2.\\ \\sin^{-1}(2x\\sqrt{1-x^2}) = 2\\cos^{-1}x,\\ \\frac{1}{\\sqrt{2}} \\le x \\le 1",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "prove",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "1.\\ \\text{Let } x = \\sin\\theta,\\ \\text{Then } \\sin^{-1}x = \\theta.\\ \\text{We have}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\sin^{-1}(2x\\sqrt{1-x^2}) = \\sin^{-1}(2\\sin\\theta\\sqrt{1-\\sin^2\\theta})",
+          "role": "substitution",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= \\sin^{-1}(2\\sin\\theta\\cos\\theta) = \\sin^{-1}(\\sin 3\\theta) = \\sin^{-1}(\\sin 2\\theta)",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "= 2\\theta = 2\\sin^{-1}x",
+          "role": "answer",
+          "derives_from": [
+            "s1",
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "2.\\ \\text{Take } x = \\cos\\theta,\\ \\text{then proceeding as above, we get}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\sin^{-1}(2x\\sqrt{1-x^2}) = 2\\cos^{-1}x",
+          "role": "answer",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "inequality",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Let; Text/units/conditions are outside the symbolic grammar: Then; Text/units/conditions are outside the symbolic grammar: We have; Unsupported input at character 1; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact counterexample at {theta: pi/6, x: pi/6}: difference=-pi/3 + asin(2*sin(sqrt(3)*pi/12)); Exact counterexample at {theta: 1}: difference=1; Exact counterexample at {theta: 1}: difference=-1"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Exact counterexample at {theta: 1}: difference=-4 + pi; Exact counterexample at {theta: 1, x: 1}: difference=2 - pi"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Take; Text/units/conditions are outside the symbolic grammar: then proceeding as above, we get; Unsupported input at character 1"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Requires one explicit inequality",
+      "step_id": "s6",
+      "rule": "inequality",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "answer",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "Continuation requires one readable dependency",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "At least one node/edge proof is unresolved",
+      "Requires one explicit inequality"
+    ]
+  }
+}

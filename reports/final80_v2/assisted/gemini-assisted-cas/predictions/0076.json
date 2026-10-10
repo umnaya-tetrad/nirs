@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "img_77_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\text{Diameter, } D = 9.8\\text{ m . Therefore, radius } R = \\frac{9.8}{2} = 4.9\\text{ m}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\text{Area of the circle} = \\pi R^2 = \\frac{22}{7} \\times (4.9)^2\\text{ m}^2 = \\frac{22}{7} \\times 4.9 \\times 4.9\\text{ m}^2",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= 75.46\\text{ m}^2",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 681
+      }
+    ]
+  },
+  "verdict": "incorrect",
+  "is_correct": false,
+  "first_error_step": "s1",
+  "last_correct_step": null,
+  "findings": [
+    {
+      "finding_id": "f1",
+      "step_id": "s1",
+      "error_code": "algebra",
+      "severity": "error",
+      "message": "Точная проверка обнаружила неверный шаг.",
+      "explanation": "Text/units/conditions are outside the symbolic grammar: Diameter,; Text/units/conditions are outside the symbolic grammar: m . Therefore, radius; Text/units/conditions are outside the symbolic grammar: m; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+      "confidence": 1.0,
+      "detected_by": "math_core",
+      "evidence": {
+        "check": "Text/units/conditions are outside the symbolic grammar: Diameter,; Text/units/conditions are outside the symbolic grammar: m . Therefore, radius; Text/units/conditions are outside the symbolic grammar: m; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+        "actual_latex": "\\text{Diameter, } D = 9.8\\text{ m . Therefore, radius } R = \\frac{9.8}{2} = 4.9\\text{ m}",
+        "engine": "sympy"
+      }
+    }
+  ],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "error",
+      "finding_ids": [
+        "f1"
+      ]
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-e10075a8-865d-4206-ae47-d1288bec848b",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1310,
+    "created_at": "2026-10-10T15:52:05.505681Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_77_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Diameter of a circular garden is } 9.8\\text{ m . Find its area.}",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "D = 9.8\\text{ m}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported token '\\\\text'"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "\\text{Area}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\text{Diameter, } D = 9.8\\text{ m . Therefore, radius } R = \\frac{9.8}{2} = 4.9\\text{ m}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\text{Area of the circle} = \\pi R^2 = \\frac{22}{7} \\times (4.9)^2\\text{ m}^2 = \\frac{22}{7} \\times 4.9 \\times 4.9\\text{ m}^2",
+          "role": "substitution",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= 75.46\\text{ m}^2",
+          "role": "answer",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unsupported token '\\\\text'"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Text/units/conditions are outside the symbolic grammar: Diameter,; Text/units/conditions are outside the symbolic grammar: m . Therefore, radius; Text/units/conditions are outside the symbolic grammar: m; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Text/units/conditions are outside the symbolic grammar: Diameter,; Text/units/conditions are outside the symbolic grammar: m . Therefore, radius; Text/units/conditions are outside the symbolic grammar: m; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "\\text{Diameter, } D = 9.8\\text{ m . Therefore, radius } R = \\frac{9.8}{2} = 4.9\\text{ m}",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Text/units/conditions are outside the symbolic grammar: Area of the circle; Text/units/conditions are outside the symbolic grammar: m; Repeated superscript; use explicit grouping; Polynomial identity test",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Text/units/conditions are outside the symbolic grammar: Area of the circle; Text/units/conditions are outside the symbolic grammar: m; Repeated superscript; use explicit grouping; Polynomial identity test",
+            "actual_latex": "\\text{Area of the circle} = \\pi R^2 = \\frac{22}{7} \\times (4.9)^2\\text{ m}^2 = \\frac{22}{7} \\times 4.9 \\times 4.9\\text{ m}^2",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: m; Continuation has no readable predecessor"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported token '\\\\text'",
+      "step_id": "s3",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported token '\\\\text'"
+    ]
+  }
+}

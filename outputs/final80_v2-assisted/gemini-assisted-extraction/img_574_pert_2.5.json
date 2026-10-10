@@ -1,0 +1,161 @@
+{
+  "status": "ok",
+  "case_id": "img_574_pert_2.5",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gemini_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gemini_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "fbe6f85d18ca8bfac63eeef5a186d273acaed8e8b4d3309b31c65c887bd364f5"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1774,
+    "completion_tokens": 2608,
+    "total_tokens": 4382,
+    "cost": 1.32354942,
+    "cost_rub": 1.32354942
+  },
+  "latency_ms": 21537,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"assisted_extraction_gemini_v2\",\n  \"task\": {\n    \"visibility\": \"visible\",\n    \"raw_latex\": \"\\\\text{Verify that } 3, -1, -\\\\frac{1}{3} \\\\text{ are the zeroes of the cubic polynomial } p(x) = 3x^3 - 5x^2 - 11x - 3, \\\\text{ and then verify the relationship between the zeroes and coefficients.}\",\n    \"givens\": [\n      {\n        \"given_id\": \"g1\",\n        \"latex\": \"p(x) = 3x^3 - 5x^2 - 11x - 3\"\n      },\n      {\n        \"given_id\": \"g2\",\n        \"latex\": \"x_1 = 3, x_2 = -1, x_3 = -\\\\frac{1}{3}\"\n      }\n    ],\n    \"goal\": {\n      \"type\": \"prove\"\n    }\n  },\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"a = 3,\\\\ b = -5,\\\\ c = -11,\\\\ d = -3\",\n      \"role\": \"initial\",\n      \"derives_from\": [],\n      \"uses_givens\": [\n        \"g1\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"p(3) = 3 \\\\cdot 3^3 - (5 \\\\cdot 3^2) - (11 \\\\cdot 3) - 3 = 81 - 45 - 33 - 3 = 0\",\n      \"role\": \"substitution\",\n      \"derives_from\": [],\n      \"uses_givens\": [\n        \"g1\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"p(-1) = 3 \\\\cdot (-1)^3 - 5 \\\\cdot (-1)^2 - 11 \\\\cdot (-1) - 3 = -3 - 5 + 11 - 3 = 0\",\n      \"role\": \"substitution\",\n      \"derives_from\": [],\n      \"uses_givens\": [\n        \"g1\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"p\\\\left(-\\\\frac{1}{3}\\\\right) = 3 \\\\cdot \\\\left(-\\\\frac{1}{3}\\\\right)^3 - 5 \\\\cdot \\\\left(-\\\\frac{1}{3}\\\\right)^2 - 11 \\\\cdot \\\\left(-\\\\frac{1}{3}\\\\right) - 3\",\n      \"role\": \"substitution\",\n      \"derives_from\": [],\n      \"uses_givens\": [\n        \"g1\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"= 3 \\\\cdot \\\\left(-\\\\frac{1}{27}\\\\right) - 5 \\\\cdot \\\\left(\\\\frac{1}{9}\\\\right) + \\\\frac{11}{3} - 3 = -\\\\frac{1}{9} - \\\\frac{5}{9} + \\\\frac{11}{3} - 3 = 0\",\n      \"role\": \"transformation\",\n      \"derives_from\": [\n        \"s4\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"\\\\alpha = 3,\\\\ \\\\beta = -1,\\\\ \\\\gamma = -\\\\frac{1}{3}\",\n      \"role\": \"definition\",\n      \"derives_from\": [\n        \"s2\",\n        \"s3\",\n        \"s5\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s7\",\n      \"latex\": \"\\\\alpha + \\\\beta + \\\\gamma = 3 + (-1) + \\\\left(-\\\\frac{1}{3}\\\\right) = 2 - \\\\frac{1}{3} = \\\\frac{5}{3} = -\\\\frac{a}{b}\",\n      \"role\": \"substitution\",\n      \"derives_from\": [\n        \"s1\",\n        \"s6\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s8\",\n      \"latex\": \"\\\\alpha\\\\beta + \\\\beta\\\\gamma + \\\\gamma\\\\alpha = 3 \\\\cdot (-1) + (-1) \\\\cdot \\\\left(-\\\\frac{1}{3}\\\\right) + \\\\left(-\\\\frac{1}{3}\\\\right) \\\\cdot 3 = -3 + \\\\frac{1}{3} - 1 = -\\\\frac{11}{3} = \\\\frac{c}{a}\",\n      \"role\": \"substitution\",\n      \"derives_from\": [\n        \"s1\",\n        \"s6\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    },\n    {\n      \"step_id\": \"s9\",\n      \"latex\": \"\\\\alpha\\\\beta\\\\gamma = 3 \\\\cdot (-1) \\\\cdot \\\\left(-\\\\frac{1}{3}\\\\right) = 1 = \\\\frac{d}{a}\",\n      \"role\": \"substitution\",\n      \"derives_from\": [\n        \"s1\",\n        \"s6\"\n      ],\n      \"branch\": \"main\",\n      \"exactness\": \"exact\"\n    }\n  ]\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_574_pert_2.5",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Verify that } 3, -1, -\\frac{1}{3} \\text{ are the zeroes of the cubic polynomial } p(x) = 3x^3 - 5x^2 - 11x - 3, \\text{ and then verify the relationship between the zeroes and coefficients.}",
+      "givens": [
+        {
+          "given_id": "g1",
+          "latex": "p(x) = 3x^3 - 5x^2 - 11x - 3"
+        },
+        {
+          "given_id": "g2",
+          "latex": "x_1 = 3, x_2 = -1, x_3 = -\\frac{1}{3}"
+        }
+      ],
+      "goal": {
+        "type": "prove"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "a = 3,\\ b = -5,\\ c = -11,\\ d = -3",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1"
+        ]
+      },
+      {
+        "step_id": "s2",
+        "latex": "p(3) = 3 \\cdot 3^3 - (5 \\cdot 3^2) - (11 \\cdot 3) - 3 = 81 - 45 - 33 - 3 = 0",
+        "role": "substitution",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "latex": "p(-1) = 3 \\cdot (-1)^3 - 5 \\cdot (-1)^2 - 11 \\cdot (-1) - 3 = -3 - 5 + 11 - 3 = 0",
+        "role": "substitution",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "latex": "p\\left(-\\frac{1}{3}\\right) = 3 \\cdot \\left(-\\frac{1}{3}\\right)^3 - 5 \\cdot \\left(-\\frac{1}{3}\\right)^2 - 11 \\cdot \\left(-\\frac{1}{3}\\right) - 3",
+        "role": "substitution",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact",
+        "uses_givens": [
+          "g1"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "latex": "= 3 \\cdot \\left(-\\frac{1}{27}\\right) - 5 \\cdot \\left(\\frac{1}{9}\\right) + \\frac{11}{3} - 3 = -\\frac{1}{9} - \\frac{5}{9} + \\frac{11}{3} - 3 = 0",
+        "role": "transformation",
+        "derives_from": [
+          "s4"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s6",
+        "latex": "\\alpha = 3,\\ \\beta = -1,\\ \\gamma = -\\frac{1}{3}",
+        "role": "definition",
+        "derives_from": [
+          "s2",
+          "s3",
+          "s5"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s7",
+        "latex": "\\alpha + \\beta + \\gamma = 3 + (-1) + \\left(-\\frac{1}{3}\\right) = 2 - \\frac{1}{3} = \\frac{5}{3} = -\\frac{a}{b}",
+        "role": "substitution",
+        "derives_from": [
+          "s1",
+          "s6"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s8",
+        "latex": "\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = 3 \\cdot (-1) + (-1) \\cdot \\left(-\\frac{1}{3}\\right) + \\left(-\\frac{1}{3}\\right) \\cdot 3 = -3 + \\frac{1}{3} - 1 = -\\frac{11}{3} = \\frac{c}{a}",
+        "role": "substitution",
+        "derives_from": [
+          "s1",
+          "s6"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s9",
+        "latex": "\\alpha\\beta\\gamma = 3 \\cdot (-1) \\cdot \\left(-\\frac{1}{3}\\right) = 1 = \\frac{d}{a}",
+        "role": "substitution",
+        "derives_from": [
+          "s1",
+          "s6"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-73648d1d-90d2-4d71-9718-c1089b64f092",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "assisted_extraction_gemini_v2",
+      "temperature": 0,
+      "duration_ms": 21537,
+      "created_at": "2026-10-10T15:13:12Z",
+      "tokens_in": 1774,
+      "tokens_out": 2608
+    }
+  }
+}

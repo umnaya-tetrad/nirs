@@ -1,0 +1,109 @@
+{
+  "status": "ok",
+  "case_id": "img_92_pert_4.3",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gemini_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1455,
+    "completion_tokens": 959,
+    "total_tokens": 2414,
+    "cost": 0.55840313,
+    "cost_rub": 0.55840313
+  },
+  "latency_ms": 10394,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\text{Question: The minute hand of a watch is } 1.5\\\\text{ cm long. How far does its tip move in } 40\\\\text{ minutes? (use } \\\\pi = 3.14\\\\text{).}\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"\\\\text{Answer: In } 40\\\\text{ minutes, the minute hand turns through } \\\\frac{2}{3}\\\\text{ of a revolution. Hence, the required distance travelled is given by}\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"l = r\\\\theta = 1.5 \\\\times \\\\frac{4\\\\pi}{3}\\\\text{ cm} = 2\\\\pi\\\\text{ cm} = 2 \\\\times 3.14\\\\text{ cm} = 6.28\\\\text{ cm}.\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"\\\\text{therefore, } \\\\theta = \\\\frac{2}{3} \\\\times 360^\\\\circ = 240^\\\\circ\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"\\\\text{or } \\\\frac{4\\\\pi}{3}\\\\text{ radians}\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"\\\\text{In } 60\\\\text{ minutes, the minute hand of a watch completes one revolution.}\"\n    }\n  ],\n  \"has_error\": false,\n  \"first_error_step\": null\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_92_pert_4.3",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "google/gemini-3.7-flash",
+          "status": "ok",
+          "duration_ms": 10394,
+          "tokens_in": 1455,
+          "tokens_out": 959
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\text{Question: The minute hand of a watch is } 1.5\\text{ cm long. How far does its tip move in } 40\\text{ minutes? (use } \\pi = 3.14\\text{).}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\text{Answer: In } 40\\text{ minutes, the minute hand turns through } \\frac{2}{3}\\text{ of a revolution. Hence, the required distance travelled is given by}",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "l = r\\theta = 1.5 \\times \\frac{4\\pi}{3}\\text{ cm} = 2\\pi\\text{ cm} = 2 \\times 3.14\\text{ cm} = 6.28\\text{ cm}.",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\text{therefore, } \\theta = \\frac{2}{3} \\times 360^\\circ = 240^\\circ",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "\\text{or } \\frac{4\\pi}{3}\\text{ radians}",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\text{In } 60\\text{ minutes, the minute hand of a watch completes one revolution.}",
+        "derives_from": [
+          "s5"
+        ]
+      }
+    ],
+    "verdict": "correct",
+    "is_correct": true,
+    "first_error_step": null,
+    "last_correct_step": null,
+    "findings": [],
+    "meta": {
+      "run_id": "run-2f229976-b382-4571-af54-da83aadacfe7",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "e2e_gemini_v1",
+      "temperature": 0,
+      "duration_ms": 10394,
+      "created_at": "2026-10-10T15:15:53Z",
+      "tokens_in": 1455,
+      "tokens_out": 959
+    }
+  }
+}

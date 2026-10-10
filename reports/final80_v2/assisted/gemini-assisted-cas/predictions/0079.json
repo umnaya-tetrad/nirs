@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "img_92_pert_4.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "l = r\\theta = 1.5 \\times \\frac{4\\pi}{3}\\text{ cm} = 2\\pi\\text{ cm} = 2 \\times 3.14\\text{ cm} = 6.28\\text{ cm.}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\theta = \\frac{2}{3} \\times 360^{\\circ} = 240^{\\circ}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "\\frac{4\\pi}{3}\\text{ radians}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 683
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\circ'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-63fd8778-8d37-4b5b-aa78-7859e358b737",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1241,
+    "created_at": "2026-10-10T15:52:28.277033Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_92_pert_4.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: The minute hand of a watch is } 1.5\\text{ cm long. How far does its tip move in } 40\\text{ minutes? (use } \\pi = 3.14\\text{). }",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "r = 1.5\\text{ cm}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported token '\\\\text'"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "t = 40\\text{ minutes}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Bare word is not an exact mathematical token"
+            }
+          },
+          {
+            "given_id": "g3",
+            "raw_latex": "\\pi = 3.14",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\pi = 3.14",
+                "kind": "equation",
+                "sides": [
+                  "pi",
+                  "157/50"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "evaluate",
+          "target_latex": "l"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "l = r\\theta = 1.5 \\times \\frac{4\\pi}{3}\\text{ cm} = 2\\pi\\text{ cm} = 2 \\times 3.14\\text{ cm} = 6.28\\text{ cm.}",
+          "role": "answer",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g3"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\theta = \\frac{2}{3} \\times 360^{\\circ} = 240^{\\circ}",
+          "role": "independent",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "\\frac{4\\pi}{3}\\text{ radians}",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unsupported token '\\\\text'",
+          "given g2 is not in the exact SymPy subset: Bare word is not an exact mathematical token"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Text/units/conditions are outside the symbolic grammar: cm; Text/units/conditions are outside the symbolic grammar: cm.; Symbolic equation is a premise; checked against previous equation when applicable; Polynomial identity test; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Text/units/conditions are outside the symbolic grammar: cm; Text/units/conditions are outside the symbolic grammar: cm.; Symbolic equation is a premise; checked against previous equation when applicable; Polynomial identity test; Exact expression identity with preserved domain",
+            "actual_latex": "l = r\\theta = 1.5 \\times \\frac{4\\pi}{3}\\text{ cm} = 2\\pi\\text{ cm} = 2 \\times 3.14\\text{ cm} = 6.28\\text{ cm.}",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\circ'; Unsupported token '\\\\circ'"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: radians"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported token '\\\\text'",
+      "step_id": "s3",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "answer",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'",
+          "role": "independent",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g3",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g2",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported token '\\\\circ'",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported token '\\\\text'"
+    ]
+  }
+}

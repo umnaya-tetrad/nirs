@@ -1,0 +1,165 @@
+{
+  "status": "ok",
+  "case_id": "img_226_pert_2.2",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gemini_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1477,
+    "completion_tokens": 2304,
+    "total_tokens": 3781,
+    "cost": 1.16121047,
+    "cost_rub": 1.16121047
+  },
+  "latency_ms": 18980,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\text{Question : Simplify and write the answer in the exponential form.}\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"1.\\\\ (2^5 \\\\div 2^8 \\\\times 2^{-5})\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"2.\\\\ (-4)^{-3} \\\\times (5)^{-3} \\\\times (-5)^{-3}\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"3.\\\\ \\\\frac{1}{8} \\\\times (3)^{-3}\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"4.\\\\ (-3)^4 \\\\times \\\\left(\\\\frac{5}{3}\\\\right)^4\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"\\\\text{Answer :}\"\n    },\n    {\n      \"step_id\": \"s7\",\n      \"latex\": \"1.\\\\ (2^5 \\\\div 2^8 \\\\times 2^{-5}) = (2^{5-8}) \\\\times 2^{-5} = (2^{-3}) \\\\times 2^{-5}\"\n    },\n    {\n      \"step_id\": \"s8\",\n      \"latex\": \"= 2^{-15-5} = 2^{-20} = 2^{-20}\"\n    },\n    {\n      \"step_id\": \"s9\",\n      \"latex\": \"2.\\\\ (-4)^{-3} \\\\times (5)^{-3} \\\\times (-5)^{-3} = [(-4) \\\\times 5 \\\\times (-5)]^{-3} = [100]^{-3}\"\n    },\n    {\n      \"step_id\": \"s10\",\n      \"latex\": \"= 100^{-3}\"\n    },\n    {\n      \"step_id\": \"s11\",\n      \"latex\": \"3.\\\\ \\\\frac{1}{8} \\\\times (3)^{-3} = \\\\frac{1}{2^3} \\\\times 3^{-3} = 2^{-3} \\\\times 3^{-3} = (2 \\\\times 3)^{-3} = 6^{-3} = 6^{-3}\"\n    },\n    {\n      \"step_id\": \"s12\",\n      \"latex\": \"4.\\\\ (-3)^4 \\\\times \\\\left(\\\\frac{5}{3}\\\\right)^4 = (-1)^4 \\\\times 3^4 \\\\times \\\\frac{5^4}{3^4} = (-1)^4 \\\\times 5^4\"\n    },\n    {\n      \"step_id\": \"s13\",\n      \"latex\": \"= (-1)^4 \\\\times 5^4\"\n    }\n  ],\n  \"has_error\": true,\n  \"first_error_step\": \"s8\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_226_pert_2.2",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "google/gemini-3.7-flash",
+          "status": "ok",
+          "duration_ms": 18980,
+          "tokens_in": 1477,
+          "tokens_out": 2304
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\text{Question : Simplify and write the answer in the exponential form.}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "1.\\ (2^5 \\div 2^8 \\times 2^{-5})",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "2.\\ (-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3}",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "3.\\ \\frac{1}{8} \\times (3)^{-3}",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "4.\\ (-3)^4 \\times \\left(\\frac{5}{3}\\right)^4",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\text{Answer :}",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "1.\\ (2^5 \\div 2^8 \\times 2^{-5}) = (2^{5-8}) \\times 2^{-5} = (2^{-3}) \\times 2^{-5}",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "= 2^{-15-5} = 2^{-20} = 2^{-20}",
+        "derives_from": [
+          "s7"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "2.\\ (-4)^{-3} \\times (5)^{-3} \\times (-5)^{-3} = [(-4) \\times 5 \\times (-5)]^{-3} = [100]^{-3}",
+        "derives_from": [
+          "s8"
+        ]
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "= 100^{-3}",
+        "derives_from": [
+          "s9"
+        ]
+      },
+      {
+        "step_id": "s11",
+        "kind": "step",
+        "latex": "3.\\ \\frac{1}{8} \\times (3)^{-3} = \\frac{1}{2^3} \\times 3^{-3} = 2^{-3} \\times 3^{-3} = (2 \\times 3)^{-3} = 6^{-3} = 6^{-3}",
+        "derives_from": [
+          "s10"
+        ]
+      },
+      {
+        "step_id": "s12",
+        "kind": "step",
+        "latex": "4.\\ (-3)^4 \\times \\left(\\frac{5}{3}\\right)^4 = (-1)^4 \\times 3^4 \\times \\frac{5^4}{3^4} = (-1)^4 \\times 5^4",
+        "derives_from": [
+          "s11"
+        ]
+      },
+      {
+        "step_id": "s13",
+        "kind": "step",
+        "latex": "= (-1)^4 \\times 5^4",
+        "derives_from": [
+          "s12"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s8",
+    "last_correct_step": "s7",
+    "findings": [],
+    "meta": {
+      "run_id": "run-3886acb1-9e57-49b0-ac30-49dd014def25",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "e2e_gemini_v1",
+      "temperature": 0,
+      "duration_ms": 18980,
+      "created_at": "2026-10-10T15:15:26Z",
+      "tokens_in": 1477,
+      "tokens_out": 2304
+    }
+  }
+}

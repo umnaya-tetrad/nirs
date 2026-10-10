@@ -1,0 +1,424 @@
+{
+  "schema_version": "1.0",
+  "id": "img_492_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "P = \\begin{bmatrix} 2 & 5 \\\\ 3 & 2 \\end{bmatrix}, Q = \\begin{bmatrix} x \\\\ y \\end{bmatrix} \\text{ and } R = \\begin{bmatrix} 1 \\\\ 7 \\end{bmatrix}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "|P| = -11 \\neq 0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "P^{-1} = -\\frac{1}{11} \\begin{bmatrix} 2 & -5 \\\\ -3 & 2 \\end{bmatrix}",
+      "derives_from": [
+        "s1",
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "Q = P^{-1}R = -\\frac{1}{11} \\begin{bmatrix} 2 & -5 \\\\ -3 & 2 \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 7 \\end{bmatrix}",
+      "derives_from": [
+        "s1",
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "\\begin{bmatrix} x \\\\ y \\end{bmatrix} = -\\frac{1}{11} \\begin{bmatrix} -33 \\\\ 3 \\end{bmatrix}",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "x = 3, y = 1",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 883
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\neq'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": ""
+    }
+  ],
+  "meta": {
+    "run_id": "cas-e25496b8-6fb1-43ea-9d18-8a6d6f92d262",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1761,
+    "created_at": "2026-10-10T15:51:28.648526Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_492_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question : Solve the system of equations } 2x+5y=1\\, 3x+2y=7",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "2x+5y=1",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "2x+5y=1",
+                "kind": "equation",
+                "sides": [
+                  "2*x + 5*y",
+                  "1"
+                ],
+                "symbols": [
+                  "x",
+                  "y"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "3x+2y=7",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "3x+2y=7",
+                "kind": "equation",
+                "sides": [
+                  "3*x + 2*y",
+                  "7"
+                ],
+                "symbols": [
+                  "x",
+                  "y"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "P = \\begin{bmatrix} 2 & 5 \\\\ 3 & 2 \\end{bmatrix}, Q = \\begin{bmatrix} x \\\\ y \\end{bmatrix} \\text{ and } R = \\begin{bmatrix} 1 \\\\ 7 \\end{bmatrix}",
+          "role": "definition",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1",
+            "g2"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "|P| = -11 \\neq 0",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "P^{-1} = -\\frac{1}{11} \\begin{bmatrix} 2 & -5 \\\\ -3 & 2 \\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s1",
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "Q = P^{-1}R = -\\frac{1}{11} \\begin{bmatrix} 2 & -5 \\\\ -3 & 2 \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 7 \\end{bmatrix}",
+          "role": "substitution",
+          "derives_from": [
+            "s1",
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "\\begin{bmatrix} x \\\\ y \\end{bmatrix} = -\\frac{1}{11} \\begin{bmatrix} -33 \\\\ 3 \\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "x = 3, y = 1",
+          "role": "answer",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\neq'"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Scalar/matrix type mismatch"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Requires one task equation",
+      "step_id": "s6",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "definition",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\neq'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g2",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\neq'"
+        },
+        {
+          "from": "s1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": ""
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Unsupported token '\\\\neq'",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "",
+      "Requires one task equation"
+    ]
+  }
+}

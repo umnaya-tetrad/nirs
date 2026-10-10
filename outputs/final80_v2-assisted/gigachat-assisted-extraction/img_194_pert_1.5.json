@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "case_id": "img_194_pert_1.5",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gigachat_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gigachat_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "f35da71fe3c123ee868179debc8bcc6fdffe52adcd51b05beb0652617bc286c6"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 1997,
+    "completion_tokens": 415,
+    "total_tokens": 2412,
+    "estimated_cost_rub": 1.206,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 10526,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"assisted_extraction_gigachat_v2\",\n    \"task\": {\n        \"visibility\": \"visible\",\n        \"raw_latex\": \"\\\\frac{1}{8!}+\\\\frac{1}{9!}=\\\\frac{x}{10!}, \\\\text{find } x.\",\n        \"goal\": {\n            \"type\": \"solve\",\n            \"target_latex\": \"x\"\n        }\n    },\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\frac{1}{8!}+\\\\frac{1}{9!}=\\\\frac{x}{10!}\",\n            \"role\": \"initial\",\n            \"derives_from\": [],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"\\\\frac{1}{8!}+\\\\frac{1}{9\\\\times8!}=\\\\frac{x}{10\\\\times9\\\\times8!}\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s1\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"1+\\\\frac{1}{9}=\\\\frac{x}{10\\\\times8}\\\\quad or\\\\quad\\\\frac{10}{9}=\\\\frac{x}{10\\\\times8}\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s2\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"x = 90\",\n            \"role\": \"answer\",\n            \"derives_from\": [\n                \"s3\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        }\n    ]\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_194_pert_1.5",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\frac{1}{8!}+\\frac{1}{9!}=\\frac{x}{10!}, \\text{find } x.",
+      "goal": {
+        "type": "solve",
+        "target_latex": "x"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "\\frac{1}{8!}+\\frac{1}{9!}=\\frac{x}{10!}",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s2",
+        "latex": "\\frac{1}{8!}+\\frac{1}{9\\times8!}=\\frac{x}{10\\times9\\times8!}",
+        "role": "transformation",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s3",
+        "latex": "1+\\frac{1}{9}=\\frac{x}{10\\times8}\\quad or\\quad\\frac{10}{9}=\\frac{x}{10\\times8}",
+        "role": "transformation",
+        "derives_from": [
+          "s2"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s4",
+        "latex": "x = 90",
+        "role": "answer",
+        "derives_from": [
+          "s3"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-1317c3d0-01ba-43a3-aaa5-6b05a61e51d3",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "assisted_extraction_gigachat_v2",
+      "temperature": 0,
+      "duration_ms": 10526,
+      "created_at": "2026-10-10T15:35:02Z",
+      "tokens_in": 1997,
+      "tokens_out": 415
+    }
+  },
+  "prior_failures": [
+    {
+      "error_type": "ContractError",
+      "error": "steps[1].derives_from must name earlier steps only.",
+      "attempts": 1,
+      "retry_errors": []
+    }
+  ]
+}

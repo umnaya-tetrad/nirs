@@ -1,0 +1,125 @@
+{
+  "status": "ok",
+  "case_id": "img_173_pert_5.3",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gemini",
+  "prompt": {
+    "provider": "gemini",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gemini_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "0be3fa5de3f674ee4fcb429083d5282d5f6bef066f70baf534100d66fde8a8ad"
+  },
+  "provider_model": "google/gemini-3.7-flash",
+  "usage": {
+    "prompt_tokens": 1481,
+    "completion_tokens": 1445,
+    "total_tokens": 2926,
+    "cost": 0.77783322,
+    "cost_rub": 0.77783322
+  },
+  "latency_ms": 18954,
+  "attempts": 1,
+  "raw_response": "{\n  \"schema_version\": \"e2e_gemini_v1\",\n  \"steps\": [\n    {\n      \"step_id\": \"s1\",\n      \"latex\": \"\\\\text{Question : Reduce to standard form :}\"\n    },\n    {\n      \"step_id\": \"s2\",\n      \"latex\": \"1. \\\\quad \\\\frac{36}{-24}\"\n    },\n    {\n      \"step_id\": \"s3\",\n      \"latex\": \"2. \\\\quad \\\\frac{-3}{-15}\"\n    },\n    {\n      \"step_id\": \"s4\",\n      \"latex\": \"\\\\text{Answer :}\"\n    },\n    {\n      \"step_id\": \"s5\",\n      \"latex\": \"1. \\\\quad \\\\text{The HCF of } 36 \\\\text{ and } 24 \\\\text{ is } 12. \\\\text{ Thus, its standard form would be obtained by dividing by } -12. \\\\text{ To confirm, we can also check that } 36 \\\\text{ is } 6 \\\\times 6 \\\\text{ and } -24 \\\\text{ is } -6 \\\\times 4\\\\text{ , so the simplification holds.}\"\n    },\n    {\n      \"step_id\": \"s6\",\n      \"latex\": \"\\\\frac{36}{-24} = \\\\frac{36 \\\\div (-12)}{-24 \\\\div (-12)} = \\\\frac{-3}{2}\"\n    },\n    {\n      \"step_id\": \"s7\",\n      \"latex\": \"2. \\\\quad \\\\text{The HCF of } 3 \\\\text{ and } 15 \\\\text{ is } 3. \\\\text{ Thus, since } -3 \\\\text{ is a prime number,}\"\n    },\n    {\n      \"step_id\": \"s8\",\n      \"latex\": \"\\\\frac{-3}{-15} = \\\\frac{-3 \\\\div (-3)}{-15 \\\\div (-3)} = \\\\frac{1}{5}\"\n    }\n  ],\n  \"has_error\": true,\n  \"first_error_step\": \"s7\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_173_pert_5.3",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "google/gemini-3.7-flash",
+          "status": "ok",
+          "duration_ms": 18954,
+          "tokens_in": 1481,
+          "tokens_out": 1445
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\text{Question : Reduce to standard form :}",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "1. \\quad \\frac{36}{-24}",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "2. \\quad \\frac{-3}{-15}",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "\\text{Answer :}",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "1. \\quad \\text{The HCF of } 36 \\text{ and } 24 \\text{ is } 12. \\text{ Thus, its standard form would be obtained by dividing by } -12. \\text{ To confirm, we can also check that } 36 \\text{ is } 6 \\times 6 \\text{ and } -24 \\text{ is } -6 \\times 4\\text{ , so the simplification holds.}",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "\\frac{36}{-24} = \\frac{36 \\div (-12)}{-24 \\div (-12)} = \\frac{-3}{2}",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "2. \\quad \\text{The HCF of } 3 \\text{ and } 15 \\text{ is } 3. \\text{ Thus, since } -3 \\text{ is a prime number,}",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "\\frac{-3}{-15} = \\frac{-3 \\div (-3)}{-15 \\div (-3)} = \\frac{1}{5}",
+        "derives_from": [
+          "s7"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s7",
+    "last_correct_step": "s6",
+    "findings": [],
+    "meta": {
+      "run_id": "run-9bc2a751-b109-4e5d-b24b-5697a57bd4fc",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "google/gemini-3.7-flash",
+      "prompt_version": "e2e_gemini_v1",
+      "temperature": 0,
+      "duration_ms": 18954,
+      "created_at": "2026-10-10T15:06:55Z",
+      "tokens_in": 1481,
+      "tokens_out": 1445
+    }
+  }
+}

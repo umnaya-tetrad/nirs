@@ -1,0 +1,131 @@
+{
+  "status": "ok",
+  "case_id": "img_465_pert_1.5",
+  "mode": "assisted_extraction",
+  "prompt_version": "v2",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "assisted_extraction",
+    "version": "v2",
+    "schema_version": "assisted_extraction_gigachat_v2",
+    "system": "Ты выполняешь экспериментальное LLM-assisted извлечение структуры математической записи с фотографии. Верни только один JSON-объект без Markdown. Ты НЕ оцениваешь правильность решения, НЕ называешь ошибочные шаги и НЕ исправляешь запись ученика.\n\nПрочитай все незачёркнутые математические строки решения сверху вниз, слева направо. Каждая строка — дословный LaTeX без $ и Markdown. Не объединяй, не переставляй и не исправляй строки.\n\nРазрешены РОВНО корневые ключи `schema_version`, `task`, `steps`.\n\n`task`:\n- Если условие на фотографии не видно или неразборчиво, верни ровно `{\"visibility\":\"not_visible\"}` и ничего больше в task.\n- Если условие видно, верни `visibility:\"visible\"` и обязательную строку `raw_latex` — дословную транскрипцию всего условия.\n- `givens` необязателен. Если используешь его, это массив объектов РОВНО вида `{\"given_id\":\"g1\",\"latex\":\"...\"}`, затем g2, g3. Не используй ключ `id`.\n- `goal` необязателен. Если используешь его, это объект, а не строка: `{\"type\":\"solve\"}`. Разрешены только типы `solve`, `simplify`, `evaluate`, `prove`, `compute_function`, `unknown`; при необходимости добавь строку `target_latex`.\n- `constraints` необязателен. Это массив СТРОК LaTeX, например `[\"x\\\\in[0;1]\"]`; не делай из них объекты и не нумеруй их.\n\nКаждый элемент `steps` обязан иметь РОВНО: `step_id`, `latex`, `role`, `derives_from`, `branch`, `exactness`; дополнительно разрешён только `uses_givens`.\n- Идентификаторы шагов строго s1, s2, … .\n- `role`: only `initial`, `transformation`, `substitution`, `definition`, `answer`, `independent`.\n- `derives_from`: массив ID только более ранних шагов; если родителя нет, `[]`.\n- `uses_givens`: необязательный массив ID g1, g2, …; если нет, просто не добавляй поле.\n- `branch`: `main`, `independent`, `plus_minus_1`, `plus_minus_2`, … .\n- `exactness`: `exact`, `approximate` или `unknown`.\n\nПример видимого условия (это образец формы, не ответ на фотографию):\n{\n  \"schema_version\":\"assisted_extraction_gigachat_v2\",\n  \"task\":{\"visibility\":\"visible\",\"raw_latex\":\"\\\\text{Solve }x^2=1\",\"givens\":[{\"given_id\":\"g1\",\"latex\":\"x^2=1\"}],\"goal\":{\"type\":\"solve\",\"target_latex\":\"x\"}},\n  \"steps\":[{\"step_id\":\"s1\",\"latex\":\"x^2=1\",\"role\":\"initial\",\"derives_from\":[],\"uses_givens\":[\"g1\"],\"branch\":\"main\",\"exactness\":\"exact\"}]\n}",
+    "user": "Проанализируй приложенную фотографию строго по системной инструкции.",
+    "sha256": "f35da71fe3c123ee868179debc8bcc6fdffe52adcd51b05beb0652617bc286c6"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 1997,
+    "completion_tokens": 933,
+    "total_tokens": 2930,
+    "estimated_cost_rub": 1.465,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 17469,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"assisted_extraction_gigachat_v2\",\n    \"task\": {\n        \"visibility\": \"visible\",\n        \"raw_latex\": \"\\\\text{Show that the matrix } A = \\\\begin{bmatrix}\\n2 & 3 \\\\\\\\\\n1 & 2\\n\\\\end{bmatrix} \\\\text{ satisfies the equation } A^2 - 4A + I = 0,\\\\text{ where }I\\\\text{ is the }2×2\\\\text{ identity matrix and }O\\\\text{ is the }2×2\\\\text{ zero matrix.} \\\\text{ Using this equation, find }A^{-1}.\",\n        \"givens\": [\n            {\n                \"given_id\": \"g1\",\n                \"latex\": \"A = \\\\begin{bmatrix}\\n2 & 3 \\\\\\\\\\n1 & 2\\n\\\\end{bmatrix}\"\n            },\n            {\n                \"given_id\": \"g2\",\n                \"latex\": \"A^2 - 4A + I = 0\"\n            }\n        ],\n        \"goal\": {\n            \"type\": \"solve\",\n            \"target_latex\": \"A^{-1}\"\n        }\n    },\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"A^2 = AA = \\\\begin{bmatrix}\\n2 & 3 \\\\\\\\\\n1 & 2\\n\\\\end{bmatrix}\\\\begin{bmatrix}\\n2 & 3 \\\\\\\\\\n1 & 2\\n\\\\end{bmatrix} = \\\\begin{bmatrix}\\n7 & 12 \\\\\\\\\\n4 & 7\\n\\\\end{bmatrix}\",\n            \"role\": \"initial\",\n            \"derives_from\": [],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"A^2 - 4A + I = \\\\begin{bmatrix}\\n7 & 12 \\\\\\\\\\n4 & 7\\n\\\\end{bmatrix}-\\\\begin{bmatrix}\\n8 & 12 \\\\\\\\\\n4 & 8\\n\\\\end{bmatrix}+\\\\begin{bmatrix}\\n1 & 0 \\\\\\\\\\n0 & 1\\n\\\\end{bmatrix}=\\\\begin{bmatrix}\\n0 & 0 \\\\\\\\\\n0 & 0\\n\\\\end{bmatrix}=0\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s1\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"AA - 4A = -I\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s2\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"AA^{-1} - 4I = -A^{-1}\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s3\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"AI - 4I = A^{-1}\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s4\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"A^{-1} = 4I-A = \\\\begin{bmatrix}\\n4 & 0 \\\\\\\\\\n0 & 4\\n\\\\end{bmatrix}-\\\\begin{bmatrix}\\n2 & 3 \\\\\\\\\\n1 & 2\\n\\\\end{bmatrix} = \\\\begin{bmatrix}\\n2 & -3 \\\\\\\\\\n-1 & 2\\n\\\\end{bmatrix}\",\n            \"role\": \"transformation\",\n            \"derives_from\": [\n                \"s5\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"A^{-1} = \\\\begin{bmatrix}\\n2 & -3 \\\\\\\\\\n-1 & 2\\n\\\\end{bmatrix}\",\n            \"role\": \"answer\",\n            \"derives_from\": [\n                \"s6\"\n            ],\n            \"branch\": \"main\",\n            \"exactness\": \"exact\"\n        }\n    ]\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_465_pert_1.5",
+    "task": {
+      "visibility": "visible",
+      "raw_latex": "\\text{Show that the matrix } A = \\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix} \\text{ satisfies the equation } A^2 - 4A + I = 0,\\text{ where }I\\text{ is the }2×2\\text{ identity matrix and }O\\text{ is the }2×2\\text{ zero matrix.} \\text{ Using this equation, find }A^{-1}.",
+      "givens": [
+        {
+          "given_id": "g1",
+          "latex": "A = \\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}"
+        },
+        {
+          "given_id": "g2",
+          "latex": "A^2 - 4A + I = 0"
+        }
+      ],
+      "goal": {
+        "type": "solve",
+        "target_latex": "A^{-1}"
+      }
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "latex": "A^2 = AA = \\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix} = \\begin{bmatrix}\n7 & 12 \\\\\n4 & 7\n\\end{bmatrix}",
+        "role": "initial",
+        "derives_from": [],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s2",
+        "latex": "A^2 - 4A + I = \\begin{bmatrix}\n7 & 12 \\\\\n4 & 7\n\\end{bmatrix}-\\begin{bmatrix}\n8 & 12 \\\\\n4 & 8\n\\end{bmatrix}+\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1\n\\end{bmatrix}=\\begin{bmatrix}\n0 & 0 \\\\\n0 & 0\n\\end{bmatrix}=0",
+        "role": "transformation",
+        "derives_from": [
+          "s1"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s3",
+        "latex": "AA - 4A = -I",
+        "role": "transformation",
+        "derives_from": [
+          "s2"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s4",
+        "latex": "AA^{-1} - 4I = -A^{-1}",
+        "role": "transformation",
+        "derives_from": [
+          "s3"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s5",
+        "latex": "AI - 4I = A^{-1}",
+        "role": "transformation",
+        "derives_from": [
+          "s4"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s6",
+        "latex": "A^{-1} = 4I-A = \\begin{bmatrix}\n4 & 0 \\\\\n0 & 4\n\\end{bmatrix}-\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix} = \\begin{bmatrix}\n2 & -3 \\\\\n-1 & 2\n\\end{bmatrix}",
+        "role": "transformation",
+        "derives_from": [
+          "s5"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      },
+      {
+        "step_id": "s7",
+        "latex": "A^{-1} = \\begin{bmatrix}\n2 & -3 \\\\\n-1 & 2\n\\end{bmatrix}",
+        "role": "answer",
+        "derives_from": [
+          "s6"
+        ],
+        "branch": "main",
+        "exactness": "exact"
+      }
+    ],
+    "meta": {
+      "run_id": "run-86f4f135-b183-485e-a3d6-f8f3a92da330",
+      "approach": "llm_assisted_extraction",
+      "stage": "extract_context",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "assisted_extraction_gigachat_v2",
+      "temperature": 0,
+      "duration_ms": 17469,
+      "created_at": "2026-10-10T15:27:44Z",
+      "tokens_in": 1997,
+      "tokens_out": 933
+    }
+  }
+}

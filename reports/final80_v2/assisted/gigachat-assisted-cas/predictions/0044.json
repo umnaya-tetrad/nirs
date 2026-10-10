@@ -1,0 +1,470 @@
+{
+  "schema_version": "1.0",
+  "id": "img_465_pert_1.3",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "A^2 = AA = \\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix} = \\begin{bmatrix}\n7 & 12 \\\\\n4 & 7\n\\end{bmatrix}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "A^2 - 4A + I = \\begin{bmatrix}\n7 & 12 \\\\\n4 & 7\n\\end{bmatrix}-4\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}+\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1\n\\end{bmatrix}=\\begin{bmatrix}\n0 & 0 \\\\\n0 & 0\n\\end{bmatrix}=0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "AA - 4A = -I",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "AA^{-1} - 4I = -A^{-1}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "A(A^{-1}) - 4I = -A^{-1}",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "AI - 4I = -A^{-1}",
+      "derives_from": [
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "A^{-1} = 4I - A = \\begin{bmatrix}\n4 & 0 \\\\\n0 & 4\n\\end{bmatrix}-\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}=\\begin{bmatrix}\n2 & -3 \\\\\n-1 & 2\n\\end{bmatrix}",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "A^{-1} = \\begin{bmatrix}\n2 & -3 \\\\\n-1 & 2\n\\end{bmatrix}",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 757
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-c6822b0f-6729-4efb-9edb-2bea163c0ff4",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1566,
+    "created_at": "2026-10-10T15:51:00.291695Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_465_pert_1.3",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "Show that the matrix A = \\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix} satisfies the equation A^2 - 4A + I = 0,\\ where I is the 2×2 identity matrix and using this equation, find A^{-1}.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\matrixA ",
+                "kind": "expression",
+                "sides": [
+                  "Matrix([\n[2, 3],\n[1, 2]])"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "A^2 - 4A + I = 0",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "A^2 - 4A + I = 0",
+                "kind": "equation",
+                "sides": [
+                  "I + (A**2 - 4*A)",
+                  "0"
+                ],
+                "symbols": [
+                  "A",
+                  "I"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "A^{-1}"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "A^2 = AA = \\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix} = \\begin{bmatrix}\n7 & 12 \\\\\n4 & 7\n\\end{bmatrix}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "A^2 - 4A + I = \\begin{bmatrix}\n7 & 12 \\\\\n4 & 7\n\\end{bmatrix}-4\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}+\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1\n\\end{bmatrix}=\\begin{bmatrix}\n0 & 0 \\\\\n0 & 0\n\\end{bmatrix}=0",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "AA - 4A = -I",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "AA^{-1} - 4I = -A^{-1}",
+          "role": "transformation",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "A(A^{-1}) - 4I = -A^{-1}",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "AI - 4I = -A^{-1}",
+          "role": "transformation",
+          "derives_from": [
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "A^{-1} = 4I - A = \\begin{bmatrix}\n4 & 0 \\\\\n0 & 4\n\\end{bmatrix}-\\begin{bmatrix}\n2 & 3 \\\\\n1 & 2\n\\end{bmatrix}=\\begin{bmatrix}\n2 & -3 \\\\\n-1 & 2\n\\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "A^{-1} = \\begin{bmatrix}\n2 & -3 \\\\\n-1 & 2\n\\end{bmatrix}",
+          "role": "answer",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "matrix_system",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Exact expression identity with preserved domain; Scalar/matrix type mismatch; Exact matrix entry comparison"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact matrix entry comparison; Scalar/matrix type mismatch; Separate equation/substitution requires task context"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identical polynomial equations"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Multivariate domain restrictions"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Scalar/matrix type mismatch; Exact matrix entry comparison; Multivariate domain restrictions"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "requires two explicit X/Y matrix equations",
+      "step_id": null,
+      "rule": "matrix_system",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s4",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow'",
+      "requires two explicit X/Y matrix equations"
+    ]
+  }
+}

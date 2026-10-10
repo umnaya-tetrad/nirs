@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "id": "img_387_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\frac{dy}{du}=3u^2+sec^2 u",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\frac{d^2x}{du^2}=\\frac{d}{(3u^2+sec^2 u)}=6u+2 sec u tan u",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 715
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Differential notation needs a calculus verifier"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Differential notation needs a calculus verifier"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-d89ef4a8-7471-457f-9742-d9f177d7f638",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1270,
+    "created_at": "2026-10-10T15:50:43.911006Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_387_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "Find \\frac{d^2y}{dx^2}, if y = x^3 + tan x.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "unknown",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\frac{dy}{du}=3u^2+sec^2 u",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\frac{d^2x}{du^2}=\\frac{d}{(3u^2+sec^2 u)}=6u+2 sec u tan u",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "unsupported",
+        "task_class": "equation",
+        "reasons": [
+          "goal is unknown"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Functions are outside the selected algebra subset; Symbolic equation is a premise; checked against previous equation when applicable"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "goal is unknown",
+      "step_id": null,
+      "rule": "task_spec",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Differential notation needs a calculus verifier"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Differential notation needs a calculus verifier",
+      "Differential notation needs a calculus verifier",
+      "goal is unknown"
+    ]
+  }
+}

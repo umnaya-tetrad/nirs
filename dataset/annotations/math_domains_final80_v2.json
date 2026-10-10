@@ -1,5 +1,1222 @@
 {
-  "annotation_version": "1.0",
-  "purpose": "Independent manual descriptive annotation; never sent to VLMs or CAS.",
-  "records": []
+  "annotation_version": "1.1",
+  "purpose": "Independent post-hoc descriptive annotation; never sent to VLMs or CAS and not used to select final-80 v2.",
+  "taxonomy": {
+    "domain": "Primary mathematical area from the canonical solution/task.",
+    "task_type": "Human-readable problem type; not a scoring category.",
+    "features": "Allowed notation/construction features from evaluator.domains.FEATURES."
+  },
+  "records": [
+    {
+      "solution_id": "img_400_pert_5.1",
+      "domain": "calculus",
+      "features": [
+        "powers",
+        "logarithms",
+        "derivatives"
+      ],
+      "task_type": "derivative of an exponential",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_374_pert_5.1",
+      "domain": "calculus",
+      "features": [
+        "fractions",
+        "trigonometric_functions",
+        "integrals"
+      ],
+      "task_type": "definite integral",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "visual_confirmed",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_19_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "section formula / coordinate geometry",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_559_pert_5.1",
+      "domain": "algebraic_expression",
+      "features": [
+        "polynomials"
+      ],
+      "task_type": "polynomial subtraction",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_464_pert_5.1",
+      "domain": "linear_algebra",
+      "features": [
+        "other"
+      ],
+      "task_type": "2x2 determinant",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_387_pert_5.1",
+      "domain": "calculus",
+      "features": [
+        "powers",
+        "trigonometric_functions",
+        "derivatives"
+      ],
+      "task_type": "second derivative",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_22_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "midpoint coordinate equation",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_568_pert_5.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "powers"
+      ],
+      "task_type": "complex-number powers",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_482_pert_5.2",
+      "domain": "equation",
+      "features": [
+        "other"
+      ],
+      "task_type": "linear equations in standard form",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_559_pert_5.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "polynomials"
+      ],
+      "task_type": "polynomial expression",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_448_pert_5.2",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix distributivity",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_173_pert_5.3",
+      "domain": "arithmetic",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "fraction simplification",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_165_pert_5.3",
+      "domain": "equation",
+      "features": [
+        "powers"
+      ],
+      "task_type": "quadratic equation / substitution",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_193_pert_5.3",
+      "domain": "arithmetic",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "multiplication of fractions",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_375_pert_5.3",
+      "domain": "calculus",
+      "features": [
+        "absolute_value",
+        "polynomials",
+        "integrals"
+      ],
+      "task_type": "definite integral with absolute value",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_233_pert_3.2",
+      "domain": "arithmetic",
+      "features": [
+        "fractions",
+        "powers"
+      ],
+      "task_type": "powers of fractions",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_190_pert_3.2",
+      "domain": "arithmetic",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "decimal arithmetic",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_559_pert_3.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "polynomials"
+      ],
+      "task_type": "polynomial subtraction",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_172_pert_3.2",
+      "domain": "arithmetic",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "equivalent fractions",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_586_pert_3.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "powers",
+        "polynomials"
+      ],
+      "task_type": "binomial cube expansion",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_448_pert_3.2",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix distributivity",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_173_pert_2.5",
+      "domain": "arithmetic",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "fraction simplification",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_35_pert_2.5",
+      "domain": "geometry",
+      "features": [
+        "powers",
+        "radicals",
+        "word_problem"
+      ],
+      "task_type": "right cone volume",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_375_pert_2.5",
+      "domain": "calculus",
+      "features": [
+        "absolute_value",
+        "polynomials",
+        "integrals"
+      ],
+      "task_type": "definite integral with absolute value",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_574_pert_2.5",
+      "domain": "equation",
+      "features": [
+        "fractions",
+        "powers",
+        "polynomials"
+      ],
+      "task_type": "cubic roots and Vieta relations",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_395_pert_2.5",
+      "domain": "calculus",
+      "features": [
+        "fractions",
+        "trigonometric_functions",
+        "derivatives"
+      ],
+      "task_type": "parametric derivative",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_68_pert_2.5",
+      "domain": "geometry",
+      "features": [
+        "fractions",
+        "radicals"
+      ],
+      "task_type": "angle between vectors",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_111_pert_1.3",
+      "domain": "trigonometry",
+      "features": [
+        "radicals",
+        "trigonometric_functions"
+      ],
+      "task_type": "inverse-trigonometric identity",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_463_pert_1.3",
+      "domain": "linear_algebra",
+      "features": [
+        "radicals",
+        "other"
+      ],
+      "task_type": "determinant equation",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_465_pert_1.3",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix inverse via polynomial identity",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "visual_confirmed",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_108_pert_1.4",
+      "domain": "trigonometry",
+      "features": [
+        "radicals",
+        "trigonometric_functions"
+      ],
+      "task_type": "trigonometric value reduction",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_427_pert_1.4",
+      "domain": "calculus",
+      "features": [
+        "fractions",
+        "powers",
+        "radicals",
+        "derivatives"
+      ],
+      "task_type": "limits",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_472_pert_1.4",
+      "domain": "geometry",
+      "features": [
+        "other"
+      ],
+      "task_type": "coordinate-geometry determinants",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_503_pert_1.4",
+      "domain": "function",
+      "features": [
+        "other"
+      ],
+      "task_type": "composition of functions",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_466_pert_1.4",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "cofactors / determinant",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_111_pert_2.1",
+      "domain": "trigonometry",
+      "features": [
+        "radicals",
+        "trigonometric_functions"
+      ],
+      "task_type": "inverse-trigonometric identity",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_98_pert_2.1",
+      "domain": "trigonometry",
+      "features": [
+        "fractions",
+        "powers",
+        "trigonometric_functions"
+      ],
+      "task_type": "trigonometric identities",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_372_pert_2.1",
+      "domain": "calculus",
+      "features": [
+        "radicals",
+        "trigonometric_functions",
+        "integrals"
+      ],
+      "task_type": "definite integral",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_109_pert_2.1",
+      "domain": "trigonometry",
+      "features": [
+        "fractions",
+        "trigonometric_functions"
+      ],
+      "task_type": "degree-to-radian conversion",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_223_pert_2.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "fractions",
+        "powers"
+      ],
+      "task_type": "laws of exponents",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_465_pert_2.2",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix inverse",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_529_pert_2.2",
+      "domain": "equation",
+      "features": [
+        "other"
+      ],
+      "task_type": "linear equations",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_573_pert_2.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "radicals",
+        "powers"
+      ],
+      "task_type": "complex-number expression",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_226_pert_2.2",
+      "domain": "algebraic_expression",
+      "features": [
+        "fractions",
+        "powers"
+      ],
+      "task_type": "laws of exponents",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_176_pert_4.3",
+      "domain": "arithmetic",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "multiplication of fractions",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_92_pert_4.3",
+      "domain": "geometry",
+      "features": [
+        "fractions",
+        "trigonometric_functions",
+        "word_problem"
+      ],
+      "task_type": "arc length",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_91_pert_2.3",
+      "domain": "trigonometry",
+      "features": [
+        "fractions",
+        "powers",
+        "radicals",
+        "trigonometric_functions"
+      ],
+      "task_type": "trigonometric ratios",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_112_pert_4.4",
+      "domain": "trigonometry",
+      "features": [
+        "fractions",
+        "trigonometric_functions"
+      ],
+      "task_type": "inverse-trigonometric identity",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_115_pert_4.4",
+      "domain": "trigonometry",
+      "features": [
+        "radicals",
+        "trigonometric_functions"
+      ],
+      "task_type": "special trigonometric value",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_529_pert_4.5",
+      "domain": "equation",
+      "features": [
+        "other"
+      ],
+      "task_type": "linear system",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_160_pert_2.4",
+      "domain": "arithmetic",
+      "features": [
+        "radicals"
+      ],
+      "task_type": "square root simplification",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_560_pert_1.5",
+      "domain": "algebraic_expression",
+      "features": [
+        "powers",
+        "polynomials"
+      ],
+      "task_type": "algebraic substitution",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_465_pert_1.5",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix inverse",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_540_pert_1.5",
+      "domain": "geometry",
+      "features": [
+        "fractions",
+        "trigonometric_functions"
+      ],
+      "task_type": "angle between vectors",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_153_pert_1.5",
+      "domain": "arithmetic",
+      "features": [
+        "radicals"
+      ],
+      "task_type": "radical multiplication",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_194_pert_1.5",
+      "domain": "arithmetic",
+      "features": [
+        "fractions",
+        "word_problem"
+      ],
+      "task_type": "factorial equation",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_220_pert_1.5",
+      "domain": "algebraic_expression",
+      "features": [
+        "fractions",
+        "powers"
+      ],
+      "task_type": "negative exponents",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_220_pert_4.6",
+      "domain": "algebraic_expression",
+      "features": [
+        "fractions",
+        "powers"
+      ],
+      "task_type": "negative exponents",
+      "annotation_source": "canonical_gt_steps",
+      "source_metadata": {},
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_476_pert_5.1",
+      "domain": "inequality",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "compound linear inequality",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "lin",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_579_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "fractions",
+        "polynomials"
+      ],
+      "task_type": "quadratic factorisation",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "pyn",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_578_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "powers",
+        "polynomials"
+      ],
+      "task_type": "quadratic discriminant",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "pyn",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_489_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "word_problem"
+      ],
+      "task_type": "linear word problem",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "leq",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_490_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "word_problem"
+      ],
+      "task_type": "linear age word problem",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "leq",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_483_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "fractions",
+        "word_problem"
+      ],
+      "task_type": "linear word problem",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "leq",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_592_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "polynomials"
+      ],
+      "task_type": "quadratic zeroes and coefficients",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "pyn",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_456_pert_5.1",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix multiplication",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "mat",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_455_pert_5.1",
+      "domain": "linear_algebra",
+      "features": [
+        "matrices"
+      ],
+      "task_type": "matrix linear combination",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "mat",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_458_pert_5.1",
+      "domain": "linear_algebra",
+      "features": [
+        "fractions",
+        "absolute_value",
+        "matrices"
+      ],
+      "task_type": "matrix entries",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "mat",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_566_pert_5.1",
+      "domain": "algebraic_expression",
+      "features": [
+        "fractions",
+        "radicals",
+        "powers"
+      ],
+      "task_type": "complex numbers",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "cpx",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_572_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "complex-number coefficient comparison",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "cpx",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_65_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "powers",
+        "radicals"
+      ],
+      "task_type": "3D coordinate locus",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "3dg",
+        "orig_q_available": true
+      },
+      "review_status": "visual_confirmed",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_27_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "other"
+      ],
+      "task_type": "line through point with slope",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "lns",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_14_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "powers"
+      ],
+      "task_type": "equidistant points locus",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "lns",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_49_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "fractions",
+        "word_problem"
+      ],
+      "task_type": "rhombus area",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "plg",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_77_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "powers",
+        "word_problem"
+      ],
+      "task_type": "circle area",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "sfa",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_78_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "powers",
+        "word_problem"
+      ],
+      "task_type": "sphere surface area",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "sfa",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_37_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "powers",
+        "word_problem"
+      ],
+      "task_type": "sphere volume",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "vol",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_20_pert_5.1",
+      "domain": "geometry",
+      "features": [
+        "fractions"
+      ],
+      "task_type": "section formula / coordinate geometry",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "mgm",
+        "subdomain_code": "lns",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_492_pert_5.1",
+      "domain": "linear_algebra",
+      "features": [
+        "fractions",
+        "matrices",
+        "systems"
+      ],
+      "task_type": "linear system using inverse matrix",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "leq",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    },
+    {
+      "solution_id": "img_488_pert_5.1",
+      "domain": "equation",
+      "features": [
+        "fractions",
+        "systems"
+      ],
+      "task_type": "linear system by substitution",
+      "annotation_source": "canonical_gt_steps + FERMAT orig_q/domain/subdomain",
+      "source_metadata": {
+        "dataset": "ai4bharat/FERMAT",
+        "domain_code": "alg",
+        "subdomain_code": "leq",
+        "orig_q_available": true
+      },
+      "review_status": "source_checked_not_visually_audited",
+      "uncertain": false,
+      "notes": "Primary domain selected by mathematical object/operation; word_problem is a feature, not a domain."
+    }
+  ]
 }

@@ -1,0 +1,77 @@
+{
+  "status": "ok",
+  "case_id": "img_387_pert_5.1",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gigachat_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gigachat_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 2048,
+    "completion_tokens": 137,
+    "total_tokens": 2185,
+    "estimated_cost_rub": 1.0925,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 6331,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"e2e_gigachat_v1\",\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\frac{{dx}}{{du}} = 3u^2 + \\\\sec ^2 u\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"\\\\frac{{d^2 x}}{{du^2}} = \\\\frac{d}{{du}} \\\\left( {3u^2 + \\\\sec ^2 u} \\\\right)\"\n        }\n    ],\n    \"has_error\": true,\n    \"first_error_step\": \"s2\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_387_pert_5.1",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "GigaChat-2-Pro:2.0.30.01",
+          "status": "ok",
+          "duration_ms": 6331,
+          "tokens_in": 2048,
+          "tokens_out": 137
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\frac{{dx}}{{du}} = 3u^2 + \\sec ^2 u",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "\\frac{{d^2 x}}{{du^2}} = \\frac{d}{{du}} \\left( {3u^2 + \\sec ^2 u} \\right)",
+        "derives_from": [
+          "s1"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s2",
+    "last_correct_step": "s1",
+    "findings": [],
+    "meta": {
+      "run_id": "run-765c6496-c95b-4f6a-b822-e5ed9eecd742",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "e2e_gigachat_v1",
+      "temperature": 0,
+      "duration_ms": 6331,
+      "created_at": "2026-10-10T15:05:15Z",
+      "tokens_in": 2048,
+      "tokens_out": 137
+    }
+  }
+}

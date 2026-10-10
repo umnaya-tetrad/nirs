@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="272" viewBox="0 0 760 272" role="img" aria-label="H3 automation rate">
+<title>H3 automation rate</title>
+<text x="250" y="24" font-family="sans-serif" font-size="18">H3 automation rate</text>
+<line x1="250" y1="42" x2="250" y2="238" stroke="#333"/>
+<line x1="250" y1="238" x2="740" y2="238" stroke="#333"/>
+<line x1="250.0" y1="42" x2="250.0" y2="238" stroke="#ddd"/>
+<text x="250.0" y="260" text-anchor="middle" font-family="sans-serif" font-size="12">0%</text>
+<line x1="368.8" y1="42" x2="368.8" y2="238" stroke="#ddd"/>
+<text x="368.8" y="260" text-anchor="middle" font-family="sans-serif" font-size="12">25%</text>
+<line x1="487.5" y1="42" x2="487.5" y2="238" stroke="#ddd"/>
+<text x="487.5" y="260" text-anchor="middle" font-family="sans-serif" font-size="12">50%</text>
+<line x1="606.2" y1="42" x2="606.2" y2="238" stroke="#ddd"/>
+<text x="606.2" y="260" text-anchor="middle" font-family="sans-serif" font-size="12">75%</text>
+<line x1="725.0" y1="42" x2="725.0" y2="238" stroke="#ddd"/>
+<text x="725.0" y="260" text-anchor="middle" font-family="sans-serif" font-size="12">100%</text>
+<text x="240" y="67" text-anchor="end" font-family="sans-serif" font-size="13">gemini:gemini_e2e__gemini_assisted_cas disagreement_only: automation</text>
+<rect x="250" y="54" width="445.3" height="24" fill="#357edd"/>
+<text x="702.3" y="71" font-family="sans-serif" font-size="13">93.8%</text>
+<text x="240" y="115" text-anchor="end" font-family="sans-serif" font-size="13">gemini:gemini_e2e__gemini_assisted_cas disagreement_or_cas_indeterminate: automation</text>
+<rect x="250" y="102" width="71.2" height="24" fill="#357edd"/>
+<text x="328.2" y="119" font-family="sans-serif" font-size="13">15.0%</text>
+<text x="240" y="163" text-anchor="end" font-family="sans-serif" font-size="13">gigachat:gigachat_e2e__gigachat_assisted_cas disagreement_only: automation</text>
+<rect x="250" y="150" width="439.4" height="24" fill="#357edd"/>
+<text x="696.4" y="167" font-family="sans-serif" font-size="13">92.5%</text>
+<text x="240" y="211" text-anchor="end" font-family="sans-serif" font-size="13">gigachat:gigachat_e2e__gigachat_assisted_cas disagreement_or_cas_indeterminate: automation</text>
+<rect x="250" y="198" width="59.4" height="24" fill="#357edd"/>
+<text x="316.4" y="215" font-family="sans-serif" font-size="13">12.5%</text>
+</svg>

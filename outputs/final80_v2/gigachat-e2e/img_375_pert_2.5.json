@@ -1,0 +1,157 @@
+{
+  "status": "ok",
+  "case_id": "img_375_pert_2.5",
+  "mode": "e2e",
+  "prompt_version": "v1",
+  "provider": "gigachat",
+  "prompt": {
+    "provider": "gigachat",
+    "mode": "e2e",
+    "version": "v1",
+    "schema_version": "e2e_gigachat_v1",
+    "system": "Ты проверяешь решение математической задачи по фотографии.\nВерни только JSON-объект без Markdown и пояснений вне JSON.\n\nСначала прочитай условие и все незачёркнутые рукописные или напечатанные строки.\nСтроки идут сверху вниз, а на одной высоте — слева направо. Не добавляй, не объединяй,\nне меняй порядок и не исправляй записи ученика. В LaTeX воспроизводи все знаки,\nкоэффициенты, скобки, дроби и правые части ровно как на фотографии. LaTeX пиши без\n$ и без Markdown. Если существенный символ нельзя прочитать надёжно, не угадывай.\n\nПроверь переходы между строками в порядке записи. has_error=true только если найдена\nматематическая ошибка. Тогда first_error_step должен быть step_id первой ошибочной\nстроки. Если ошибок нет, has_error=false, first_error_step=null. Не объясняй ошибки и\nне добавляй поля, кроме schema_version, steps, has_error и first_error_step.\n\nJSON-формат:\n{\n  \"schema_version\": \"e2e_gigachat_v1\",\n  \"steps\": [{\"step_id\": \"s1\", \"latex\": \"...\"}],\n  \"has_error\": false,\n  \"first_error_step\": null\n}\nstep_id должен быть последовательным: s1, s2, s3 и так далее. Возвращай хотя бы один\nшаг; если фото нельзя прочесть, используй единственный шаг s1 с latex \"\\text{unreadable}\",\nhas_error=false и first_error_step=null.",
+    "user": "Проанализируй приложенную фотографию по системной инструкции.",
+    "sha256": "9507fca818e2caa7b41c14a62b6415f0d975dd76347047ae591ce80f12f8a10d"
+  },
+  "provider_model": "GigaChat-2-Pro:2.0.30.01",
+  "usage": {
+    "prompt_tokens": 2054,
+    "completion_tokens": 854,
+    "total_tokens": 2908,
+    "estimated_cost_rub": 1.454,
+    "price_rub_per_1k_tokens": 0.5
+  },
+  "latency_ms": 15630,
+  "attempts": 1,
+  "raw_response": "{\n    \"schema_version\": \"e2e_gigachat_v1\",\n    \"steps\": [\n        {\n            \"step_id\": \"s1\",\n            \"latex\": \"\\\\int_{-1}^{2} \\\\left|x^3-x\\\\right| dx\"\n        },\n        {\n            \"step_id\": \"s2\",\n            \"latex\": \"We note that x^3-x≥0 on [-1,0] and $x^3-x≤0$ on $[0,1]$ and that $x^3-x≥0$ on $[1,2].$ So by P2 we write\"\n        },\n        {\n            \"step_id\": \"s3\",\n            \"latex\": \"\\\\int_{-1}^{2} \\\\left|x^3-x\\\\right| dx = \\\\int_{-1}^0 (x^3-x)dx + \\\\int_0^1 -(x^3-x)dx + \\\\int_1^{2} (x^3-x)dx\"\n        },\n        {\n            \"step_id\": \"s4\",\n            \"latex\": \"Calculating each integral:\"\n        },\n        {\n            \"step_id\": \"s5\",\n            \"latex\": \"= \\\\int_{-1}^0 (x^3-x)dx + \\\\int_0^1 (x-x^3)dx + \\\\int_1^{2} (x^3-x)dx\"\n        },\n        {\n            \"step_id\": \"s6\",\n            \"latex\": \"= \\\\left[\\\\frac{x^4}{4}-\\\\frac{x^2}{2}\\\\right]_ {-1}^0 + \\\\left[\\\\frac{x^2}{2}-\\\\frac{x^4}{4}\\\\right]_ 0^1 + \\\\left[\\\\frac{x^4}{4}-\\\\frac{x^2}{2}\\\\right]_ 1^{2}\"\n        },\n        {\n            \"step_id\": \"s7\",\n            \"latex\": \"Calculating the limits:\"\n        },\n        {\n            \"step_id\": \"s8\",\n            \"latex\": \"= \\\\left(0-\\\\frac{-1}{4}\\\\right)+\\\\left(\\\\frac{1}{2}-\\\\frac{1}{4}\\\\right)+\\\\left(\\\\frac{4}{4}-\\\\frac{2}{2}-\\\\left(\\\\frac{1}{4}-\\\\frac{1}{2}\\\\right)\\\\right)\"\n        },\n        {\n            \"step_id\": \"s9\",\n            \"latex\": \"= 0+\\\\frac{1}{4}+\\\\left(\\\\frac{1}{4}-\\\\frac{1}{4}\\\\right)\"\n        },\n        {\n            \"step_id\": \"s10\",\n            \"latex\": \"= 0+\\\\frac{1}{4}+\\\\left(-\\\\frac{1}{4}\\\\right)=\\\\frac{3}{4}\"\n        },\n        {\n            \"step_id\": \"s11\",\n            \"latex\": \"Thus the final result is:\"\n        },\n        {\n            \"step_id\": \"s12\",\n            \"latex\": \"= \\\\frac{1}{4}+\\\\frac{1}{2}+\\\\frac{1}{4}=\\\\frac{3}{2}-\\\\frac{3}{4}+2= \\\\frac{11}{4}\"\n        }\n    ],\n    \"has_error\": true,\n    \"first_error_step\": \"s9\"\n}",
+  "contract": {
+    "schema_version": "1.0",
+    "id": "img_375_pert_2.5",
+    "pipeline": {
+      "approach": "llm_end_to_end",
+      "stages": [
+        {
+          "name": "verify",
+          "backend": "GigaChat-2-Pro:2.0.30.01",
+          "status": "ok",
+          "duration_ms": 15630,
+          "tokens_in": 2054,
+          "tokens_out": 854
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "s1",
+        "kind": "initial",
+        "latex": "\\int_{-1}^{2} \\left|x^3-x\\right| dx",
+        "derives_from": []
+      },
+      {
+        "step_id": "s2",
+        "kind": "step",
+        "latex": "We note that x^3-x≥0 on [-1,0] and $x^3-x≤0$ on $[0,1]$ and that $x^3-x≥0$ on $[1,2].$ So by P2 we write",
+        "derives_from": [
+          "s1"
+        ]
+      },
+      {
+        "step_id": "s3",
+        "kind": "step",
+        "latex": "\\int_{-1}^{2} \\left|x^3-x\\right| dx = \\int_{-1}^0 (x^3-x)dx + \\int_0^1 -(x^3-x)dx + \\int_1^{2} (x^3-x)dx",
+        "derives_from": [
+          "s2"
+        ]
+      },
+      {
+        "step_id": "s4",
+        "kind": "step",
+        "latex": "Calculating each integral:",
+        "derives_from": [
+          "s3"
+        ]
+      },
+      {
+        "step_id": "s5",
+        "kind": "step",
+        "latex": "= \\int_{-1}^0 (x^3-x)dx + \\int_0^1 (x-x^3)dx + \\int_1^{2} (x^3-x)dx",
+        "derives_from": [
+          "s4"
+        ]
+      },
+      {
+        "step_id": "s6",
+        "kind": "step",
+        "latex": "= \\left[\\frac{x^4}{4}-\\frac{x^2}{2}\\right]_ {-1}^0 + \\left[\\frac{x^2}{2}-\\frac{x^4}{4}\\right]_ 0^1 + \\left[\\frac{x^4}{4}-\\frac{x^2}{2}\\right]_ 1^{2}",
+        "derives_from": [
+          "s5"
+        ]
+      },
+      {
+        "step_id": "s7",
+        "kind": "step",
+        "latex": "Calculating the limits:",
+        "derives_from": [
+          "s6"
+        ]
+      },
+      {
+        "step_id": "s8",
+        "kind": "step",
+        "latex": "= \\left(0-\\frac{-1}{4}\\right)+\\left(\\frac{1}{2}-\\frac{1}{4}\\right)+\\left(\\frac{4}{4}-\\frac{2}{2}-\\left(\\frac{1}{4}-\\frac{1}{2}\\right)\\right)",
+        "derives_from": [
+          "s7"
+        ]
+      },
+      {
+        "step_id": "s9",
+        "kind": "step",
+        "latex": "= 0+\\frac{1}{4}+\\left(\\frac{1}{4}-\\frac{1}{4}\\right)",
+        "derives_from": [
+          "s8"
+        ]
+      },
+      {
+        "step_id": "s10",
+        "kind": "step",
+        "latex": "= 0+\\frac{1}{4}+\\left(-\\frac{1}{4}\\right)=\\frac{3}{4}",
+        "derives_from": [
+          "s9"
+        ]
+      },
+      {
+        "step_id": "s11",
+        "kind": "step",
+        "latex": "Thus the final result is:",
+        "derives_from": [
+          "s10"
+        ]
+      },
+      {
+        "step_id": "s12",
+        "kind": "step",
+        "latex": "= \\frac{1}{4}+\\frac{1}{2}+\\frac{1}{4}=\\frac{3}{2}-\\frac{3}{4}+2= \\frac{11}{4}",
+        "derives_from": [
+          "s11"
+        ]
+      }
+    ],
+    "verdict": "incorrect",
+    "is_correct": false,
+    "first_error_step": "s9",
+    "last_correct_step": "s8",
+    "findings": [],
+    "meta": {
+      "run_id": "run-db5dd343-9702-44cb-ba49-59707796daa1",
+      "approach": "llm_end_to_end",
+      "stage": "verify",
+      "model": "GigaChat-2-Pro:2.0.30.01",
+      "prompt_version": "e2e_gigachat_v1",
+      "temperature": 0,
+      "duration_ms": 15630,
+      "created_at": "2026-10-10T15:07:53Z",
+      "tokens_in": 2054,
+      "tokens_out": 854
+    }
+  }
+}

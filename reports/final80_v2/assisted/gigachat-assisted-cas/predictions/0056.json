@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "id": "img_503_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\forall b \\in B : f^{-1}(b)=f^{-1}(fb)",
+      "derives_from": [],
+      "kind": "initial"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 556
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 16"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-eaa0892e-22d6-4c45-b53b-ad9839648fe1",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1110,
+    "created_at": "2026-10-10T15:51:17.876923Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_503_pert_1.4",
+      "task": {
+        "visibility": "not_visible",
+        "raw_latex": null,
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "unknown",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\forall b \\in B : f^{-1}(b)=f^{-1}(fb)",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "unsupported",
+        "task_class": "unknown",
+        "reasons": [
+          "task is not visible in the image",
+          "goal is unknown"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 16"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "task is not visible in the image; goal is unknown",
+      "step_id": null,
+      "rule": "task_spec",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 16",
+          "role": "initial",
+          "branch": "main"
+        }
+      ],
+      "edges": []
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported input at character 16",
+      "task is not visible in the image; goal is unknown"
+    ]
+  }
+}

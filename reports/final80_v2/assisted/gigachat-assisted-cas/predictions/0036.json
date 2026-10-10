@@ -1,0 +1,390 @@
+{
+  "schema_version": "1.0",
+  "id": "img_427_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "\\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "\\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1} = \\lim_{x \\to 1} \\left(\\frac{x^{15}-1}{x-1}\\cdot \\frac{1}{x^{10}-1} \\right)",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= \\frac{15}{(1)^{14}}{9 (1)^9} = \\frac{15}{9} = \\frac{5}{3}.",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "\\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x}",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "Put y = 1 + x, so that y \\rightarrow 1 as x \\rightarrow 0. Then",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "\\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x} = \\lim_{y \\to 1} \\frac{\\sqrt{y}-1}{y-1}",
+      "derives_from": [
+        "s4",
+        "s5"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "= \\lim_{y \\to 1} \\frac{1/2 y^{-1/2}}{1} = \\frac{1}{2}(1)^{-1/2} = \\frac{1}{2}.",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 729
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Continuation requires one readable dependency"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Bare word is not an exact mathematical token"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\lim'"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-1de5a036-0132-4810-8ea7-85840196f420",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1426,
+    "created_at": "2026-10-10T15:50:48.404713Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_427_pert_1.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Evaluate}: \\\\ 1. \\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1}. \\\\ 2. \\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x}.",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "unknown",
+          "target_latex": null
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "\\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "\\lim_{x \\to 1} \\frac{x^{15}-1}{x^{10}-1} = \\lim_{x \\to 1} \\left(\\frac{x^{15}-1}{x-1}\\cdot \\frac{1}{x^{10}-1} \\right)",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= \\frac{15}{(1)^{14}}{9 (1)^9} = \\frac{15}{9} = \\frac{5}{3}.",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "\\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "Put y = 1 + x, so that y \\rightarrow 1 as x \\rightarrow 0. Then",
+          "role": "substitution",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "\\lim_{x \\to 0} \\frac{\\sqrt{1+x}-1}{x} = \\lim_{y \\to 1} \\frac{\\sqrt{y}-1}{y-1}",
+          "role": "transformation",
+          "derives_from": [
+            "s4",
+            "s5"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "= \\lim_{y \\to 1} \\frac{1/2 y^{-1/2}}{1} = \\frac{1}{2}(1)^{-1/2} = \\frac{1}{2}.",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "unsupported",
+        "task_class": "expression",
+        "reasons": [
+          "goal is unknown"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\lim'"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\lim'; Unsupported token '\\\\lim'"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Continuation has no readable predecessor; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\lim'"
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Separate equation/substitution requires task context; Unsupported input at character 42"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\lim'; Unsupported token '\\\\lim'"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "indeterminate",
+          "note": "Unsupported token '\\\\lim'; Continuation has no readable predecessor; Exact expression identity with preserved domain"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "goal is unknown",
+      "step_id": null,
+      "rule": "task_spec",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Continuation requires one readable dependency"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Bare word is not an exact mathematical token"
+        },
+        {
+          "from": "s4",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'"
+        },
+        {
+          "from": "s5",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\lim'"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported token '\\\\lim'",
+      "Unsupported token '\\\\lim'",
+      "Continuation requires one readable dependency",
+      "Unsupported token '\\\\lim'",
+      "Bare word is not an exact mathematical token",
+      "Unsupported token '\\\\lim'",
+      "Unsupported token '\\\\lim'",
+      "goal is unknown"
+    ]
+  }
+}

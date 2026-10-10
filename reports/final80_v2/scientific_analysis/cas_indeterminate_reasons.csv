@@ -1,0 +1,95 @@
+﻿provider,reason,cases,ids
+gemini,Prose/conditions are not a fully parsed mathematical step,44,img_109_pert_2.1 img_111_pert_1.3 img_111_pert_2.1 img_115_pert_4.4 img_14_pert_5.1 img_165_pert_5.3 img_172_pert_3.2 img_173_pert_2.5 img_173_pert_5.3 img_176_pert_4.3 img_190_pert_3.2 img_193_pert_5.3 img_19_pert_5.1 img_220_pert_4.6 img_22_pert_5.1 img_27_pert_5.1 img_372_pert_2.1 img_374_pert_5.1 img_375_pert_2.5 img_37_pert_5.1 img_387_pert_5.1 img_427_pert_1.4 img_456_pert_5.1 img_458_pert_5.1 img_465_pert_1.3 img_465_pert_1.5 img_465_pert_2.2 img_466_pert_1.4 img_472_pert_1.4 img_482_pert_5.2 img_483_pert_5.1 img_489_pert_5.1 img_490_pert_5.1 img_492_pert_5.1 img_49_pert_5.1 img_529_pert_2.2 img_560_pert_1.5 img_566_pert_5.1 img_572_pert_5.1 img_578_pert_5.1 img_579_pert_5.1 img_65_pert_5.1 img_68_pert_2.5 img_92_pert_4.3
+gemini,At least one node/edge proof is unresolved,29,img_111_pert_1.3 img_111_pert_2.1 img_14_pert_5.1 img_172_pert_3.2 img_173_pert_5.3 img_19_pert_5.1 img_20_pert_5.1 img_27_pert_5.1 img_372_pert_2.1 img_400_pert_5.1 img_456_pert_5.1 img_458_pert_5.1 img_464_pert_5.1 img_465_pert_1.3 img_465_pert_1.5 img_465_pert_2.2 img_472_pert_1.4 img_483_pert_5.1 img_488_pert_5.1 img_489_pert_5.1 img_490_pert_5.1 img_492_pert_5.1 img_529_pert_2.2 img_540_pert_1.5 img_560_pert_1.5 img_572_pert_5.1 img_574_pert_2.5 img_65_pert_5.1 img_68_pert_2.5
+gemini,Task has no explicit mathematical target,16,img_14_pert_5.1 img_165_pert_5.3 img_173_pert_2.5 img_173_pert_5.3 img_20_pert_5.1 img_220_pert_1.5 img_220_pert_4.6 img_226_pert_2.2 img_233_pert_3.2 img_427_pert_1.4 img_483_pert_5.1 img_489_pert_5.1 img_559_pert_5.1 img_559_pert_5.2 img_560_pert_1.5 img_65_pert_5.1
+gemini,Continuation requires one readable dependency,9,img_111_pert_1.3 img_111_pert_2.1 img_176_pert_4.3 img_193_pert_5.3 img_226_pert_2.2 img_375_pert_2.5 img_375_pert_5.3 img_427_pert_1.4 img_566_pert_5.1
+gemini,Unanchored mathematical statement,6,img_165_pert_5.3 img_176_pert_4.3 img_458_pert_5.1 img_489_pert_5.1 img_559_pert_5.1 img_559_pert_5.2
+gemini,requires two explicit X/Y matrix equations,6,img_448_pert_3.2 img_448_pert_5.2 img_456_pert_5.1 img_465_pert_1.3 img_465_pert_1.5 img_465_pert_2.2
+gemini,Bare word is not an exact mathematical token,5,img_193_pert_5.3 img_22_pert_5.1 img_27_pert_5.1 img_472_pert_1.4 img_49_pert_5.1
+gemini,Requires one task equation,5,img_387_pert_5.1 img_488_pert_5.1 img_492_pert_5.1 img_572_pert_5.1 img_574_pert_2.5
+gemini,A written answer equality is required,4,img_115_pert_4.4 img_490_pert_5.1 img_578_pert_5.1 img_68_pert_2.5
+gemini,Requires one explicit inequality,4,img_111_pert_1.3 img_111_pert_2.1 img_476_pert_5.1 img_578_pert_5.1
+gemini,Undefined real expression: nonzero restriction fails,4,img_375_pert_2.5 img_375_pert_5.3 img_465_pert_1.3 img_465_pert_1.5
+gemini,Unsupported input at character 1,4,img_220_pert_1.5 img_226_pert_2.2 img_233_pert_3.2 img_465_pert_1.5
+gemini,Unsupported token '\\int',4,img_372_pert_2.1 img_374_pert_5.1 img_375_pert_2.5 img_375_pert_5.3
+gemini,definite integral with explicit bounds was not found,4,img_372_pert_2.1 img_374_pert_5.1 img_375_pert_2.5 img_375_pert_5.3
+gemini,Differential notation needs a calculus verifier,3,img_374_pert_5.1 img_387_pert_5.1 img_400_pert_5.1
+gemini,TIMEOUT_OR_WORKER_EXIT,3,img_112_pert_4.4 img_91_pert_2.3 img_98_pert_2.1
+gemini,goal is unknown,3,img_190_pert_3.2 img_458_pert_5.1 img_482_pert_5.2
+gemini,unsupported operand type(s) for +: 'Pow' and 'ImmutableDenseMatrix',3,img_465_pert_1.3 img_465_pert_1.5 img_465_pert_2.2
+gemini,"Matrix size mismatch: (2, 3) + (3, 3).",2,img_448_pert_3.2 img_448_pert_5.2
+gemini,Task target has unresolved variables,2,img_464_pert_5.1 img_540_pert_1.5
+gemini,Unconsumed token '_'; one expression/equation per step,2,img_375_pert_2.5 img_375_pert_5.3
+gemini,Unsupported input at character 4,2,img_19_pert_5.1 img_529_pert_2.2
+gemini,Unsupported token '\\circ',2,img_503_pert_1.4 img_92_pert_4.3
+gemini,Unsupported token '\\text',2,img_37_pert_5.1 img_92_pert_4.3
+gemini,unsupported operand type(s) for +: 'Symbol' and 'ImmutableDenseMatrix',2,img_448_pert_3.2 img_448_pert_5.2
+gemini,Expected a nonempty LaTeX string,1,img_464_pert_5.1
+gemini,"Expected token, got end of input",1,img_466_pert_1.4
+gemini,Exponent exceeds rational bounds,1,img_566_pert_5.1
+gemini,OCR exactness is not exact,1,img_37_pert_5.1
+gemini,Prose is not a mathematical answer,1,img_579_pert_5.1
+gemini,Requires explicit X+Y and X-Y matrix givens,1,img_456_pert_5.1
+gemini,Symbolic determinant template has no explicit entry bindings,1,img_466_pert_1.4
+gemini,Symbolic exponent requires a constant positive base,1,img_400_pert_5.1
+gemini,Unconsumed token '='; one expression/equation per step,1,img_465_pert_1.3
+gemini,Unconsumed token '|'; one expression/equation per step,1,img_458_pert_5.1
+gemini,Unsupported input at character 10,1,img_574_pert_2.5
+gemini,Unsupported input at character 11,1,img_109_pert_2.1
+gemini,Unsupported input at character 12,1,img_172_pert_3.2
+gemini,Unsupported input at character 17,1,img_20_pert_5.1
+gemini,Unsupported input at character 2,1,img_20_pert_5.1
+gemini,Unsupported input at character 3,1,img_19_pert_5.1
+gemini,Unsupported input at character 34,1,img_503_pert_1.4
+gemini,Unsupported input at character 7,1,img_19_pert_5.1
+gemini,Unsupported token '\\lim',1,img_427_pert_1.4
+gemini,Unsupported token '\\neq',1,img_492_pert_5.1
+gemini,Unsupported token '\\pm',1,img_472_pert_1.4
+gemini,Unsupported token '\\vec',1,img_540_pert_1.5
+gemini,given g1 is not in the exact SymPy subset: Unsupported input at character 12; goal is unknown,1,img_172_pert_3.2
+gemini,unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow',1,img_465_pert_2.2
+gemini,unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol',1,img_458_pert_5.1
+gigachat,Unanchored mathematical statement,27,img_172_pert_3.2 img_173_pert_2.5 img_173_pert_5.3 img_176_pert_4.3 img_20_pert_5.1 img_220_pert_4.6 img_223_pert_2.2 img_27_pert_5.1 img_35_pert_2.5 img_37_pert_5.1 img_400_pert_5.1 img_448_pert_3.2 img_448_pert_5.2 img_455_pert_5.1 img_458_pert_5.1 img_466_pert_1.4 img_472_pert_1.4 img_482_pert_5.2 img_492_pert_5.1 img_49_pert_5.1 img_559_pert_3.2 img_560_pert_1.5 img_568_pert_5.2 img_572_pert_5.1 img_578_pert_5.1 img_579_pert_5.1 img_65_pert_5.1
+gigachat,At least one node/edge proof is unresolved,23,img_111_pert_1.3 img_111_pert_2.1 img_115_pert_4.4 img_173_pert_2.5 img_173_pert_5.3 img_19_pert_5.1 img_223_pert_2.2 img_22_pert_5.1 img_27_pert_5.1 img_448_pert_3.2 img_455_pert_5.1 img_456_pert_5.1 img_463_pert_1.3 img_465_pert_1.3 img_465_pert_1.5 img_465_pert_2.2 img_466_pert_1.4 img_49_pert_5.1 img_529_pert_2.2 img_540_pert_1.5 img_579_pert_5.1 img_65_pert_5.1 img_68_pert_2.5
+gigachat,Task has no explicit mathematical target,20,img_109_pert_2.1 img_115_pert_4.4 img_165_pert_5.3 img_173_pert_2.5 img_173_pert_5.3 img_176_pert_4.3 img_19_pert_5.1 img_20_pert_5.1 img_220_pert_4.6 img_223_pert_2.2 img_226_pert_2.2 img_233_pert_3.2 img_27_pert_5.1 img_37_pert_5.1 img_400_pert_5.1 img_49_pert_5.1 img_559_pert_3.2 img_560_pert_1.5 img_566_pert_5.1 img_586_pert_3.2
+gigachat,Bare word is not an exact mathematical token,16,img_111_pert_2.1 img_176_pert_4.3 img_372_pert_2.1 img_374_pert_5.1 img_375_pert_2.5 img_427_pert_1.4 img_456_pert_5.1 img_463_pert_1.3 img_529_pert_2.2 img_529_pert_4.5 img_572_pert_5.1 img_574_pert_2.5 img_578_pert_5.1 img_579_pert_5.1 img_586_pert_3.2 img_68_pert_2.5
+gigachat,Prose/conditions are not a fully parsed mathematical step,12,img_111_pert_1.3 img_14_pert_5.1 img_165_pert_5.3 img_176_pert_4.3 img_35_pert_2.5 img_456_pert_5.1 img_472_pert_1.4 img_529_pert_4.5 img_574_pert_2.5 img_77_pert_5.1 img_78_pert_5.1 img_92_pert_4.3
+gigachat,goal is unknown,12,img_14_pert_5.1 img_172_pert_3.2 img_375_pert_5.3 img_387_pert_5.1 img_427_pert_1.4 img_458_pert_5.1 img_472_pert_1.4 img_482_pert_5.2 img_492_pert_5.1 img_568_pert_5.2 img_65_pert_5.1 img_92_pert_4.3
+gigachat,Continuation requires one readable dependency,8,img_112_pert_4.4 img_176_pert_4.3 img_226_pert_2.2 img_375_pert_2.5 img_427_pert_1.4 img_566_pert_5.1 img_586_pert_3.2 img_68_pert_2.5
+gigachat,requires two explicit X/Y matrix equations,8,img_448_pert_3.2 img_448_pert_5.2 img_455_pert_5.1 img_456_pert_5.1 img_465_pert_1.3 img_465_pert_1.5 img_465_pert_2.2 img_466_pert_1.4
+gigachat,OCR exactness is not exact,6,img_233_pert_3.2 img_35_pert_2.5 img_37_pert_5.1 img_77_pert_5.1 img_78_pert_5.1 img_92_pert_4.3
+gigachat,Requires one explicit inequality,5,img_111_pert_1.3 img_111_pert_2.1 img_112_pert_4.4 img_476_pert_5.1 img_578_pert_5.1
+gigachat,Symbolic claim has no given/dependency anchor,4,img_115_pert_4.4 img_448_pert_5.2 img_463_pert_1.3 img_68_pert_2.5
+gigachat,Unsupported input at character 0,4,img_226_pert_2.2 img_458_pert_5.1 img_472_pert_1.4 img_574_pert_2.5
+gigachat,Unsupported input at character 2,3,img_20_pert_5.1 img_529_pert_2.2 img_579_pert_5.1
+gigachat,Unsupported token '\\int',3,img_372_pert_2.1 img_375_pert_2.5 img_375_pert_5.3
+gigachat,definite integral with explicit bounds was not found,3,img_372_pert_2.1 img_374_pert_5.1 img_375_pert_2.5
+gigachat,Differential notation needs a calculus verifier,2,img_387_pert_5.1 img_400_pert_5.1
+gigachat,Functions are outside the selected algebra subset,2,img_372_pert_2.1 img_374_pert_5.1
+gigachat,TIMEOUT_OR_WORKER_EXIT,2,img_91_pert_2.3 img_98_pert_2.1
+gigachat,Unbalanced delimiters,2,img_112_pert_4.4 img_372_pert_2.1
+gigachat,Unsupported input at character 1,2,img_372_pert_2.1 img_574_pert_2.5
+gigachat,Unsupported input at character 5,2,img_19_pert_5.1 img_68_pert_2.5
+gigachat,Unsupported input at character 6,2,img_374_pert_5.1 img_529_pert_2.2
+gigachat,Unsupported token '\\text',2,img_35_pert_2.5 img_78_pert_5.1
+gigachat,unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Mul',2,img_448_pert_3.2 img_448_pert_5.2
+gigachat,unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Pow',2,img_465_pert_1.3 img_465_pert_1.5
+gigachat,unsupported operand type(s) for +: 'ImmutableDenseMatrix' and 'Symbol',2,img_458_pert_5.1 img_465_pert_1.5
+gigachat,A written answer equality is required,1,img_77_pert_5.1
+gigachat,Adjacent numeric literals require an explicit operator,1,img_226_pert_2.2
+gigachat,Exponent exceeds rational bounds,1,img_566_pert_5.1
+gigachat,Task target has unresolved variables,1,img_22_pert_5.1
+gigachat,Unconsumed token '|'; one expression/equation per step,1,img_458_pert_5.1
+gigachat,Undefined real expression: nonzero restriction fails,1,img_566_pert_5.1
+gigachat,Unsupported input at character 13,1,img_22_pert_5.1
+gigachat,Unsupported input at character 14,1,img_22_pert_5.1
+gigachat,Unsupported input at character 15,1,img_109_pert_2.1
+gigachat,Unsupported input at character 16,1,img_503_pert_1.4
+gigachat,Unsupported input at character 17,1,img_559_pert_3.2
+gigachat,Unsupported input at character 33,1,img_112_pert_4.4
+gigachat,Unsupported input at character 73,1,img_112_pert_4.4
+gigachat,Unsupported input at character 8,1,img_529_pert_4.5
+gigachat,Unsupported token '\\circ',1,img_109_pert_2.1
+gigachat,Unsupported token '\\lim',1,img_427_pert_1.4
+gigachat,Unsupported token '\\vec',1,img_540_pert_1.5
+gigachat,task is not visible in the image; goal is unknown,1,img_503_pert_1.4

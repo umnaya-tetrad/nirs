@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0",
+  "id": "img_579_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "2y^2 - 5y + 3 = 0",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "-5y = -2y - 3y",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "(-2y) (-3y) = 6y^2 = (2y) × 3",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "2y^2 - 5y + 3 = 2y^2 - 2y - 3y + 3 = 2y(y - 1) - 3(y - 1)",
+      "derives_from": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "(y - 1) = (2y - 3)(y - 1)",
+      "derives_from": [
+        "s4"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "2y^2 - 5y + 3 = 0",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "2y^2 - 5y + 3 = 0",
+      "derives_from": [
+        "s6"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "(2y - 3)(y - 1) = 0",
+      "derives_from": [
+        "s7"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "2y - 3 = 0 ∨ y - 1 = 0",
+      "derives_from": [
+        "s8"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "y = \\frac{3}{2}, y = 1",
+      "derives_from": [
+        "s9"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 999
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "correct",
+      "note": "Exact node and dependency checks"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Unsupported input at character 2"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-a405f626-2643-4140-b615-2365220f8909",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 2014,
+    "created_at": "2026-10-10T15:51:39.560457Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_579_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Find roots of the equation } 2y^2 - 5y + 3 = 0 \\text{by factorization}",
+        "givens": [],
+        "constraints": [],
+        "goal": {
+          "type": "solve",
+          "target_latex": "y"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "2y^2 - 5y + 3 = 0",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "-5y = -2y - 3y",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "(-2y) (-3y) = 6y^2 = (2y) × 3",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "2y^2 - 5y + 3 = 2y^2 - 2y - 3y + 3 = 2y(y - 1) - 3(y - 1)",
+          "role": "transformation",
+          "derives_from": [
+            "s1",
+            "s2",
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s5",
+          "latex": "(y - 1) = (2y - 3)(y - 1)",
+          "role": "transformation",
+          "derives_from": [
+            "s4"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s6",
+          "latex": "2y^2 - 5y + 3 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s7",
+          "latex": "2y^2 - 5y + 3 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s6"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s8",
+          "latex": "(2y - 3)(y - 1) = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s7"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s9",
+          "latex": "2y - 3 = 0 ∨ y - 1 = 0",
+          "role": "transformation",
+          "derives_from": [
+            "s8"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s10",
+          "latex": "y = \\frac{3}{2}, y = 1",
+          "role": "answer",
+          "derives_from": [
+            "s9"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s2",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain; Exact real solution-set comparison",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain; Exact real solution-set comparison",
+            "actual_latex": "-5y = -2y - 3y",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s3",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain; Identity to substituted value needs an explicit substitution",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain; Identity to substituted value needs an explicit substitution",
+            "actual_latex": "(-2y) (-3y) = 6y^2 = (2y) × 3",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f3",
+          "step_id": "s4",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain; Exact real solution-set comparison",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain; Exact real solution-set comparison",
+            "actual_latex": "2y^2 - 5y + 3 = 2y^2 - 2y - 3y + 3 = 2y(y - 1) - 3(y - 1)",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f4",
+          "step_id": "s6",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison",
+            "actual_latex": "2y^2 - 5y + 3 = 0",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f5",
+          "step_id": "s10",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "y = \\frac{3}{2}, y = 1",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "verdict": "error",
+          "finding_ids": [
+            "f3"
+          ]
+        },
+        {
+          "step_id": "s5",
+          "verdict": "indeterminate",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Identity to substituted value needs an explicit substitution"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "error",
+          "finding_ids": [
+            "f4"
+          ]
+        },
+        {
+          "step_id": "s7",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact real solution-set comparison"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "indeterminate",
+          "note": "Unsupported input at character 2"
+        },
+        {
+          "step_id": "s10",
+          "verdict": "error",
+          "finding_ids": [
+            "f5"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Bare word is not an exact mathematical token",
+      "step_id": "s10",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s3",
+        "s4",
+        "s5"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s9",
+        "s10"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "VALID",
+          "reason": "Exact node and dependency checks",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 2",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s4",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s4",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s4",
+          "to": "s5",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s1",
+          "to": "s6",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s6",
+          "to": "s7",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s7",
+          "to": "s8",
+          "status": "VALID",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s8",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported input at character 2"
+        },
+        {
+          "from": "s9",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "Unsupported input at character 2",
+      "At least one node/edge proof is unresolved",
+      "Bare word is not an exact mathematical token"
+    ]
+  }
+}

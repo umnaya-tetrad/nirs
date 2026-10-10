@@ -1,0 +1,684 @@
+{
+  "schema_version": "1.0",
+  "id": "img_466_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "M_{11} = \\begin{vmatrix} 0 & 4 \\\\ 5 & -7 \\end{vmatrix} = (0)(-7) - (4)(5) = 0 - 20 = -20;\\ A_{11} = (-1)^{1+1}(-20) = -20",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "M_{12} = \\begin{vmatrix} 6 & 4 \\\\ 1 & -7 \\end{vmatrix} = (6)(-7) - (4)(1) = -42 - 4 = -46;\\ A_{12} = (-1)^{1+2}(-46) = 46",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "M_{13} = \\begin{vmatrix} 6 & 0 \\\\ 1 & 5 \\end{vmatrix} = (6)(5) - (0)(1) = 30 - 0 = 30;\\ A_{13} = (-1)^{1+3}(30) = 30",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "M_{21} = \\begin{vmatrix} -3 & 5 \\\\ 5 & -7 \\end{vmatrix} = (-3)(-7) - (5)(0) = 21 - 0 = 21;\\ A_{21} = (-1)^{2+1}(21) = -21",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s5",
+      "latex": "M_{22} = \\begin{vmatrix} 2 & 5 \\\\ 1 & -7 \\end{vmatrix} = (2)(-7) - (5)(1) = -14 - 5 = -19;\\ A_{22} = (-1)^{2+2}(-19) = -19",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s6",
+      "latex": "M_{23} = \\begin{vmatrix} 2 & -3 \\\\ 1 & 5 \\end{vmatrix} = (2)(5) - (-3)(1) = 10 + 3 = 13;\\ A_{23} = (-1)^{2+3}(13) = -13",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s7",
+      "latex": "M_{31} = \\begin{vmatrix} -3 & 5 \\\\ 0 & 4 \\end{vmatrix} = (-3)(4) - (5)(0) = -12 - 0 = -12;\\ A_{31} = (-1)^{3+1}(-12) = -12",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s8",
+      "latex": "M_{32} = \\begin{vmatrix} 2 & 5 \\\\ 6 & 4 \\end{vmatrix} = (2)(4) - (5)(6) = 8 - 30 = -22;\\ A_{32} = (-1)^{3+2}(-22) = 22",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s9",
+      "latex": "M_{33} = \\begin{vmatrix} 2 & -3 \\\\ 6 & 0 \\end{vmatrix} = (2)(0) - (-3)(6) = 0 + 18 = 18;\\ A_{33} = (-1)^{3+3}(18) = 18",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s10",
+      "latex": "\\text{Now, } a_{11} = 2, a_{12} = -3, a_{13} = 5;\\ A_{31} = -12, A_{32} = 22, A_{33} = 18.",
+      "derives_from": [
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s11",
+      "latex": "a_{11}A_{31} + a_{12}A_{32} + a_{13}A_{33} = 2(-12) + (-3)(22) + 5(18) = -24 - 66 +",
+      "derives_from": [
+        "s10"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s12",
+      "latex": "90 = 0.",
+      "derives_from": [
+        "s11"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 1060
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s5",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s6",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s7",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s8",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s9",
+      "verdict": "indeterminate",
+      "note": "Symbolic determinant template has no explicit entry bindings"
+    },
+    {
+      "step_id": "s10",
+      "verdict": "indeterminate",
+      "note": "Prose/conditions are not a fully parsed mathematical step"
+    },
+    {
+      "step_id": "s11",
+      "verdict": "indeterminate",
+      "note": "Expected token, got end of input"
+    },
+    {
+      "step_id": "s12",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-9ee2bdae-d965-469c-a0c3-3513e2c14e63",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1627,
+    "created_at": "2026-10-10T15:51:16.831791Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_466_pert_1.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Find minors and cofactors of the elemts of the determinant } \\begin{vmatrix} 2 & -3 & 5 \\\\ 6 & 0 & 4 \\\\ 1 & 5 & -7 \\end{vmatrix} \\text{ and verify that } a_{11}A_{31} + a_{12}A_{32} + a_{13}A_{33} = 0.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "\\begin{vmatrix} 2 & -3 & 5 \\\\ 6 & 0 & 4 \\\\ 1 & 5 & -7 \\end{vmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "\\matrixA ",
+                "kind": "expression",
+                "sides": [
+                  "-28"
+                ],
+                "symbols": [],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "prove",
+          "target_latex": "a_{11}A_{31} + a_{12}A_{32} + a_{13}A_{33} = 0"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "M_{11} = \\begin{vmatrix} 0 & 4 \\\\ 5 & -7 \\end{vmatrix} = (0)(-7) - (4)(5) = 0 - 20 = -20;\\ A_{11} = (-1)^{1+1}(-20) = -20",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "M_{12} = \\begin{vmatrix} 6 & 4 \\\\ 1 & -7 \\end{vmatrix} = (6)(-7) - (4)(1) = -42 - 4 = -46;\\ A_{12} = (-1)^{1+2}(-46) = 46",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "M_{13} = \\begin{vmatrix} 6 & 0 \\\\ 1 & 5 \\end{vmatrix} = (6)(5) - (0)(1) = 30 - 0 = 30;\\ A_{13} = (-1)^{1+3}(30) = 30",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "latex": "M_{21} = \\begin{vmatrix} -3 & 5 \\\\ 5 & -7 \\end{vmatrix} = (-3)(-7) - (5)(0) = 21 - 0 = 21;\\ A_{21} = (-1)^{2+1}(21) = -21",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s5",
+          "latex": "M_{22} = \\begin{vmatrix} 2 & 5 \\\\ 1 & -7 \\end{vmatrix} = (2)(-7) - (5)(1) = -14 - 5 = -19;\\ A_{22} = (-1)^{2+2}(-19) = -19",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s6",
+          "latex": "M_{23} = \\begin{vmatrix} 2 & -3 \\\\ 1 & 5 \\end{vmatrix} = (2)(5) - (-3)(1) = 10 + 3 = 13;\\ A_{23} = (-1)^{2+3}(13) = -13",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s7",
+          "latex": "M_{31} = \\begin{vmatrix} -3 & 5 \\\\ 0 & 4 \\end{vmatrix} = (-3)(4) - (5)(0) = -12 - 0 = -12;\\ A_{31} = (-1)^{3+1}(-12) = -12",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s8",
+          "latex": "M_{32} = \\begin{vmatrix} 2 & 5 \\\\ 6 & 4 \\end{vmatrix} = (2)(4) - (5)(6) = 8 - 30 = -22;\\ A_{32} = (-1)^{3+2}(-22) = 22",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s9",
+          "latex": "M_{33} = \\begin{vmatrix} 2 & -3 \\\\ 6 & 0 \\end{vmatrix} = (2)(0) - (-3)(6) = 0 + 18 = 18;\\ A_{33} = (-1)^{3+3}(18) = 18",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s10",
+          "latex": "\\text{Now, } a_{11} = 2, a_{12} = -3, a_{13} = 5;\\ A_{31} = -12, A_{32} = 22, A_{33} = 18.",
+          "role": "substitution",
+          "derives_from": [
+            "s7",
+            "s8",
+            "s9"
+          ],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g1"
+          ]
+        },
+        {
+          "step_id": "s11",
+          "latex": "a_{11}A_{31} + a_{12}A_{32} + a_{13}A_{33} = 2(-12) + (-3)(22) + 5(18) = -24 - 66 +",
+          "role": "substitution",
+          "derives_from": [
+            "s10"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s12",
+          "latex": "90 = 0.",
+          "role": "answer",
+          "derives_from": [
+            "s11"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "determinant",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s4",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s4",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain",
+            "actual_latex": "M_{21} = \\begin{vmatrix} -3 & 5 \\\\ 5 & -7 \\end{vmatrix} = (-3)(-7) - (5)(0) = 21 - 0 = 21;\\ A_{21} = (-1)^{2+1}(21) = -21",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s12",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Exact expression identity with preserved domain",
+            "actual_latex": "90 = 0.",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s5",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s6",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s7",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s8",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s9",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s10",
+          "verdict": "indeterminate",
+          "note": "Text/units/conditions are outside the symbolic grammar: Now,; Symbolic equation is a premise; checked against previous equation when applicable; Exact expression identity with preserved domain"
+        },
+        {
+          "step_id": "s11",
+          "verdict": "indeterminate",
+          "note": "Expected token, got end of input; Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s12",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "invalid",
+      "reason": "final numeric determinant value differs from exact SymPy determinant",
+      "step_id": "s12",
+      "rule": "determinant",
+      "localization_blocked": true
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s12"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Expected token, got end of input",
+          "role": "substitution",
+          "branch": "main"
+        },
+        {
+          "step_id": "s12",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g1",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s5",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s6",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s7",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s8",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "g1",
+          "to": "s9",
+          "status": "UNSUPPORTED",
+          "reason": "Symbolic determinant template has no explicit entry bindings"
+        },
+        {
+          "from": "s7",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s8",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s9",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "g1",
+          "to": "s10",
+          "status": "UNSUPPORTED",
+          "reason": "Prose/conditions are not a fully parsed mathematical step"
+        },
+        {
+          "from": "s10",
+          "to": "s11",
+          "status": "UNSUPPORTED",
+          "reason": "Expected token, got end of input"
+        },
+        {
+          "from": "s11",
+          "to": "s12",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Symbolic determinant template has no explicit entry bindings",
+      "Prose/conditions are not a fully parsed mathematical step",
+      "Expected token, got end of input"
+    ]
+  }
+}

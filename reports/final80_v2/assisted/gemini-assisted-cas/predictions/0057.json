@@ -1,0 +1,434 @@
+{
+  "schema_version": "1.0",
+  "id": "img_503_pert_1.4",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "g \\circ f(2) = g(f(2)) = g(3) = 7,",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "g \\circ f(3) = g(f(3)) = g(4) = 7,",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "g \\circ f(4) = g(f(4)) = g(5) = 11,",
+      "derives_from": [],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "g \\circ f(5) = g(f(5)) = g(5) = 11.",
+      "derives_from": [],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "google/gemini-3.7-flash",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 813
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\circ'"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\circ'"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\circ'"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Unsupported token '\\\\circ'"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-35925455-f893-4dcf-a663-a6a670266d02",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1579,
+    "created_at": "2026-10-10T15:51:31.811436Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_503_pert_1.4",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{Question: Let } f: \\{2,3,4,5\\} \\rightarrow \\{3,4,5,9\\} \\text{ and } g: \\{3,4,5,9\\} \\rightarrow \\{7,11,15\\} \\text{ be functions defined as } f(2)=3, f(3)=4, f(4)=f(5)=5 \\text{ and } g(5)=g(9)=11. \\text{ Find } gof.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "f: \\{2,3,4,5\\} \\rightarrow \\{3,4,5,9\\}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported input at character 1"
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "g: \\{3,4,5,9\\} \\rightarrow \\{7,11,15\\}",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unsupported input at character 1"
+            }
+          },
+          {
+            "given_id": "g3",
+            "raw_latex": "f(2)=3",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "f(2)=3",
+                "kind": "equation",
+                "sides": [
+                  "f*2",
+                  "3"
+                ],
+                "symbols": [
+                  "f"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g4",
+            "raw_latex": "f(3)=4",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "f(3)=4",
+                "kind": "equation",
+                "sides": [
+                  "f*3",
+                  "4"
+                ],
+                "symbols": [
+                  "f"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g5",
+            "raw_latex": "f(4)=f(5)=5",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unconsumed token '='; one expression/equation per step"
+            }
+          },
+          {
+            "given_id": "g6",
+            "raw_latex": "g(5)=g(9)=11",
+            "parse": {
+              "status": "PARSE_FAILED",
+              "value": null,
+              "reason": "Unconsumed token '='; one expression/equation per step"
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": "g \\circ f"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "g \\circ f(2) = g(f(2)) = g(3) = 7,",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g3"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "latex": "g \\circ f(3) = g(f(3)) = g(4) = 7,",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g4"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "latex": "g \\circ f(4) = g(f(4)) = g(5) = 11,",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g5",
+            "g6"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "latex": "g \\circ f(5) = g(f(5)) = g(5) = 11.",
+          "role": "transformation",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact",
+          "uses_givens": [
+            "g5",
+            "g6"
+          ]
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "equation",
+        "reasons": [
+          "given g1 is not in the exact SymPy subset: Unsupported input at character 1",
+          "given g2 is not in the exact SymPy subset: Unsupported input at character 1",
+          "given g5 is not in the exact SymPy subset: Unconsumed token '='; one expression/equation per step",
+          "given g6 is not in the exact SymPy subset: Unconsumed token '='; one expression/equation per step"
+        ]
+      }
+    },
+    "local_evidence": {
+      "verdict": "incorrect",
+      "first_error_step": "s1",
+      "findings": [
+        {
+          "finding_id": "f1",
+          "step_id": "s1",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+            "actual_latex": "g \\circ f(2) = g(f(2)) = g(3) = 7,",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f2",
+          "step_id": "s2",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+            "actual_latex": "g \\circ f(3) = g(f(3)) = g(4) = 7,",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f3",
+          "step_id": "s3",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+            "actual_latex": "g \\circ f(4) = g(f(4)) = g(5) = 11,",
+            "engine": "sympy"
+          }
+        },
+        {
+          "finding_id": "f4",
+          "step_id": "s4",
+          "error_code": "algebra",
+          "severity": "error",
+          "message": "Символьная проверка обнаружила неверное равенство или переход.",
+          "explanation": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+          "confidence": 1.0,
+          "detected_by": "math_core",
+          "evidence": {
+            "check": "Unsupported token '\\\\circ'; Polynomial identity test; Exact expression identity with preserved domain",
+            "actual_latex": "g \\circ f(5) = g(f(5)) = g(5) = 11.",
+            "engine": "sympy"
+          }
+        }
+      ],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "error",
+          "finding_ids": [
+            "f1"
+          ]
+        },
+        {
+          "step_id": "s2",
+          "verdict": "error",
+          "finding_ids": [
+            "f2"
+          ]
+        },
+        {
+          "step_id": "s3",
+          "verdict": "error",
+          "finding_ids": [
+            "f3"
+          ]
+        },
+        {
+          "step_id": "s4",
+          "verdict": "error",
+          "finding_ids": [
+            "f4"
+          ]
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "Unsupported input at character 34",
+      "step_id": "s4",
+      "rule": "equation",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": false,
+      "invalid_steps": [],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'",
+          "role": "transformation",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "g3",
+          "to": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        },
+        {
+          "from": "g4",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        },
+        {
+          "from": "g5",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        },
+        {
+          "from": "g6",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        },
+        {
+          "from": "g5",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        },
+        {
+          "from": "g6",
+          "to": "s4",
+          "status": "UNSUPPORTED",
+          "reason": "Unsupported token '\\\\circ'"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unsupported token '\\\\circ'",
+      "Unsupported token '\\\\circ'",
+      "Unsupported token '\\\\circ'",
+      "Unsupported token '\\\\circ'",
+      "Unsupported input at character 34"
+    ]
+  }
+}

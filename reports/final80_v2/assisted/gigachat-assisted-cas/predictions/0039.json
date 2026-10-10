@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "id": "img_455_pert_5.1",
+  "steps": [
+    {
+      "step_id": "s1",
+      "latex": "2A-B = 2\\begin{bmatrix}\n        1 & 2 & 3 \\\\\n        2 & 3 & 1\n       \\end{bmatrix}-\\begin{bmatrix}\n        3 & -1 & 3 \\\\\n        -1 & 0 & 2\n       \\end{bmatrix}",
+      "derives_from": [],
+      "kind": "initial"
+    },
+    {
+      "step_id": "s2",
+      "latex": "= X\\begin{bmatrix}\n        1 & 2 & 3 \\\\\n        2 & 3 & 1\n       \\end{bmatrix}+\\begin{bmatrix}\n        -3 & 1 & -3 \\\\\n        1 & 0 & -2\n       \\end{bmatrix}",
+      "derives_from": [
+        "s1"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s3",
+      "latex": "= \\begin{bmatrix}\n        -2+3 & 4+1 & 6-3 \\\\\n        4+1 & 6+0 & 2-2\n       \\end{bmatrix}",
+      "derives_from": [
+        "s2"
+      ],
+      "kind": "step"
+    },
+    {
+      "step_id": "s4",
+      "latex": "= \\begin{bmatrix}\n        -1 & 5 & 3 \\\\\n        5 & 6 & 0\n       \\end{bmatrix}",
+      "derives_from": [
+        "s3"
+      ],
+      "kind": "step"
+    }
+  ],
+  "pipeline": {
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stages": [
+      {
+        "name": "compile_task_spec",
+        "backend": "nirs_cas.task_spec@1.0",
+        "status": "ok"
+      },
+      {
+        "name": "transcribe",
+        "backend": "GigaChat-2-Pro:2.0.30.01",
+        "status": "ok"
+      },
+      {
+        "name": "verify",
+        "backend": "sympy@1.14.0",
+        "status": "ok",
+        "duration_ms": 752
+      }
+    ]
+  },
+  "verdict": "indeterminate",
+  "is_correct": null,
+  "first_error_step": null,
+  "last_correct_step": null,
+  "findings": [],
+  "steps_reviewed": [
+    {
+      "step_id": "s1",
+      "verdict": "indeterminate",
+      "note": "Unanchored mathematical statement"
+    },
+    {
+      "step_id": "s2",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s3",
+      "verdict": "indeterminate",
+      "note": "At least one node/edge proof is unresolved"
+    },
+    {
+      "step_id": "s4",
+      "verdict": "indeterminate",
+      "note": "Exact node and dependency checks"
+    }
+  ],
+  "meta": {
+    "run_id": "cas-d5b860dc-88bd-47bc-b625-33ad54ee52e2",
+    "approach": "llm_assisted_extraction_plus_math_core",
+    "stage": "verify",
+    "model": "sympy@1.14.0",
+    "duration_ms": 1602,
+    "created_at": "2026-10-10T15:50:52.612460Z",
+    "tool_versions": {
+      "sympy": "1.14.0"
+    }
+  },
+  "problem": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "id": "img_455_pert_5.1",
+      "task": {
+        "visibility": "visible",
+        "raw_latex": "\\text{If } A = \\begin{bmatrix}\n        1 & 2 & 3 \\\\\n        2 & 3 & 1\n       \\end{bmatrix}, B = \\begin{bmatrix}\n        3 & -1 & 3 \\\\\n        -1 & 0 & 2\n       \\end{bmatrix}. Then find 2A-B.",
+        "givens": [
+          {
+            "given_id": "g1",
+            "raw_latex": "A = \\begin{bmatrix}\n        1 & 2 & 3 \\\\\n        2 & 3 & 1\n       \\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "A = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "A",
+                  "Matrix([\n[1, 2, 3],\n[2, 3, 1]])"
+                ],
+                "symbols": [
+                  "A"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          },
+          {
+            "given_id": "g2",
+            "raw_latex": "B = \\begin{bmatrix}\n        3 & -1 & 3 \\\\\n        -1 & 0 & 2\n       \\end{bmatrix}",
+            "parse": {
+              "status": "OK",
+              "value": {
+                "normalized_latex": "B = \\matrixA ",
+                "kind": "equation",
+                "sides": [
+                  "B",
+                  "Matrix([\n[   3, -1*1, 3],\n[-1*1,    0, 2]])"
+                ],
+                "symbols": [
+                  "B"
+                ],
+                "domain": "real",
+                "constraints": []
+              },
+              "reason": null
+            }
+          }
+        ],
+        "constraints": [],
+        "goal": {
+          "type": "compute_function",
+          "target_latex": "2A-B"
+        }
+      },
+      "steps": [
+        {
+          "step_id": "s1",
+          "latex": "2A-B = 2\\begin{bmatrix}\n        1 & 2 & 3 \\\\\n        2 & 3 & 1\n       \\end{bmatrix}-\\begin{bmatrix}\n        3 & -1 & 3 \\\\\n        -1 & 0 & 2\n       \\end{bmatrix}",
+          "role": "initial",
+          "derives_from": [],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s2",
+          "latex": "= X\\begin{bmatrix}\n        1 & 2 & 3 \\\\\n        2 & 3 & 1\n       \\end{bmatrix}+\\begin{bmatrix}\n        -3 & 1 & -3 \\\\\n        1 & 0 & -2\n       \\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s1"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s3",
+          "latex": "= \\begin{bmatrix}\n        -2+3 & 4+1 & 6-3 \\\\\n        4+1 & 6+0 & 2-2\n       \\end{bmatrix}",
+          "role": "transformation",
+          "derives_from": [
+            "s2"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        },
+        {
+          "step_id": "s4",
+          "latex": "= \\begin{bmatrix}\n        -1 & 5 & 3 \\\\\n        5 & 6 & 0\n       \\end{bmatrix}",
+          "role": "answer",
+          "derives_from": [
+            "s3"
+          ],
+          "branch": "main",
+          "exactness": "exact"
+        }
+      ],
+      "compilation": {
+        "status": "supported",
+        "task_class": "matrix_system",
+        "reasons": []
+      }
+    },
+    "local_evidence": {
+      "verdict": "indeterminate",
+      "first_error_step": null,
+      "findings": [],
+      "steps_reviewed": [
+        {
+          "step_id": "s1",
+          "verdict": "correct",
+          "note": "Symbolic equation is a premise; checked against previous equation when applicable"
+        },
+        {
+          "step_id": "s2",
+          "verdict": "indeterminate",
+          "note": "Matrix equality is inconclusive"
+        },
+        {
+          "step_id": "s3",
+          "verdict": "indeterminate",
+          "note": "Matrix equality is inconclusive"
+        },
+        {
+          "step_id": "s4",
+          "verdict": "indeterminate",
+          "note": "Найдено неверное равенство, но первая ошибка не установлена: Matrix entries differ"
+        }
+      ]
+    },
+    "context_check": {
+      "status": "unsupported",
+      "reason": "requires two explicit X/Y matrix equations",
+      "step_id": null,
+      "rule": "matrix_system",
+      "localization_blocked": false
+    },
+    "graph_check": {
+      "covered": false,
+      "first_error_step": null,
+      "localization_blocked": true,
+      "invalid_steps": [
+        "s4"
+      ],
+      "unsupported_steps": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "nodes": [
+        {
+          "step_id": "s1",
+          "status": "UNSUPPORTED",
+          "reason": "Unanchored mathematical statement",
+          "role": "initial",
+          "branch": "main"
+        },
+        {
+          "step_id": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "At least one node/edge proof is unresolved",
+          "role": "transformation",
+          "branch": "main"
+        },
+        {
+          "step_id": "s4",
+          "status": "INVALID",
+          "reason": "Exact node and dependency checks",
+          "role": "answer",
+          "branch": "main"
+        }
+      ],
+      "edges": [
+        {
+          "from": "s1",
+          "to": "s2",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s2",
+          "to": "s3",
+          "status": "UNSUPPORTED",
+          "reason": "Exact dependency statement comparison"
+        },
+        {
+          "from": "s3",
+          "to": "s4",
+          "status": "INVALID",
+          "reason": "Exact dependency statement comparison"
+        }
+      ]
+    },
+    "verified_solution_covered": false,
+    "task_verified_solution_covered": false,
+    "fallback_reasons": [
+      "Unanchored mathematical statement",
+      "At least one node/edge proof is unresolved",
+      "At least one node/edge proof is unresolved",
+      "requires two explicit X/Y matrix equations"
+    ]
+  }
+}
