@@ -16,8 +16,8 @@ from .domains import validate as validate_domains
 
 LIMITATIONS = [
     "Frozen and simulated sources keep api_failed/invalid_contract/missing cases in every denominator.",
-    "CAS-on-GT uses reference steps; it bounds the pipeline but is not available at inference time.",
-    "Prompt/CAS tuning saw all 100 GT examples, so results on dev/final splits are exploratory, not independent holdout.",
+    "The final comparison contains only Direct E2E and Assisted Extraction → Task-aware CAS; no GT→step-only CAS architecture is reported.",
+    "Prompt configurations were frozen after dev-20 selection (docs/final_prompt_freeze.md). The CAS implementation was tuned using all 100 GT examples, so CAS-related final-80 results are not an independent CAS holdout.",
     "CDN/OS availability noise and OCR failures are reported as statuses and are not silently dropped.",
 ]
 

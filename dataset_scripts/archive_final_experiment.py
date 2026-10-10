@@ -115,12 +115,31 @@ def collect(destination: Path, status: str) -> Path:
         if source.exists():
             shutil.copytree(source, target, dirs_exist_ok=True)
             copied.append(str(source.relative_to(ROOT)))
+    # Preserve the exact local evaluation implementation alongside the raw
+    # inputs.  This makes metric regeneration possible without any provider
+    # call and without relying on a moving branch tip.  Secrets are not part
+    # of these source directories.
+    source_snapshot = destination / "00_config" / "source_snapshot"
+    for relative in ("evaluator", "nirs_llm", "nirs_cas"):
+        source = ROOT / relative
+        if source.exists():
+            shutil.copytree(source, source_snapshot / relative, dirs_exist_ok=True,
+                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    for relative in ("pyproject.toml", "requirements.txt"):
+        source = ROOT / relative
+        if source.exists():
+            _copy(source, source_snapshot / relative)
+    (source_snapshot / "provenance.json").write_text(json.dumps({
+        "git_commit": _git_commit(),
+        "purpose": "offline evaluator/CAS result reproduction; no API credentials included",
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     _status(destination, status, {"stage": "collection_complete", "copied_sources": copied})
     readme = destination / "README.md"
     readme.write_text(
         "# final-80 v2 experiment archive\n\n"
-        "This local archive contains raw VLM artifacts, task-aware CAS outputs and evaluator reports. "
-        "It excludes API keys, authorization headers and access tokens. Re-run evaluator offline from 04_evaluator inputs and the copied raw artifacts.\n",
+        "This local archive contains raw VLM artifacts, task-aware CAS outputs, evaluator reports and a source snapshot. "
+        "It excludes API keys, authorization headers and access tokens. Re-run evaluator offline using 00_config/source_snapshot, "
+        "02_raw_vlm, 03_cas and 04_evaluator inputs.\n",
         encoding="utf-8",
     )
     sums: list[str] = []

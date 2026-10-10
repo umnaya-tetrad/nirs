@@ -52,7 +52,10 @@ def run_metrics(run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str
     correct = covered = wrong_covered = 0
     indeterminate = 0
     first_error_hits = first_error_aligned_hits = first_error_total = 0
-    fp = fn = tp = tn = 0
+    # Binary classification metrics are conditional on a *decidable* verdict.
+    # An abstention/missing response is neither a negative prediction nor a
+    # false negative: coverage reports those cases separately.
+    determinate_fp = determinate_fn = determinate_tp = determinate_tn = 0
     missing_ids: list[str] = []
     vlm_latencies: list[int] = []
     cas_latencies: list[int] = []
@@ -68,25 +71,21 @@ def run_metrics(run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str
         if record is None or record.status != STATUS_OK:
             missing_ids.append(record_id)
         confusion[gt_verdict][label] += 1
-        # Full-set binary metric policy: an abstention/failed response did not
-        # detect an error.  It therefore counts as FN for an incorrect GT and
-        # as TN for a correct GT.  Coverage and selective accuracy below keep
-        # that policy from being mistaken for ordinary covered-only accuracy.
-        if gt_verdict == "incorrect":
-            if label == "incorrect":
-                tp += 1
-            else:
-                fn += 1
-        elif label == "incorrect":
-            fp += 1
-        else:
-            tn += 1
         if label in DECIDABLE:
             covered += 1
             if label == gt_verdict:
                 correct += 1
             else:
                 wrong_covered += 1
+            if gt_verdict == "incorrect":
+                if label == "incorrect":
+                    determinate_tp += 1
+                else:
+                    determinate_fn += 1
+            elif label == "incorrect":
+                determinate_fp += 1
+            else:
+                determinate_tn += 1
         elif label == "indeterminate":
             indeterminate += 1
         if gt_verdict == "incorrect":
@@ -120,8 +119,9 @@ def run_metrics(run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str
     token_rate_estimate = None
     if run.spec.pricing is not None:
         token_rate_estimate = tokens_in / 1e6 * run.spec.pricing["input_per_million"] + tokens_out / 1e6 * run.spec.pricing["output_per_million"]
-    incorrect_metrics = precision_recall_f1(tp, fp, fn)
-    specificity = tn / (tn + fp) if tn + fp else None
+    incorrect_metrics = precision_recall_f1(determinate_tp, determinate_fp, determinate_fn)
+    specificity = (determinate_tn / (determinate_tn + determinate_fp)
+                   if determinate_tn + determinate_fp else None)
     balanced_accuracy = ((incorrect_metrics["recall"] + specificity) / 2) if specificity is not None else None
     gt_incorrect = sum(gt_by_id[record_id]["verdict"] == "incorrect" for record_id in ids)
     gt_correct = total - gt_incorrect
@@ -133,6 +133,14 @@ def run_metrics(run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str
         "examples": total,
         "status_counts": {key: status_counts.get(key, 0) for key in ("ok", "api_failed", "invalid_contract", "missing")},
         "confusion": confusion,
+        # This is intentionally not called classifier accuracy: it combines
+        # correctness and coverage, and is the useful all-ID effectiveness
+        # measure for a selective system.
+        "correct_determinate_over_all": correct / total if total else 0.0,
+        "correct_determinate_over_all_ci95": wilson_interval(correct, total),
+        "selective_accuracy_on_covered": correct / covered if covered else None,
+        # Compatibility aliases for older exploratory callers.  New reports
+        # use the explicit names above.
         "accuracy_all": correct / total if total else 0.0,
         "accuracy_all_ci95": wilson_interval(correct, total),
         "accuracy_on_covered": correct / covered if covered else None,
@@ -145,9 +153,12 @@ def run_metrics(run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str
             first_error_aligned_hits / first_error_total if first_error_total else None),
         "incorrect_detection": {**incorrect_metrics, "specificity": specificity,
                                 "balanced_accuracy": balanced_accuracy,
-                                "policy": "abstention_as_not_detected"},
-        "confusion_matrix": {"tp": tp, "fp": fp, "tn": tn, "fn": fn,
-                             "positive_class": "incorrect", "policy": "abstention_as_not_detected"},
+                                "policy": "determinate_verdicts_only",
+                                "denominator": covered},
+        "confusion_matrix": {"tp": determinate_tp, "fp": determinate_fp,
+                             "tn": determinate_tn, "fn": determinate_fn,
+                             "positive_class": "incorrect", "policy": "determinate_verdicts_only",
+                             "denominator": covered},
         "always_incorrect_baseline": {
             "accuracy_all": always_incorrect_accuracy,
             "accuracy_all_ci95": wilson_interval(gt_incorrect, total),
@@ -176,12 +187,19 @@ def run_metrics(run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str
 def paired_analysis(e2e_run: RunData, cas_run: RunData, gt_by_id: dict[str, dict[str, Any]], ids: list[str],
                     e2e_metrics: dict[str, Any], cas_metrics: dict[str, Any]) -> dict[str, Any]:
     both_right = e2e_only = cas_only = both_wrong = 0
+    comparable_verdicts = verdict_agreements = 0
     differences: list[float] = []
     rows: list[dict[str, Any]] = []
     for record_id in ids:
         gt_verdict = gt_by_id[record_id]["verdict"]
         e2e_correct = _is_correct(e2e_run.records.get(record_id), gt_verdict)
         cas_correct = _is_correct(cas_run.records.get(record_id), gt_verdict)
+        e2e_label = system_label(e2e_run.records.get(record_id))
+        cas_label = system_label(cas_run.records.get(record_id))
+        comparable = e2e_label in DECIDABLE and cas_label in DECIDABLE
+        if comparable:
+            comparable_verdicts += 1
+            verdict_agreements += int(e2e_label == cas_label)
         if e2e_correct and cas_correct:
             both_right += 1
         elif e2e_correct:
@@ -193,15 +211,24 @@ def paired_analysis(e2e_run: RunData, cas_run: RunData, gt_by_id: dict[str, dict
         differences.append((1.0 if e2e_correct else 0.0) - (1.0 if cas_correct else 0.0))
         rows.append({
             "id": record_id, "gt_verdict": gt_verdict,
-            "e2e_label": system_label(e2e_run.records.get(record_id)),
-            "cas_label": system_label(cas_run.records.get(record_id)),
+            "e2e_label": e2e_label,
+            "cas_label": cas_label,
+            "verdicts_comparable": comparable,
+            "verdicts_agree": e2e_label == cas_label if comparable else None,
             "e2e_correct": e2e_correct, "cas_correct": cas_correct,
         })
     total = len(ids)
     return {
         "both_correct": both_right, "e2e_only_correct": e2e_only,
         "cas_only_correct": cas_only, "both_wrong": both_wrong,
-        "agreement": (both_right + both_wrong) / total if total else 0.0,
+        # These are different measures: correctness-outcome agreement uses all
+        # IDs and requires GT; verdict agreement uses only two determinate
+        # system outputs and is the measure relevant to H3.
+        "correctness_outcome_agreement_over_all": (both_right + both_wrong) / total if total else 0.0,
+        "verdict_comparable_count": comparable_verdicts,
+        "verdict_agreement_count": verdict_agreements,
+        "verdict_agreement_rate_on_comparable": (
+            verdict_agreements / comparable_verdicts if comparable_verdicts else None),
         "mcnemar_exact_p": mcnemar_exact(e2e_only, cas_only),
         "bootstrap_accuracy_difference": paired_bootstrap_ci(differences),
         "accuracy_difference": e2e_metrics["accuracy_all"] - cas_metrics["accuracy_all"],

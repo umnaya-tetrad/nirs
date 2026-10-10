@@ -107,5 +107,6 @@ decidable verdicts: `UNSUPPORTED`/timeout/indeterminate CAS направляют
 ### Выходные файлы
 
 `report.json` (полный отчёт с провенансом), `cases.csv`, `h1_paired.csv`, `h2_ocr.csv`,
-`h3_routing.csv`, `report.md`. Прогон на dev-20 исследовательский: CAS и промпты настраивались
-на всех 100 GT, поэтому это не независимый holdout.
+`h3_routing.csv`, `report.md`. Prompt-конфигурации заморожены после выбора на dev-20
+(`docs/final_prompt_freeze.md`); CAS настраивался с использованием всех 100 GT, поэтому
+CAS-часть итоговой оценки не является независимым holdout.

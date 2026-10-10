@@ -139,8 +139,9 @@ def test_run_metrics_keep_api_failures_in_denominator():
     assert metrics["status_counts"]["api_failed"] == 1
     assert metrics["missing_ids"] == ["bad"]
     assert metrics["coverage"] == 0.5
-    assert metrics["confusion_matrix"] == {"tp": 0, "fp": 0, "tn": 1, "fn": 1,
-                                            "positive_class": "incorrect", "policy": "abstention_as_not_detected"}
+    assert metrics["confusion_matrix"] == {"tp": 0, "fp": 0, "tn": 1, "fn": 0,
+                                            "positive_class": "incorrect", "policy": "determinate_verdicts_only",
+                                            "denominator": 1}
 
 
 def test_imbalance_metrics_and_always_incorrect_baseline_are_explicit():
@@ -157,7 +158,8 @@ def test_imbalance_metrics_and_always_incorrect_baseline_are_explicit():
     run = RunData(spec=_run_spec("e2e", "e2e", "e2e", "solution_analysis_array", "x.json"), records=predicted, id_set=set(predicted))
     metrics = run_metrics(run, gt, ["a", "b", "c"])
     assert metrics["confusion_matrix"] == {"tp": 1, "fp": 1, "tn": 0, "fn": 1,
-                                            "positive_class": "incorrect", "policy": "abstention_as_not_detected"}
+                                            "positive_class": "incorrect", "policy": "determinate_verdicts_only",
+                                            "denominator": 3}
     assert metrics["incorrect_detection"]["specificity"] == 0.0
     assert metrics["incorrect_detection"]["balanced_accuracy"] == 0.25
     assert metrics["always_incorrect_baseline"]["accuracy_all"] == pytest.approx(2 / 3)
@@ -237,6 +239,42 @@ def test_h3_disagreement_routes_to_manual():
     assert analysis["rows"][0]["agree"] is None
     assert analysis["comparison"]["comparable_pairs"] == 1
     assert analysis["policies"]["disagreement_or_cas_indeterminate"]["captured_e2e_error_recall"] is None
+
+
+def test_determinate_classification_and_h3_error_capture_exclude_abstentions():
+    gt = {
+        "a": _sa("a", "incorrect", ["x=1"], first_error="s1"),
+        "b": _sa("b", "correct", ["x=1"]),
+        "c": _sa("c", "correct", ["x=1"]),
+        "d": _sa("d", "incorrect", ["x=1"], first_error="s1"),
+    }
+    e2e = RunData(spec=_run_spec("e2e", "e2e", "e2e", "solution_analysis_array", "x.json"), records={
+        "a": RunRecord("a", STATUS_OK, _sa("a", "correct", ["x=1"]),),
+        "b": RunRecord("b", STATUS_OK, _sa("b", "incorrect", ["x=1"], first_error="s1")),
+        "c": RunRecord("c", STATUS_OK, gt["c"]),
+        "d": RunRecord("d", STATUS_OK, gt["d"]),
+    }, id_set=set(gt))
+    cas = RunData(spec=_run_spec("cas", "assisted_cas", "assisted_extraction", "solution_analysis_array", "y.json"), records={
+        "a": RunRecord("a", STATUS_OK, _sa("a", "indeterminate", ["x=1"])),
+        "b": RunRecord("b", STATUS_OK, _sa("b", "indeterminate", ["x=1"])),
+        "c": RunRecord("c", STATUS_OK, gt["c"]),
+        "d": RunRecord("d", STATUS_OK, gt["d"]),
+    }, id_set=set(gt))
+    metrics = run_metrics(cas, gt, ["a", "b", "c", "d"])
+    assert metrics["coverage"] == 0.5
+    assert metrics["correct_determinate_over_all"] == 0.5
+    assert metrics["selective_accuracy_on_covered"] == 1.0
+    assert metrics["confusion_matrix"] == {"tp": 1, "fp": 0, "tn": 1, "fn": 0,
+                                            "positive_class": "incorrect", "policy": "determinate_verdicts_only",
+                                            "denominator": 2}
+    analysis = analyze_h3(e2e, cas, gt, ["a", "b", "c", "d"], {})
+    selective = analysis["policies"]["disagreement_or_cas_indeterminate"]
+    assert selective["automated_ids"] == ["c", "d"]
+    assert selective["manual_ids"] == ["a", "b"]
+    assert selective["e2e_errors_total"] == 2
+    assert selective["e2e_errors_manual"] == 2
+    assert selective["e2e_errors_automated"] == 0
+    assert selective["captured_e2e_error_recall"] == 1.0
 
 
 def _integration_workspace(tmp_path, cas_ids=("good", "bad")):

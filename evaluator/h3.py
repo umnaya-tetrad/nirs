@@ -27,7 +27,9 @@ def analyze_h3(e2e_run: RunData, cas_run: RunData, gt_by_id: dict[str, dict[str,
                ocr_by_id: dict[str, str]) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     policy_stats = {policy: {"correct": 0, "automated": 0, "manual": 0,
-                              "manual_e2e_errors": 0, "e2e_errors": 0} for policy in POLICIES}
+                              "automated_e2e_errors": 0, "manual_e2e_errors": 0,
+                              "e2e_errors": 0, "automated_ids": [], "manual_ids": []}
+                    for policy in POLICIES}
     comparable_pairs = agreements = 0
     for record_id in ids:
         gt_verdict = gt_by_id[record_id]["verdict"]
@@ -52,12 +54,15 @@ def analyze_h3(e2e_run: RunData, cas_run: RunData, gt_by_id: dict[str, dict[str,
             entry[f"{policy}_source"] = source
             entry[f"{policy}_label"] = label
             entry[f"{policy}_correct"] = correct
-            policy_stats[policy]["correct"] += 1 if correct else 0
-            policy_stats[policy]["automated"] += 1 if automated else 0
-            policy_stats[policy]["manual"] += 1 if source == "manual" else 0
+            stats = policy_stats[policy]
+            stats["correct"] += 1 if correct else 0
+            stats["automated"] += 1 if automated else 0
+            stats["manual"] += 0 if automated else 1
+            stats["automated_ids" if automated else "manual_ids"].append(record_id)
             e2e_error = e2e_label in DECIDABLE and e2e_label != gt_verdict
-            policy_stats[policy]["e2e_errors"] += 1 if e2e_error else 0
-            policy_stats[policy]["manual_e2e_errors"] += 1 if source == "manual" and e2e_error else 0
+            stats["e2e_errors"] += 1 if e2e_error else 0
+            if e2e_error:
+                stats["automated_e2e_errors" if automated else "manual_e2e_errors"] += 1
         rows.append(entry)
     total = len(ids)
     policies: dict[str, Any] = {}
@@ -70,8 +75,17 @@ def analyze_h3(e2e_run: RunData, cas_run: RunData, gt_by_id: dict[str, dict[str,
             "manual_rate": (total - stats["automated"]) / total if total else 0.0,
             "manual_queue_e2e_error_rate": (stats["manual_e2e_errors"] / stats["manual"]
                                             if stats["manual"] else None),
+            "manual_queue_e2e_error_precision": (stats["manual_e2e_errors"] / stats["manual"]
+                                                   if stats["manual"] else None),
             "captured_e2e_error_recall": (stats["manual_e2e_errors"] / stats["e2e_errors"]
                                             if stats["e2e_errors"] else None),
+            "e2e_errors_total": stats["e2e_errors"],
+            "e2e_errors_automated": stats["automated_e2e_errors"],
+            "e2e_errors_manual": stats["manual_e2e_errors"],
+            "automated_count": stats["automated"],
+            "manual_count": stats["manual"],
+            "automated_ids": stats["automated_ids"],
+            "manual_ids": stats["manual_ids"],
         }
     return {"rows": rows, "policies": policies, "risk_coverage": _risk_coverage(rows, ids),
             "comparison": {"total": total, "comparable_pairs": comparable_pairs,
